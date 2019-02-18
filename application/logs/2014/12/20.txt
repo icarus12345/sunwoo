@@ -1,0 +1,227 @@
+
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpate' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM `webpate`
+				WHERE true 
+                                
+				
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:11:49 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpate' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM `webpate`
+				WHERE true 
+                                
+				
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:13:46 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpate' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM `webpate`
+				WHERE true 
+                                
+				
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:13:49 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpate' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM `webpate`
+				WHERE true 
+                                
+				
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:14:01 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpage' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                webpage.webpage_id,
+                webpage.webpage_title,
+                webpage.webpage_desc,
+                webpage.webpage_position,
+                webpage.webpage_status,
+                webpage.webpage_type,
+                webpage.webpage_insert,
+                webpage.webpage_update,
+                webpage.webpage_image,
+                webpage.webpage_lock
+                
+				FROM `webpage`
+				WHERE `webpage_type` = 'a'
+                                
+				ORDER BY `webpage_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:16:09 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpage' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                webpage.webpage_id,
+                webpage.webpage_title,
+                webpage.webpage_desc,
+                webpage.webpage_position,
+                webpage.webpage_status,
+                webpage.webpage_type,
+                webpage.webpage_insert,
+                webpage.webpage_update,
+                webpage.webpage_image,
+                webpage.webpage_lock
+                
+				FROM `webpage`
+				WHERE `webpage_type` = 'a'
+                                
+				ORDER BY `webpage_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:16:10 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpage' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                webpage.webpage_id,
+                webpage.webpage_title,
+                webpage.webpage_desc,
+                webpage.webpage_position,
+                webpage.webpage_status,
+                webpage.webpage_type,
+                webpage.webpage_insert,
+                webpage.webpage_update,
+                webpage.webpage_image,
+                webpage.webpage_lock
+                
+				FROM `webpage`
+				WHERE `webpage_type` = ''
+                                
+				ORDER BY `webpage_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:16:14 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.webpage' doesn't exist</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                webpage.webpage_id,
+                webpage.webpage_title,
+                webpage.webpage_desc,
+                webpage.webpage_position,
+                webpage.webpage_status,
+                webpage.webpage_type,
+                webpage.webpage_insert,
+                webpage.webpage_update,
+                webpage.webpage_image,
+                webpage.webpage_lock
+                
+				FROM `webpage`
+				WHERE `webpage_type` = ''
+                                
+				ORDER BY `webpage_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:16:47 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1054 - Unknown column 'webpage.webpage_id' in 'field list'</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                webpage.webpage_id,
+                webpage.webpage_title,
+                webpage.webpage_desc,
+                webpage.webpage_position,
+                webpage.webpage_status,
+                webpage.webpage_type,
+                webpage.webpage_insert,
+                webpage.webpage_update,
+                webpage.webpage_image,
+                webpage.webpage_lock
+                
+				FROM `webpage`
+				WHERE `webpage_type` = ''
+                                
+				ORDER BY `webpage_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:18:16 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1054 - Unknown column 'site.site_position' in 'field list'</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS 
+                site.site_id,
+                site.site_title,
+                site.site_desc,
+                site.site_position,
+                site.site_status,
+                site.site_type,
+                site.site_insert,
+                site.site_update,
+                site.site_image,
+                site.site_lock
+                
+				FROM `site`
+				WHERE `site_type` = ''
+                                
+				ORDER BY `site_insert` ASC
+				LIMIT 1000
+			</div></div>
+                        <span class="timestamp">2014-12-20 09:18:54 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>

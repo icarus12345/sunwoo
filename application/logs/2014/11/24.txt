@@ -1,0 +1,75 @@
+
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sector=,en=,lawyer=,Consultancy sector=,2014-11-24 06:12:50=,2014-11-24 06:12:50' at divne 1</div><div class='sql-query'>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Consultancy sector=,en=,lawyer=,Consultancy sector=,2014-11-24 06:12:50=,2014-11-24 06:12:50=</div></div>
+                            <span class="timestamp">2014-11-24 06:12:50</span> 
+                        </div>
+                    </div> 
+
+            </div>
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sector=,vi=,lawyer=,Lĩnh vực=,2014-11-24 06:12:50=,2014-11-24 06:12:50=' at divne 1</div><div class='sql-query code'><code>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Consultancy sector=,vi=,lawyer=,Lĩnh vực=,2014-11-24 06:12:50=,2014-11-24 06:12:50=</code></div></div>
+                            <span class="timestamp">2014-11-24 06:12:50</span> 
+                        </div>
+                    </div> 
+
+            </div>
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sector=,en=,lawyer=,Consultancy sector=,2014-11-24 06:13:50=,2014-11-24 06:13:50' at divne 1</div><div class='sql-query'>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Consultancy sector=,en=,lawyer=,Consultancy sector=,2014-11-24 06:13:50=,2014-11-24 06:13:50=</div></div>
+                            <span class="timestamp">2014-11-24 06:13:50</span> 
+                        </div>
+                    </div> 
+
+            </div>
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sector=,vi=,lawyer=,Lĩnh vực=,2014-11-24 06:13:50=,2014-11-24 06:13:50=' at divne 1</div><div class='sql-query'>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Consultancy sector=,vi=,lawyer=,Lĩnh vực=,2014-11-24 06:13:50=,2014-11-24 06:13:50=</div></div>
+                            <span class="timestamp">2014-11-24 06:13:50</span> 
+                        </div>
+                    </div> 
+
+            </div>
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Info=,en=,lawyer=,[A]: 10th Floor, 845 Cambie Street Vancouver, BC V6B 5T3
+[T]: ' at divne 1</div><div class='sql-query'>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Contact Info=,en=,lawyer=,[A]: 10th Floor, 845 Cambie Street Vancouver, BC V6B 5T3
+[T]: 604.687.3404 or 1.888.687.3404
+[F]: 604.669.9601 or 1.877.669.9601
+[E]: cba@cbabc.org=,2014-11-24 07:43:09=,2014-11-24 07:43:09=</div></div>
+                            <span class="timestamp">2014-11-24 07:43:09</span> 
+                        </div>
+                    </div> 
+
+            </div>
+            <div class="inbox-item clearfix">
+
+                    <div class="media"> 
+                        <div class="media-body">
+                            <div class="media-heading name">insertOndupdivcateUpdate</div>
+                            <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Info=,vi=,lawyer=,[A]: 10th Floor, 845 Cambie Street Vancouver, BC V6B 5T3
+[T]: ' at divne 1</div><div class='sql-query'>INSERT INTO `language` SET `language`='' ON DUPdivCATE KEY UPDATE Contact Info=,vi=,lawyer=,[A]: 10th Floor, 845 Cambie Street Vancouver, BC V6B 5T3
+[T]: 604.687.3404 or 1.888.687.3404
+[F]: 604.669.9601 or 1.877.669.9601
+[E]: cba@cbabc.org=,2014-11-24 07:43:09=,2014-11-24 07:43:09=</div></div>
+                            <span class="timestamp">2014-11-24 07:43:09</span> 
+                        </div>
+                    </div> 
+
+            </div>

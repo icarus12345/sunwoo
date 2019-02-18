@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="libraries/bootstrap/css/font-awesome.css">
+        <style>
+			*{padding: 0;margin: 0;font-family: tahoma;font-size: 11px;color: #666}
+			body,html{display: block;;height: 100%;overflow: hidden;}
+			#integration_asynchronous{position: absolute;top: 0;left: 50%;width: 100%;height: 100%;border:0;margin-left: -50%}
+			#controls{position: absolute;top: 50%;left: 0;z-index: 1;width: 20px;height: 60px;margin-top: -30px;background-color: rgba(0,0,0,.5)}
+			#controls>i{width: 20px;height: 20px;text-align: center;line-height: 20px;font-size: 14px;color: #fff;cursor: pointer;}
+			#controls>i:hover{background: #1b926c}
+		</style>
+        <script type="text/javascript">
+        function mobile(){
+        	var ifrm = document.getElementById('integration_asynchronous');
+        	if(ifrm.style.width == '480px'){
+        		ifrm.style.width = '600px';
+	    		ifrm.style.marginLeft = '-320px'
+        	}else{
+	    		ifrm.style.width = '480px';
+	    		ifrm.style.marginLeft = '-240px'
+        	}
+        }
+        function tablet(){
+        	var ifrm = document.getElementById('integration_asynchronous');
+    		if(ifrm.style.width == '768px'){
+    			ifrm.style.width = '960px';
+	    		ifrm.style.height = '100%';
+	    		ifrm.style.marginLeft = '-480px'
+    		}else{
+    			ifrm.style.width = '768px';
+	    		ifrm.style.height = '100%';
+	    		ifrm.style.marginLeft = '-384px'
+	    	}
+        }
+        function desktop(){
+        	var ifrm = document.getElementById('integration_asynchronous');
+    		ifrm.style.width = '100%';
+    		ifrm.style.height = '100%';
+    		ifrm.style.marginLeft = '-50%'
+        }
+        </script>
+    </head>
+	<body>
+		<div id="controls">
+			<i class="fa fa-mobile" title='Mobile(landscape/portrait)' onclick="mobile()"></i>
+			<i class="fa fa-tablet" title="Tablet(landscape/portrait)" onclick="tablet()"></i>
+			<i class="fa fa-desktop" title="Desktop" onclick="desktop()"></i>
+		</div>
+		<iframe 
+			id="integration_asynchronous" 
+			name="integration_asynchronous" 
+			src="realestate.html" 
+			></iframe>

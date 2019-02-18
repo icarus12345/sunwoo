@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Real Estate</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="libraries/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="libraries/bootstrap/css/bootstrap-select.min.css"/>
+        <link rel="stylesheet" type="text/css" href="libraries/plugin/select2/select2.css"/>
+        <link rel="stylesheet" type="text/css" href="libraries/bootstrap/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="css/realestate.css"/>
+        <link rel="stylesheet" type="text/css" href="libraries/plugin/owl-carousel/owl.carousel.css"/>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="libraries/plugin/swipebox/swipebox-dark-1.3.css" >
+
+        
+        <script type="text/javascript" src="libraries/bootstrap/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="libraries/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="libraries/plugin/owl-carousel/owl.carousel.js"></script>
+        <script type="text/javascript" src="libraries/plugin/jquery.nailthumb.1.1.js"></script>
+        <script type="text/javascript" src="libraries/plugin/jquery.lazyload.min.js"></script>
+        <script type="text/javascript" src="js/realestate.js"></script>
+        <script type="text/javascript" src="libraries/plugin/swipebox/jquery.swipebox-1.3.js"></script>
+
+        <!--[if IE]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body style="background-image:none">
+		<div class="body-slider" style="position:absolute;left:0;width:100%;top:0;height:550px;">
+			<div id="owl-demo" class="owl-carousel">
+				<div class="item bg-cover" style="background-image:url(img/bg.jpg);background-position: top center;"></div>
+				<div class="item bg-cover" style="background-image:url(img/bg-a.jpg);background-position: top center;"></div>
+				<div class="item bg-cover" style="background-image:url(img/bg-b.jpg);background-position: top center;"></div>
+			</div>
+		</div>
+        <header id="navbar" class="navbar" role="banner">
+            <div class="container">
+                <div class="">
+                    <div class="pull-right top-menu">
+                        <!-- <a class="btn btn-default btn-sm">Trang chủ</a> -->
+                        <a href="JavaScript:dialog('login')" class="btn btn-default btn-sm">Đăng nhập</a>
+                        <a class="btn btn-default btn-sm">Tham gia</a>
+                        <a href="lienhe.html" class="btn btn-default btn-sm">Liên hệ</a>
+                        <!--<ul>
+                            <li><a class="btn btn-default btn-sm">ngôn ngữ</a>
+                                <ul>
+                                    <li>tiếng anh</li>
+                                    <li>tiếng việt</li>
+                                </ul>
+                            </li>
+                        </ul>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        <img src="img/logo.png"/>
+                    </a>
+                    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span>
+                            <span class="icon-bar line-1"></span>
+                            <span class="icon-bar line-2"></span>
+                            <span class="icon-bar line-3"></span>
+                        </span>
+                    </button>
+                </div>
+                <nav id="navigation" class="collapse navbar-collapse bs-navbar-collapse" role="navigation" style="overflow: hidden" >
+
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href='realestate.html'>Trang chủ</a></li>
+                        <li>
+                            <a href="about.html" >Giới thiệu</a>
+                            <!-- <a href="#" data-toggle="dropdown">Courses</a>
+                            <ul class="dropdown-menu">
+                                <li><a href='/product/xgard'>Park</a></li>
+                                <li><a href='/product/red-shied'>Street</a></li>
+                                <li><a href='/product/green-shied'>Arena</a></li>
+                                <li><a href='/product/green-shied'>Green Shied</a></li>
+                            </ul> -->
+                        </li>
+                        <li><a href="congtrinh.html">Công trình - dự án</a></li>
+                        <li><a href="noithat.html">Thiết kế nội thất</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="container pull-bottom">
+            <div class="header-space"></div>
+            <div class="-row ">
+                <div class="video-box">
+                    <div class="video-bg">
+                        <div class="pull-right">
+                            <div class="primary-color"><b>VIDEO QUẢNG CÁO</b></div>
+                            <div class="pull-top pull-bottom">
+                                <button class="btn btn-xs btn-primary active">HÌNH ẢNH</button>
+                                <button class="btn btn-xs btn-primary">VIDEO</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="video">
+                            <div>
+                                <video id="my_video" loop autoplay muted>
+                                    <source type="video/mp4" src="img/video/xaydung-3d.mp4">
+                                </video>
+                                <div class="controls">
+                                    <!-- <i class="fa fa-play"></i> -->
+                                    <i id="pay-pause" class="fa fa-pause"></i>
+                                    <i class="fa fa-stop"></i>
+                                    <input id="seekslider" class="seekslider" type="range" min="0" max="100" value="0" step="1">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row pull-top">
+                <div class="col-sm-6 col-mb-12">
+                    <div class="row">
+                        <div class="col-sm-6 col-mb-6 col-xs-12">
+                            <div class="pull-bottom">
+                                <button class="btn btn-xs btn-info active">TIN TỨC</button>
+                                <button class="btn btn-xs btn-info">THÔNG BÁO</button>
+                                <a href="#" class="more"></a>
+                            </div>
+                            <ul class="list-news">
+                                <li>Công Ty TNHH Count Vina...</li>
+                                <li>Cty TNHH Tín Thảo...</li>
+                                <li>VietNam J.S Plastic Packaging...</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-mb-6 col-xs-12">
+                            <div class="primary-color pull-bottom"><b>CÔNG TRÌNH - DỰ ÁN</b></div>
+                            <div class="product-item">
+                                <a class="swipebox" 
+                                    href="img/image-5.jpg" 
+                                    data-cap='Quận Bình Thạnh - HCM'
+                                    title="PHIM TRƯỜNG VISION"
+                                    >
+                                    <div class="product-thumb">
+                                        <div class="nailthumb">
+                                            <div class="nailthumb-figure-75">
+                                                <div class="nailthumb-container">
+                                                    <img src="img/p1.png" class="lazy"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-capt">
+                                        <div><b>DỰ - ÁN SAO VIỆT - 2014</b></div>
+                                        <p>
+                                           ĐC : Tỉnh Bình Dương</br>
+                                           - Ngày hoàn công : 06/05/2014...</br>
+                                        </p>
+                                        <span class="btn btn-xs btn-default">XEM THÊM <i class="fa fa-caret-right"></i></span>
+                                    </div>
+									<div class="clearfix"></div>
+									<div class="space-line"></div>
+									<div class="space-line"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-mb-12">
+                    <div class="row">
+                        <div class="col-sm-6 col-mb-6 col-xs-12">
+                            <div class="primary-color"><b>KHÁCH HÀNG QUAN TÂM</b></div>
+                            <div class="product-item pull-top">
+                                <a class="swipebox" 
+                                    href="img/image-2.jpg"
+                                            data-cap='<strong>Cty TNHH Tín Thảo</strong></br>
+                                                            - ĐC : KCN Hải Sơn, H. Đức Hòa, T. Long An</br>
+                                                            - Ngày khởi công : 12/01/2015 - Ngày hoàn công :....</br>'
+                                            title="TÍN THẢO">
+                                    <div class="product-thumb">
+                                        <div class="nailthumb">
+                                            <div class="nailthumb-figure-75">
+                                                <div class="nailthumb-container">
+                                                    <img src="img/P2.png" class="lazy"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-capt">
+                                        <div><b>THÔNG TIN DỰ ÁN</b></div>
+                                        <p>
+                                            Khởi công công trình Cty TNHH Tín Thảo Ngày khởi công : 12/01/2015...
+                                        </p>
+                                        <span class="btn btn-xs btn-default">XEM THÊM <i class="fa fa-caret-right"></i></span>
+                                    </div>
+									<div class="clearfix"></div>
+									<div class="space-line"></div>
+									<div class="space-line"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-mb-6 col-xs-12">
+                            <div class="primary-color"><b>THIẾT KẾ - TRANG TRÍ NỘI THẤT</b></div>
+                            <div class="product-item pull-top">
+                                 <a class="swipebox" 
+                                    href="img/image-6.jpg"
+                                            data-cap='<strong>Công Ty CP Sao Việt</strong></br>
+                                                            - ĐC : Đường Số 4, KCN Đồng An, P. Bình Hưng Hòa, Thị Xã Thuận An, T. Bình Dương</br>
+                                                            - Ngày Khởi công : 06/09/2013 - Ngày hoàn công : 06/05/2014</br>'
+                                            title="PUMA VIỆT NAM - SAO VIỆT">
+                                <div class="product-thumb">
+                                    <div class="nailthumb">
+                                        <div class="nailthumb-figure-75">
+                                            <div class="nailthumb-container">
+                                                <img src="img/P3.png" class="lazy"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-capt">
+                                    <div><b>DECO Văn Phòng PUMA</b></div>
+                                    <p>
+                                        Chúng tôi đã được chọn làm công ty thiết kế cho ...
+                                    </p>
+                                    <span class="btn btn-xs btn-default">XEM THÊM <i class="fa fa-caret-right"></i></span>
+                                </div>
+								<div class="clearfix"></div>
+								<div class="space-line"></div>
+								<div class="space-line"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sm-space"></div>
+        </div>
+        <div class="foot">
+            <div class="container pull-top">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-mb-4 pull-top">
+                            <img class="foot-logo" src="img/logo.png"/>
+                        </div>
+                        <div class="col-mb-8 pull-top">
+                            <div class="foot-menu">
+                                <a href="about-chinhsach.html">CHÍNH SÁCH CHẤT LƯỢNG</a>
+                                <a href="about-lienhe.html">LIÊN HỆ</a>
+                                <a href="lienhe.html">GIẢI ĐÁP THẮC MẮC</a>
+                            </div>
+                            <div class="pull-top">
+                                Địa chỉ : 119 Đường Số 9, Phường 16, Quận Gò Vấp
+                            </div>
+                            <div class="pull-bottom">
+                                Tel : (+84.8) 39168714 - Email : toanloico@yahoo.com.vn
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pull-top">
+                    <div class="row">
+                        <div class="pull-bottom col-mb-4 col-sm-12 ">
+                            FAMILY SITE 
+                            <label class="select-map dropup">
+                                <span data-toggle="dropdown">Chọn các site khác <i class="fa fa-caret-right"></i></span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="realestate.html" >Trang chủ</a></li>
+                                    <li ><a href="about.html" >Giới thiệu</a></li>
+                                    <li ><a href="congtrinh.html" >Công trình - dự án</a></li>
+                                    <li ><a href="noithat.html" >Thiết kế nội thất</a></li>
+                                </ul>
+                            </label>
+                            
+                        </div>
+                        <div class="pull-bottom col-mb-8 col-sm-12">
+                            COPYRIGHT &copy; 2015 Công Ty TNHH Toàn Lợi.
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="libraries/plugin/validation-engine/jquery.validationEngine.js"></script>
+        <script type="text/javascript" src="libraries/plugin/validation-engine/jquery.validationEngine-en.js"></script>
+		<div id="login" class="dialog transition" style="z-index:1110;">
+			<div class="content transition">
+				<div class="">
+					<div class="head"><span>Đăng nhập !</span> <i class="pull-right fa fa-close" onclick="dialog('login')"></i></div>
+					<div class="body">
+						<form name="signForm" id="signForm" target="integration_asynchronous">
+						Bạn chưa có tài khoản. <a class="dark" href="#" onclick="dialog('register')">Đăng ký tại đây</a>.
+						<div class="space-line"></div>
+						<div class="input-group">
+							<input class="form-control dark validate[required,custom[email]]" placeholder="Email" name="Email" />
+						</div>
+						<div class="space-line"></div>
+						<div class="input-group password-control">
+							<input class="form-control darkvalidate[required,minSize[4],maxSize[255]]" placeholder="Password" name="Password" />
+						</div>
+						<div class="space-line"></div>
+						<!--<div class="row">
+							<div class="col-xs-6">
+								
+							</div>
+							<div class="col-xs-6">
+								<button class="btn btn-default btn-block" type="button" onclick="loginfn()">LOGIN</button>
+							</div>
+						</div>-->
+						</form>
+					</div>
+					<div class="dfoot" onclick="loginfn()">
+						Đăng nhập
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="register" class="dialog transition" style="z-index:1110;">
+			<div class="content transition">
+				<div class="">
+					<div class="head"><span>Đăng ký !</span> <i class="pull-right fa fa-close" onclick="dialog('register')"></i></div>
+					<div class="body">
+					<form name="regForm" id="regForm" target="integration_asynchronous">
+						Bạn đã có tài khoản. <a class="dark" href="#" onclick="dialog('login')">Đăng nhập tại đây</a>.
+						<div class="space-line"></div>
+						<div class="row half">
+							<div class="col-xs-6 half">
+								<div class="input-group">
+									<input name="FirstName" class="form-control dark validate[required,minSize[4],maxSize[255]]" placeholder="First name"/>
+								</div>
+								<div class="space-line"></div>
+							</div>
+							<div class="col-xs-6 half">
+								<div class="input-group">
+									<input name="LastName" class="form-control dark validate[required,minSize[4],maxSize[255]]" placeholder="Last name"/>
+								</div>
+								<div class="space-line"></div>
+							</div>
+						</div>
+						<div class="row half">
+							<div class="col-xs-12 half">
+								<div class="input-group">
+									<input name="Email" class="form-control dark validate[required,custom[email]]" placeholder="Email"/>
+								</div>
+								<div class="space-line"></div>
+							</div>
+						</div>
+						<div class="row half">
+							<div class="col-xs-6 half">
+								<div class="input-group">
+									<input type="password" name="Password" id="Password" class="form-control dark validate[required,minSize[4],maxSize[255]]" placeholder="Password"/>
+								</div>
+								<div class="space-line"></div>
+							</div>
+							<div class="col-xs-6 half">
+								<div class="input-group password-control">
+									<input type="password" class="form-control dark validate[required,equals[Password]]" placeholder="Confirm"/>
+								</div>
+								<div class="space-line"></div>
+							</div>
+						</div>
+						<!--<div class="row half">
+							<div class="col-xs-6 half">
+								
+							</div>
+
+							<div class="col-xs-6 half">
+								<button class="btn btn-default btn-block" type="button" onclick="registerfn()">Register</button>
+							</div>
+						</div>-->
+					</form>
+					</div>
+					<div class="dfoot" onclick="registerfn()">
+						Đăng ký
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#signForm').validationEngine({
+					'scroll': false
+					, 
+					'isPopup' : false
+					, 
+					prettySelect : true
+				//, validateNonVisibleFields:false
+				});
+				$('#regForm').validationEngine({
+					'scroll': false
+					, 
+					'isPopup' : false
+					, 
+					prettySelect : true
+				//, validateNonVisibleFields:false
+				});
+			});
+			function registerfn(){
+				if( $('#regForm').validationEngine('validate') === false)return;
+				var params = $('#regForm').serializeObject();
+				httpRequest({
+					'url': '/frontend/account/onRegister',
+					'data': {
+						'params' : params
+					},
+					'callback': function(rsdata) {
+						if (rsdata.result < 0) {
+							dialogMsg(rsdata.message);
+						} else {
+							window.location.reload();
+						}
+					}
+				}).call();
+			}
+			function loginfn(){
+				if( $('#signForm').validationEngine('validate') === false)return;
+				var params = $('#signForm').serializeObject();
+				httpRequest({
+					'url': '/frontend/account/onLogin',
+					'data': {
+						'params' : params
+					},
+					'callback': function(rsdata) {
+						if (rsdata.result < 0) {
+							dialogMsg(rsdata.message);
+						} else {
+							window.location.reload();
+						}
+					}
+				}).call();
+			}
+		</script>
+		<!-- <div id="pending" class="spinner pending"></div> -->
+		<div id="dialogMsg" class="dialog" style="z-index:2222">
+			<div class="content">
+				<div>
+					<div class="head">Notication Message !</div>
+					<div class="body">
+						A confirmed address is a shipping address that PayPal has established as belonging to the PayPal account holder. To be protected by PayPal's Seller Protection Policy, you must require the shipping address to be a confirmed address
+					</div>
+					<div class="foot" onclick="closeMsg()">
+						Close
+					</div>
+				</div>
+			</div>
+		</div>
+    </body>

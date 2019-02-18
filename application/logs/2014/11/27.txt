@@ -1,0 +1,36 @@
+
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">updateNodeByParent</div>
+                        <div class="text"><div class='sql-message'>1146 - Table 'ci.categories' doesn't exist</div><div class='sql-query'>UPDATE `categories` SET `Update` = NOW(), `Parent` = NULL WHERE `Parent` IS NULL</div></div>
+                        <span class="timestamp">2014-11-27 05:09:42</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">updateNodeByParent</div>
+                        <div class="text"><div class='sql-message'>1054 - Unknown column 'Parent' in 'where clause'</div><div class='sql-query'>UPDATE `category` SET `Update` = NOW(), `Parent` = NULL WHERE `Parent` IS NULL</div></div>
+                        <span class="timestamp">2014-11-27 05:11:12</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">Binding Table</div>
+                        <div class="text"><div class='sql-message'>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Name` ASC
+				LIMIT 0, 10' at line 2</div><div class='sql-query'>
+				SELECT SQL_CALC_FOUND_ROWS * 
+				FROM setting`
+				WHERE Type = 'webpage'
+                                
+				ORDER BY `Name` ASC
+				LIMIT 0, 10
+			</div></div>
+                        <span class="timestamp">2014-11-27 17:02:02 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>

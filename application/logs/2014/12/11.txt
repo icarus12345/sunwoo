@@ -1,0 +1,55 @@
+
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onInsertCategory</div>
+                        <div class="text"><div class='sql-message'>1062 - Duplicate entry 'Admin@gmail.com' for key 'ause_unique'</div><div class='sql-query'>INSERT INTO `auth_users` (`ause_insert`, `ause_authority`, `ause_status`, `ause_name`, `ause_email`, `ause_username`, `ause_password`, `ause_key`, `ause_salt`, `ause_secretkey`, `ause_position`) VALUES (NOW(), 'Guest', 'true', 'Admin', 'Admin@gmail.com', 'admin', '2b1c143486bdcd1d38852f7011452960', 'x05Ysz5e', 'wgtNGW0I', '4BmL0093Dp5bfajBXiAUUmZwdfK8LZPv', 2)</div></div>
+                        <span class="timestamp">2014-12-11 17:02:18 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onInsertCategory</div>
+                        <div class="text"><div class='sql-message'>1062 - Duplicate entry 'Admin@gmail.com' for key 'ause_unique'</div><div class='sql-query'>INSERT INTO `auth_users` (`ause_insert`, `ause_authority`, `ause_status`, `ause_name`, `ause_email`, `ause_username`, `ause_password`, `ause_key`, `ause_salt`, `ause_secretkey`, `ause_position`) VALUES (NOW(), 'Guest', 'true', 'Admin', 'Admin@gmail.com', 'admin', 'ca319962db29e9dac7c1ea67d54011d7', 'tZ2xKLHc', 'S5SDdi1a', 'ENhxLJaplwhCtY3jq58bekamqJnbOlF3', 2)</div></div>
+                        <span class="timestamp">2014-12-11 17:03:38 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onInsertCategory</div>
+                        <div class="text"><div class='sql-message'>1062 - Duplicate entry 'Admin@gmail.com' for key 'ause_unique'</div><div class='sql-query'>INSERT INTO `auth_users` (`ause_insert`, `ause_authority`, `ause_status`, `ause_name`, `ause_email`, `ause_username`, `ause_password`, `ause_key`, `ause_salt`, `ause_secretkey`, `ause_position`) VALUES (NOW(), 'Guest', 'true', 'Admin', 'Admin@gmail.com', 'admin', 'ad23faaa44c6e84cf15bf309c7e56ef1', 'txDA6cWJ', 'iEXaGXq0', '1eQHEj3qWBeUNuwZRqq09ezQ04WvIlmL', 2)</div></div>
+                        <span class="timestamp">2014-12-11 17:04:05 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onUpdateCategory</div>
+                        <div class="text"><div class='sql-message'>1054 - Unknown column 'account_status' in 'field list'</div><div class='sql-query'>UPDATE `auth_users` SET `ause_update` = '2014-12-11 17:07:15', `account_status` = 'true' WHERE `ause_id` =  10018</div></div>
+                        <span class="timestamp">2014-12-11 17:07:15 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onInsertCategory</div>
+                        <div class="text"><div class='sql-message'>1062 - Duplicate entry 'asdasd' for key 'system_fk'</div><div class='sql-query'>INSERT INTO `setting` (`insert`, `Type`, `Name`, `DataType`, `Title`, `Image`, `Desc`, `Value`) VALUES (NOW(), 'webpage', 'asdasd', 'text', 'asdasd', 'asdasd', 'asdasd', 'asd')</div></div>
+                        <span class="timestamp">2014-12-11 17:38:57 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onInsertCategory</div>
+                        <div class="text"><div class='sql-message'>1062 - Duplicate entry 'asdasd' for key 'system_fk'</div><div class='sql-query'>INSERT INTO `setting` (`insert`, `Type`, `Name`, `DataType`, `Title`, `Image`, `Desc`, `Value`) VALUES (NOW(), 'webpage', 'asdasd', 'text', 'asdasd', 'asdasd', 'asdasd', 'asd')</div></div>
+                        <span class="timestamp">2014-12-11 17:39:55 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>

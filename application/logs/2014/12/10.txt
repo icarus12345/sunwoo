@@ -1,0 +1,12 @@
+
+            <div class="inbox-item clearfix">
+                <div class="media"> 
+                    <div class="media-body">
+                        <div class="media-heading name">onGetCategory</div>
+                        <div class="text"><div class='sql-message'>1054 - Unknown column 'cat_id' in 'where clause'</div><div class='sql-query'>SELECT *
+FROM (`menu`)
+WHERE `cat_id` =  1</div></div>
+                        <span class="timestamp">2014-12-10 10:27:46 - Trường Khương Xuân</span> 
+                    </div>
+                </div> 
+            </div>
