@@ -36,7 +36,20 @@ class product_model extends Core_Model {
         ->where('product_status', 'true')
         //->where('product_insert <= ', date('Y-m-d H:i:s'))
         ->get();
-        return $query->row();
+        $row = $query->row();
+        $row->general_informations = $this->db
+            ->from('opt')
+            // ->where('opt_status', 'true')
+            ->where('opt_token', $row->product_token)
+            ->get()
+            ->result();
+        $row->features = $this->db
+            ->from('_line')
+            // ->where('opt_status', 'true')
+            ->where_in('_id', explode(',', $row->product_features))
+            ->get()
+            ->result();
+        return $row;
     }
     function getFeature($cat_value, $page = 1, $perpage = 10){
         $this->select();

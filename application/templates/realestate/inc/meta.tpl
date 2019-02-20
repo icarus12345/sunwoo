@@ -10,6 +10,8 @@
         <![endif]-->
         <link rel="stylesheet" type="text/css" href="/libraries/bootstrap/css/bootstrap.css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/libraries/plugin/owl-carousel/owl.carousel.css"/>
+        <link rel="stylesheet" type="text/css" href="/libraries/plugin/swipebox/swipebox-dark-1.3.css" >
         <link rel="stylesheet" href="/assets/sunwoo/css/animate.css">
         <link rel="stylesheet" href="/assets/sunwoo/css/style.css">
 
@@ -18,7 +20,10 @@
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB6TJrMx3v003kFpoOUSgugZSk8j1WWK_s"></script>
-
+        <script type="text/javascript" src="/libraries/plugin/owl-carousel/owl.carousel.js"></script>
+        <script type="text/javascript" src="/libraries/plugin/jquery.nailthumb.1.1.js"></script>
+        <script type="text/javascript" src="/libraries/plugin/jquery.lazyload.min.js"></script>
+        <script type="text/javascript" src="/libraries/plugin/swipebox/jquery.swipebox-1.3.js"></script>
         <script src="/assets/sunwoo/js/common.js" type="text/javascript"></script>
         <script src="/assets/sunwoo/js/main.js" type="text/javascript"></script>
     </head>

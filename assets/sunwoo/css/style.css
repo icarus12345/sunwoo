@@ -1323,7 +1323,8 @@ li.current .sub-nav-links{
 	width: calc((100% - 15px) /4);
 }
 .box-search .nav-tabs>li>a{
-	line-height: 50px;padding: 0 0px;border-radius: 5px; background-color: rgba(255,255,255,1);
+	line-height: 50px;
+	padding: 0 0px;border-radius: 5px; background-color: rgba(255,255,255,1);
 	font-size: 18px;text-transform: uppercase;
 	color:#1b9290;
 	text-align: center;
@@ -1462,33 +1463,38 @@ li.current .sub-nav-links{
 .popup-bubble{
 	position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     transform: translate(-50%, -100%);
     /* Style the bubble. */
     background-color: white;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    display: none;
+
 }
+.popup-bubble-anchor:hover .popup-bubble{display: block;}
 .popup-bubble-anchor {
-/* Position the div a fixed distance above the tip. */
-position: absolute;
-width: 100%;
-bottom: /* TIP_HEIGHT= */ 8px;
-left: 0;
+	position: absolute;
+    left: -16px;
+    width: 32px;
+	height: 64px;
+	outline:1px solid red;
+    bottom:0;
 }
 /* This element draws the tip. */
-.popup-bubble-anchor::after {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-/* Center the tip horizontally. */
-transform: translate(-50%, 0);
-/* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
-width: 0;
-height: 0;
-/* The tip is 8px high, and 12px wide. */
-border-left: 6px solid transparent;
-border-right: 6px solid transparent;
-border-top: /* TIP_HEIGHT= */ 8px solid white;
+.popup-bubble::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	/* Center the tip horizontally. */
+	transform: translate(-50%, 0);
+	/* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+	width: 0;
+	height: 0;
+	/* The tip is 8px high, and 12px wide. */
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: /* TIP_HEIGHT= */ 8px solid white;
 }
 /* JavaScript will position this div at the bottom of the popup tip. */
 .popup-container {
@@ -1496,7 +1502,11 @@ border-top: /* TIP_HEIGHT= */ 8px solid white;
 	height: 0;
 	position: absolute;
 	/* The max width of the info window. */
-	width: 32px;
-	height: 64px;
-	border:1px solid red;
+	width: 0;height: 0;
+}
+#owl-demo{
+	margin-bottom: 30px
+}
+#owl-demo .item{
+	padding-bottom: 54.65%
 }

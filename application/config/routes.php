@@ -72,6 +72,7 @@
 
 $route["project"] = "frontend/product";
 $route["project/(:num)"] = "frontend/product/page/$1";
+$route["project/detail/(:num)"] = "frontend/product/detail/$1";
 
 
 

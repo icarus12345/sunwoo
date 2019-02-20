@@ -1,4 +1,15 @@
 $(document).ready(function(){
+  if ($('#owl-demo').length > 0)
+  $("#owl-demo").owlCarousel({
+    autoPlay : 5000,
+    stopOnHover : false,
+    navigation:false,
+    paginationSpeed : 1000,
+    //goToFirstSpeed : 2000,
+    singleItem : true,
+    autoHeight : true,
+    // transitionStyle:"fade"
+    });
     setTimeout(function(){
 
         var mapElement = document.getElementById('map')
@@ -48,5 +59,6 @@ $(document).ready(function(){
             popup.setMap(map);
         })
         map.fitBounds(bounds);
-    },150)
-})
+    },300)
+});
+console.log('****')

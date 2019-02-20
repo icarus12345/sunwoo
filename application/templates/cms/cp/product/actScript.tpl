@@ -153,7 +153,6 @@ var [{$tplConfig.name}] = (function() {
             if($('[data-editor="basic"]').length){
                 $('[data-editor="basic"]').each(function(){
                     var id = $(this).attr('id');
-                    addEditorBasic(id,240);
                     $('#' + id).val(CKEDITOR.instances[id].getData());
                 })
             }

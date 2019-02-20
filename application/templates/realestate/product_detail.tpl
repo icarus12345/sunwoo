@@ -1,109 +1,106 @@
 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/meta.tpl"}]
 <body>
-	<div class="body-slider" style="position:absolute;left:0;width:100%;top:0;height:550px;">
-		<div id="owl-demo" class="owl-carousel">
-			[{foreach from=$sliders item=foo}]
-			<div class="item bg-cover" style="background-image:url('[{$foo->Image}]');background-position: top center;"></div>
-			[{/foreach}]
-		</div>
-	</div>
-	[{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
-		
-        
-        <div class="container pull-bottom">
-            <div class="about-space"></div>
-            <style type="text/css">
-                [{if $lang=='en'}]
-                body{background-image: url('/assets/nha-dat/img/bg2-en.jpg')}
-                [{else}]  
-                  body{background-image: url('/assets/nha-dat/img/bg2.jpg')}
-                [{/if}]
-            </style>
-            <div class="row">
-                <div class="col-sm-3" style="padding-top: 10px;">
-                    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/left_menu.tpl"}]
-
+  [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
+  <div id="wrap" class="cover">
+        <div id="header">
+            <div class="container">
+                <div id="logo" ui-yield-to="logo">
+                    <a href="/" class="hover-line" ui-content-for="logo"><span></span></a>
                 </div>
-                <div class="col-sm-9 pull-top">
-                    <div class="space-line"></div>
-                    <div class="h2-title pull-top text-uppercase">
-                        <span>[{$languages.all_notification|default:'THÔNG BÁO'}]</span>
-                        [{if $lang=='en'}]
-                        Toan Loi company is agree construction and design, interior design for project
+                <div class="hot-line"><span class="fa fa-phone-square"></span> VN: (+84) 88 606 3577 | Korea: (+82) 10 4906 5736</div>
+                <div id="cnavi" class="nav" ui-yield-to="cnavi"></div>
+            </div>
+        </div>
+        <div id="left-contents-wrap" ui-yield-to="left-contents">
+          <div ui-content-for="left-contents" style="width: 100%;height: 100%;" id="google-map">
+            <div id="map" style="width: 100%;height: 100%;"></div>
+          </div>
+          
+        </div>
+        <div id="contents-wrap">
+            <div id="contents">
+                <div id="product-detail" class="content">
+                    <style type="text/css">
+                        #header{
+                            background-image: url(/assets/sunwoo/images/banner.jpg);
+                            background-size: cover;
+                            height: 228px;
+                        }
+                    </style>
+                    
+                    <div class="box-search">
+                        [{if $product_detail->product_images}]
+                        <div class="body-slider" style="">
+                            <div id="owl-demo" class="owl-carousel">
+                                              
+                                <div class="item bg-100" style="background-image:url('/data/image/bg-vn-2.jpg');background-position: top center;"></div>
+                                                          
+                                <div class="item bg-100" style="background-image:url('/data/image/bg-vn-1.jpg');background-position: top center;"></div>
+                                                          
+                                <div class="item bg-100" style="background-image:url('/data/image/bg-vn.jpg');background-position: top center;"></div>
+                            </div>
+                        </div>
                         [{else}]
-                        Công Ty TNHH Toàn Lợi chuyên nhận xây dựng và thiết kế, thiết kế nội thất cho các công trình.
+                        <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
                         [{/if}]
-                    </div>
-                    <div class="pull-top">
-                        [{if $cate!='410'}]
-                        <div class="h3-title text-center">
-                            [{if $lang=='en'}]
-                            <span style="float:none">[{$product_detail->product_title_en|default:$product_detail->product_title|escape:'html'}]</span>
-                            [{else}]
-                            <span style="float:none">[{$product_detail->product_title|escape:'html'}]</span>
-                            [{/if}]
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">Gioi thieu chung</a></li>
+                        <li role="presentation"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Thong tin co ban</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Noi that</a></li>
+                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tien ich</a></li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="about">
+                            [{$product_detail->product_content_vi}]
                             
                         </div>
-                        <div class="gray">
-                            [{if $lang=='en'}]
-                            [{$product_detail->product_content_en}]
-                            [{else}]
-                            [{$product_detail->product_content}]
-                            [{/if}]
+                        <div role="tabpanel" class="tab-pane" id="general">
+                            <table class="table table-borderd">
+                                <tr>
+                                    <td>Dien tich</td>
+                                    <td>[{$product_detail->product_acreage}]</td>
+                                    <td>Rong</td>
+                                    <td>[{$product_detail->product_width}]</td>
+                                </tr>
+                                <tr>
+                                    <td>Dai</td>
+                                    <td>[{$product_detail->product_height}]</td>
+                                    <td>Gia</td>
+                                    <td>[{$product_detail->product_price}]</td>
+                                </tr>
+                                <tr>
+                                    <td>Noi that</td>
+                                    <td>[{$product_detail->product_furniture_vi}]</td>
+                                    <td>Tien ich</td>
+                                    <td>[{$product_detail->product_utilities_vi}]</td>
+                                </tr>
+                                <tr>
+                                    <td>Phong ngu</td>
+                                    <td>[{$product_detail->product_bathroom}]</td>
+                                    <td>Phong tam</td>
+                                    <td>[{$product_detail->product_bedroom}]</td>
+                                </tr>
+                            </table>
+                            
                         </div>
-                        <div class="space-line"></div>
-                        <div class="space-line"></div>
-                        [{/if}]
+                      </div>
+                      
+                      </div>
 
-                        [{if $product_detail->product_images|default:''!=''}]
-                        [{assign var=images value='/\r\n|[\r\n]/'|preg_split:$product_detail->product_images}]
-                        [{if $cate!='410'}]
-                        <div class="text-center">[{if $lang=='en'}]Images[{else}]Hình ảnh[{/if}]</div>
-                        [{/if}]
-                        <div style="position:relative;padding-bottom:64%">
-                            <div id="gallery" class="owl-carousel">
-                                [{foreach from=$images item=img}]
-                                <div class="item" style="background-image:url('[{$img}]');"></div>
-                                [{/foreach}]
-                            </div>
-                            <div id="gallery-thumb" style="padding:0 20px">
-                                <div id="owl-thumb-gallery" class="owl-carousel" >
-                                    [{foreach from=$images item=img}]
-                                    <div class="item">
-                                        <div style="background-image:url('[{$img}]');"></div>
-                                    </div>
-                                    [{/foreach}]
-                                </div>
-                            </div>
-                        </div>
-                        [{/if}]
-                        [{if $cate=='410'}]
-                        <div class="space-line"></div>
-                        <div class="space-line"></div>
-                        <div class="h3-title text-center">
-                            [{if $lang=='en'}]
-                            <span style="float:none">[{$product_detail->product_title_en|default:$product_detail->product_title|escape:'html'}]</span>
-                            [{else}]
-                            <span style="float:none">[{$product_detail->product_title|escape:'html'}]</span>
-                            [{/if}]
-                        </div>
-                        <div class="gray">
-                            [{if $lang=='en'}]
-                            [{$product_detail->product_content_en}]
-                            [{else}]
-                            [{$product_detail->product_content}]
-                            [{/if}]
-                        </div>
-                        <div class="space-line"></div>
-                        [{/if}]
-                    </div>
-                    
+                    <script type="text/javascript">
+                      app.product_list = [[{$product_detail|@json_encode}]]
+                    </script>
+                    <script src="/assets/sunwoo/js/product-detail.js?id=[{$product_detail->product_id}]" type="text/javascript"></script>
+
                 </div>
-              </div>
-            <div class="sm-space"></div>
+                
+            </div>
         </div>
-        
 
+
+    </div>
     [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/foot.tpl"}]
-    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/popup.tpl"}]
 </body>

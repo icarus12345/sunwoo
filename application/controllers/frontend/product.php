@@ -36,10 +36,8 @@ class product extends FE_Controller {
 			$this->assigns->tkProduct = $tmp[0];
 		$this->smarty->view( 'realestate/noithat', $this->assigns );
 	}
-	function detail($alias=''){
-		$this->assigns->product_detail = $this->product_model->onGetByAlias($alias);
-		$this->assigns->cate = $this->assigns->product_detail->product_category;
-		$this->assigns->cate_detail = $this->cate_model->onGet($this->assigns->product_detail->product_category);
+	function detail($id=''){
+		$this->assigns->product_detail = $this->product_model->onGet($id);
 		$this->smarty->view( 'realestate/product_detail', $this->assigns );
 	}
 	function loadProduct($page){
