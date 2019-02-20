@@ -70,6 +70,11 @@
 // $route["testimonial"] = "home/site/6";
 // $route["faq"] = "home/site/7";
 
+$route["project"] = "frontend/product";
+$route["project/(:num)"] = "frontend/product/page/$1";
+
+
+
 $route["gioi-thieu"] = "home/about";
 $route["gioi-thieu/(:any)"] = "home/about/$1";
 $route["(cong-trinh|quan-tam|thiet-ke)/([a-z0-9-]{4,255})"] = "frontend/product/detail/$2";

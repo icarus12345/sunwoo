@@ -80,7 +80,7 @@ class FE_Controller extends CI_Controller {
         $query = $this->db->query('SELECT FOUND_ROWS() AS `found_rows`;');
         $tmp = $query->row_array();
         $total_rows = $tmp['found_rows'];
-        $config['is_ajax_paging'] = $this->input->is_ajax_request();
+        // $config['is_ajax_paging'] = $this->input->is_ajax_request();
         $config['paging_function'] = $function;
         $config['base_url'] = $function;
         $config['first_url'] = "";

@@ -1,133 +1,181 @@
 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/meta.tpl"}]
 <body>
-	<div class="body-slider" style="position:absolute;left:0;width:100%;top:0;height:550px;">
-		<div id="owl-demo" class="owl-carousel">
-			[{foreach from=$sliders item=foo}]
-			<div class="item bg-cover" style="background-image:url('[{$foo->Image}]');background-position: top center;"></div>
-			[{/foreach}]
-		</div>
-	</div>
-	[{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
-		
-        
-        <div class="container pull-bottom">
-            <div class="about-space"></div>
-            <style type="text/css">
-                [{if $lang=='en'}]
-                body{background-image: url('/assets/nha-dat/img/bg2-en.jpg')}
-                [{else}]  
-                  body{background-image: url('/assets/nha-dat/img/bg2.jpg')}
-                [{/if}]
-            </style>
-            <div class="row">
-                <div class="col-sm-3" style="padding-top: 10px;">
-                    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/left_menu.tpl"}]
+  [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
+  <div id="wrap" class="cover">
+        <div id="header">
+            <div class="container">
+                <div id="logo" ui-yield-to="logo">
+                    <a href="/" class="hover-line" ui-content-for="logo"><span></span></a>
                 </div>
-                <div class="col-sm-9 pull-top">
-                    <div class="space-line"></div>
-                    <div class="h2-title pull-top text-uppercase">
-                      <span>[{$languages.all_notification|default:'THÔNG BÁO'}]</span>
-                      [{if $lang=='en'}]
-                      [{$cate_detail->cat_desc_en|default:'TOAN LOI CONSTRUCTION COMPANY ACCEPT BUILD CONSTRUCTION AND DESIGN, INTERIOR DESIGN FOR PROJECT.'|escape:'html'}]
-                      [{else}]
-                      [{$cate_detail->cat_desc|default:'Công Ty TNHH Toàn Lợi chuyên nhận xây dựng và thiết kế, thiết kế nội thất cho các công trình'|escape:'html'}]
-                      [{/if}]
-                      
-                    </div>
-                    <div class="pull-top">
-                        [{if $lang=='en'}]
-                        <div class="h3-title"><span style="float:none">[{$site->data_title_en|default:'updating...'}]</span></div>
-                        [{else}]
-                        <div class="h3-title"><span style="float:none">[{$site->data_title|default:'updating...'}]</span></div>
-                        [{/if}]
-                        <div class="gray">
-                            [{if $lang=='en'}]
-                            [{$site->data_content_en|default:'updating...'}]
-                            [{else}]
-                            [{$site->data_content|default:'updating...'}]
-                            [{/if}]
-                        </div>
-                        <div class="project-box">
-                            <img src="/assets/nha-dat/img/ct.jpg">
-                            <div class="video">
-                                <div>
-                                    <video id="my_video" loop="loop" autoplay="autoplay" muted="">
-                                        <source type="video/mp4" src="/assets/nha-dat/img/video/xaydung-3d.mp4">
-                                    </video>
-                                    <div class="controls">
-                                        <!-- <i class="fa fa-play"></i> -->
-                                        <i id="pay-pause" class="fa fa-pause"></i>
-                                        <i class="fa fa-stop"></i>
-                                        <input id="seekslider" class="seekslider" type="range" min="0" max="100" value="0" step="1">
-                                    </div>
-                                    <div class="clearfix"></div>
+                <div class="hot-line"><span class="fa fa-phone-square"></span> VN: (+84) 88 606 3577 | Korea: (+82) 10 4906 5736</div>
+                <div id="cnavi" class="nav" ui-yield-to="cnavi"></div>
+            </div>
+        </div>
+        <div id="left-contents-wrap" ui-yield-to="left-contents">
+          <div ui-content-for="left-contents" style="width: 100%;height: 100%;">
+            <div id="map" style="width: 100%;height: 100%;"></div>
+          </div>
+          
+        </div>
+        <div id="contents-wrap">
+            <div id="contents">
+                <div id="product" class="content">
+                    <style type="text/css">
+                        #header{
+                            background-image: url(/assets/sunwoo/images/banner.jpg);
+                            background-size: cover;
+                            height: 228px;
+                        }
+                    </style>
+                    
+                    <div class="box-search">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Cho thuê</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bán</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Dự án</a></li>
+                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Ðầu tư</a></li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active">
+                            <div class="pull-bottom">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search for...">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onclick="app.search()">Tìm kiếm</button>
+                                  </span>
                                 </div>
                             </div>
-                            <div class="project-cap">
-                                <div class="h4-title">
-                                  <img src="/assets/nha-dat/img/dot2.jpg"/>
-                                  [{if $lang=='en'}]
-                                  [{$site->data_subtitle_en|default:'updating...'}]
-                                  [{else}]
-                                  [{$site->data_subtitle|default:'updating...'}]
-                                  [{/if}]
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 pull-bottom">
+                                    <select class="form-control">
+                                        <option>Chọn loại hình</option>
+                                    </select>
+
                                 </div>
-                                [{if $lang=='en'}]
-                                <div class="line-clamp-4 word-wrap" style="text-align:left">[{$site->data_desc_en|default:'updating...'}]</div>
-                                [{else}]
-                                <div class="line-clamp-4 word-wrap" style="text-align:left">[{$site->data_desc|default:'updating...'}]</div>
-                                [{/if}]
+                                <div class="col-md-3 col-sm-6 pull-bottom">
+                                    <select class="form-control">
+                                        <option>Chọn diện tích</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6 pull-bottom">
+                                    <select class="form-control">
+                                        <option>Chọn phòng ngủ</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6 pull-bottom">
+                                    <select class="form-control">
+                                        <option>Chọn bảng giá</option>
+                                    </select>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="space-line"></div>
-                        <div class="space-line"></div>
-                        
-                        <div class="product-list">
+                            <div>Tìm kiếm nâng cao</div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn loại hình</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn diện tích</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn phòng ngủ</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn bảng giá</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn loại hình</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn diện tích</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn phòng ngủ</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3 col-sm-6  pull-top">
+                                    <select class="form-control">
+                                        <option>Chọn bảng giá</option>
+                                    </select>
+
+                                </div>
+                            </div>
                             
                         </div>
-                        
-                    </div>
-                    
-                </div>
-              </div>
-            <div class="sm-space"></div>
-        </div>
-        <script type="text/javascript">
-        function loadProduct(page){
-          httpRequest({
-              'url': '/frontend/product/loadProduct/'+ page ,
-              'datatype': "text",
-              'data': {
-                cat : '[{$cate}]'
-              },
-              'callback': function(rsdata) {
-                  $('.product-list').html(rsdata);
-                  lazyLoad();
-                  if ($('.product-list a.swipebox').length > 0) {
-                      $('.product-list a.swipebox').swipebox({
-                          useCSS: true,
-                          callback:function(elm){
-                             console.log(elm)
-                          }
-                      });
-                  }
-                  // if(!app.scroll){app.scroll=true;}
-                  // else
-                  //     scrollToElm('#srollToHere');
-              }
-          }).call();
-        }
-        function lazyLoad(){
-          $(".product-list img.lazy").each(function() {
-              $(this).removeClass('lazy');
-              $(this.parentNode).nailthumb();
-          });
-        }
-        $(document).ready(function(){
-          loadProduct(1)
-        })
-        </script>
+                      </div>
+                      <div class="row product-list">
+                        [{foreach from=$product_list item=p key=i}]
+                        <div class="col-sm-[{$format_grid.$i}]">
+                          <div class="product bsd">
+                            <div class="nailthumb">
+                              [{if $format_grid.$i == 4}]
+                              <div class="nailthumb-figure-square">
+                              [{elseif $format_grid.$i == 12}]
+                              <div class="nailthumb-figure-9-16">
+                              [{elseif $format_grid.$i == 6}]
+                              <div class="nailthumb-figure-75">
+                              [{/if}]
+                                <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
+                                  <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
+                                  <div class="cap">
+                                    <h4><span class="line-clamp-1">[{$p->product_title_vi|quotes_to_entities}]</span></h4>
+                                    <p><span class="line-clamp-1">[{$p->product_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="serv">
+                                <table>
+                                  <tr>
+                                    <td>Phòng ngủ:[{$p->product_bedroom|quotes_to_entities}]</td>
+                                    <td>Phòng tắm:[{$p->product_bathroom|quotes_to_entities}]</td>
+                                    <td>Diện tích:[{$p->product_acreage|quotes_to_entities}] m2</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        [{/foreach}]
+                      </div>
 
+                      [{$htmlPager}]
+                    </div>
+                    <script src="/assets/sunwoo/js/product.js" type="text/javascript"></script>
+
+                </div>
+                
+            </div>
+        </div>
+
+
+    </div>
     [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/foot.tpl"}]
-    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/popup.tpl"}]
 </body>

@@ -347,7 +347,7 @@
 			
 
 			if(support.transitionend){
-				$next.css(Modernizr.prefixedCSS('transform'),'translate(0,'+$(window).height()+'px)').addClass('show');
+				// $next.css(Modernizr.prefixedCSS('transform'),'translate(0,'+$(window).height()+'px)').addClass('show');
 				$prev.after($next);
 
 				resetNavigation(prev, next, $new_content);
@@ -356,9 +356,9 @@
 					$next.css(Modernizr.prefixedCSS('transform'),'');
 				}, 0);
 
-				$prev.addClass('moveUp')
-				$prev.on(support.transitionend, complete);
-				// complete({})
+				$prev.addClass('moveUp').remove()
+				// $prev.on(support.transitionend, complete);
+				complete({})
 			}else{
 				$next.css(Modernizr.prefixedCSS('transform'),'translate(0,'+$(window).height()+'px)').addClass('show');
 				$prev.after($next);

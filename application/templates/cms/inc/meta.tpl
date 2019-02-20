@@ -44,7 +44,7 @@
         <script type="text/javascript" src="[{'libraries/plugin/tmpl.js'|base_url}]"></script>
         <script type="text/javascript" src="[{'libraries/ckeditor/ckeditor.js'|base_url}]" ></script>
         <script type="text/javascript" src="[{'libraries/plugin/tokeninput/jquery.tokeninput.js'|base_url}]" ></script>
-
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB6TJrMx3v003kFpoOUSgugZSk8j1WWK_s"></script>
         <!--[if IE]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
         <![endif]-->

@@ -30,6 +30,9 @@
                     <li role="presentation">
                         <a href="#product-images" aria-controls="product-images" role="tab" data-toggle="tab">Image List</a>
                     </li>
+                    <li role="presentation">
+                        <a href="#product-address" aria-controls="product-address" role="tab" data-toggle="tab">Address</a>
+                    </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -277,11 +280,147 @@
                         </div>
                         
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="product-opt">
-                        [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/entryOptBasic.tpl"}]
+                    <div role="tabpanel" class="tab-pane pull-top" id="product-opt">
+                        [{*include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/entryOptBasic.tpl"*}]
+                        <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                            <ul class="nav-tabs">
+                                [{assign var="f" value="active"}]
+                                [{foreach from=$langs item=la key =k}]
+                                    <li class="[{$f|default:''}]">
+                                        <a  title="[{$la->lang_name|ucwords}]"
+                                            href="#tab_lang_general_[{$la->lang_short}]"  
+                                            data-toggle="tab" 
+                                            >
+                                                [{$la->lang_name|ucwords}]
+                                        </a>
+                                    </li>
+                                    [{assign var="f" value=""}]
+                                [{foreachelse}]
+                                    
+                                [{/foreach}]
+                            </ul>
+                        </div>
+                        <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                            [{assign var="f" value="active"}]
+                            [{foreach from=$langs item=la key =k}]
+                                <div id="tab_lang_general_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                                    <div class="row half">
+                                        <div class="col-mb-6 half"> 
+                                            <div class="control-group pull-top">
+                                                <div>Furniture :</div>
+                                                [{$attr= 'product_furniture_'|cat:$la->lang_short}]
+
+                                                <input type="text" 
+                                                    class="form-control validate[maxSize[100]]" 
+                                                    value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                                    name="product_furniture_[{$la->lang_short}]" 
+                                                    placeholder="[{$la->lang_name|ucwords}]"
+                                                    maxlength="100" 
+                                                    >
+                                            </div>
+                                        </div>
+                                        <div class="col-mb-6 half"> 
+                                            <div class="control-group pull-top">
+                                                <div>Utilities :</div>
+                                                [{$attr= 'product_utilities_'|cat:$la->lang_short}]
+
+                                                <input type="text" 
+                                                    class="form-control validate[maxSize[100]]" 
+                                                    value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                                    name="product_utilities_[{$la->lang_short}]" 
+                                                    placeholder="[{$la->lang_name|ucwords}]"
+                                                    maxlength="100" 
+                                                    >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                [{assign var="f" value=""}]
+                            [{/foreach}]
+                        </div>
+                        <div class="row half">
+                            <div class="col-mb-6 half"> 
+                                <div class="row half">
+                                    
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Price :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_price|escape|default:'0'}]" 
+                                                name="product_price"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Acreage :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_acreage|escape|default:'0'}]" 
+                                                name="product_acreage"
+                                                >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-mb-6 half"> 
+                                <div class="row half">
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Width :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_width|escape|default:'0'}]" 
+                                                name="product_width"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Height :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_height|escape|default:'0'}]" 
+                                                name="product_height"
+                                                >
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-mb-6 half"> 
+                                <div class="row half">
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Bedroom :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_bedroom|escape|default:''}]" 
+                                                name="product_bedroom"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 half">
+                                        <div class="control-group pull-top">
+                                            <div>Bathroom :</div>
+                                            <input type="number" 
+                                                class="form-control validate[custom[number]]" 
+                                                value="[{$item->product_bathroom|escape|default:''}]" 
+                                                name="product_bathroom"
+                                                >
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="product-features">
                         [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/entry-features.tpl"}]
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="product-address">
+                        [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/entry-address.tpl"}]
                     </div>
                 </div>
                 <div class="clearfix"></div>

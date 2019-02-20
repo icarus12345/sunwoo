@@ -6,13 +6,13 @@ class home extends FE_Controller {
 		
     }
 	public function index(){
-		$this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
-		$this->news_model->news_cond();
-		$this->assigns->news_list = $this->news_model->getLatest($this->assigns->fecog['news_cate'],1,4);
-		$this->news_model->news_cond();
-		$this->assigns->noti_list = $this->news_model->getLatest($this->assigns->fecog['noti_cate'],1,4);
-		$this->product_model->type='homeblock';
-		$tmp = $this->product_model->getFeature(null,1,3);
+		// $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
+		// $this->news_model->news_cond();
+		// $this->assigns->news_list = $this->news_model->getLatest($this->assigns->fecog['news_cate'],1,4);
+		// $this->news_model->news_cond();
+		// $this->assigns->noti_list = $this->news_model->getLatest($this->assigns->fecog['noti_cate'],1,4);
+		// $this->product_model->type='default';
+		// $tmp = $this->product_model->getFeature(null,1,3);
 		//if($tmp && count($tmp)==1)
 			$this->assigns->ctProduct = $tmp[0];
 		//$tmp = $this->product_model->getFeature('>409',1,1);

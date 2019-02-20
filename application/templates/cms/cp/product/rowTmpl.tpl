@@ -6,12 +6,12 @@
             {% } %}
             <div>
                 <div class="">
-                    <b>{%=o.[{$tplConfig.prefix}]title%}</b>
+                    <b>{%=o.[{$tplConfig.prefix}]title_vi%}</b>
                     {% if(o.cat_title){ %}
                     <code>{%=o.cat_title%}</code>
                     {% } %}
                 </div>
-                <p class="word-wrap">{%=o.[{$tplConfig.prefix}]desc%}</p>
+                <p class="word-wrap">{%=o.[{$tplConfig.prefix}]desc_vi%}</p>
             </div>
         </div>
         [{if $unit}]

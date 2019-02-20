@@ -5,34 +5,13 @@ class product_model extends Core_Model {
     function __construct(){
         parent::__construct('_product','product_','id');
         $this->status='true';
-        $this->type = 'real';
+        $this->type = 'default';
     }
     
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS
-                product_id,
-                product_title,
-                product_title_en,
-                product_alias,
-                product_desc,
-                product_desc_en,
-                product_content,
-                product_content_en,
-                product_position,
-                product_status,
-                product_type,
-                product_insert,
-                product_update,
-                product_thumb,
-                product_cover,
-                product_images,
-                product_code,
-                product_lock,
-                product_owner,
-                product_category,
-                product_token,
-                product_price,
+                _product.*,
                 cat_id,
                 cat_title,
                 cat_alias,
@@ -87,7 +66,22 @@ class product_model extends Core_Model {
             //->where('product_insert <= ', date('Y-m-d H:i:s'))
             ->limit($perpage, ($page - 1) * $perpage)
             ->get();
-        return $query->result();
+        $result = $query->result();
+        foreach ($result as &$row) {
+            // $row->general_informations = $this->db
+            //     ->from('opt')
+            //     // ->where('opt_status', 'true')
+            //     ->where('opt_token', $row->product_token)
+            //     ->get()
+            //     ->result();
+            // $row->features = $this->db
+            //     ->from('_line')
+            //     // ->where('opt_status', 'true')
+            //     ->where_in('_id', explode(',', $row->product_features))
+            //     ->get()
+            //     ->result();
+        }
+        return $result;
     }
 }
 ?>

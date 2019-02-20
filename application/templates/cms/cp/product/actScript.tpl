@@ -105,6 +105,7 @@ var [{$tplConfig.name}] = (function() {
                         addNotice(rsdata.message,'danger');
                     }else{
                         $('#entry-container').html(rsdata.htmlreponse);
+
                         if($('[data-editor="basic"]').length){
                             $('[data-editor="basic"]').each(function(){
                                 var id = $(this).attr('id');
@@ -112,6 +113,7 @@ var [{$tplConfig.name}] = (function() {
                             })
                         }
                         $('#entryForm .selectpicker').selectpicker();
+
                         $('#entryForm').validationEngine({
                             'scroll': false
                             , prettySelect : true
@@ -126,6 +128,19 @@ var [{$tplConfig.name}] = (function() {
                             $( "#sortable" ).sortable({placeholder: "ui-state-highlight"});
                             $( "#sortable" ).disableSelection();
                         }
+                        var frm = $('#entryForm')
+                        setTimeout(function(){
+                            frm.find('[data-googlemap]').get().map(function(elm){
+                                console.log($(elm).data('latcolumn'),'latclm')
+                                console.log($(elm).data('loncolumn'),'loncolumn')
+                                App.AddGoogleMap(elm,function(e){
+                                    console.log(e)
+                                    frm.find('input[name="'+$(elm).data('latcolumn')+'"]').val(e.latLng.lat());
+                                    frm.find('input[name="'+$(elm).data('loncolumn')+'"]').val(e.latLng.lng());
+                                    frm.find('span[data-latlonpreview="'+$(elm).data('latcolumn')+$(elm).data('loncolumn')+'"]').text(e.latLng.lat() + ' ' + e.latLng.lng());
+                                })
+                            })
+                        },500)
 
                         productopt_config.entryType = $('#product_token').val();
                         productopt.onInit();
@@ -148,7 +163,7 @@ var [{$tplConfig.name}] = (function() {
             }
             var Id = $('#EntryId').val();
             var Params =$('#entryForm').serializeObject();
-            Params.[{$tplConfig.prefix}]features = Params.[{$tplConfig.prefix}]features.join(',')
+            Params.[{$tplConfig.prefix}]features = (Params.[{$tplConfig.prefix}]features||[]).join(',')
             if($('#sortable').length == 1){
                 var images = $('#sortable img.thumb').map(function(){return $(this).attr('src')});
                 Params.[{$tplConfig.prefix}]images = images.get().join('\r\n');

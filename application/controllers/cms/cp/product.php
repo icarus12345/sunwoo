@@ -96,8 +96,8 @@ class product extends CP_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     product_id,
-                    product_title,
-                    product_desc,
+                    product_title_vi,
+                    product_desc_vi,
                     product_position,
                     product_status,
                     product_type,

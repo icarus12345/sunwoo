@@ -625,3 +625,330 @@ function accordionMenu(){
         }
     })
 }
+var App = {}
+App.SeeGoogleMap = function(mapElement){
+    // google.maps.event.addDomListener(window, 'load', function(){
+
+        //
+        var lat = +$(mapElement).data('lat') || 10.7546664;
+        var lon = +$(mapElement).data('lon') || 106.415041;
+        // Basic options for a simple Google Map
+        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+        var mapOptions = {
+            zoom: 14,
+            center: new google.maps.LatLng(lat, lon),
+        };
+        // Get the HTML DOM element that will contain your map 
+        // We are using a div with id="map" seen below in the <body>
+        // Create the Google Map using our element and options defined above
+        var map = new google.maps.Map(mapElement, mapOptions);
+        var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lon),
+                map: map
+            });
+
+    // });
+}
+App.AddGoogleMap = function(mapElement,callback){
+    // google.maps.event.addDomListener(window, 'load', function(){
+
+        var lat = +$(mapElement).data('lat') || 10.7546664;
+        var lon = +$(mapElement).data('lon') || 106.415041;
+        // var latlon = [ 10.771921, 106.678296 ]; // 151.20929550000005&lat=-33.8688197
+        // var lat  = latlon[0], lon = latlon[1];
+        // Basic options for a simple Google Map
+        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+        var mapOptions = {
+            zoom: 14,
+            center: new google.maps.LatLng(lat, lon),
+        };
+        // Get the HTML DOM element that will contain your map 
+        // We are using a div with id="map" seen below in the <body>
+        // Create the Google Map using our element and options defined above
+        var map = new google.maps.Map(mapElement, mapOptions);
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lon),
+            map: map,
+            draggable:true,
+
+        });
+        if(typeof callback == 'function'){
+            google.maps.event.addListener(marker,'drag',callback);
+            google.maps.event.addListener(marker,'dragend',callback);
+            // marker.addListener('drag', callback);
+            // marker.addListener('dragend', callback);
+            google.maps.event.addListener(map,'click',function(e){
+                marker.setPosition(e.latLng)
+                callback(e)
+            });
+            // https://maps.googleapis.com/maps/api/geocode/json?latlng=10.759171651626405,106.42599052008768&sensor=false&key=AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw
+        }
+    // });
+}
+App.InitForm = function(frm){
+    frm.validationEngine({
+        'scroll': false,
+        'isPopup' : true,
+        validateNonVisibleFields:true
+    });
+    frm.find('.selectpicker').selectpicker();
+    frm.find('.date-picker').get().map(function(elm){
+        $(elm).datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    });
+    frm.find('.date-time-picker').get().map(function(elm){
+        $(elm).datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
+    });
+    if(frm.find('textarea[data-editor]').length>0){
+        frm.find('textarea[data-editor]').each(function(){
+                // addEditorBasic($(this).attr('id'),160);
+                App.Editor.addEditorFeature($(this).attr('id'),200);
+        })
+        
+    }
+    setTimeout(function(){
+        frm.find('[data-googlemap]').get().map(function(elm){
+            App.AddGoogleMap(elm,function(e){
+                frm.find('input[name="'+$(elm).data('latcolumn')+'"]').val(e.latLng.lat());
+                frm.find('input[name="'+$(elm).data('loncolumn')+'"]').val(e.latLng.lng());
+                frm.find('span[data-latlonpreview="'+$(elm).data('latcolumn')+$(elm).data('loncolumn')+'"]').text(e.latLng.lat() + ' ' + e.latLng.lng());
+            })
+        })
+    },500)
+}
+App.InitSee = function(frm){
+    setTimeout(function(){
+        frm.find('[data-googlemap]').get().map(function(elm){
+            App.SeeGoogleMap(elm)
+        })
+    },500)
+
+}
+
+//////
+//// CKEDITOR START
+//
+
+App.Editor = {}
+App.Editor.addRedactorEditor = function(Element) {
+    Element.redactor({
+        //air: true,
+        //wym: true,
+        'buttons': ['html', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'alignment', '|', 'video', 'link', '|', 'fontcolor', 'backcolor']
+        //plugins: ['advanced']
+    });
+}
+
+App.Editor.addEditorFeature = function(ElementID, height) {
+//    var instance = CKEDITOR.instances[ElementID];
+//    if (instance) {
+//        return;
+//    }
+    if(typeof height == 'undefined') height = 320
+    try {
+        CKEDITOR.config.startupFocus = false;
+        CKEDITOR.replace(ElementID, {
+            'height': height,
+            'toolbar': [
+                ['Source'], ['Preview', 'Templates'],
+                ['Image', 'Youtube','Video'], ['Flash', 'Table'],
+                ['HorizontalRule', 'Smiley', 'SpecialChar'], ['PageBreak', 'Iframe'],
+                ['Bold', 'Italic'], ['Underline', 'Strike'],
+                ['Subscript', 'Superscript'],
+                ['NumberedList', 'BulletedList'], ['Outdent', 'Indent'],
+                ['Blockquote', 'CreateDiv'],
+                ['JustifyLeft', 'JustifyCenter'], ['JustifyRight', 'JustifyBlock'],
+                ['BidiLtr', 'BidiRtl', 'Language'],
+                ['Link', 'Unlink'],
+                /*['Styles'], */
+                ['Format'], ['Font'], ['FontSize'],
+                ['TextColor', 'BGColor'],['RemoveFormat'],
+                ['Maximize', 'ShowBlocks']
+                
+            ],
+            'removePlugins': 'magicline'
+
+        });
+        CKEDITOR.instances[ElementID].on('change', function() { CKEDITOR.instances[ElementID].updateElement() });
+    } catch (e) {
+        toastr.error(e.message,'Error');
+    }
+
+}
+
+App.Editor.addEditorBasic = function (ElementID, height) {
+//    var instance = CKEDITOR.instances[ElementID];
+//    if (instance) {
+//        return;
+//    }
+    if(typeof height == 'undefined') height = 320
+    try {
+        CKEDITOR.config.startupFocus = false;
+        CKEDITOR.replace(ElementID, {
+            'height': height,
+            'toolbar': [
+                ['ShowBlocks', 'Image'],
+                ['NumberedList', 'BulletedList'],['Outdent', 'Indent'],['Link', 'Unlink'],
+                ['JustifyLeft', 'JustifyCenter'], ['JustifyRight', 'JustifyBlock'],
+                ['Format'], ['TextColor', 'BGColor']
+            ],
+            'removePlugins': 'magicline'
+        });
+        CKEDITOR.instances[ElementID].on('change', function() { CKEDITOR.instances[ElementID].updateElement() });
+    } catch (e) {
+        toastr.error(e.message,'Error');
+    }
+}
+
+App.Editor.removeEditor = function (EId) {
+    var instance = CKEDITOR.instances[EId];
+    if (instance) {
+        //CKEDITOR.remove(instance);
+        instance.destroy(true);
+    }
+    //CKEDITOR.replace(EId);
+}
+//////
+//// END
+//
+
+//////
+//// KCFINDER - START
+//
+App.KCFinder={}
+App.KCFinder.BrowseServerCallBack = function (callback) {
+    try {
+        window.KCFinder = {};
+        window.KCFinder.callBack = function(url) {
+            window.KCFinder = null;
+            callback(url);
+            $('#kc-finder-popup .kc-finder-content').html('');
+            $('#kc-finder-popup').hide();
+        };
+        
+        if($('#kc-finder-popup').length==0){
+            window.open(App.BaseUrl + 'lib/kcfinder/browse.php?lang=en', 'kcfinder_textbox',
+                'status=0, toolbar=0, location=0, menubar=0, directories=0, resizable=1, scrollbars=0, width=700, height=500'
+            );;
+        }else{
+            $('#kc-finder-popup .kc-finder-content').html('<iframe name="kcfinder_iframe" src="'+App.BaseUrl + 'lib/kcfinder/browse.php?lang=en" style="width:100%;height:100%;position:absolute;top:0;left:0;border:0;margin:0;padding:0"/>')
+            $('#kc-finder-popup').show();
+        }
+    } catch (e) {
+        toastr.error(e.message,'Error');
+    }
+}
+
+App.KCFinder.openKCFinderByPath = function (path, element) {
+    if ($(element).length === 0) {
+        addNotice("Input element is not exist.",'error');
+        return;
+    }
+    try {
+        window.KCFinder = {};
+        window.KCFinder.callBack = function(url) {
+            window.KCFinder = null;
+            $(element).val(url);
+            $('#kc-finder-popup .kc-finder-content').html('');
+            $('#kc-finder-popup').hide();
+        };
+        
+        if($('#kc-finder-popup').length==0){
+            window.open(App.BaseUrl + 'lib/kcfinder/browse.php?lang=en&' + path, 'kcfinder_textbox',
+                'status=0, toolbar=0, location=0, menubar=0, directories=0, resizable=1, scrollbars=0, width=700, height=500'
+            );
+        }else{
+            $('#kc-finder-popup .kc-finder-content').html('<iframe name="kcfinder_iframe" src="'+App.BaseUrl + 'lib/kcfinder/browse.php?lang=en'+path+'" style="width:100%;height:100%;position:absolute;top:0;left:0;border:0;margin:0;padding:0"/>')
+            $('#kc-finder-popup').show();
+        }
+    } catch (e) {
+        toastr.error(e.message,'Error');
+    }
+
+}
+
+App.KCFinder.openKCFinderMulti = function (callback) {
+    window.KCFinder = {
+        callBackMultiple: function(files) {
+            window.KCFinder = null;
+            callback(files);
+            $('#kc-finder-popup .kc-finder-content').html('');
+            $('#kc-finder-popup').hide();
+        }
+    };
+    
+    if($('#kc-finder-popup').length==0){
+        window.open(App.BaseUrl + 'lib/kcfinder/browse.php?lang=en',
+            'kcfinder_multiple', 'status=0, toolbar=0, location=0, menubar=0, ' +
+            'directories=0, resizable=1, scrollbars=0, width=800, height=600'
+        );
+    }else{
+        $('#kc-finder-popup .kc-finder-content').html('<iframe name="kcfinder_iframe" src="'+App.BaseUrl + 'lib/kcfinder/browse.php?lang=en" style="width:100%;height:100%;position:absolute;top:0;left:0;border:0;margin:0;padding:0"/>')
+        $('#kc-finder-popup').show();
+    }
+}
+
+App.KCFinder.openKCFinderMultiByPath = function (path, callback) {
+    window.KCFinder = {
+        callBackMultiple: function(files) {
+            window.KCFinder = null;
+            callback(files);
+            $('#kc-finder-popup .kc-finder-content').html('');
+            $('#kc-finder-popup').hide();
+        }
+    };
+    
+    if($('#kc-finder-popup').length==0){
+        window.open(App.BaseUrl + 'lib/kcfinder/browse.php?lang=en&' + path,
+            'kcfinder_multiple', 'status=0, toolbar=0, location=0, menubar=0, ' +
+            'directories=0, resizable=1, scrollbars=0, width=800, height=600'
+        );
+    }else{
+        $('#kc-finder-popup .kc-finder-content').html('<iframe name="kcfinder_iframe" src="'+App.BaseUrl + 'lib/kcfinder/browse.php?lang=en&' + path +'" style="width:100%;height:100%;position:absolute;top:0;left:0;border:0;margin:0;padding:0"/>')
+        $('#kc-finder-popup').show();
+    }
+}
+App.KCFinder.BrowseServer = function (elementid) {
+    if ($(elementid).length === 0){
+        toastr.error('Input element is not exist','Error');
+        return;
+    }
+    var div = document.getElementById('kc-finder-popup');
+    if ($("#kc-finder-dialog").length === 0) {
+        $('body').append('<div id="kc-finder-dialog"><div style="padding-bottom:64.42%"></div></div>');
+    }
+    new App.Dialog({
+        'message' : $('#kc-finder-dialog'),
+        'title': '<h4>KCFinder <small>Image browser</small></h4>',
+        'dialogClass':'',
+        'width':'720px',
+        'type':'notice',
+        // 'hideclose':true,
+        'closeOnEscape':false
+    }).open();
+    try {
+        window.KCFinder = {};
+        window.KCFinder.callBack = function(url) {
+            window.KCFinder = null;
+            $(elementid).val(url);
+            $(elementid).focus();
+            $('#kc-finder-dialog>div').html('');
+            $('#kc-finder-dialog').dialog('close')
+        };
+        if($('#kc-finder-dialog').length==0){
+            window.open(App.BaseUrl + 'lib/kcfinder/browse.php?lang=en', 'kcfinder_textbox',
+                'status=0, toolbar=0, location=0, menubar=0, directories=0, resizable=1, scrollbars=0, width=700, height=500'
+            );
+        }else{
+            $('#kc-finder-dialog>div').html('<iframe name="kcfinder_iframe" src="'+App.BaseUrl + 'lib/kcfinder/browse.php?lang=en'+'" style="width:100%;height:100%;position:absolute;top:0;left:0;border:0;margin:0;padding:0"/>')
+        }
+    } catch (e) {
+        toastr.error(e.message,'Error');
+    }
+}
+//////
+//// END
+//
