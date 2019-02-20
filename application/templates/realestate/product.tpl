@@ -134,7 +134,7 @@
                       <div class="row product-list">
                         [{foreach from=$product_list item=p key=i}]
                         <div class="col-sm-[{$format_grid.$i}]">
-                          <div class="product bsd">
+                          <div class="product bsd" data-lat="" data-lon="">
                             <div class="nailthumb">
                               [{if $format_grid.$i == 4}]
                               <div class="nailthumb-figure-square">
@@ -168,6 +168,10 @@
 
                       [{$htmlPager}]
                     </div>
+
+                    <script type="text/javascript">
+                      app.product_list = [{$product_list|@json_encode}]
+                    </script>
                     <script src="/assets/sunwoo/js/product.js" type="text/javascript"></script>
 
                 </div>
