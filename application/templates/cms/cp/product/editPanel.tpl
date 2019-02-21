@@ -98,7 +98,7 @@
                                         [{$attr= 'product_desc_'|cat:$la->lang_short}]
                                         <textarea class="form-control validate[required]" 
                                             name="product_desc_[{$la->lang_short}]" 
-                                            rows="10" 
+                                            rows="2" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
                                     </div>

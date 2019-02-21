@@ -4,7 +4,8 @@ class cate extends CP_Controller {
     function __construct() {
         parent::__construct('cate', 'cat_', 'id');
         $this->langs = array('en','vi');
-
+        $this->load->model('cms/cp/lang_model');
+        $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->load->model('cms/cp/cate_model');
         $this->assigns->tplConfig = array(
             'controller'   =>'cate',
@@ -76,7 +77,7 @@ class cate extends CP_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
-                    {$this->table}.{$this->prefix}title,
+                    {$this->table}.{$this->prefix}title_vi,
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,
                     {$this->table}.{$this->prefix}status

@@ -17,29 +17,78 @@
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="cat_type" id="cat_type" 
                     value="[{$item->cat_type|default:$type|default:''}]"/>
-                <div class="row half">
-                    <div class="col-mb-6 half">
-                        <div class="control-group pull-top">
-                            <div>Title :</div>
-                            <input type="text" 
-                                rows="1"
-                                onblur="AliasTo('#entryForm input[name=cat_title]','#entryForm input[name=cat_alias]')" 
-                                class="form-control validate[required,minSize[4],maxSize[255]]"
-                                name="cat_title" 
-                                value="[{$item->cat_title|escape|default:''}]"/>
-                        </div>
-                    </div>
-                    <div class="col-mb-6 half">
-                        <div class="control-group pull-top">
-                            <div>Alias :</div>
-                            <input type="text" 
-                                rows="1"
-                                class="form-control validate[required,minSize[4],maxSize[255]]"
-                                name="cat_alias" 
-                                value="[{$item->cat_alias|escape|default:''}]"/>
-                        </div>
-                    </div>
+                <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                    <ul class="nav-tabs">
+                        [{assign var="f" value="active"}]
+                        [{foreach from=$langs item=la key =k}]
+                            <li class="[{$f|default:''}]">
+                                <a  title="[{$la->lang_name|ucwords}]"
+                                    href="#tab_lang_content_[{$la->lang_short}]"  
+                                    data-toggle="tab" 
+                                    >
+                                        [{$la->lang_name|ucwords}]
+                                </a>
+                            </li>
+                            [{assign var="f" value=""}]
+                        [{foreachelse}]
+                            
+                        [{/foreach}]
+                    </ul>
                 </div>
+                <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                    [{assign var="f" value="active"}]
+                    [{foreach from=$langs item=la key =k}]
+                        <div id="tab_lang_content_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                            <div class="row half">
+                                <div class="col-mb-6 half"> 
+                                    <div class="control-group pull-top">
+                                        <div>Title :(*)</div>
+                                        [{$attr= 'cat_title_'|cat:$la->lang_short}]
+
+                                        <input type="text" 
+                                            onblur="AliasTo('#entryForm input[name=cat_title_[{$la->lang_short}]]','#entryForm input[name=cat_alias_[{$la->lang_short}]]')" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]" 
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                            name="cat_title_[{$la->lang_short}]" 
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            
+                                            maxlength="255" 
+                                            >
+                                    </div>
+                                </div>
+                                <div class="col-mb-6 half">
+                                    <div class="control-group pull-top">
+                                        <div>Alias :</div>
+                                        [{$attr= 'cat_alias_'|cat:$la->lang_short}]
+                                        <input type="text" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]"
+                                            name="cat_alias_[{$la->lang_short}]" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group pull-top">
+                                <div>Desc :(*)</div>
+                                [{$attr= 'cat_desc_'|cat:$la->lang_short}]
+                                <textarea class="form-control validate[required]" 
+                                    name="cat_desc_[{$la->lang_short}]" 
+                                    rows="2" 
+                                    data-lang="[{$la->lang_short}]"
+                                    placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                            </div>
+
+                            
+
+                        </div>
+
+
+                        [{assign var="f" value=""}]
+                    [{/foreach}]
+                </div>
+                
                 <div class="row half">
                     <div class="col-mb-6 half">
                         <div class="control-group pull-top">
@@ -74,7 +123,7 @@
                 </div>
                 
                 <div class="row half">
-                    <div class="col-mb-6">
+                    <div class="col-mb-6 half">
                         <div class="pull-top control-group">
                             <div>Parent :(*)</div>
                             <div class="row-fluid">
@@ -135,17 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-group pull-top">
-                    <div>
-                        Desc :
-                    </div>
-                    <textarea class="form-control de-desc" 
-                            rows="3"
-                            name="cat_desc"
-                            data-putto=".error_desc" >[{$item->cat_desc|quotes_to_entities|default:''}]</textarea>
-                            
-                    <div class="erb error_desc"></div>
-                </div>
+                
 <!--                <div class="">
                     <button style="width: 100%" class="btn btn-default" type="button" onclick="sendquestion();">Gửi</button>
                 </div>-->

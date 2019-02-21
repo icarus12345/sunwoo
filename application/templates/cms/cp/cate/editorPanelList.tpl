@@ -26,7 +26,7 @@
                     <div class="col-mb-6 half">
                         <div class="control-group pull-top">
                             <div>
-                                Title :(*)
+                                Title :(*)1
                                 <div class="pull-right lang-tabs">
                                     <ul class="nav-tabs">
                                         <li class="active">
