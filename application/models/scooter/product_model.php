@@ -13,8 +13,8 @@ class product_model extends Core_Model {
             SQL_CALC_FOUND_ROWS
                 _product.*,
                 cat_id,
-                cat_title,
-                cat_alias,
+                cat_title_vi,
+                cat_alias_vi,
                 cat_value
                 "
             ,false);

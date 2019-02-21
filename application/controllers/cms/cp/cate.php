@@ -44,6 +44,7 @@ class cate extends CP_Controller {
     function editpanel($type=''){
         $this->assigns->type=$type;
         $data = $this->cate_model->binding($type);
+        $output["cdata"] = $data;
         if(isset($data['aaData'])){
             $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
             $this->assigns->cates=$data['aaData'];

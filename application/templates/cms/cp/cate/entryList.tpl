@@ -6,7 +6,7 @@
     _oConfig = {
         'showImage':false,
         'entryType':'[{$type}]',
-        'cateType':'',
+        'cateType':'[{$type}]',
         'entryId': '',
         'dataColumns':[],
         'paginate': false,
