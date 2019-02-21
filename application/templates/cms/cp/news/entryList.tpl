@@ -75,7 +75,7 @@
                 else return '';
             }
         },{
-            'mData': "news_title",
+            'mData': "news_title_vi",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')

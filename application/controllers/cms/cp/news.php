@@ -5,6 +5,9 @@ class news extends VD_Controller {
         parent::__construct('_news', 'news_', 'id');
         $this->load->model('cms/cp/cate_model');
         $this->news_model = new Core_Model('_news', 'news_', 'id');
+        $this->langs = array('en','vi');
+        $this->load->model('cms/cp/lang_model');
+        $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->assigns->tplConfig = array(
             'controller'   =>'news',
             'prefix'       =>'news_',
@@ -33,17 +36,17 @@ class news extends VD_Controller {
         $Id = $this->input->post('Id');
         $Params = $this->input->post('Params');
 
-        if(!empty($Params['news_alias'])){
-            $alias = $Params['news_alias'];
-            if($Id) $this->db->where('news_id <>',$Id);
-            $item = $this->news_model->onGetByAlias($alias);
-            if($item){
-                $output["result"] = -1;
-                $output["message"] = ("Alias exists, please use another alias.");
-                echo json_encode($output);
-                die;
-            }
-        }
+        // if(!empty($Params['news_alias_vi'])){
+        //     $alias = $Params['news_alias_vi'];
+        //     if($Id) $this->db->where('news_id <>',$Id);
+        //     $item = $this->news_model->onGetByAlias($alias);
+        //     if($item){
+        //         $output["result"] = -1;
+        //         $output["message"] = ("Alias exists, please use another alias.");
+        //         echo json_encode($output);
+        //         die;
+        //     }
+        // }
     }
     function beforedelete(){
         
@@ -114,7 +117,7 @@ class news extends VD_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
-                    {$this->table}.{$this->prefix}title,
+                    {$this->table}.{$this->prefix}title_vi,
                     {$this->table}.{$this->prefix}thumb,
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,

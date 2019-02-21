@@ -9,26 +9,7 @@ class news_model extends Core_Model {
     
     function select(){
         $this->db->select("
-            SQL_CALC_FOUND_ROWS
-                news_id,
-                news_title,
-                news_title_en,
-                news_alias,
-                news_thumb,
-                news_insert,
-                news_update,
-                news_publicday,
-                news_at,
-                news_desc,
-                news_desc_en,
-                news_view,
-                news_category,
-                cat_id,
-                cat_title,
-                cat_value,
-                cat_alias,
-                news_cover,
-                news_tag
+            SQL_CALC_FOUND_ROWS _news.*
                 "
             ,false);
     }
@@ -55,7 +36,7 @@ class news_model extends Core_Model {
     }
     function about_cond(){
         $this->db
-            ->where("news_type",'tlabout');
+            ->where("news_type",'about');
     }
     function service_cond(){
         $this->db

@@ -76,7 +76,7 @@ $route["project/detail/(:num)"] = "frontend/product/detail/$1";
 
 
 
-$route["gioi-thieu"] = "home/about";
+$route["(gioi-thieu|about)"] = "home/about";
 $route["gioi-thieu/(:any)"] = "home/about/$1";
 $route["(cong-trinh|quan-tam|thiet-ke)/([a-z0-9-]{4,255})"] = "frontend/product/detail/$2";
 $route["cong-trinh"] = "frontend/product/cat/408";

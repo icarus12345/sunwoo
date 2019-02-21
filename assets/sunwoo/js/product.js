@@ -48,5 +48,5 @@ $(document).ready(function(){
             popup.setMap(map);
         })
         map.fitBounds(bounds);
-    },150)
+    },300)
 })

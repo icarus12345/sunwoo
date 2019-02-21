@@ -30,7 +30,7 @@
                     
                     <div class="box-search">
                       <!-- Nav tabs -->
-                      <ul class="nav nav-tabs" role="tablist">
+                      <ul class="nav nav-tabs green-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Cho thuê</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bán</a></li>
                         <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Dự án</a></li>

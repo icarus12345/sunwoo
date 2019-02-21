@@ -26,7 +26,7 @@ class FE_Controller extends CI_Controller {
             'event_cate'=>'event',
             'news_cate'=>'>406',
             'noti_cate'=>'>407',
-            'about_type'=>'tlabout',
+            'about_type'=>'about',
             'advertise'=>'advertise',
             'advertise2'=>'advertise2',
             'homeslider'=>'slider',

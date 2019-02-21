@@ -27,3 +27,5 @@
         <script src="/assets/sunwoo/js/common.js" type="text/javascript"></script>
         <script src="/assets/sunwoo/js/main.js" type="text/javascript"></script>
     </head>
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=877906388943054&autoLogAppEvents=1"></script>

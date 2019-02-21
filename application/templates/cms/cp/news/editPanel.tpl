@@ -21,71 +21,99 @@
             
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="news_type" value="[{$item->post_type|default:$type}]">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#entry-tab-001" aria-controls="entry-tab-001" role="tab" data-toggle="tab">Information</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#entry-tab-002" aria-controls="entry-tab-002" role="tab" data-toggle="tab">Content</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="entry-tab-001">
-                        <div class="row half" style="z-index:10;position: relative;">
-                            <div class="col-mb-6  half"> 
-                                <div class="control-group pull-top">
-                                    <div>
-                                        Title :(*)
-                                        <div class="pull-right lang-tabs">
-                                            <ul class="nav-tabs">
-                                                <li class="active">
-                                                    <a  title="Tiếng Việt"
-                                                        href="#tab_news_title_vi" 
-                                                        data-toggle="tab" 
-                                                        >Vi</a>
-                                                </li>
-                                                <li>
-                                                    <a  title="English"
-                                                        href="#tab_news_title_en" 
-                                                        data-toggle="tab" 
-                                                        >En</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="controls tab-content">
-                                        <div id="tab_news_title_vi" class="tab-pane active">
-                                            <input type="text" 
-                                                class="form-control validate[required,minSize[2],maxSize[255]]" 
-                                                value="[{$item->news_title|escape:'html'|default:''}]" 
-                                                name="news_title"
-                                                maxlength="255" 
-                                                onblur="AliasTo('#entryForm input[name=news_title]','#entryForm input[name=news_alias]')" 
-                                                >
-                                        </div>
-                                        <div id="tab_news_title_en" class="tab-pane">
-                                            <input type="text" 
-                                                class="form-control validate[required,minSize[2],maxSize[255]]" 
-                                                value="[{$item->news_title_en|escape:'html'|default:''}]" 
-                                                name="news_title_en"
-                                                maxlength="255" 
-                                                >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-mb-6 half">
-                                <div class="control-group pull-top">
-                                    <div>Alias :</div>
-                                    <input type="text" 
-                                        rows="1"
-                                        class="form-control validate[required,minSize[6],maxSize[255]]"
-                                        name="news_alias" 
-                                        value="[{$item->news_alias|escape|default:''}]"/>
-                                </div>            
-                            </div>
+               
+                        <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                            <ul class="nav-tabs">
+                                [{assign var="f" value="active"}]
+                                [{foreach from=$langs item=la key =k}]
+                                    <li class="[{$f|default:''}]">
+                                        <a  title="[{$la->lang_name|ucwords}]"
+                                            href="#tab_lang_content_[{$la->lang_short}]"  
+                                            data-toggle="tab" 
+                                            >
+                                                [{$la->lang_name|ucwords}]
+                                        </a>
+                                    </li>
+                                    [{assign var="f" value=""}]
+                                [{foreachelse}]
+                                    
+                                [{/foreach}]
+                            </ul>
                         </div>
+                        <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                            [{assign var="f" value="active"}]
+                            [{foreach from=$langs item=la key =k}]
+                                <div id="tab_lang_content_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                                    <div class="row half">
+                                        <div class="col-mb-6 half"> 
+                                            <div class="control-group pull-top">
+                                                <div>Title :(*)</div>
+                                                [{$attr= 'news_title_'|cat:$la->lang_short}]
+
+                                                <input type="text" 
+                                                    onblur="AliasTo('#entryForm input[name=news_title_[{$la->lang_short}]]','#entryForm input[name=news_alias_[{$la->lang_short}]]')" 
+                                                    class="form-control validate[required,minSize[2],maxSize[255]]" 
+                                                    value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                                    name="news_title_[{$la->lang_short}]" 
+                                                    placeholder="[{$la->lang_name|ucwords}]"
+                                                    
+                                                    maxlength="255" 
+                                                    >
+                                            </div>
+                                        </div>
+                                        <div class="col-mb-6 half">
+                                            <div class="control-group pull-top">
+                                                <div>Alias :</div>
+                                                [{$attr= 'news_alias_'|cat:$la->lang_short}]
+                                                <input type="text" 
+                                                    class="form-control validate[required,minSize[2],maxSize[255]]"
+                                                    name="news_alias_[{$la->lang_short}]" 
+                                                    data-lang="[{$la->lang_short}]"
+                                                    placeholder="[{$la->lang_name|ucwords}]"
+                                                    value="[{$item->$attr|quotes_to_entities|default:''}]"
+                                                    />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group pull-top">
+                                        <div>Desc :(*)</div>
+                                        [{$attr= 'news_desc_'|cat:$la->lang_short}]
+                                        <textarea class="form-control validate[required]" 
+                                            name="news_desc_[{$la->lang_short}]" 
+                                            rows="4" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                                    </div>
+
+                                    
+                                    [{if $ci->agent->is_mobile()}]
+                                    <div class="pull-top">
+                                        <div class="code">Editor is hidden in Mobile, please user desktop browser to edit.</div>
+                                    </div>
+                                    [{else}]
+                                    <div class="control-group pull-top">
+                                        <div>Content :</div>
+                                        [{$attr= 'news_content_'|cat:$la->lang_short}]
+                                        <div class="">
+                                            <textarea class="form-control validate[required]" 
+                                                data-editor="basic"
+                                                id="news_content_[{$la->lang_short}]" 
+                                                name="news_content_[{$la->lang_short}]" 
+                                                rows="10" 
+                                                data-lang="[{$la->lang_short}]"
+                                                placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                                        </div>
+                                    </div>
+                                    [{/if}]
+
+                                </div>
+
+
+                                [{assign var="f" value=""}]
+                            [{/foreach}]
+                        </div>
+
+                        
                         <div class="row">
                             <div class="col-mb-6"> 
                                 <div class="pull-top control-group">
@@ -193,42 +221,7 @@
                             </div>
                         </div>
                         
-                        <div class="control-group pull-top">
-                            <div>
-                                Desc :(*)
-                                <div class="pull-right lang-tabs">
-                                    <ul class="nav-tabs">
-                                        <li class="active">
-                                            <a  title="Tiếng Việt"
-                                                href="#tab_news_desc_vi" 
-                                                data-toggle="tab" 
-                                                >Vi</a>
-                                        </li>
-                                        <li>
-                                            <a  title="English"
-                                                href="#tab_news_desc_en" 
-                                                data-toggle="tab" 
-                                                >En</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="controls tab-content">
-                                <div id="tab_news_desc_vi" class="tab-pane active">
-                                    <textarea 
-                                        rows="3"
-                                        class="form-control validate[required,maxSize[4000]]"
-                                        name="news_desc">[{$item->news_desc|escape:'html'|default:''}]</textarea>
-                                </div>
-                                <div id="tab_news_desc_en" class="tab-pane">
-                                    <textarea 
-                                        rows="3"
-                                        class="form-control validate[required,maxSize[4000]]"
-                                        name="news_desc_en">[{$item->news_desc_en|escape:'html'|default:''}]</textarea>
-                                </div>
-                            </div>
-
-                        </div>
+                        
                         <div class="control-group pull-top">
                             <div>Tag :</div>
                             <textarea 
@@ -237,54 +230,7 @@
                                 name="news_tag">[{$item->news_tag|escape:'html'|default:''}]</textarea>
 
                         </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="entry-tab-002"> 
-                        [{if $ci->agent->is_mobile()}]
-                        <div class="pull-top">
-                            <div class="code">Editor is hidden in Mobile, please user desktop browser to edit.</div>
-                        </div>
-                        [{else}]
-                        <div class="control-group pull-top">
-                            <div>
-                                Content :(*)
-                                <div class="pull-right lang-tabs">
-                                    <ul class="nav-tabs">
-                                        <li class="active">
-                                            <a  title="Tiếng Việt"
-                                                href="#tab_news_content_vi" 
-                                                data-toggle="tab" 
-                                                >Vi</a>
-                                        </li>
-                                        <li>
-                                            <a  title="English"
-                                                href="#tab_news_content_en" 
-                                                data-toggle="tab" 
-                                                >En</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="controls tab-content">
-                                <div id="tab_news_content_vi" class="tab-pane active">
-                                    <textarea 
-                                        rows="10"
-                                        class="form-control"
-                                        id="news_content"
-                                        name="news_content">[{$item->news_content|escape|default:''}]</textarea>
-                                </div>
-                                <div id="tab_news_content_en" class="tab-pane">
-                                    <textarea 
-                                        rows="10"
-                                        class="form-control"
-                                        id="news_content_en"
-                                        name="news_content_en">[{$item->news_content_en|escape|default:''}]</textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                        [{/if}]
-                    </div>
-                </div>    
+                        
             </form>
         </div>
     </div>

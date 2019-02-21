@@ -38,11 +38,11 @@ class home extends FE_Controller {
 		$this->smarty->view( 'realestate/site', $this->assigns );
 	}
 	function about($news_alias=null){
+		
+		$this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
 		$this->news_model->about_cond();
 		$this->assigns->news_list = $this->news_model->getFeature($this->assigns->fecog['about'],1,40);
-		if($news_alias)
-			$this->assigns->news_detail = $this->news_model->onGetByAlias($news_alias);
-		elseif($this->assigns->news_list) $this->assigns->news_detail = $this->news_model->onGet($this->assigns->news_list[0]->news_id);
+		
 		$this->smarty->view( 'realestate/about', $this->assigns );
 	}
 }

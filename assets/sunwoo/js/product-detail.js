@@ -1,20 +1,36 @@
 $(document).ready(function(){
-  if ($('#owl-demo').length > 0)
-  $("#owl-demo").owlCarousel({
-    autoPlay : 5000,
-    stopOnHover : false,
-    navigation:false,
-    paginationSpeed : 1000,
-    //goToFirstSpeed : 2000,
-    singleItem : true,
-    autoHeight : true,
-    // transitionStyle:"fade"
-    });
+    
     setTimeout(function(){
+        if ($('#owl-demo').length > 0)    $("#owl-demo").owlCarousel({
+            autoPlay : 5000,
+            stopOnHover : false,
+            navigation:false,
+            paginationSpeed : 1000,
+            //goToFirstSpeed : 2000,
+            singleItem : true,
+            autoHeight : true,
+            margin:10,
+            // transitionStyle:"fade"
+        });
+        if ($('#owl-related').length > 0) $("#owl-related").owlCarousel({
+            autoPlay : 5000,
+            stopOnHover : false,
+            navigation:true,
+            paginationSpeed : 1000,
+            //goToFirstSpeed : 2000,
+            // singleItem : true,
+            autoHeight : true,
+            items: 3
+            // transitionStyle:"fade"
+        });
 
         var mapElement = document.getElementById('map')
         var lat = 10;
         var lon = 106;
+        if(app.product_list){
+            lat = app.product_list[0].product_lat
+            lon = app.product_list[0].product_lng
+        }
         // var latlon = [ 10.771921, 106.678296 ]; // 151.20929550000005&lat=-33.8688197
         // var lat  = latlon[0], lon = latlon[1];
         // Basic options for a simple Google Map
@@ -58,7 +74,9 @@ $(document).ready(function(){
             );
             popup.setMap(map);
         })
-        map.fitBounds(bounds);
-    },300)
+        // map.fitBounds(bounds);
+    },300);
+    if(FB) FB.XFBML.parse();
+    
 });
 console.log('****')

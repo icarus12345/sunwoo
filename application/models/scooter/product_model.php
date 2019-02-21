@@ -66,6 +66,17 @@ class product_model extends Core_Model {
             ->order_by('product_insert','DESC');
         return $this->getInCategories($cat_value, $page, $perpage);
     }
+    function getNearLatLng($cat_value = null,$p, $page = 1, $perpage = 10){
+        $lat = $p->product_lat;
+        $lng = $p->product_lng;
+        $id = $p->product_id;
+        $this->select();
+        $this->db->select("product_lat - $lat + product_lng - $lng as disc")
+            ->where('product_id !=',$id)
+            //->order_by('product_position','ASC');
+            ->order_by("disc",'asc');
+        return $this->getInCategories($cat_value, $page, $perpage);
+    }
     
     function getInCategories($cat_value = null, $page = 1, $perpage = 10) {
         if($this->type)$this->db->where('product_type', $this->type);

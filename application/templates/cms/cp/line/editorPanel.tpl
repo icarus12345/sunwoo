@@ -28,8 +28,11 @@
                                     <option value="0"></option>
 
                                     [{foreach from=$head_data item=c}]
-                                        <option value="[{$c->_id|default:''}]">
-                                                [{$c->_title_vi|default:''}]
+                                        <option 
+                                            value="[{$c->_id|default:''}]"
+                                            [{if $c->_id == $item->_head_id}]selected="1"[{/if}]
+                                            >
+                                            [{$c->_title_vi|default:''}]
                                         </option>
                                     [{/foreach}]
                                 </select>
@@ -43,13 +46,13 @@
                                 <span class="circleRad">
                                     <input id="_status1" 
                                         name="_status" type="radio" 
-                                        [{if $o->_status!='false'|default:''}]checked[{/if}]
+                                        [{if $item->_status!='false'|default:''}]checked[{/if}]
                                         value="true">
                                     <label for="_status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
                                     <input id="_status2" name="_status" type="radio" value="false"
-                                        [{if $o->_status=='false'|default:''}]checked[{/if}]
+                                        [{if $item->_status=='false'|default:''}]checked[{/if}]
                                     >
                                     <label for="_status2">Disable&nbsp;&nbsp;</label>
                                 </span>
