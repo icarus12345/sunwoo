@@ -1,19 +1,41 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class product extends FE_Controller {
+    private $view;
 	function __construct() {
         parent::__construct();
-		
+		$this->view = 'realestate/product';
     }
 	public function index(){
+
 		$this->page(1);
 	}
     function page($page = 1){
-        $perpage = 11;
-        $this->assigns->format_grid = array(6,6,12,4,4,4,4,4,4,6,6);
-        $this->assigns->product_list = $this->product_model->getLatest(null,$page,$perpage);
-        $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
-        $this->smarty->view( 'realestate/product', $this->assigns );
+        $this->cat(416,$page);
+        // $perpage = 11;
+        // $this->assigns->format_grid = array(6,6,12,4,4,4,4,4,4,6,6);
+        // $this->assigns->product_list = $this->product_model->getLatest(null,$page,$perpage);
+        // $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
+        // $this->smarty->view( 'realestate/product', $this->assigns );
+    }
+    function real_estate($page = 1){
+        $this->view = 'realestate/real-estate';
+        $this->cat(420,$page);
+
+    }
+    function rent($page = 1){
+        $this->view = 'realestate/rent';
+        $this->cat(415,$page);
+
+    }
+    function selling($page = 1){
+        $this->view = 'realestate/selling';
+        $this->cat(414,$page);
+
+    }
+    function invest($page = 1){
+        $this->view = 'realestate/invest';
+        $this->cat(413,$page);
     }
 	function cat($cate_id='',$page=1){
         $perpage = 2;
@@ -27,7 +49,7 @@ class product extends FE_Controller {
         $this->assigns->cate_detail = $cate_detail;
         $this->assigns->product_list = $this->product_model->getLatest($cate_detail->cat_value,$page,$perpage);
         $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
-		$this->smarty->view( 'realestate/product', $this->assigns );
+		$this->smarty->view( $this->view, $this->assigns );
 	}
 	function noithat(){
 		$this->assigns->cate = '410';

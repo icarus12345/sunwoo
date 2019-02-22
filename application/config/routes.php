@@ -72,15 +72,15 @@
 
 
 $route["project"] = "frontend/product/cat/416";
-$route["real-estate"] = "frontend/product/cat/420";
-$route["invest"] = "frontend/product/cat/413";
-$route["selling"] = "frontend/product/cat/414";
-$route["rent"] = "frontend/product/cat/415";
-$route["project/(:num)"] = "frontend/product/cat/416/$1";
+$route["real-estate"] = "frontend/product/real_estate";
+$route["invest"] = "frontend/product/invest";
+$route["selling"] = "frontend/product/selling";
+$route["rent"] = "frontend/product/rent";
+$route["project/(:num)"] = "frontend/product/real_estate/$1";
 $route["real-estate/(:num)"] = "frontend/product/cat/420/$1";
-$route["invest/(:num)"] = "frontend/product/cat/413/$1";
-$route["selling/(:num)"] = "frontend/product/cat/414/$1";
-$route["rent/(:num)"] = "frontend/product/cat/415/$1";
+$route["invest/(:num)"] = "frontend/product/invest/$1";
+$route["selling/(:num)"] = "frontend/product/selling/$1";
+$route["rent/(:num)"] = "frontend/product/rent/$1";
 $route["project/detail/(:num)"] = "frontend/product/detail/$1";
 
 

@@ -84,7 +84,7 @@
                 return str;
             }
         },{
-            'mData': "cat_title",'sWidth': "66px"
+            'mData': "cat_title_vi",'sWidth': "66px"
         },{
             'mData': "news_insert",'sWidth': "126px",
         }

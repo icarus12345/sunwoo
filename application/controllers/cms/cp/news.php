@@ -122,7 +122,7 @@ class news extends VD_Controller {
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,
                     {$this->table}.{$this->prefix}status,
-                    cat_title
+                    cat_title_vi
                 ",
             "from"      =>"
                 FROM `{$this->table}`

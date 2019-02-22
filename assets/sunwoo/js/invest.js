@@ -172,7 +172,7 @@ $(document).ready(function(){
         var mapOptions = {
             zoom: 4,
             center: new google.maps.LatLng(lat, lon),
-            style:app.map_style
+            styles:app.map_style
         };
         // Get the HTML DOM element that will contain your map 
         // We are using a div with id="map" seen below in the <body>
