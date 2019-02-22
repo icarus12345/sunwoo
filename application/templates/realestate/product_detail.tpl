@@ -144,7 +144,7 @@
                                             <div class="nailthumb">
                                               <div class="nailthumb-figure-square">
                                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
-                                                  <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
+                                                  <div class="tag"><span>[{$p->cat_title_vi|quotes_to_entities}]</span></div>
                                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
                                                     <h4><span class="line-clamp-1">[{$p->product_title_vi|quotes_to_entities}]</span></h4>
                                                     <p><span class="line-clamp-1">[{$p->product_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>

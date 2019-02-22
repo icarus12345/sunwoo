@@ -538,7 +538,7 @@ li.current .sub-nav-links{
 	visibility: visible;
 }
 
-#gnavi-links ul{
+#gnavi-links>ul{
 	padding: 40px 20px;
 
 	-webkit-transition: 500ms;
@@ -557,14 +557,17 @@ li.current .sub-nav-links{
 	transform: translate(calc(-100% - 30px), 0);
 }
 
-.gnavi-nav-open #gnavi-links ul{
+.gnavi-nav-open #gnavi-links>ul>li>ul{
+	list-style: none;
+}
+.gnavi-nav-open #gnavi-links>ul{
 	-webkit-transform: translate(0, 0);
 	-moz-transform: translate(0, 0);
 	-o-transform: translate(0, 0);
 	transform: translate(0, 0);
 }
 
-#gnavi-links li{
+#gnavi-links>li{
 	margin-bottom:20px;
 }
 #gnavi-links li a{

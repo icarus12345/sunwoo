@@ -15,16 +15,17 @@ class product extends FE_Controller {
         $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
         $this->smarty->view( 'realestate/product', $this->assigns );
     }
-	function cat($cate=''){
-        $page=1;
+	function cat($cate_id='',$page=1){
         $perpage = 2;
-		$this->assigns->cate = $cate;
-		if($cate=='408') $this->assigns->site = $this->data_model->onGet(32);
-		if($cate=='409') $this->assigns->site = $this->data_model->onGet(31);
-		if($cate=='410') $this->assigns->site = $this->data_model->onGet(30);
+		$this->assigns->cate_id = $cate_id;
+		// if($cate=='408') $this->assigns->site = $this->data_model->onGet(32);
+		// if($cate=='409') $this->assigns->site = $this->data_model->onGet(31);
+		// if($cate=='410') $this->assigns->site = $this->data_model->onGet(30);
         $this->assigns->format_grid = array(6,6,12,4,4,4,4,4,4,6,6);
-		$this->assigns->cate_detail = $this->cate_model->onGet($cate);
-        $this->assigns->product_list = $this->product_model->getLatest(null,$page,$perpage);
+		$cate_detail = $this->cate_model->onGet($cate_id);
+        if(!$cate_detail) show_404();
+        $this->assigns->cate_detail = $cate_detail;
+        $this->assigns->product_list = $this->product_model->getLatest($cate_detail->cat_value,$page,$perpage);
         $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
 		$this->smarty->view( 'realestate/product', $this->assigns );
 	}

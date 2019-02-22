@@ -110,7 +110,7 @@ class product extends CP_Controller {
                     product_category,
                     product_token,
                     product_price,
-                    cat_title
+                    cat_title_vi
                 ",
             "from"      =>"
                 FROM `{$this->table}` 

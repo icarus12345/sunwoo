@@ -70,8 +70,17 @@
 // $route["testimonial"] = "home/site/6";
 // $route["faq"] = "home/site/7";
 
-$route["project"] = "frontend/product";
-$route["project/(:num)"] = "frontend/product/page/$1";
+
+$route["project"] = "frontend/product/cat/416";
+$route["real-estate"] = "frontend/product/cat/420";
+$route["invest"] = "frontend/product/cat/413";
+$route["selling"] = "frontend/product/cat/414";
+$route["rent"] = "frontend/product/cat/415";
+$route["project/(:num)"] = "frontend/product/cat/416/$1";
+$route["real-estate/(:num)"] = "frontend/product/cat/420/$1";
+$route["invest/(:num)"] = "frontend/product/cat/413/$1";
+$route["selling/(:num)"] = "frontend/product/cat/414/$1";
+$route["rent/(:num)"] = "frontend/product/cat/415/$1";
 $route["project/detail/(:num)"] = "frontend/product/detail/$1";
 
 
