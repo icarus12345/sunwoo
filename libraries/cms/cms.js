@@ -242,6 +242,7 @@ function httpRequest(_option) {
         'url': null,
         'data': null,
         'datatype': "json",
+        'method': "POST",
         'before': null,
         'after': null,
         'callback': null
@@ -264,7 +265,7 @@ function httpRequest(_option) {
                 pendingOn();
             }
             jQuery.ajax({
-                type: "POST",
+                type: option.method || 'POST',
                 //cache:false,
                 //timeout:10000,
                 data: option.data,
@@ -673,7 +674,7 @@ App.AddGoogleMap = function(mapElement,callback){
 
         });
         if(typeof callback == 'function'){
-            google.maps.event.addListener(marker,'drag',callback);
+            // google.maps.event.addListener(marker,'drag',callback);
             google.maps.event.addListener(marker,'dragend',callback);
             // marker.addListener('drag', callback);
             // marker.addListener('dragend', callback);
@@ -684,6 +685,21 @@ App.AddGoogleMap = function(mapElement,callback){
             // https://maps.googleapis.com/maps/api/geocode/json?latlng=10.759171651626405,106.42599052008768&sensor=false&key=AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw
         }
     // });
+}
+App.getAddress = function(lat,lon,callback){
+    //
+    httpRequest({
+        'url': 'https://maps.googleapis.com/maps/api/geocode/json',
+        'method':'GET',
+        'data': {
+            latlng:lat+','+lon,
+            sensor:'false',
+            key: 'AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw'
+        },
+        'callback': function(rsdata) {
+            callback(rsdata)
+        }
+    }).call();
 }
 App.InitForm = function(frm){
     frm.validationEngine({

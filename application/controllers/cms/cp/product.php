@@ -21,6 +21,7 @@ class product extends CP_Controller {
             'editEntryTitle'=>'Modify Product',
             'entryListTpl'=>'templates/cms/cp/product/entryList.tpl'
         );
+        $this->country_model = new Core_Model('country','_','id','true');
     }
     public function index(){
         $this->vp();
@@ -63,6 +64,9 @@ class product extends CP_Controller {
             $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
             $this->assigns->cates=$data['aaData'];
         }
+
+        $countries = $this->country_model->onGets();
+        $this->assigns->countries=$countries;
 
         $head_data = $this->head_model->onGetByType($type);
         $this->assigns->head_data=$head_data;

@@ -138,6 +138,19 @@ var [{$tplConfig.name}] = (function() {
                                     frm.find('input[name="'+$(elm).data('latcolumn')+'"]').val(e.latLng.lat());
                                     frm.find('input[name="'+$(elm).data('loncolumn')+'"]').val(e.latLng.lng());
                                     frm.find('span[data-latlonpreview="'+$(elm).data('latcolumn')+$(elm).data('loncolumn')+'"]').text(e.latLng.lat() + ' ' + e.latLng.lng());
+                                    var address_input = $(elm).data('address-input');
+                                    if(address_input){
+                                        App.getAddress(e.latLng.lat(),e.latLng.lng(),function(res){
+                                            if(res && res.results && res.results[0]){
+                                                console.log(res.results[0].formatted_address,address_input)
+                                                $('#'+address_input).val(res.results[0].formatted_address)
+                                            }else{
+                                                $('#'+address_input).val('')
+                                                console.log('Unkown address')
+                                            }
+                                        })
+                                    }
+                                    //https://maps.googleapis.com/maps/api/geocode/json?latlng=10.759171651626405,106.42599052008768&sensor=false&key=AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw
                                 })
                             })
                         },500)
