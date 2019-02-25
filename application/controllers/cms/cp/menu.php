@@ -190,8 +190,8 @@ class menu extends CP_Controller {
     function menugender(){
         $output["result"] = 1;
         $output["message"] = "Success. Menu have been updated.";
-        $this->updateCMSMenu();
-        $this->updateSuperMenu();
+        $output['cms'] = $this->updateCMSMenu();
+        $output['sp'] = $this->updateSuperMenu();
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($output));
     }
@@ -200,14 +200,14 @@ class menu extends CP_Controller {
         $data=$this->menu_model->buildTree($data);
         $this->assigns->menus=$data;
         $htmlreponse = $this->smarty->view( 'cms/cp/menu/navimenu', $this->assigns, true );
-        write_file(APPPATH."templates/cms/widget/navimenuAdmin.tpl", $htmlreponse, 'w+');
+        return write_file(APPPATH."templates/cms/widget/navimenuAdmin.tpl", $htmlreponse, 'w+');
     }
     private function updateCMSMenu(){
         $data = $this->menu_model->getMenuByType('cms');
         $data=$this->menu_model->buildTree($data);
         $this->assigns->menus=$data;
         $htmlreponse = $this->smarty->view( 'cms/cp/menu/navimenu', $this->assigns, true );
-        write_file(APPPATH."templates/cms/widget/navimenu.tpl", $htmlreponse, 'w+');
+        return write_file(APPPATH."templates/cms/widget/navimenu.tpl", $htmlreponse, 'w+');
     }
 }
 ?>
