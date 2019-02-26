@@ -37,31 +37,22 @@
                     <div class="box-search">
                         <ol class="breadcrumb">
                           <li><a href="/">Home</a></li>
-                          <li class="active">Blogs</li>
+                          <li><a href="/">Partner</a></li>
+                          <li class="active">[{$news->news_title_vi|quotes_to_entities}]</li>
                         </ol>
-                        <div class="pull-top pull-bottom"></div>
-                                <div class="row blogs-list">
-                                    [{foreach from=$news_list item=p key=i}]
-                                    <div class="col-sm-[{$format_grid.$i}]">
-                                      <div class="blog bsd" data-lat="" data-lon="">
-                                        <div class="nailthumb">
-                                          <div class="nailthumb-figure-blog">
-                                            <div class="nailthumb-container cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')">
-                                            </div>
-                                          </div>
-                                        </div>
-                                          <a class="cap" href="/partner/detail/[{$p->news_id}]">
-                                            <span>[{$p->cat_title_vi|quotes_to_entities}]</span>
-                                            <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
-                                            
-                                            <p><span class="line-clamp-2">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
-                                            <span>[{$p->news_insert}]</span>
-                                          </a>
-                                      </div>
+                        <h1>[{$news->news_title_vi|quotes_to_entities}]</h1>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                        [{$news->news_content_vi}]
                                     </div>
-                                    [{/foreach}]
                                 </div>
-                                [{$htmlPager}]
+                            </div>
+                            <div class="col-lg-4">
+                                [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/contact-form.tpl"}]
+
+                            </div>
                         </div>
                     </div>
                     <script src="/assets/sunwoo/js/about.js?id=" type="text/javascript"></script>

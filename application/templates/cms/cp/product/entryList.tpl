@@ -29,12 +29,22 @@
             </div>
             <div class="table-overflow">
                 <table id="entryDatatable" class="no-table" style="width: 100%">
-                    <thead style="display: none;">
+                    <!-- <thead>
                         <tr>
-                            <th>&nbsp;</th>
+                            <td>
+                                <select id="filter-category-id">
+                                    <option></option>
+                                    <option value="413">Đầu tư</option>
+                                    <option value="416">Đầu tư</option>
+                                    <option value="420">Đầu tư</option>
+                                    <option value="414">Đầu tư</option>
+                                </select>
+                            </td>
                         </tr>
-                    </thead>
+                    </thead> -->
                     <tbody></tbody>
+                    <tfoot>
+                    </tfoot>
                 </table>
                 <div class="clear"></div>
             </div>

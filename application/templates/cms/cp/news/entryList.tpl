@@ -125,7 +125,7 @@
                             <th><span class="fa fa-circle-thin"></span></th>
                             <th>Thumb</th>
                             <th>Title</th>
-                            <th>Type</th>
+                            <th>Category</th>
                             <th>Time</th>
                             
                             

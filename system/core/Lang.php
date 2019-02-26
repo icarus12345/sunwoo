@@ -116,7 +116,7 @@ class CI_Language{
         {
             if($row->lang_language==$this->idiom){
                 $return[$row->lang_set.'_'.$row->lang_key] = $row->lang_text;
-                $return[$row->lang_set.'_'.convertUrl($row->lang_key)] = $row->lang_text;
+                $return[$row->lang_set.'_'.convertName($row->lang_key)] = $row->lang_text;
             }
         }
         foreach ( $query as $row )
@@ -125,8 +125,8 @@ class CI_Language{
                if(!isset($return[$row->lang_set.'_'.$row->lang_key])){
                    $return[$row->lang_set.'_'.$row->lang_key] = $row->lang_text;
                }
-               if(!isset($return[$row->lang_set.'_'.convertUrl($row->lang_key)])){
-                   $return[$row->lang_set.'_'.convertUrl($row->lang_key)] = $row->lang_text;
+               if(!isset($return[$row->lang_set.'_'.convertName($row->lang_key)])){
+                   $return[$row->lang_set.'_'.convertName($row->lang_key)] = $row->lang_text;
                }
            }
         }

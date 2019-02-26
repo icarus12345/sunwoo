@@ -53,6 +53,10 @@ var [{$tplConfig.name}] = (function() {
                             if(!_oConfig.showImage) datarow.[{$tplConfig.prefix}]thumb = null;
                             return tmpl("tmpl-entry", datarow);
                         }
+                    },{
+                        'mData': "[{$tplConfig.prefix}]category",//'sWidth': "180px",
+                        "visible": false,
+                        // "searchable": false
                     }
                 ],
                 'sServerMethod': "POST",
@@ -77,6 +81,27 @@ var [{$tplConfig.name}] = (function() {
                         "sNext": ">", 
                         "sPrevious": "<"
                     }
+                },
+                initComplete: function () {
+                    console.log(this.api().columns([0]))
+                    this.api().columns([0]).each( function () {
+                        var column = this;
+                        var select = $('#filter-category-id')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+         
+                                column
+                                    .search( val , true, false )
+                                    .draw();
+                            } );
+         
+                        // column.data().unique().sort().each( function ( d, j ) {
+                        //     select.append( '<option value="'+d+'">'+d+'</option>' )
+                        // } );
+                    } );
                 }
             });
             oTable.fnSetFilteringDelay(2000);

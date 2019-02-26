@@ -24,6 +24,7 @@
                 <li><a href="/project"><span>Dự án</span></a></li>
                 <li><a href="/invest"><span>Đầu tư</span></a></li>
                 <li><a href="/partner"><span>Đối tác</span></a></li>
+                <li><a href="/blogs"><span>Blogs</span></a></li>
                 <li><a href="/contact"><span>Liên hệ</span></a></li>
 
             </ul>

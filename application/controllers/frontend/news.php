@@ -9,7 +9,8 @@ class news extends FE_Controller {
 		
 	}
 	function cat($cate_alias='all',$page=1){
-		$perpage = 6;
+        $this->assigns->format_grid = array(8,4,4,8,4,4,4,4,4,4,8,4);
+		$perpage = count($this->assigns->format_grid);
 		if($cate_alias == 'all') $cate_alias = null;
 		if($cate_alias){
 			$cat = $this->cate_model->onGetByAlias($cate_alias);
@@ -24,24 +25,38 @@ class news extends FE_Controller {
         $this->assigns->news_list = $this->news_model->getLatest($cat_value,$page,$perpage);
         $url = '/'.$cate_alias. '/page/';
         $this->assigns->paging = $this->_getPaging($page,$perpage,$url);
+        $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
+
 		$this->smarty->view( 'realestate/news', $this->assigns );
 
 	}
-	function detail($cate_alias='all',$news_alias=''){
-		if($cate_alias == 'all') $cate_alias = null;
-		if($cate_alias){
-			$cat = $this->cate_model->onGetByAlias($cate_alias);
-			if(!$cat){
-				show_404();
-			}
-			$cat_value = $cat->cat_value;
-			$this->assigns->cat = $cat;
-			$this->assigns->cate = $cat->cat_id;
-		}
-		$this->assigns->news = $this->news_model->onGetByAlias($news_alias);
+	function partner($page=1){
+		$perpage = 6;
+		$this->news_model->partner_cond();
+        $this->assigns->news_list = $this->news_model->getLatest(null,$page,$perpage);
+        $url = '/page/';
+        $this->assigns->paging = $this->_getPaging($page,$perpage,$url);
+
+        $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
+		$this->smarty->view( 'realestate/partner', $this->assigns );
+	}
+	function partner_detail($id){
+        $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
+		
+		$this->assigns->news = $this->news_model->onGet($id);
 		if($this->assigns->news)
 			$this->_addView('_news','news_',$this->assigns->news->news_id);
-		$this->news_model->news_cond();
+		$this->news_model->partner_cond();
+		$this->assigns->news_list = $this->news_model->getRelated($this->assigns->news,1,4);
+		$this->smarty->view( 'realestate/partner-detail', $this->assigns );
+	}
+	function detail($id){
+        $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
+
+		$this->assigns->news = $this->news_model->onGet($id);
+		if($this->assigns->news)
+			$this->_addView('_news','news_',$this->assigns->news->news_id);
+		$this->news_model->partner_cond();
 		$this->assigns->news_list = $this->news_model->getRelated($this->assigns->news,1,4);
 		$this->smarty->view( 'realestate/news_detail', $this->assigns );
 	}

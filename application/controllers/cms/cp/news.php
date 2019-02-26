@@ -96,6 +96,8 @@ class news extends VD_Controller {
         switch ($type) {
             case 'about':
             case 'service':
+            // case 'partner':
+            // case 'blog':
                 $htmlreponse = $this->smarty->view( 'cms/cp/news/editPanelAbout', $this->assigns, true );
                 break;
             

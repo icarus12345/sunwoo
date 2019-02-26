@@ -123,7 +123,10 @@ class product extends CP_Controller {
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-
+                
+            ),
+            "filterfields"=>array(
+                'product_title_vi','cat_title_vi'
             )
         );
         $output = $this->product_model->datatableBinding();

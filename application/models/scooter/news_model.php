@@ -9,7 +9,11 @@ class news_model extends Core_Model {
     
     function select(){
         $this->db->select("
-            SQL_CALC_FOUND_ROWS _news.*
+            SQL_CALC_FOUND_ROWS _news.*,
+                cat_id,
+                cat_title_vi,
+                cat_alias_vi,
+                cat_value
                 "
             ,false);
     }
@@ -18,13 +22,21 @@ class news_model extends Core_Model {
             ->from('_news')
             ->join('cate', 'news_category = cat_id', 'left')
             ->where('news_status', 'true')
-            ->where('news_alias', $alias)
+            ->where('news_alias_vi', $alias)
             ->get();
         return $query->row();
     }
     function news_event_cond(){
         $this->db
             ->where("( news_type in ('news','event') )",null,false);
+    }
+    function partner_cond(){
+        $this->db
+            ->where("news_type",'partner');
+    }
+    function blog_cond(){
+        $this->db
+            ->where("news_type",'blog');
     }
     function news_cond(){
         $this->db

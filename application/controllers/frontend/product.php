@@ -5,6 +5,7 @@ class product extends FE_Controller {
 	function __construct() {
         parent::__construct();
 		$this->view = 'realestate/product';
+        $this->country_model = new Core_Model('country','_','id','true');
     }
 	public function index(){
 
@@ -35,6 +36,8 @@ class product extends FE_Controller {
     }
     function invest($page = 1){
         $this->view = 'realestate/invest';
+        $countries = $this->country_model->onGets();
+        $this->assigns->countries=$countries;
         $this->cat(413,$page);
     }
 	function cat($cate_id='',$page=1){

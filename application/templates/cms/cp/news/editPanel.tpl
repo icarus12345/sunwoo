@@ -123,13 +123,13 @@
                                             data-live-search="true"
                                             data-size="10"
                                             >
-                                            <option value="" >Nothing Select</option>
+                                            <option value="0" >Nothing Select</option>
                                             [{foreach from=$cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{($c->cat_value|substr_count:'>' -1) *20}]px;'>[{$c->cat_title|escape:'html'}]</span>"
+                                                    data-content="<span style='padding-left: [{($c->cat_value|substr_count:'>' -1) *20}]px;'>[{$c->cat_title_vi|escape:'html'}]</span>"
                                                     [{if $c->cat_id == $item->news_category}]selected="1"[{/if}]
                                                     value="[{$c->cat_id|default:''}]">
-                                                        [{$c->cat_title|default:''}]
+                                                        [{$c->cat_title_vi|default:''}]
                                                 </option>
                                             [{/foreach}]
                                         </select>

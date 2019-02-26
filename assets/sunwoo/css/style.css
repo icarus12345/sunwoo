@@ -1414,6 +1414,7 @@ li.current .sub-nav-links{
 .nailthumb .nailthumb-figure-9-16{position:relative;width:100%;padding-bottom: 42.857142857%;display: block;}
 .nailthumb .nailthumb-figure-75{position:relative;width:100%;padding-bottom:75%;display: block;}
 .nailthumb .nailthumb-figure-72{position:relative;width:100%;padding-bottom:72%;display: block;}
+.nailthumb .nailthumb-figure-blog{position:relative;width:100%;padding-bottom:200px;display: block;}
 .nailthumb-figure-square{position:relative;width:100%;padding-bottom:100%}
 .nailthumb-mark{position:absolute;width:100%;height:100%;z-index: 2;display: none;top: 0;left: 0}
 .nailthumb:hover>.nailthumb-mark{display: block;}
@@ -1559,3 +1560,57 @@ li.current .sub-nav-links{
 #owl-about .owl-wrapper-outer .owl-wrapper{height: 100%}
 #owl-about .owl-wrapper-outer .owl-wrapper .owl-item{height: 100%}
 #owl-about .owl-wrapper-outer .owl-wrapper .item{height: 100%}
+.country-container{
+	height: 0;
+	position: absolute;
+	/* The max width of the info window. */
+	width: 0;height: 0;
+}
+@-webkit-keyframes flash {
+  to {
+    -webkit-box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+@-moz-keyframes flash {
+  to {
+    -moz-box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+@keyframes flash {
+  to {
+    box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+.country-container>div{
+	cursor: pointer;
+	position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Style the bubble. */
+    background-color: yellow;
+    box-shadow: 0 0 0px 0px #FFEB3B;
+    width: 10px;height:10px;
+    border-radius: 50%;
+    -webkit-animation: flash 1s linear infinite;
+    -moz-animation: flash 1s linear infinite;
+    animation: flash 1s linear infinite;
+}
+.blog .cap h4,
+.partner .cap h4{margin:0;padding: 0;font-size: 16px}
+.blog .cap {padding: 5px;display: block;}
+.partner .cap {padding: 5px;display: block;text-align: center;padding-top: 30%}
+.blog .cap p,
+.partner .cap p{padding: 0;margin: 0}
+.partner .avt{
+	position: absolute;
+	width: 40%;left: 30%;
+	bottom: 0
+}
+.partner .avt>span{
+	position: absolute;width: 100%;padding-bottom: 100%;
+	transform: translateY(-50%);z-index: 11;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.blog{margin-bottom: 20px}

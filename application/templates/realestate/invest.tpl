@@ -190,7 +190,8 @@
                     </div>
 
                     <script type="text/javascript">
-                      app.product_list = [{$product_list|@json_encode}]
+                      app.product_list = [{$product_list|@json_encode}];
+                      app.countries = [{$countries|@json_encode}];
                     </script>
                     <script src="/assets/sunwoo/js/invest.js" type="text/javascript"></script>
 

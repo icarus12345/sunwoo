@@ -82,6 +82,8 @@ $route["invest/(:num)"] = "frontend/product/invest/$1";
 $route["selling/(:num)"] = "frontend/product/selling/$1";
 $route["rent/(:num)"] = "frontend/product/rent/$1";
 $route["project/detail/(:num)"] = "frontend/product/detail/$1";
+$route["partner"] = "frontend/news/partner";
+$route["partner/detail/(:num)"] = "frontend/news/partner_detail/$1";
 
 
 
@@ -98,10 +100,11 @@ $route["tu-van/(:any)"] = "realestate/advisory/detail/$1";
 
 $route["(cong-trinh|quan-tam|thiet-ke)/([a-z0-9-]{4,255})"] = "frontend/product/detail/$2";
 
-$route["(tin-tuc|thong-bao)/page"] = "frontend/news/cat/$1/1";
-$route["(tin-tuc|thong-bao)/([a-z0-9-]{4,255})"] = "frontend/news/detail/$1/$2";
-$route["(tin-tuc|thong-bao)/page/([0-9]{1,3})"] = "frontend/news/cat/$1/$2";
+$route["(tin-tuc|thong-bao|blogs)/page"] = "frontend/news/cat/$1/1";
+$route["(tin-tuc|thong-bao|blogs)/([a-z0-9-]{4,255})"] = "frontend/news/detail/$1/$2";
+$route["(tin-tuc|thong-bao|blogs)/page/([0-9]{1,3})"] = "frontend/news/cat/$1/$2";
 $route["(tin-tuc|thong-bao)"] = "frontend/news/cat/$1";
+$route["(blogs)"] = "frontend/news/cat/";
 
 // $route["(news|event)/([a-z0-9-]{4,255})/page/([0-9]{1,3})"] = "frontend/$1/cat/$2/$3";
 // $route["(news|event)/([a-z0-9-]{4,255})/page"] = "frontend/$1/cat/$2/1";

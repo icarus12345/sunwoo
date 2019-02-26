@@ -38,7 +38,7 @@ class Core_Model extends CI_Model {
             $this->db->where("{$this->prefix}status",$this->status);
         }
         $query = $this->db
-                ->where("{$this->prefix}alias", $alias)
+                ->where("{$this->prefix}alias_vi", $alias)
                 ->get($this->table);
         $this->sqlLog('Get Entry');
         return $query->row();
