@@ -44,7 +44,7 @@
                         <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
                         [{/if}]
                         <h1>[{$product_detail->product_title_vi|quotes_to_entities}]</h1>
-                        <p>[{$product_detail->product_desc_vi|quotes_to_entities}]</p>
+                        <p>[{$product_detail->product_address|quotes_to_entities}]</p>
                        
                         
                         <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
@@ -166,8 +166,6 @@
                                 [{/foreach}]
                             </div>
                         </div>
-                        [{else}]
-                        <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
                         [{/if}]
                     </div>
 

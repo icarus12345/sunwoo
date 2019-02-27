@@ -11,7 +11,7 @@
         <ul class="submenu">
         [{foreach from=$c1->menu_children item=c2}]
         [{if $c2->menu_status=='true'}]
-            <li><a href="[{$c2->menu_link|default:''}]">[{$c2->menu_title|default:''}]</a></li>
+            <li><a href="[{$c2->menu_link|default:''}]">[{if $c2->menu_class}]<i class="[{$c2->menu_class|default:''}]"></i>[{/if}][{$c2->menu_title|default:''}]</a></li>
         [{/if}]
         [{/foreach}]
         </ul>

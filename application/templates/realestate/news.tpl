@@ -40,31 +40,30 @@
                           <li class="active">Blogs</li>
                         </ol>
                         <div class="pull-top pull-bottom"></div>
-                                <div class="row blogs-list">
-                                    [{foreach from=$news_list item=p key=i}]
-                                    <div class="col-sm-[{$format_grid.$i}]">
-                                      <div class="blog bsd" data-lat="" data-lon="">
-                                        <div class="nailthumb">
-                                          <div class="nailthumb-figure-blog">
-                                            <div class="nailthumb-container cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')">
-                                            </div>
-                                          </div>
-                                        </div>
-                                          <a class="cap" href="/partner/detail/[{$p->news_id}]">
-                                            <span>[{$p->cat_title_vi|quotes_to_entities}]</span>
-                                            <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
-                                            
-                                            <p><span class="line-clamp-2">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
-                                            <span>[{$p->news_insert}]</span>
-                                          </a>
-                                      </div>
+                        <div class="row blogs-list">
+                            [{foreach from=$news_list item=p key=i}]
+                            <div class="col-sm-[{$format_grid.$i}]">
+                              <div class="blog bsd" data-lat="" data-lon="">
+                                <div class="nailthumb">
+                                  <div class="nailthumb-figure-blog">
+                                    <div class="nailthumb-container cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')">
                                     </div>
-                                    [{/foreach}]
+                                  </div>
                                 </div>
-                                [{$htmlPager}]
+                                  <a class="cap" href="/blogs/detail/[{$p->news_id}]">
+                                    <span>[{$p->cat_title_vi|quotes_to_entities}]</span>
+                                    <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
+                                    
+                                    <p><span class="line-clamp-2">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                    <span>[{$p->news_insert}]</span>
+                                  </a>
+                              </div>
+                            </div>
+                            [{/foreach}]
                         </div>
+                        [{$htmlPager}]
                     </div>
-                    <script src="/assets/sunwoo/js/about.js?id=" type="text/javascript"></script>
+                    <script src="/assets/sunwoo/js/about.js?id=news" type="text/javascript"></script>
 
                 </div>
                 

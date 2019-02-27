@@ -28,113 +28,12 @@
                         }
                     </style>
                     
-                    <div class="box-search">
+                    <div class="box-search green-tabs">
                       <ol class="breadcrumb">
                           <li><a href="/">Home</a></li>
                           <li class="active">[{$cate_detail->cat_title_vi}]</li>
-                        </ol>
-                      <!-- Nav tabs -->
-                      <ul class="nav nav-tabs green-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Cho thuê</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bán</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Dự án</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Ðầu tư</a></li>
-                      </ul>
-
-                      <!-- Tab panes -->
-                      <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active">
-                            <div class="pull-bottom">
-                                <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Search for...">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" onclick="app.search()">Tìm kiếm</button>
-                                  </span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 pull-bottom">
-                                    <select class="form-control">
-                                        <option>Chọn loại hình</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 pull-bottom">
-                                    <select class="form-control">
-                                        <option>Chọn diện tích</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 pull-bottom">
-                                    <select class="form-control">
-                                        <option>Chọn phòng ngủ</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 pull-bottom">
-                                    <select class="form-control">
-                                        <option>Chọn bảng giá</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div>Tìm kiếm nâng cao</div>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn loại hình</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn diện tích</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn phòng ngủ</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn bảng giá</option>
-                                    </select>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn loại hình</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn diện tích</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn phòng ngủ</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6  pull-top">
-                                    <select class="form-control">
-                                        <option>Chọn bảng giá</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                      </div>
+                      </ol>
+                      [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                       <div class="row product-list">
                         [{foreach from=$product_list item=p key=i}]
                         <div class="col-sm-[{$format_grid.$i}]">

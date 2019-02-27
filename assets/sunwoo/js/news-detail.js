@@ -12,10 +12,20 @@ $(document).ready(function(){
             margin:10,
             // transitionStyle:"fade"
         });
-            console.log($('#owl-about').length,"$('#owl-about').length")
         // map.fitBounds(bounds);
-    },500);
-    // if(FB) FB.XFBML.parse();
-    
+        if ($('#owl-related').length > 0) $("#owl-related").owlCarousel({
+            autoPlay : 5000,
+            stopOnHover : false,
+            navigation:true,
+            paginationSpeed : 1000,
+            //goToFirstSpeed : 2000,
+            // singleItem : true,
+            autoHeight : true,
+            items: 3
+            // transitionStyle:"fade"
+        });
+        
+        if(FB) FB.XFBML.parse();
+    },300);
 });
 console.log('****')

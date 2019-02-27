@@ -2,7 +2,12 @@ var app = {}
 app.search = function() {
     $('a[href="/project.html"]').click()
 }
-
+app.switch_search = function(page){
+    $('#btn-search').attr('href','/'+page)
+}
+app.init_search = function(){
+    $('.selectpicker').selectpicker();
+}
 function Popup(position, html) {
     this.position = position;
     var content = document.createElement('div')
@@ -107,3 +112,6 @@ Country.prototype.draw = function() {
         this.containerDiv.style.display = display;
     }
 };
+$(document).ready(function(){
+    app.init_search();
+})

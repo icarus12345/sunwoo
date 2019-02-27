@@ -12,6 +12,7 @@
         </div>
         <nav id="gnavi-links" class="nav-links" ui-yield-to="left-nav">
             <ul class="hover-line-links" ui-content-for="left-nav">
+                <li class="head">OPEN YOUR LIFE</li>
                 <li><a href="/"><span>Trang chủ</span></a></li>
                 <li><a href="/about"><span>Về chúng tôi</span></a></li>
                 <li><a href="/real-estate"><span>Nhà đất</span></a>

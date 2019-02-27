@@ -32,8 +32,8 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu pull-right">
-                    <li><a href="JavaScript:void(0)" onclick="accountdialog()">Account Info</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="[{'cms/auth/logout'|base_url}]?state=[{uri_string()}]&query=[{$smarty.get|http_build_query|urlencode}]"><i class="fa-sign-out"></i>Logout</a></li>
+                    <li><a href="JavaScript:void(0)" onclick="accountdialog()"><span class="fa fa-info-circle"></span> Account Info</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="[{'cms/auth/logout'|base_url}]?state=[{uri_string()}]&query=[{$smarty.get|http_build_query|urlencode}]"><i class="fa-sign-out"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

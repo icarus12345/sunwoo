@@ -1,86 +1,92 @@
 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/meta.tpl"}]
 <body>
-	<div class="body-slider" style="position:absolute;left:0;width:100%;top:0;height:550px;">
-		<div id="owl-demo" class="owl-carousel">
-			[{foreach from=$sliders item=foo}]
-			<div class="item bg-cover" style="background-image:url('[{$foo->Image}]');background-position: top center;"></div>
-			[{/foreach}]
-		</div>
-	</div>
-	[{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
-		
-        
-        <div class="container pull-bottom">
-            <div class="about-space"></div>
-            <style type="text/css">
-                [{if $lang=='en'}]
-                    body{background-image: url('/assets/nha-dat/img/bg2-en.jpg')}
-                [{else}]  
-                  body{background-image: url('/assets/nha-dat/img/bg2.jpg')}
-                [{/if}]
-            </style>
-            <div class="row">
-                <div class="col-sm-3" style="padding-top: 10px;">
-                    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/left_menu.tpl"}]
-
+  [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
+  <div id="wrap" class="cover">
+        <div id="header">
+            <div class="container">
+                <div id="logo" ui-yield-to="logo">
+                    <a href="/" class="hover-line" ui-content-for="logo"><span></span></a>
                 </div>
-                <div class="col-sm-9 pull-top">
-                    <div class="space-line"></div>
-                    <div class="h2-title pull-top  ">
-                        [{if $lang=='en'}]
-                        <span>[{$cat->cat_title_en|default:'NEWS'|escape:'html'}]</span>
-                        Toan Loi company is agree construction and design, interior design for project
-                        [{else}]
-                        <span>[{$cat->cat_title|default:'TIN TỨC'|escape:'html'}]</span>
-                        Công Ty TNHH Toàn Lợi chuyên nhận xây dựng và thiết kế, thiết kế nội thất cho các công trình.
-                        [{/if}]
-                    </div>
-                    <div class="pull-top">
-                        <div class="h3-title text-center">
-                            [{if $lang=='en'}]
-                            <span style="float:none">[{$news->news_title_en|default:$news->news_title|escape:'html'}]</span>
-                            [{else}]
-                            <span style="float:none">[{$news->news_title|escape:'html'}]</span>
-                            [{/if}]
-                        </div>
-                        <div class="gray">
-                            [{if $lang=='en'}]
-                            [{$news->news_content_en|default:"updating..."}]
-                            [{else}]
-                            [{$news->news_content|default:"updating..."}]
-                            [{/if}]
-                        </div>
-                    </div>
-                    <div class="pull-top">
-                        [{if $news_list}]
-                        <div>[{if $lang=='en'}]Other news[{else}]Liên Quan[{/if}]</div>
-                        <ul>
-                        [{foreach from=$news_list item=foo}]
-                        <li>
-                            <a href="/[{$cat->cat_alias|default:'tin-tuc'|escape:'html'}]/[{$foo->news_alias|escape:'html'}]">
-                                [{if $lang=='en'}]
-                                <div><b>[{$foo->news_title_en|default:$foo->news_title|escape:'html'}]</b></div>
-                                [{else}]
-                                <div><b>[{$foo->news_title|escape:'html'}]</b></div>
-                                [{/if}]
-                            </a>
-                        </li>
-                        [{foreachelse}]
-                        <div style="padding:40px 0;">Đang cập nhật...</div>
-                        [{/foreach}]
-                        </ul>
-                        [{/if}]
-                    </div>
-                    <div >
-                        [{$paging}]
-                    </div>
-                    
-                </div>
-              </div>
-            <div class="sm-space"></div>
+                <div class="hot-line"><span class="fa fa-phone-square"></span> VN: (+84) 88 606 3577 | Korea: (+82) 10 4906 5736</div>
+                <div id="cnavi" class="nav" ui-yield-to="cnavi"></div>
+            </div>
         </div>
-        
+        <div id="left-contents-wrap" ui-yield-to="left-contents">
+          <div ui-content-for="left-contents" style="width: 100%;height: 100%;">
+            [{if $sliders}]
+                <div id="owl-about" class="owl-carousel">
+                    [{foreach from=$sliders item=foo}]
+                    <div class="item cover" style="background-image:url('[{$foo->Image}]');background-position: top center;"></div>
+                    [{/foreach}]
+                </div>
+            [{/if}]
+          </div>
+          
+        </div>
+        <div id="contents-wrap">
+            <div id="contents">
+                <div id="product-detail" class="content">
+                    <style type="text/css">
+                        #header{
+                            background-image: url(/assets/sunwoo/images/banner.jpg);
+                            background-size: cover;
+                            height: 228px;
+                        }
+                    </style>
+                    
+                    <div class="box-search">
+                        <ol class="breadcrumb">
+                          <li><a href="/">Home</a></li>
+                          <li><a href="/">Blogs</a></li>
+                          <li class="active">[{$news->news_title_vi|quotes_to_entities}]</li>
+                        </ol>
+                        <h1>[{$news->news_title_vi|quotes_to_entities}]</h1>
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                        [{$news->news_content_vi}]
+                                    </div>
+                                </div>
 
+                        <div class="fb-comment">
+                            <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/blogs/detail/[{$news->news_id}]" data-numposts="5"></div>
+                        </div>
+                        [{if $relateds}]
+                        <br/>
+                        <br/>
+                        <div>Liên quan</div>
+                        <div class="related-items">
+                            <div id="owl-related" class="owl-carousel">
+                                [{foreach from=$relateds item=p}]
+                                    <div class="item">
+                                        <div class="blog bsd" data-lat="" data-lon="">
+                                            <div class="nailthumb">
+                                              <div class="nailthumb-figure-blog">
+                                                <div class="nailthumb-container cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')">
+                                                </div>
+                                              </div>
+                                            </div>
+                                              <a class="cap" href="/blogs/detail/[{$p->news_id}]">
+                                                <span>[{$p->cat_title_vi|quotes_to_entities}]</span>
+                                                <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
+                                                
+                                                <p><span class="line-clamp-2">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                                <span>[{$p->news_insert}]</span>
+                                              </a>
+                                          </div>
+                                    </div>
+                                [{/foreach}]
+                            </div>
+                        </div>
+                        [{/if}]
+                    </div>
+                    <script src="/assets/sunwoo/js/news-detail.js?id=" type="text/javascript"></script>
+
+                </div>
+                
+            </div>
+        </div>
+
+
+    </div>
     [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/foot.tpl"}]
-    [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/popup.tpl"}]
 </body>

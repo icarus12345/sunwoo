@@ -126,7 +126,7 @@
                             <th>Thumb</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>Time</th>
+                            <th>Created At</th>
                             
                             
                         </tr>

@@ -15,10 +15,14 @@
         <link rel="stylesheet" href="/assets/sunwoo/css/animate.css">
         <link rel="stylesheet" href="/assets/sunwoo/css/style.css">
 
+        <link rel="stylesheet" type="text/css" href="/libraries/bootstrap/css/bootstrap-select.min.css"/>
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <script src="/assets/sunwoo/js/libs.js" type="text/javascript"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
         
+        <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-select.min.js"></script>
+
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB6TJrMx3v003kFpoOUSgugZSk8j1WWK_s"></script>
         <script type="text/javascript" src="/libraries/plugin/owl-carousel/owl.carousel.js"></script>
         <script type="text/javascript" src="/libraries/plugin/jquery.nailthumb.1.1.js"></script>

@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <div class="widget full">
         <div class="modal-header">
-            <h4>CMS TOÀN LỢI</h4>
+            <h4>CMS 1109</h4>
         </div>
         <div class="modal-body">
             HƯỚNG DẪN SỬ DỤNG<br/>

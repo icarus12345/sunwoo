@@ -570,13 +570,22 @@ li.current .sub-nav-links{
 #gnavi-links>li{
 	margin-bottom:20px;
 }
+#gnavi-links .head{
+	margin:0;padding: 0;text-align: center;
+	font-size: 30px;margin-bottom: 30px;
+	color: #1b9290;
+}
+#gnavi-links li a:hover{
+	color: #1b9290;
+}
 #gnavi-links li a{
 	display: block;
-	height: 40px;
-	line-height: 40px;
-	padding: 0 0 0 25px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 0 0 0px;
 	color: #1a1a1a;
-	letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 #gnavi-links li a.external{
@@ -1351,10 +1360,10 @@ li.current .sub-nav-links{
     position: relative;
     z-index: 1;
 }
-.box-search .nav-tabs.green-tabs>li>a,
-.box-search .nav-tabs.green-tabs>li:hover>a,
-.box-search .nav-tabs.green-tabs>li.active>a,
-.box-search .nav-tabs.green-tabs + .tab-content{
+.box-search.green-tabs .nav-tabs>li>a,
+.box-search.green-tabs .nav-tabs>li:hover>a,
+.box-search.green-tabs .nav-tabs>li.active>a,
+.box-search.green-tabs .nav-tabs + .tab-content{
 	background-color: #009688;
 	color: #fff
 }
@@ -1368,6 +1377,7 @@ li.current .sub-nav-links{
 	
 	border:0;
 	width: 100%;
+	font-size: bold;
 }
 .box-search .nav-tabs>li.active>a,
 .box-search .nav-tabs>li:hover>a{

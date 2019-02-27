@@ -56,8 +56,8 @@ class news extends FE_Controller {
 		$this->assigns->news = $this->news_model->onGet($id);
 		if($this->assigns->news)
 			$this->_addView('_news','news_',$this->assigns->news->news_id);
-		$this->news_model->partner_cond();
-		$this->assigns->news_list = $this->news_model->getRelated($this->assigns->news,1,4);
+		$this->news_model->news_cond();
+		$this->assigns->relateds = $this->news_model->getRelated($this->assigns->news,1,6);
 		$this->smarty->view( 'realestate/news_detail', $this->assigns );
 	}
 	function feed(){

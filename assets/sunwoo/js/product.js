@@ -48,5 +48,6 @@ $(document).ready(function(){
             popup.setMap(map);
         })
         map.fitBounds(bounds);
+        app.init_search();
     },300)
 })

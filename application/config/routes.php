@@ -84,6 +84,7 @@ $route["rent/(:num)"] = "frontend/product/rent/$1";
 $route["project/detail/(:num)"] = "frontend/product/detail/$1";
 $route["partner"] = "frontend/news/partner";
 $route["partner/detail/(:num)"] = "frontend/news/partner_detail/$1";
+$route["blogs/detail/(:num)"] = "frontend/news/detail/$1";
 
 
 
