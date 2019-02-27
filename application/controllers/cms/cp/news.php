@@ -75,6 +75,11 @@ class news extends VD_Controller {
 
                 break;
         }
+        $data = $this->cate_model->binding($type);
+        if(isset($data['aaData'])){
+            $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
+            $this->assigns->cates=$data['aaData'];
+        }
         $this->assigns->unit = $unit;
         $this->assigns->type = $type;
         $this->smarty->view( 'cms/000/template', $this->assigns );
@@ -124,7 +129,7 @@ class news extends VD_Controller {
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,
                     {$this->table}.{$this->prefix}status,
-                    cat_title_vi
+                    cat_title_vi as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}`
@@ -133,7 +138,7 @@ class news extends VD_Controller {
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` ASC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-                
+                "cat_title"=>"cat_value"
             ),
             "filterfields"=>array(
                 

@@ -10,12 +10,92 @@ var _oConfig = {
     'entryCommitUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onCommit/',
     'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/'
 };
+_oConfig.dataColumns = [
+        {
+            'mData': "product_id",
+            'sWidth': "36px", 'bSortable': false,
+            'sClass':'gridAction',
+            'mRender': function ( value, type, datarow ) {
+                var str = '';
+                [{if $unit}]
+                str =  '<ul class="table-controls">'
+                    [{if $unit|strpos:".e."!==false}]
+                    str +=  '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')" title="Edit entry (' + value + ')" ><i class="fa fa-edit"></i></a> </li>';
+                    [{/if}]
+                    [{if $unit|strpos:".d."!==false}]
+                    if(datarow.product_lock!=='true'){
+                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')" title="Delete entry (' + value + ')" ><i class="fa fa-trash-o"></i></a> </li>';
+                    }
+                    [{/if}]
+                    [{if $unit|strpos:".l."!==false}]
+                    if(datarow.product_lock!=='true'){
+                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i></a> </li>';
+                    }
+                    [{/if}]
+                
+                str += '</ul>';
+                [{/if}]
+                return str;
+            }
+        },
+        {
+            'mData': "product_status",
+            'sWidth': "36px",
+            'sClass':'gridStatus',
+            'mRender': function ( value, type, datarow ) {
+                var elm = '';
+                [{if $unit}]
+                    [{if $unit|strpos:".e."!==false}]
+                    if(datarow.[{$tplConfig.prefix}]lock!='false'){
+                        var status = datarow.[{$tplConfig.prefix}]status =='false'?'true':'false'
+                    elm = 
+                        '<span '+ 
+                            'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow.product_id + '\')" '+
+                            'title="Click to turn on/off entry" ';
+                    if(value == 'false') 
+                        elm += 'class="fa fa-toggle-off"';
+                    else
+                        elm += 'class="fa fa-toggle-on"';
+                    elm += '></span>';
+                    }
+                    [{/if}]
+                [{/if}]
+                return elm;
+            }
+        },{
+            'mData': "product_thumb",'sClass': "gridThumb",'sWidth': "40px",
+            "bVisible": _oConfig.showImage,
+            'mRender': function ( value, type, datarow ) {
+                if(value)
+                    return '<div style="height:32px;width:52px;background-image:url('+value+')" class="bg-cover"/>';
+                else return '';
+            }
+        },{
+            'mData': "product_title_vi",
+            'mRender': function ( value, type, datarow ) {
+                var str= '';
+                // if(datarow.cat_title && datarow.cat_title !='')
+                //     str+='<span class="code">' + datarow.cat_title + '</span>';
+                str+=value;
+                return str;
+            }
+        },{
+            'mData': "cat_title",'sWidth': "120px"
+        },{
+            'mData': "product_insert",'sWidth': "126px",
+        }
+    ];
 var [{$tplConfig.name}] = (function() {
     var oTable, dtable, me = this, scrollTop = 0;
     return {
         'toggleImage': function(){
             _oConfig.showImage = !_oConfig.showImage;
-            this.onRefresh();
+            // this.onRefresh();
+            // Get the column API object
+            console.log(oTable)
+            var column = oTable.column( 2 );
+            // Toggle the visibility
+            column.visible( ! column.visible() );
         },
         'oTable': function(){ return oTable;},
         'toggleElm': function(elm){
@@ -44,21 +124,9 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').dataTable({
+            oTable = $('#entryDatatable').DataTable({
                 'aaSorting': [],
-                'aoColumns': [
-                    {
-                        'mData': "[{$tplConfig.prefix}]id"//,'sWidth': "180px"
-                        , 'mRender': function ( value, type, datarow ) {
-                            if(!_oConfig.showImage) datarow.[{$tplConfig.prefix}]thumb = null;
-                            return tmpl("tmpl-entry", datarow);
-                        }
-                    },{
-                        'mData': "[{$tplConfig.prefix}]category",//'sWidth': "180px",
-                        "visible": false,
-                        // "searchable": false
-                    }
-                ],
+                'aoColumns': _oConfig.dataColumns,
                 'sServerMethod': "POST",
                 'iDisplayLength': 10,
                 'bProcessing': _oConfig.paginate,
@@ -83,28 +151,26 @@ var [{$tplConfig.name}] = (function() {
                     }
                 },
                 initComplete: function () {
-                    console.log(this.api().columns([0]))
-                    this.api().columns([0]).each( function () {
-                        var column = this;
-                        var select = $('#filter-category-id')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
-         
-                                column
-                                    .search( val , true, false )
-                                    .draw();
-                            } );
-         
-                        // column.data().unique().sort().each( function ( d, j ) {
-                        //     select.append( '<option value="'+d+'">'+d+'</option>' )
-                        // } );
-                    } );
+                    $('#entryDatatable>tfoot>.filter-rows:first-child').appendTo($('#entryDatatable>thead'))
+                    
                 }
             });
-            oTable.fnSetFilteringDelay(2000);
+            oTable.columns().every( function () {
+                var column = this;
+                var timer
+                $( 'input,select', this.footer() ).on( 'enterKey change', function () {
+                    var input = this;
+                    if(timer) clearTimeout(timer)
+                    // timer = setTimeout(function(){
+                        if ( column.search() !== input.value ) {
+                            column
+                                .search( input.value )
+                                .draw();
+                        }
+                    // },1000)
+                } );
+            } );
+            // // oTable.fnSetFilteringDelay(2000);
         },
         'onInit': function(){
             this.createtable();

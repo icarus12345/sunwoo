@@ -631,11 +631,20 @@ table > tbody > tr > td.date-time-cell{font-size: 11px;font-family: tahoma;paddi
 }
 .dataTables_wrapper { position: relative; -background-color:#EEEEEE}
 .dataTables_length { float: right; padding: 4px 0px; display: block; }
+.dataTable .filter-rows th,
+.dataTable .filter-rows td{padding: 0}
+.dataTable .filter-rows select,
+.dataTable .filter-rows input{
+    width: 100%;
+    padding: 0 4px;height: 24px;
+    border:0;
+}
 .dataTables_length select {border:1px solid #ddd;padding: 0 4px;height: 24px;}
 .dataTables_length > label{ float: left; line-height: 24px; padding: 2px 0 2px 4px; margin-right: 12px; }
 .dataTable thead th.sorting { cursor: pointer; }
 .show-entries { float: left; margin: 4px 15px 0 0; }
 .dataTables_filter { padding: 4px 0px; position: relative; display: block; float: left; }
+
 .dataTables_filter input{border:1px solid #ddd;padding: 0 4px;height: 24px;}
 .dataTables_filter > label, .dataTables_length > label { margin: 0; }
 .dataTables_filter label > span { display: block; float: left; line-height: 20px; padding: 2px 0 2px 4px; margin-right: 12px; }

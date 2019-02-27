@@ -78,7 +78,7 @@ var [{$tplConfig.name}] = (function() {
                     }
                 }
             });
-            oTable.fnSetFilteringDelay(2000);
+            // oTable.fnSetFilteringDelay(2000);
         },
         'onInit': function(){
             this.createtable();

@@ -432,6 +432,7 @@ class Core_Model extends CI_Model {
                             $_colum = $method["mDataProp_$i"];
                         }
                         if (!empty($_colum)) {
+
                             if (isset($this->datatables_config['columnmaps'][$_colum])) {
                                 $_colum = $this->datatables_config['columnmaps'][$_colum];
                             } else {
@@ -479,7 +480,7 @@ class Core_Model extends CI_Model {
                                 $_colum = "`$_colum`";
                             }
                         }
-                        $sWhere .= $filterfields[$i] . " LIKE '%" . $this->db->escape_str($method['sSearch_' . $i]) . "%' ";
+                        $sWhere .= $_colum . " LIKE '%" . $this->db->escape_str($method['sSearch_' . $i]) . "%' ";
                     }
                 }
             }

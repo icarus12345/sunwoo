@@ -44,7 +44,7 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').dataTable({
+            oTable = $('#entryDatatable').DataTable({
                 'aaSorting': [],
                 'aoColumns': [
                     {
@@ -79,7 +79,7 @@ var [{$tplConfig.name}] = (function() {
                     }
                 }
             });
-            oTable.fnSetFilteringDelay(2000);
+            // oTable.fnSetFilteringDelay(2000);
         },
         'onInit': function(){
             this.createtable();

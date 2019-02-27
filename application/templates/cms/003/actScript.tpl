@@ -16,7 +16,9 @@ var [{$tplConfig.name}] = (function() {
     return {
         'toggleImage': function(){
             _oConfig.showImage = !_oConfig.showImage;
-            this.onRefresh();
+            var column = oTable.column( 2 );
+            // Toggle the visibility
+            column.visible( ! column.visible() );
         },
         'oTable': function(){ return oTable;},
         'toggleElm': function(elm){
@@ -45,7 +47,7 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').dataTable({
+            oTable = $('#entryDatatable').DataTable({
                 'aaSorting': [],
                 'aoColumns': _oConfig.dataColumns,
                 'sServerMethod': "POST",
@@ -70,9 +72,28 @@ var [{$tplConfig.name}] = (function() {
                         "sNext": ">", 
                         "sPrevious": "<"
                     }
+                },
+                initComplete: function () {
+                    $('#entryDatatable>tfoot>.filter-rows:first-child').appendTo($('#entryDatatable>thead'))
                 }
             });
-            oTable.fnSetFilteringDelay(2000);
+            // oTable.fnSetFilteringDelay(2000);
+            oTable.columns().every( function () {
+                var column = this;
+                console.log(this.header())
+                var timer
+                $( 'input,select', this.footer()).on( 'enterKey change', function () {
+                    var input = this;
+                    if(timer) clearTimeout(timer)
+                    // timer = setTimeout(function(){
+                        if ( column.search() !== input.value ) {
+                            column
+                                .search( input.value )
+                                .draw();
+                        }
+                    // },1000)
+                } );
+            } );
         },
         'onInit': function(){
             this.createtable();

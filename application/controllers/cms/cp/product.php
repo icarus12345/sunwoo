@@ -56,6 +56,11 @@ class product extends CP_Controller {
         
         $this->assigns->unit = $unit;
         $this->assigns->type = $type;
+        $data = $this->cate_model->binding($type);
+        if(isset($data['aaData'])){
+            $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
+            $this->assigns->cates=$data['aaData'];
+        }
         $this->smarty->view( 'cms/000/template', $this->assigns );
     }
     function editpanel($type=''){
@@ -114,7 +119,7 @@ class product extends CP_Controller {
                     product_category,
                     product_token,
                     product_price,
-                    cat_title_vi
+                    cat_title_vi as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
@@ -123,10 +128,10 @@ class product extends CP_Controller {
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-                
+                "cat_title"=>"cat_value"
             ),
             "filterfields"=>array(
-                'product_title_vi','cat_title_vi'
+                // 'product_title_vi','cat_title_vi'
             )
         );
         $output = $this->product_model->datatableBinding();

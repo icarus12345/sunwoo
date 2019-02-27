@@ -1,6 +1,6 @@
 
 [{nocache}]
-[{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/rowTmpl.tpl"}]
+[{*include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/rowTmpl.tpl"*}]
 [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/actScript.tpl"}]
 [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/actOptBasicScript.tpl"}]
 <div class="row-fluid">
@@ -28,22 +28,40 @@
                 Show/Hide Thumbnail
             </div>
             <div class="table-overflow">
-                <table id="entryDatatable" class="no-table" style="width: 100%">
-                    <!-- <thead>
+                <table id="entryDatatable" class="table table-bordered table-striped message-table -no-table" style="width: 100%">
+                    <thead>
                         <tr>
-                            <td>
-                                <select id="filter-category-id">
-                                    <option></option>
-                                    <option value="413">Đầu tư</option>
-                                    <option value="416">Đầu tư</option>
-                                    <option value="420">Đầu tư</option>
-                                    <option value="414">Đầu tư</option>
-                                </select>
-                            </td>
+                            <th><span class="fa fa-key"></span></th>
+                            <th><span class="fa fa-circle-thin"></span></th>
+                            <th>Thumb</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Created At</th>
                         </tr>
-                    </thead> -->
+                    </thead>
                     <tbody></tbody>
                     <tfoot>
+                        <tr class="filter-rows">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" placeholder="Search for ..."></td>
+                            <td>
+                                <select>
+                                    <option value=""></option>
+                                    [{if $cates|default:null}]
+                                    [{foreach from=$cates item=c}]
+                                        <option 
+                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                            value="[{$c->cat_value|escape|default:''}]">
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title_vi|default:''}]
+                                        </option>
+                                    [{/foreach}]
+                                    [{/if}]
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
                     </tfoot>
                 </table>
                 <div class="clear"></div>

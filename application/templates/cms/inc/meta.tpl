@@ -35,8 +35,8 @@
         <script type="text/javascript" src="[{'libraries/bootstrap/js/bootstrap-datetimepicker.min.js'|base_url}]"></script> 
         <script type="text/javascript" src="[{'libraries/bootstrap/js/bootstrap-colorpicker.js'|base_url}]"></script>
         <script type="text/javascript" src="[{'libraries/bootstrap/js/dateformat.js'|base_url}]"></script>
-        <script type="text/javascript" src="[{'libraries/plugin/datatable/jquery.dataTables.min.js'|base_url}]"></script>
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script> -->
+        <!-- <script type="text/javascript" src="[{'libraries/plugin/datatable/jquery.dataTables.min.js'|base_url}]"></script> -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
         <script type="text/javascript" src="[{'libraries/plugin/validation-engine/jquery.validationEngine.js'|base_url}]"></script>
         <script type="text/javascript" src="[{'libraries/plugin/validation-engine/jquery.validationEngine-en.js'|base_url}]"></script>
         <script type="text/javascript" src="[{'libraries/plugin/mCustomSrollbar/jquery.mCustomScrollbar.concat.min.js'|base_url}]"></script>

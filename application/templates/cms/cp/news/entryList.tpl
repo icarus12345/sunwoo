@@ -28,12 +28,12 @@
                     str +=  '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')" title="Edit entry (' + value + ')" ><i class="fa fa-edit"></i></a> </li>';
                     [{/if}]
                     [{if $unit|strpos:".d."!==false}]
-                    if(datarow.menu_lock!=='true'){
+                    if(datarow.news_lock!=='true'){
                         str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')" title="Delete entry (' + value + ')" ><i class="fa fa-trash-o"></i></a> </li>';
                     }
                     [{/if}]
                     [{if $unit|strpos:".l."!==false}]
-                    if(datarow.menu_lock!=='true'){
+                    if(datarow.news_lock!=='true'){
                         str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i></a> </li>';
                     }
                     [{/if}]
@@ -69,6 +69,7 @@
             }
         },{
             'mData': "news_thumb",'sClass': "gridThumb",'sWidth': "40px",
+            "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
                     return '<div style="height:32px;width:52px;background-image:url('+value+')" class="bg-cover"/>';
@@ -84,7 +85,7 @@
                 return str;
             }
         },{
-            'mData': "cat_title_vi",'sWidth': "66px"
+            'mData': "cat_title",'sWidth': "120px"
         },{
             'mData': "news_insert",'sWidth': "126px",
         }
@@ -120,18 +121,39 @@
             <div class="table-overflow">
                 <table id="entryDatatable" class="table table-bordered table-striped message-table">
                     <thead>
-                        <tr>
+                        <tr role="row">
                             <th><span class="fa fa-key"></span></th>
                             <th><span class="fa fa-circle-thin"></span></th>
                             <th>Thumb</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Created At</th>
-                            
-                            
                         </tr>
                     </thead>
                     <tbody></tbody>
+                    <tfoot>
+                        <tr class="filter-rows">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" placeholder="Search for ..."></td>
+                            <td>
+                                <select>
+                                    <option value=""></option>
+                                    [{if $cates|default:null}]
+                                    [{foreach from=$cates item=c}]
+                                        <option 
+                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                            value="[{$c->cat_value|escape|default:''}]">
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title_vi|default:''}]
+                                        </option>
+                                    [{/foreach}]
+                                    [{/if}]
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
                 <div class="clear"></div>
             </div>
