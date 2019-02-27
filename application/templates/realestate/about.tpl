@@ -39,8 +39,8 @@
                           <li><a href="/">Home</a></li>
                           <li class="active">About</li>
                         </ol>
-                        <h1>[{$languages.all_welcome|quotes_to_entities}]</h1>
-                        <div>[{$languages.all_addressStr|quotes_to_entities}]</div>
+                        <h1 class="h1-title">[{$languages.all_welcome|quotes_to_entities}]</h1>
+                        <div class="desc">[{$languages.all_addressStr|quotes_to_entities}]</div>
                         <div class="pull-top pull-bottom"></div>
                         <div class="row">
                             <div class="col-lg-8">

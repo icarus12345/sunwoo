@@ -19,7 +19,7 @@
         <textarea rows="4" class="form-control" id="" placeholder=""></textarea>
       </div>
       <div class="form-group-">
-        <button class="btn btn-default btn-sm">Submit</button>
+        <button class="btn btn-default btn-sm btn-block btn-primary">GỬI YÊU CẦU</button>
       </div>
   </form>
   </div>
