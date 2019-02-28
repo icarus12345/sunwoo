@@ -207,7 +207,7 @@ var [{$tplConfig.name}] = (function() {
         },
         'onRefresh': function(){
             // oTable.fnDraw(false);
-            oTable.oApi._fnDraw( oTable.fnSettings() );
+            oTable.ajax.reload();
         },
         'changeStatus':function(status,Id){
             this.onCommit( _oConfig.entryCommitUri, {

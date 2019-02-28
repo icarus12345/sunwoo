@@ -15,8 +15,9 @@ var [{$tplConfig.name}] = (function() {
     var oTable, dtable, me = this, scrollTop = 0;
     return {
         'toggleImage': function(){
-            _oConfig.showImage = !_oConfig.showImage;
-            this.onRefresh();
+            var column = oTable.column( 2 );
+            // Toggle the visibility
+            column.visible( ! column.visible() );
         },
         'oTable': function(){ return oTable;},
         'toggleElm': function(elm){
@@ -45,7 +46,7 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').dataTable({
+            oTable = $('#entryDatatable').DataTable({
                 'aaSorting': [],
                 'aoColumns': _oConfig.dataColumns,
                 'sServerMethod': "POST",
@@ -217,7 +218,7 @@ var [{$tplConfig.name}] = (function() {
         },
         'onRefresh': function(){
             // oTable.fnDraw(false);
-            oTable.oApi._fnDraw( oTable.fnSettings() );
+            oTable.ajax.reload();
         },
         'changeStatus':function(status,Id){
             this.onCommit( _oConfig.entryCommitUri, {

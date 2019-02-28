@@ -78,31 +78,35 @@
         {
             'mData': "Status",
             'sWidth': "36px",
-            'sClass':'gridStatus',
-            'mRender': function ( value, type, datarow ) {
-                var elm = '';
-                [{if $unit}]
-                    [{if $unit|strpos:".e."!==false}]
-                    if(datarow.[{$tplConfig.prefix}]lock!='false'){
-                        var status = datarow.[{$tplConfig.prefix}]Status =='false'?'true':'false'
-                    elm = 
-                        '<span '+ 
-                            'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow.Id + '\')" '+
-                            'title="Click to turn on/off entry" ';
-                    if(value == 'false') 
-                        elm += 'class="fa fa-toggle-off"';
-                    else
-                        elm += 'class="fa fa-toggle-on"';
-                    elm += '></span>';
-                    }
-                    [{/if}]
-                [{/if}]
-                return elm;
-            }
+            'sClass':'cb-column',
+            render: function ( value, type, row ) {
+                var str = [
+                    '<label class="cb">',
+                    '<input type="checkbox" ',
+                        (value == 'true'?'checked':'')
+                        ];
+                        [{if $unit}]
+                            [{if $unit|strpos:".e."!==false}]
+                                if(row.[{$tplConfig.prefix}]Lock!='false'){
+                                    var status = row.[{$tplConfig.prefix}]Status =='false'?'true':'false'
+                                str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]Id + '\')" ')
+                                }else{
+                                    str.push('disabled');
+                                }
+                            [{else}]
+                                str.push('disabled');
+                            [{/if}]
+                        [{else}]
+                            str.push('disabled');
+                        [{/if}]
+                    str.push('><span></span></label>');
+                return str.join(' ');
+            },
         },
         {
 
             'mData': "Image",'sWidth': "56px",'bSortable': false,
+            "bVisible": true,
             'sClass':'gridThumb',
             'mRender': function ( value, type, datarow ) {
                 if(value)
