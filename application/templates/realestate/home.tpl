@@ -20,8 +20,10 @@
                             background-image: url(/assets/sunwoo/images/home-bg.jpg);
                         }
                     </style>
-                    <div class="box-search">
-                      [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
+                    <div class="box-search table-box-center">
+                        <div>
+                            [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
+                        </div>
                     </div>
                 </div>
                 

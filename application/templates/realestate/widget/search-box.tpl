@@ -10,8 +10,8 @@
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane active">
     <div class="pull-bottom">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
+        <div class="input-group search-input">
+          <input type="text" class="form-control" placeholder="Từ khóa tìm kiếm...">
           <span class="input-group-btn">
             <a class="btn btn-default" type="button" id="btn-search" href="/rent">Tìm kiếm</a>
           </span>
@@ -53,72 +53,73 @@
 
         </div>
     </div>
-    <div>Tìm kiếm nâng cao</div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6 pull-top">
-            <select class="form-control selectpicker">
-                <option value="">Chọn Số tầng</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value=">3">Nhiều</option>
-            </select>
+    <div><i class="toggle-search-advance a" onclick="app.toggleSearchAdvance()">Tìm kiếm nâng cao</i></div>
+    <div class="search-advance">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 pull-top">
+                <select class="form-control selectpicker">
+                    <option value="">Chọn Số tầng</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value=">3">Nhiều</option>
+                </select>
 
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option value="">Chọn số phòng ngủ</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value=">3">Nhiều</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option value="">Chọn số phòng tắm</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value=">3">Nhiều</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option>Chọn tiện ích đi kèm</option>
+                </select>
+
+            </div>
         </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option value="">Chọn số phòng ngủ</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value=">3">Nhiều</option>
-            </select>
 
-        </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option value="">Chọn số phòng tắm</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value=">3">Nhiều</option>
-            </select>
+        <div class="row">
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option>Chọn Xã/Phường</option>
+                </select>
 
-        </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option>Chọn tiện ích đi kèm</option>
-            </select>
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option>Chọn Quận/Huyện</option>
+                </select>
 
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option>Chọn Tỉnh/Thành Phố</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker">
+                    <option>Chọn hướng</option>
+                </select>
+
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option>Chọn Xã/Phường</option>
-            </select>
-
-        </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option>Chọn Quận/Huyện</option>
-            </select>
-
-        </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option>Chọn Tỉnh/Thành Phố</option>
-            </select>
-
-        </div>
-        <div class="col-md-3 col-sm-6  pull-top">
-            <select class="form-control selectpicker">
-                <option>Chọn hướng</option>
-            </select>
-
-        </div>
-    </div>
-    
 </div>
 </div>

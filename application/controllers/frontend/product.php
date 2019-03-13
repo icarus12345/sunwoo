@@ -41,12 +41,12 @@ class product extends FE_Controller {
         $this->cat(413,$page);
     }
 	function cat($cate_id='',$page=1){
-        $perpage = 2;
-		$this->assigns->cate_id = $cate_id;
-		// if($cate=='408') $this->assigns->site = $this->data_model->onGet(32);
-		// if($cate=='409') $this->assigns->site = $this->data_model->onGet(31);
-		// if($cate=='410') $this->assigns->site = $this->data_model->onGet(30);
+        $this->assigns->cate_id = $cate_id;
+        // if($cate=='408') $this->assigns->site = $this->data_model->onGet(32);
+        // if($cate=='409') $this->assigns->site = $this->data_model->onGet(31);
+        // if($cate=='410') $this->assigns->site = $this->data_model->onGet(30);
         $this->assigns->format_grid = array(6,6,12,4,4,4,4,4,4,6,6);
+        $perpage = count($this->assigns->format_grid);
 		$cate_detail = $this->cate_model->onGet($cate_id);
         if(!$cate_detail) show_404();
         $this->assigns->cate_detail = $cate_detail;

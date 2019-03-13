@@ -30,7 +30,7 @@
                     
                     <div class="box-search green-tabs">
                       <ol class="breadcrumb">
-                          <li><a href="/">Home</a></li>
+                          <li><a href="/">Trang chủ</a></li>
                           <li class="active">[{$cate_detail->cat_title_vi}]</li>
                         </ol>
                       [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
@@ -49,6 +49,10 @@
                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
                                   <div class="tag"><span>[{$p->cat_title_vi|quotes_to_entities}]</span></div>
                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
+                                    <span class="price">
+                                      [{$p->product_price|number_format}]
+                                      <span>VND</span>
+                                    </span>
                                     <h4><span class="line-clamp-1">[{$p->product_title_vi|quotes_to_entities}]</span></h4>
                                     <p><span class="line-clamp-1">[{$p->product_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
                                   </a>
@@ -57,9 +61,9 @@
                               <div class="serv">
                                 <table>
                                   <tr>
-                                    <td>Phòng ngủ:[{$p->product_bedroom|quotes_to_entities}]</td>
-                                    <td>Phòng tắm:[{$p->product_bathroom|quotes_to_entities}]</td>
-                                    <td>Diện tích:[{$p->product_acreage|quotes_to_entities}] m2</td>
+                                    <td><span class="fa fa-moon"></span> Phòng ngủ:[{$p->product_bedroom|quotes_to_entities}]</td>
+                                    <td><span class="fa fa-tint"></span> Phòng tắm:[{$p->product_bathroom|quotes_to_entities}]</td>
+                                    <td><span class="fa fa-expand"></span> Diện tích:[{$p->product_acreage|quotes_to_entities}] m2</td>
                                   </tr>
                                 </table>
                               </div>

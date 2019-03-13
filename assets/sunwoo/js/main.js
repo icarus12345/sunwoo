@@ -8,6 +8,9 @@ app.switch_search = function(page){
 app.init_search = function(){
     $('.selectpicker').selectpicker();
 }
+app.toggleSearchAdvance = function(){
+    $('.search-advance').toggle()
+}
 function Popup(position, html) {
     this.position = position;
     var content = document.createElement('div')

@@ -132,7 +132,7 @@
                         </div>
                         
                         <div class="row half">
-                            <div class="col-mb-6 half"> 
+                            <div class="col-mb-3 half"> 
                                 <div class="control-group pull-top">
                                     <div>Code :</div>
                                     <input type="text" 
@@ -140,6 +140,20 @@
                                         class="form-control validate[required,minSize[4],maxSize[20]]"
                                         name="product_code" 
                                         value="[{$item->product_code|escape|default:''}]"/>
+                                </div>
+                            </div>
+                            <div class="col-mb-3 half"> 
+                                <div class="control-group pull-top">
+                                    <div>Is Hot :</div>
+                                    <!-- <input type="text" 
+                                        rows="1"
+                                        class="form-control validate[required,minSize[4],maxSize[20]]"
+                                        name="product_is_hot" 
+                                        value="[{$item->product_is_hot|escape|default:''}]"/> -->
+                                    <div class="">
+                                        <input type='hidden' value='[{$item->product_is_hot}]' name='product_is_hot'>
+                                        <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->product_is_hot}]checked=1[{/if}]><span></span></label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-mb-6 half">            
@@ -159,7 +173,7 @@
                                                 <option 
                                                     data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
                                                     [{if $c->cat_id == $item->product_category}]selected="1"[{/if}]
-                                                    value="[{$c->cat_title_vi|default:''}]">
+                                                    value="[{$c->cat_id|default:''}]">
                                                         [{$c->cat_title_vi|default:''}]
                                                 </option>
                                             [{/foreach}]

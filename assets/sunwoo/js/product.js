@@ -24,21 +24,28 @@ $(document).ready(function(){
 
         app.product_list.map(function(item){
             var latlng = new google.maps.LatLng(item.product_lat, item.product_lng)
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                draggable:true,
-
-            });
             bounds.extend(latlng);
 
             var content_info ='\
-                          <div style="width:240px;font-size:13px;">\
-                              <div class="cover" style="background-image:url(' + item.product_thumb + ');padding-top:56.4%"></div>\
-                              <div style="padding:5px">\
-                                <div><h4 style="margin:0;padding:4px 0;color:#ee4034">' + item.product_title_vi + '</h4></div>\
-                                <div>' + item.product_desc_vi + '</div>\
-                                <div><a class="label label-success" href="">Chi tiet</a></div>\
+                          <div class="product-balloon" style="width:240px;font-size:13px;">\
+                              <div class="thumb cover" style="background-image:url(' + item.product_thumb + ');padding-top:56.4%">\
+                                  ' + (item.product_is_hot==1?'<span class="hot"><span class="fa fa-star"></span></span>':'') + '\
+                                  <div class="tag"><span>' + item.cat_title_vi + '</span></div>\
+                                  <div class="price">' + (1*item.product_price) + 'VND</div>\
+                              </div>\
+                              <div class="info" style="padding:5px">\
+                                <div class="name"><h4><span class="line-clamp-1">' + item.product_title_vi + '</span></h4></div>\
+                                <div class="addr"><span class="line-clamp-1">' + item.product_address + '</span></div>\
+                                <div class="serv">\
+                                    <table>\
+                                      <tr>\
+                                        <td><span class="fa fa-moon"></span> ' + item.product_bedroom + '</td>\
+                                        <td><span class="fa fa-tint"></span> ' + item.product_bathroom + '</td>\
+                                        <td><span class="fa fa-expand"></span> ' + item.product_acreage + 'm2</td>\
+                                      </tr>\
+                                    </table>\
+                                </div>\
+                                <div><a class="btn btn-sm btn-success btn-block" href="/project/detail/' + item.product_id + '">XEM CHI TIẾT</a></div>\
                               </div>\
                           </div>';
             popup = new Popup(
