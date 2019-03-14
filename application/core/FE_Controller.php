@@ -3,18 +3,24 @@ class FE_Controller extends CI_Controller {
     public $assigns;
     public function __construct() {
         parent::__construct();
+        $lang = $this->input->get('lang');
+        if($lang){
+            $_SESSION["lang"] = $lang;
+        }
+        $this->assigns->lang = isset($_SESSION["lang"])?$_SESSION["lang"]:'en';
+
         $this->smarty->caching = false;
         $this->assigns = new stdClass();
         $this->load->library('pagination');
         $this->load->model('cms/cp/menu_model');
-        $this->load->model('cms/cp/cate_model');
+        $this->load->model('scooter/cate_model');
         $this->load->model('cms/cp/data_model');
         $this->load->model('cms/cp/site_model');
         $this->load->model('cms/cp/setting_model');
         $this->load->model('scooter/product_model');
         $this->load->model('scooter/news_model');
         $this->load->model('lawyer/advisory_model');
-        $this->load->model('cms/cp/opt_model');
+        $this->load->model('scooter/opt_model');
         $this->news_model->status = 'true';
         $this->opt_model->status = 'true';
         $this->cate_model->status = 'true';
@@ -36,13 +42,7 @@ class FE_Controller extends CI_Controller {
             $this->_loadCategory();
             
         }
-
-        $pos = strpos($_SERVER['SERVER_NAME'], 'en.');
-        if ($pos === false) {
-            $this->assigns->lang = 'vi';
-        }else{
-            $this->assigns->lang = 'en';
-        }
+        
         $this->iLanguage =new CI_Language();
         $this->assigns->languages = $this->iLanguage->load('all',$this->assigns->lang,true);
     }

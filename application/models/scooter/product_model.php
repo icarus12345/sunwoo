@@ -11,13 +11,92 @@ class product_model extends Core_Model {
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS
-                _product.*,
-                _product.product_title_vi as product_title,
-                _product.product_desc_vi as product_desc,
-                _product.product_content_vi as product_content,
+                `product_id`, 
+                _product.product_title_{$this->lang} as product_title,
+                _product.product_desc_{$this->lang} as product_desc,
+                `product_alias_{$this->lang}` as product_alias,
+                `product_position`, 
+                `product_status`, 
+                `product_type`, 
+                `product_insert`, 
+                `product_update`, 
+                `product_thumb`, 
+                `product_code`, 
+                `product_lock`, 
+                `product_owner`, 
+                `product_category`, 
+                `product_images`, 
+                `product_token`, 
+                `product_price`, 
+                `product_alias`, 
+                `product_publicday`, 
+                `product_view`, 
+                `product_cover`, 
+                `product_data`, 
+                `product_features`, 
+                `product_lat`, 
+                `product_lng`, 
+                `product_acreage`, 
+                `product_width`, 
+                `product_height`, 
+                `product_bedroom`, 
+                `product_bathroom`, 
+                `product_furniture_{$this->lang}` as product_furniture, 
+                `product_utilities_{$this->lang}` as product_utilities, 
+                `product_address`, 
+                `product_country_id`, 
+                `product_is_hot`,
+
                 cat_id,
-                cat_title_vi as cat_title,
-                cat_alias_vi,
+                cat_title_{$this->lang} as cat_title,
+                cat_alias_{$this->lang} as cat_alias,
+                cat_value
+                "
+            ,false);
+    }
+    function selectAll(){
+        $this->db->select("
+            SQL_CALC_FOUND_ROWS
+                `product_id`, 
+                _product.product_title_{$this->lang} as product_title,
+                _product.product_desc_{$this->lang} as product_desc,
+                _product.product_content_{$this->lang} as product_content,
+                `product_alias_{$this->lang}` as product_alias,
+                `product_position`, 
+                `product_status`, 
+                `product_type`, 
+                `product_insert`, 
+                `product_update`, 
+                `product_thumb`, 
+                `product_code`, 
+                `product_lock`, 
+                `product_owner`, 
+                `product_category`, 
+                `product_images`, 
+                `product_token`, 
+                `product_price`, 
+                `product_alias`, 
+                `product_publicday`, 
+                `product_view`, 
+                `product_cover`, 
+                `product_data`, 
+                `product_features`, 
+                `product_lat`, 
+                `product_lng`, 
+                `product_acreage`, 
+                `product_width`, 
+                `product_height`, 
+                `product_bedroom`, 
+                `product_bathroom`, 
+                `product_furniture_{$this->lang}` as product_furniture, 
+                `product_utilities_{$this->lang}` as product_utilities, 
+                `product_address`, 
+                `product_country_id`, 
+                `product_is_hot`,
+
+                cat_id,
+                cat_title_{$this->lang} as cat_title,
+                cat_alias_{$this->lang} as cat_alias,
                 cat_value
                 "
             ,false);
@@ -32,7 +111,7 @@ class product_model extends Core_Model {
         return $query->row();
     }
     function onGet($id){
-        $this->select();
+        $this->selectAll();
         $query = $this->db
         ->from('_product')
         ->join('cate', 'product_category = cat_id', 'left')
@@ -42,12 +121,14 @@ class product_model extends Core_Model {
         ->get();
         $row = $query->row();
         $row->general_informations = $this->db
+            ->select("opt_id,opt_name_{$this->lang} as opt_name, opt_desc_{$this->lang} as opt_desc")
             ->from('opt')
             // ->where('opt_status', 'true')
             ->where('opt_token', $row->product_token)
             ->get()
             ->result();
         $row->features = $this->db
+            ->select("_id,_head_id,_title_{$this->lang} as _title, _desc_{$this->lang} as _desc")
             ->from('_line')
             // ->where('opt_status', 'true')
             ->where_in('_id', explode(',', $row->product_features))

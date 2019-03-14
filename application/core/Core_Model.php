@@ -8,13 +8,16 @@
   Purpose of the stylesheet follows.
  */
 class Core_Model extends CI_Model {
-    private $configs;
+    public $configs;
+    public $lang;
     function __construct($table = '', $prefix = '',$colid='id',$status=null) {
         parent::__construct();
         $this->table = $table;
         $this->prefix = $prefix;
         $this->colid = $colid;
         $this->status = $status;
+        $this->lang = isset($_SESSION["lang"])?$_SESSION["lang"]:'en';
+        
     }
 
     function _get_last_insert_id() {

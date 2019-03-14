@@ -31,7 +31,7 @@
                     <div class="box-search green-tabs">
                         <ol class="breadcrumb">
                           <li><a href="/">Trang chủ</a></li>
-                          <li class="active">[{$cate_detail->cat_title_vi}]</li>
+                          <li class="active">[{$cate_detail->cat_title}]</li>
                         </ol>
                       [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                       <div class="row product-list">

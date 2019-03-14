@@ -31,7 +31,7 @@
                     <div class="box-search">
                         <ol class="breadcrumb">
                           <li><a href="/">Trang chủ</a></li>
-                          <li><a href="/">[{$cate_detail->cat_title_vi}]</a></li>
+                          <li><a href="/">[{$cate_detail->cat_title}]</a></li>
                           <li class="active">[{$product_detail->product_title}]</li>
                         </ol>
                         [{if $product_detail->product_images}]
@@ -65,7 +65,7 @@
                                         <div class="item">
                                             <span class="srv-ico ico-2"></span>
                                             <div>Tiện ích</div>
-                                            <div>[{$product_detail->product_utilities_vi|quotes_to_entities}]</div>
+                                            <div>[{$product_detail->product_utilities|quotes_to_entities}]</div>
                                         </div>
                                     </td>
                                     <td>
@@ -118,9 +118,9 @@
                                             </tr>
                                             <tr>
                                                 <td>Nội thất</td>
-                                                <td>[{$product_detail->product_furniture_vi|quotes_to_entities}]</td>
+                                                <td>[{$product_detail->product_furniture|quotes_to_entities}]</td>
                                                 <td>Tiện ích</td>
-                                                <td>[{$product_detail->product_utilities_vi|quotes_to_entities}]</td>
+                                                <td>[{$product_detail->product_utilities|quotes_to_entities}]</td>
                                             </tr>
                                             <tr>
                                                 <td>Phòng ngủ</td>
@@ -136,7 +136,7 @@
                                             [{foreach from=$product_detail->features item=item key=i}]
                                             [{if $item->_head_id == 2}]
                                             <div class="col-sm-6">
-                                                [{$item->_title_vi}] <span class="fa fa-check pull-right"></span>
+                                                [{$item->_title}] <span class="fa fa-check pull-right"></span>
                                             </div>
                                             [{/if}]
                                             [{/foreach}]
@@ -147,7 +147,7 @@
                                             [{foreach from=$product_detail->features item=item key=i}]
                                             [{if $item->_head_id == 3}]
                                             <div class="col-sm-6">
-                                                [{$item->_title_vi}] <span class="fa fa-check pull-right"></span>
+                                                [{$item->_title}] <span class="fa fa-check pull-right"></span>
                                             </div>
                                             [{/if}]
                                             [{/foreach}]
