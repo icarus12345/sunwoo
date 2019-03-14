@@ -36,8 +36,8 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Home</a></li>
-                          <li class="active">Partner</li>
+                          <li><a href="/">Trang chủ</a></li>
+                          <li class="active">Đối tác</li>
                         </ol>
                         <h1>[{$languages.all_partner_title|quotes_to_entities}]</h1>
                         <div class="pull-top pull-bottom"></div>
@@ -55,15 +55,15 @@
                                           <div class="avt"><span class="cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')"></span></div>
                                         </div>
                                           <a class="cap" href="/partner/detail/[{$p->news_id}]">
-                                            <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
-                                            <div>
+                                            <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
+                                            <div class="stars">
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
                                             </div>
-                                            <p><span class="line-clamp-1">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                            <p><span class="line-clamp-1">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
                                           </a>
                                       </div>
                                     </div>

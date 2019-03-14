@@ -16,7 +16,8 @@ $(document).ready(function(){
         if ($('#owl-related').length > 0) $("#owl-related").owlCarousel({
             autoPlay : 5000,
             stopOnHover : false,
-            navigation:true,
+            navigation:false,
+            pagination : false,
             paginationSpeed : 1000,
             //goToFirstSpeed : 2000,
             // singleItem : true,

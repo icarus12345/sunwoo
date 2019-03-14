@@ -30,11 +30,11 @@ $(document).ready(function(){
                           <div class="product-balloon" style="width:240px;font-size:13px;">\
                               <div class="thumb cover" style="background-image:url(' + item.product_thumb + ');padding-top:56.4%">\
                                   ' + (item.product_is_hot==1?'<span class="hot"><span class="fa fa-star"></span></span>':'') + '\
-                                  <div class="tag"><span>' + item.cat_title_vi + '</span></div>\
+                                  <div class="tag"><span>' + item.cat_title + '</span></div>\
                                   <div class="price">' + (1*item.product_price) + 'VND</div>\
                               </div>\
                               <div class="info" style="padding:5px">\
-                                <div class="name"><h4><span class="line-clamp-1">' + item.product_title_vi + '</span></h4></div>\
+                                <div class="name"><h4><span class="line-clamp-1">' + item.product_title + '</span></h4></div>\
                                 <div class="addr"><span class="line-clamp-1">' + item.product_address + '</span></div>\
                                 <div class="serv">\
                                     <table>\

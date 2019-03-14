@@ -36,16 +36,18 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Home</a></li>
+                          <li><a href="/">Trang chủ</a></li>
                           <li><a href="/">Blogs</a></li>
-                          <li class="active">[{$news->news_title_vi|quotes_to_entities}]</li>
+                          <li class="active">[{$news->news_title|quotes_to_entities}]</li>
                         </ol>
-                        <h1>[{$news->news_title_vi|quotes_to_entities}]</h1>
-                                <div class="panel panel-default">
-                                  <div class="panel-body">
-                                        [{$news->news_content_vi}]
-                                    </div>
-                                </div>
+                        <h1 class="h1-title">[{$news->news_title|quotes_to_entities}]</h1>
+                        <br/>
+                        <div class="space-line"></div>
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                                [{$news->news_content}]
+                            </div>
+                        </div>
 
                         <div class="fb-comment">
                             <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/blogs/detail/[{$news->news_id}]" data-numposts="5"></div>
@@ -66,11 +68,11 @@
                                               </div>
                                             </div>
                                               <a class="cap" href="/blogs/detail/[{$p->news_id}]">
-                                                <span>[{$p->cat_title_vi|quotes_to_entities}]</span>
-                                                <h4><span class="line-clamp-1">[{$p->news_title_vi|quotes_to_entities}]</span></h4>
+                                                <span class="cat">[{$p->cat_title|quotes_to_entities}]</span>
+                                                <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
                                                 
-                                                <p><span class="line-clamp-2">[{$p->news_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
-                                                <span>[{$p->news_insert}]</span>
+                                                <p><span class="line-clamp-2">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                                <span class="date">[{$p->news_insert}]</span>
                                               </a>
                                           </div>
                                     </div>

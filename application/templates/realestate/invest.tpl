@@ -47,7 +47,7 @@
                     <div class="box-search green-tabs">
                       <ol class="breadcrumb">
                           <li><a href="/">Home</a></li>
-                          <li class="active">[{$cate_detail->cat_title_vi}]</li>
+                          <li class="active">[{$cate_detail->cat_title}]</li>
                         </ol>
                       [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                       <div class="row product-list">
@@ -63,10 +63,10 @@
                               <div class="nailthumb-figure-75">
                               [{/if}]
                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
-                                  <div class="tag"><span>[{$p->cat_title_vi|quotes_to_entities}]</span></div>
+                                  <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
-                                    <h4><span class="line-clamp-1">[{$p->product_title_vi|quotes_to_entities}]</span></h4>
-                                    <p><span class="line-clamp-1">[{$p->product_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                    <h4><span class="line-clamp-1">[{$p->product_title|quotes_to_entities}]</span></h4>
+                                    <p><span class="line-clamp-1">[{$p->product_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
                                   </a>
                                 </div>
                               </div>

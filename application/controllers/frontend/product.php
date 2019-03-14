@@ -65,7 +65,12 @@ class product extends FE_Controller {
 	function detail($id=''){
         $p = $this->product_model->onGet($id);
         $this->assigns->product_detail = $p;
-		if($p) $this->assigns->relateds = $this->product_model->getNearLatLng(null,$p,1,8);
+		if($p) {
+            $this->assigns->relateds = $this->product_model->getNearLatLng(null,$p,1,8);
+            $cate_detail = $this->cate_model->onGet($p->product_category);
+            if(!$cate_detail) show_404();
+            $this->assigns->cate_detail = $cate_detail;
+        }
 
 		$this->smarty->view( 'realestate/product_detail', $this->assigns );
 	}

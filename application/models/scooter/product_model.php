@@ -12,8 +12,11 @@ class product_model extends Core_Model {
         $this->db->select("
             SQL_CALC_FOUND_ROWS
                 _product.*,
+                _product.product_title_vi as product_title,
+                _product.product_desc_vi as product_desc,
+                _product.product_content_vi as product_content,
                 cat_id,
-                cat_title_vi,
+                cat_title_vi as cat_title,
                 cat_alias_vi,
                 cat_value
                 "
@@ -29,6 +32,7 @@ class product_model extends Core_Model {
         return $query->row();
     }
     function onGet($id){
+        $this->select();
         $query = $this->db
         ->from('_product')
         ->join('cate', 'product_category = cat_id', 'left')

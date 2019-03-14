@@ -29,9 +29,14 @@
                     </style>
                     
                     <div class="box-search">
+                        <ol class="breadcrumb">
+                          <li><a href="/">Trang chủ</a></li>
+                          <li><a href="/">[{$cate_detail->cat_title_vi}]</a></li>
+                          <li class="active">[{$product_detail->product_title}]</li>
+                        </ol>
                         [{if $product_detail->product_images}]
                         <div class="body-slider" style="">
-                            <div id="owl-demo" class="owl-carousel">
+                            <div id="owl-demo" class="owl-carousel" style="box-shadow: 0 0 1px #ccc">
                                 [{if $product_detail->product_images|default:''!=''}]
                                     [{assign var=images value='/\r\n|[\r\n]/'|preg_split:$product_detail->product_images}]
                                     [{foreach from=$images item=img}]
@@ -43,16 +48,42 @@
                         [{else}]
                         <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
                         [{/if}]
-                        <h1>[{$product_detail->product_title_vi|quotes_to_entities}]</h1>
-                        <p>[{$product_detail->product_address|quotes_to_entities}]</p>
-                       
-                        
-                        <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
-                          <span class="btn btn-default" role="button">Giá:[{$product_detail->product_price|number_format|quotes_to_entities}]VND</span>
-                          <span class="btn btn-default" role="button">Phòng ngủ:[{$product_detail->product_bathroom|quotes_to_entities}]</span>
-                          <span class="btn btn-default" role="button">Phòng tắm:[{$product_detail->product_bedroom|quotes_to_entities}]</span>
-                          <span class="btn btn-default" role="button">Diện tích:[{$product_detail->product_acreage|quotes_to_entities}]m2</span>
-                          <span class="btn btn-default" role="button">Máy lạnh</span>
+                        <h1 class="h1-title">[{$product_detail->product_title|quotes_to_entities}]</h1>
+                        <p class="desc">[{$product_detail->product_address|quotes_to_entities}]</p>
+                        <div class="srvs">
+                            <table class="table">
+                                <tr>
+                                    <td><h4>[{$product_detail->product_price|number_format|quotes_to_entities}]VND</h4></td>
+                                    <td>
+                                        <div class="item">
+                                            <span class="srv-ico ico-1"></span>
+                                            <div>Kết cấu</div>
+                                            <div>[{$product_detail->product_bathroom|quotes_to_entities}] Phòng ngủ</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="item">
+                                            <span class="srv-ico ico-2"></span>
+                                            <div>Tiện ích</div>
+                                            <div>[{$product_detail->product_utilities_vi|quotes_to_entities}]</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="item">
+                                            <span class="srv-ico ico-3"></span>
+                                            <div>Diện tích</div>
+                                            <div>[{$product_detail->product_acreage|quotes_to_entities}]m2</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="item">
+                                            <span class="srv-ico ico-4"></span>
+                                            <div>Hệ thống sưởi</div>
+                                            <div>Máy lạnh</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="pull-top pull-bottom"></div>
                         <div class="row">
@@ -67,7 +98,7 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="about">
-                                        [{$product_detail->product_content_vi}]
+                                        [{$product_detail->product_content}]
                                         
                                     </div>
                                     
@@ -144,19 +175,19 @@
                                             <div class="nailthumb">
                                               <div class="nailthumb-figure-square">
                                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
-                                                  <div class="tag"><span>[{$p->cat_title_vi|quotes_to_entities}]</span></div>
+                                                  <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
                                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
-                                                    <h4><span class="line-clamp-1">[{$p->product_title_vi|quotes_to_entities}]</span></h4>
-                                                    <p><span class="line-clamp-1">[{$p->product_desc_vi|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                                    <h4><span class="line-clamp-1">[{$p->product_title|quotes_to_entities}]</span></h4>
+                                                    <p><span class="line-clamp-1">[{$p->product_address|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
                                                   </a>
                                                 </div>
                                               </div>
                                               <div class="serv">
                                                 <table>
                                                   <tr>
-                                                    <td>Phòng ngủ:[{$p->product_bedroom|quotes_to_entities}]</td>
-                                                    <td>Phòng tắm:[{$p->product_bathroom|quotes_to_entities}]</td>
-                                                    <td>Diện tích:[{$p->product_acreage|quotes_to_entities}] m2</td>
+                                                    <td><span class="fa fa-moon"></span> [{$p->product_bedroom|quotes_to_entities}]</td>
+                                                    <td><span class="fa fa-tint"></span> [{$p->product_bathroom|quotes_to_entities}]</td>
+                                                    <td><span class="fa fa-expand"></span> [{$p->product_acreage|quotes_to_entities}] m2</td>
                                                   </tr>
                                                 </table>
                                               </div>

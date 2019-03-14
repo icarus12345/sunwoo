@@ -1327,6 +1327,7 @@ li.current .sub-nav-links{
 .box-search .tab-content .tab-pane{
 	border:0;
 }
+.box-search .white-tab + .tab-content{padding: 10px}
 .box-search .tab-content{
 	background-color: rgba(255,255,255,.75);
 	padding: 28px;
@@ -1568,10 +1569,17 @@ li.current .sub-nav-links{
     -moz-animation: flash 1s linear infinite;
     animation: flash 1s linear infinite;
 }
+.partner{border-radius: 3px;overflow: hidden;}
 .blog .cap h4,
-.partner .cap h4{margin:0;padding: 0;font-size: 16px}
+.partner .cap h4{margin:0;padding: 0;font-size: 16px;position: relative;}
+.partner .cap h4:after{
+	width: 40px;height: 1px;margin: auto;
+	background: #2196F3;
+	display: block;content: '';
+	margin-bottom: 10px;
+}
 .blog .cap {padding: 5px;display: block;}
-.partner .cap {padding: 5px;display: block;text-align: center;padding-top: 30%}
+.partner .cap {padding: 5px 5px 10px 5px;display: block;text-align: center;padding-top: 30%;color: #000}
 .blog .cap p,
 .partner .cap p{padding: 0;margin: 0}
 .partner .avt{
@@ -1585,7 +1593,20 @@ li.current .sub-nav-links{
 	border-radius: 50%;
 	overflow: hidden;
 }
+.partner a{text-decoration: none;}
+.partner .stars{
+	color: #FFC107;
+	font-size: 11px;
+}
 .blog{margin-bottom: 20px}
+.blog a{text-decoration: none;}
+.blog .cap h4{color: #111;padding: 5px 0;font-weight: bold;}
+.blog .cap p{color: #333;padding: 5px 0}
+.blog .cat{color: #1b9290;font-weight: bold;text-transform: uppercase;}
+.blog .date{color: #666}
+
+
+
 .breadcrumb{text-transform: uppercase;}
 .h1-title{margin:0;text-transform: uppercase;font-weight: bold;}
 .desc{font-size: 14px;}
@@ -1669,4 +1690,48 @@ li.current .sub-nav-links{
     line-height: 16px;
     text-align: center;
     font-size: 10px;
+}
+.h1-title{
+	font-size: 26px;
+	margin: 0;padding: 0
+}
+.srvs{
+	color: #fff;
+	background: #009688;
+	border-radius: 5px;
+	/*overflow: hidden;*/
+	padding: 5px 15px;
+}
+.srvs .table{margin: 0;}
+.srvs .table h4{margin: 0;}
+.srvs .table td{vertical-align: middle;border-top:0;padding: 0}
+.srvs .table .item{position: relative;padding-left: 50px;min-height: 40px;line-height: 20px;border-left:1px solid #fff;}
+.srv-ico{
+	width: 40px;height: 40px;
+	position: absolute;
+	left: 5px;
+	top: 50%;
+	margin-top: -20px;
+}
+.ico-1{
+	background: url(../images/ico1.png) no-repeat center;
+}
+.ico-2{
+	background: url(../images/ico2.png) no-repeat center;
+}
+.ico-3{
+	background: url(../images/ico3.png) no-repeat center;
+}
+.ico-4{
+	background: url(../images/ico4.png) no-repeat center;
+}
+.ico-5{
+	background: url(../images/ico5.png) no-repeat center;
+}
+.contact-form{}
+.contact-form .panel-heading{
+	position: relative;
+	color: #fff;
+	background: #009688;
+	padding-left: 50px;
 }

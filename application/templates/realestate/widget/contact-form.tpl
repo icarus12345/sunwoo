@@ -1,5 +1,10 @@
-<div class="panel panel-default">
-  <div class="panel-heading">Liên Hệ</div>
+<div class="panel panel-default contact-form">
+  <div class="panel-heading">
+    <span class="srv-ico ico-5"></span>
+    Tư vấn viên:<br/>
+    Hotline: (+84) 88 606 3577<br/>
+    Email: sunwoogroup@gmail.com
+  </div>
   <div class="panel-body">
     <form>
       <div class="form-group">

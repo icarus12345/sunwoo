@@ -36,16 +36,16 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Home</a></li>
-                          <li><a href="/">Partner</a></li>
-                          <li class="active">[{$news->news_title_vi|quotes_to_entities}]</li>
+                          <li><a href="/">Trang chủ</a></li>
+                          <li><a href="/">Đối tác</a></li>
+                          <li class="active">[{$news->news_title|quotes_to_entities}]</li>
                         </ol>
-                        <h1>[{$news->news_title_vi|quotes_to_entities}]</h1>
+                        <h1>[{$news->news_title|quotes_to_entities}]</h1>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="panel panel-default">
                                   <div class="panel-body">
-                                        [{$news->news_content_vi}]
+                                        [{$news->news_content}]
                                     </div>
                                 </div>
                             </div>
