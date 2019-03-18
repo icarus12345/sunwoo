@@ -56,7 +56,7 @@ class cate extends CP_Controller {
         }
         switch ($this->assigns->type){
             case 'property':
-            case 'sunwoo':
+            // case 'sunwoo':
             case 'real':
             case 'tintuc':
             case 'advisory':

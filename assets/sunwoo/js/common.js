@@ -626,9 +626,9 @@
 			e.preventDefault();
 		}
 		if(!bq.page.sameOrigin(this.href)){
-			e.preventDefault();
-			window.open(this.href,'_blank');
-			return false;
+			//e.preventDefault();
+			//window.open(this.href,'_blank');
+			//return false;
 		}
 	});
 

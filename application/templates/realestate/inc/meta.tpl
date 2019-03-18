@@ -9,6 +9,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link rel="stylesheet" type="text/css" href="/libraries/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/libraries/bootstrap/css/bootstrap-slider.css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/libraries/plugin/owl-carousel/owl.carousel.css"/>
         <link rel="stylesheet" type="text/css" href="/libraries/plugin/swipebox/swipebox-dark-1.3.css" >
@@ -20,6 +21,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <script src="/assets/sunwoo/js/libs.js" type="text/javascript"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-slider.js"></script>
         
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-select.min.js"></script>
 

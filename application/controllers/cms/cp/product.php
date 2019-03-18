@@ -69,6 +69,11 @@ class product extends CP_Controller {
             $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
             $this->assigns->cates=$data['aaData'];
         }
+        $data = $this->cate_model->binding('sunwoo');
+        if(isset($data['aaData'])){
+            $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
+            $this->assigns->sub_cates=$data['aaData'];
+        }
 
         $countries = $this->country_model->onGets();
         $this->assigns->countries=$countries;
@@ -89,7 +94,7 @@ class product extends CP_Controller {
         }
         switch ($dataType){
             default :
-                $htmlreponse = $this->smarty->view( 'cms/cp/product/editPanel', $this->assigns, true );
+                $htmlreponse = $this->smarty->view( 'cms/cp/product/editPanel2', $this->assigns, true );
         }
         
         $output["result"] = 1;
@@ -125,7 +130,7 @@ class product extends CP_Controller {
                 FROM `{$this->table}` 
                     LEFT JOIN `cate` 
                     ON `{$this->prefix}category` = `cate`.`cat_id`",
-            "where"     =>"WHERE `{$this->prefix}type` = '$type'",
+            //"where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
                 "cat_title"=>"cat_value"

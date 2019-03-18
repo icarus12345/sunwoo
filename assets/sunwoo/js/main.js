@@ -7,6 +7,7 @@ app.switch_search = function(page){
 }
 app.init_search = function(){
     $('.selectpicker').selectpicker();
+    // $("#dt").slider({});
 }
 app.toggleSearchAdvance = function(){
     $('.search-advance').toggle()

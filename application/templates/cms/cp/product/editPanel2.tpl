@@ -37,9 +37,6 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active pull-top" id="product-info">
-                        <input type="hidden" name="product_type" 
-                            value="[{$item->product_type|default:$type|default:''}]"/>
-
                         <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                             <ul class="nav-tabs">
                                 [{assign var="f" value="active"}]
@@ -159,7 +156,33 @@
                                     <div id="frm-err-product_category"></div>
                                 </div>
                             </div>
-                            
+                            <div class="col-mb-6 half">            
+                                <div class="pull-top control-group">
+                                    <div>Sub Category :(*)</div>
+
+                                    <div class="row-fluid">
+                                        <select 
+                                            name="product_type" 
+                                            class="form-control selectpicker"
+                                            data-putto="#frm-err-product_type"
+                                            data-live-search="true"
+                                            data-size="10"
+                                            >
+                                            [{if $sub_cates|default:null}]
+                                            [{foreach from=$sub_cates item=c}]
+                                                <option 
+                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                                    [{if $c->cat_id == $item->product_type}]selected="1"[{/if}]
+                                                    value="[{$c->cat_id|default:''}]">
+                                                        [{$c->cat_title_vi|default:''}]
+                                                </option>
+                                            [{/foreach}]
+                                            [{/if}]
+                                        </select>
+                                    </div>
+                                    <div id="frm-err-product_type"></div>
+                                </div>
+                            </div>
                             <div class="col-mb-3 half"> 
                                 <div class="control-group pull-top">
                                     <div>Code :</div>

@@ -28,7 +28,7 @@ class FE_Controller extends CI_Controller {
         $this->setting_model->status = 'true';
         $this->assigns->fecog = array(
             'menu'=> 'menu',
-            'cate'=> 'advisory',
+            'cate'=> 'sunwoo',
             'event_cate'=>'event',
             'news_cate'=>'>406',
             'noti_cate'=>'>407',
@@ -37,11 +37,11 @@ class FE_Controller extends CI_Controller {
             'advertise2'=>'advertise2',
             'homeslider'=>'slider',
         );
-        if(!$this->input->is_ajax_request()){
+        // if(!$this->input->is_ajax_request()){
             $this->loadWebSetting();
             $this->_loadCategory();
             
-        }
+        // }
         
         $this->iLanguage =new CI_Language();
         $this->assigns->languages = $this->iLanguage->load('all',$this->assigns->lang,true);
@@ -53,7 +53,7 @@ class FE_Controller extends CI_Controller {
     }
     function _loadCategory(){
         $this->db->order_by('cat_value','ASC');
-        $categories = $this->cate_model->onGetByType($this->assigns->fecog['cate']);
+        $categories = $this->cate_model->getCategoryByType($this->assigns->fecog['cate']);
         $this->assigns->categories = $categories;
 
     }
