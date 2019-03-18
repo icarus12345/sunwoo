@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 pull-bottom">
             <select class="form-control selectpicker" name="category">
-                <option>Chọn loại hình</option>
+                <option>[--Chọn loại hình--]</option>
                 [{foreach $categories as $cat}]
                     <option value="[{$cat->id}]">[{$cat->cat_title}]</option>
                 [{/foreach}]
@@ -28,8 +28,8 @@
 
         </div>
         <div class="col-md-3 col-sm-6 pull-bottom">
-            <select name="acreage" class="form-control selectpicker">
-                <option value="">Chọn diện tích</option>
+            <select name="acreage" class="form-control selectpicker" placeholder="Chọn diện tích">
+                <option value="">[--Chọn diện tích--]</option>
                 <option value="1">Dưới 50m2</option>
                 <option value="2">Từ 50m2-100m2</option>
                 <option value="3">Từ 100m2-150m2</option>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-3 col-sm-6 pull-bottom">
             <select class="form-control selectpicker" name="price">
-                <option value="">Chọn bảng giá</option>
+                <option value="">[--Chọn bảng giá--]</option>
                 <option value="1">Dưới 1 Tỷ</option>
                 <option value="2">Từ 1 - 2 Tỷ</option>
                 <option value="3">Từ 2 - 3 Tỷ</option>
@@ -52,8 +52,18 @@
     <div class="search-advance">
         <div class="row">
             <div class="col-md-3 col-sm-6 pull-top">
-                <select class="form-control selectpicker">
-                    <option value="">Chọn Số tầng</option>
+                <select class="form-control selectpicker" name="floor">
+                    <option value="">[--Chọn Số tầng--]</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value=">3">Nhiều</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-sm-6  pull-top">
+                <select class="form-control selectpicker" name="badroom">
+                    <option value="">[--Chọn số phòng ngủ--]</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -63,7 +73,7 @@
             </div>
             <div class="col-md-3 col-sm-6  pull-top">
                 <select class="form-control selectpicker">
-                    <option value="">Chọn số phòng ngủ</option>
+                    <option value="">[--Chọn số phòng tắm--]</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -72,45 +82,36 @@
 
             </div>
             <div class="col-md-3 col-sm-6  pull-top">
-                <select class="form-control selectpicker">
-                    <option value="">Chọn số phòng tắm</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value=">3">Nhiều</option>
+                <select class="form-control selectpicker" multiple="" title="[--Chọn tiện ích đi kèm--]">
+                    [{foreach $utilities as $item}]
+                        <option value="[{$item->id}]">[{$item->_title}]</option>
+                    [{/foreach}]
                 </select>
-
-            </div>
-            <div class="col-md-3 col-sm-6  pull-top">
-                <select class="form-control selectpicker">
-                    <option>Chọn tiện ích đi kèm</option>
-                </select>
-
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-3 col-sm-6  pull-top">
                 <select class="form-control selectpicker">
-                    <option>Chọn Xã/Phường</option>
+                    <option>[--Chọn Tỉnh/Thành Phố--]</option>
                 </select>
 
             </div>
             <div class="col-md-3 col-sm-6  pull-top">
                 <select class="form-control selectpicker">
-                    <option>Chọn Quận/Huyện</option>
+                    <option>[--Chọn Quận/Huyện--]</option>
                 </select>
 
             </div>
             <div class="col-md-3 col-sm-6  pull-top">
                 <select class="form-control selectpicker">
-                    <option>Chọn Tỉnh/Thành Phố</option>
+                    <option>[--Chọn Xã/Phường--]</option>
                 </select>
 
             </div>
             <div class="col-md-3 col-sm-6  pull-top">
                 <select class="form-control selectpicker">
-                    <option>Chọn hướng</option>
+                    <option>[--Chọn hướng--]</option>
                 </select>
 
             </div>

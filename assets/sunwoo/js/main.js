@@ -6,7 +6,13 @@ app.switch_search = function(page){
     $('#btn-search').attr('href','/'+page)
 }
 app.init_search = function(){
-    $('.selectpicker').selectpicker();
+    $('.selectpicker').each(function(){
+        var placeholder = $(this).attr('placeholder');
+        console.log(placeholder)
+        $(this).selectpicker({
+            // liveSearchPlaceholder: placeholder
+        });
+    })
     // $("#dt").slider({});
 }
 app.toggleSearchAdvance = function(){

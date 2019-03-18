@@ -21,12 +21,14 @@ class FE_Controller extends CI_Controller {
         $this->load->model('scooter/news_model');
         $this->load->model('lawyer/advisory_model');
         $this->load->model('scooter/opt_model');
+        $this->load->model('scooter/line_model');
         $this->news_model->status = 'true';
         $this->opt_model->status = 'true';
         $this->cate_model->status = 'true';
         $this->menu_model->status = 'true';
         $this->setting_model->status = 'true';
         $this->assigns->fecog = array(
+            'utilities'=> '2',
             'menu'=> 'menu',
             'cate'=> 'sunwoo',
             'event_cate'=>'event',
@@ -50,6 +52,10 @@ class FE_Controller extends CI_Controller {
         $query = $this->db->where('setting_id',1)->get('_setting');
         $row = $query->row();
         $this->assigns->info = json_decode($row->setting_value,true);
+
+        $utilities  = $this->line_model->getByHeadId($this->assigns->fecog['utilities']);
+        $this->assigns->utilities = $utilities;
+
     }
     function _loadCategory(){
         $this->db->order_by('cat_value','ASC');
