@@ -22,6 +22,9 @@ class FE_Controller extends CI_Controller {
         $this->load->model('lawyer/advisory_model');
         $this->load->model('scooter/opt_model');
         $this->load->model('scooter/line_model');
+        $this->load->model('scooter/province_model');
+        $this->load->model('scooter/district_model');
+        $this->load->model('scooter/ward_model');
         $this->news_model->status = 'true';
         $this->opt_model->status = 'true';
         $this->cate_model->status = 'true';
@@ -29,6 +32,9 @@ class FE_Controller extends CI_Controller {
         $this->setting_model->status = 'true';
         $this->assigns->fecog = array(
             'utilities'=> '2',
+            'furniture'=> '3',
+            'acreage'=> '4',
+            'price'=> '5',
             'menu'=> 'menu',
             'cate'=> 'sunwoo',
             'event_cate'=>'event',
@@ -47,6 +53,14 @@ class FE_Controller extends CI_Controller {
         
         $this->iLanguage =new CI_Language();
         $this->assigns->languages = $this->iLanguage->load('all',$this->assigns->lang,true);
+        $this->assigns->acreage_arr = array(
+            array('title'=>'Dưới 50m2','condition'=>'product_acreage <=50'),
+            array('title'=>'Từ 50m2 đến 100m2','condition'=>'product_acreage >50 and product_acreage <=100'),
+            array('title'=>'Từ 100m2 đến 150m2','condition'=>'product_acreage >100 and product_acreage <=150'),
+            array('title'=>'Từ 150m2 đến 200m2','condition'=>'product_acreage >150 and product_acreage <=200'),
+            array('title'=>'Từ 200m2 đến 300m2','condition'=>'product_acreage >200 and product_acreage <=300'),
+            array('title'=>'Trên 300m2','condition'=>'product_acreage >300'),
+        );
     }
     function loadWebSetting(){
         $query = $this->db->where('setting_id',1)->get('_setting');
@@ -54,7 +68,11 @@ class FE_Controller extends CI_Controller {
         $this->assigns->info = json_decode($row->setting_value,true);
 
         $utilities  = $this->line_model->getByHeadId($this->assigns->fecog['utilities']);
+        $acreages  = $this->line_model->getByHeadId($this->assigns->fecog['acreage']);
+        $prices  = $this->line_model->getByHeadId($this->assigns->fecog['price']);
         $this->assigns->utilities = $utilities;
+        $this->assigns->acreages = $acreages;
+        $this->assigns->prices = $prices;
 
     }
     function _loadCategory(){

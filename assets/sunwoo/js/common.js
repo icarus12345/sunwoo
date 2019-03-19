@@ -615,22 +615,22 @@
 	// bq.page.exit('/contact', contactExit);
 	// bq.page('/contact', contactEnter);
 
-	bq.page.exit('*', pageExit);
-	bq.page('*', pageEnter);
+	// bq.page.exit('*', pageExit);
+	// bq.page('*', pageEnter);
 
-	bq.page();
+	// bq.page();
 
 
-	$(document).on('click','a:not(.external)',function(e){
-		if($(this).hasClass('current')){
-			e.preventDefault();
-		}
-		if(!bq.page.sameOrigin(this.href)){
-			//e.preventDefault();
-			//window.open(this.href,'_blank');
-			//return false;
-		}
-	});
+	// $(document).on('click','a:not(.external)',function(e){
+	// 	if($(this).hasClass('current')){
+	// 		e.preventDefault();
+	// 	}
+	// 	if(!bq.page.sameOrigin(this.href)){
+	// 		//e.preventDefault();
+	// 		//window.open(this.href,'_blank');
+	// 		//return false;
+	// 	}
+	// });
 
 
 })(jQuery)
