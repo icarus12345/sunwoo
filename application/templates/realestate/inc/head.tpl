@@ -14,21 +14,21 @@
             <div class="hover-line-links" ui-content-for="left-nav">
                 <span class="close-gnavi fa fa-times" onclick="$('#gnavi .nav-btn').click()"></span>
                 <ul>
-                    <li class="head"><b>OPEN YOUR LIFE</b></li>
-                    <li><a href="/"><span>Trang chủ</span></a></li>
-                    <li><a href="/about"><span>Về chúng tôi</span></a></li>
-                    <li><a href="/real-estate"><span>Nhà đất</span></a>
+                    <li class="head"><b>[{$languages.all_open_your_life|quotes_to_entities}]</b></li>
+                    <li><a href="/"><span>[{$languages.all_home|quotes_to_entities}]</span></a></li>
+                    <li><a href="/about"><span>[{$languages.all_about_us|quotes_to_entities}]</span></a></li>
+                    <li><a href="/real-estate"><span>[{$languages.all_real_estate|quotes_to_entities}]</span></a>
                         <ul>
-                            <li><a href="/rent"><span>Cho thuê</span></a></li>
-                            <li><a href="/selling"><span>Bán</span></a></li>
+                            <li><a href="/rent"><span>[{$languages.all_rent|quotes_to_entities}]</span></a></li>
+                            <li><a href="/selling"><span>[{$languages.all_selling|quotes_to_entities}]</span></a></li>
                             
                         </ul>
                     </li>
-                    <li><a href="/project"><span>Dự án</span></a></li>
-                    <li><a href="/invest"><span>Đầu tư</span></a></li>
-                    <li><a href="/partner"><span>Đối tác</span></a></li>
-                    <li><a href="/blogs"><span>Blogs</span></a></li>
-                    <li><a href="/contact"><span>Liên hệ</span></a></li>
+                    <li><a href="/project"><span>[{$languages.all_project|quotes_to_entities}]</span></a></li>
+                    <li><a href="/invest"><span>[{$languages.all_invest|quotes_to_entities}]</span></a></li>
+                    <li><a href="/partner"><span>[{$languages.all_partner|quotes_to_entities}]</span></a></li>
+                    <li><a href="/blogs"><span>[{$languages.all_blogs|quotes_to_entities}]</span></a></li>
+                    <li><a href="/contact"><span>[{$languages.all_contact|quotes_to_entities}]</span></a></li>
                 </ul>
                 <div class="footer">
                     <div class="">Kết nối với chúng tôi</div>

@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="/libraries/plugin/swipebox/swipebox-dark-1.3.css" >
         <link rel="stylesheet" href="/assets/sunwoo/css/animate.css">
         <link rel="stylesheet" href="/assets/sunwoo/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/libraries/ckeditor/contents.css" >
 
         <link rel="stylesheet" type="text/css" href="/libraries/bootstrap/css/bootstrap-select.min.css"/>
 

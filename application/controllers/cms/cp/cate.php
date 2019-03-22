@@ -62,6 +62,9 @@ class cate extends CP_Controller {
             case 'advisory':
                 $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelList', $this->assigns, true );
                 break;
+            case 'default':
+                $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelSunwoo', $this->assigns, true );
+                break;
             default :
                 $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanel2', $this->assigns, true );
         }

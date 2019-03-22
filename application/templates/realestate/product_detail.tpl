@@ -30,7 +30,7 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Trang chủ</a></li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
                           <li><a href="/">[{$cate_detail->cat_title}]</a></li>
                           <li class="active">[{$product_detail->product_title}]</li>
                         </ol>
@@ -53,7 +53,7 @@
                         <div class="srvs">
                             <table class="table">
                                 <tr>
-                                    <td><h4>[{$product_detail->product_price|number_format|quotes_to_entities}]VND</h4></td>
+                                    <td><h4>[{$product_detail->product_price|number_format|quotes_to_entities}][{$product_detail->cat_unit|quotes_to_entities}]</h4></td>
                                     <td>
                                         <div class="item">
                                             <span class="srv-ico ico-1"></span>
@@ -90,42 +90,42 @@
                             <div class="col-lg-8">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs white-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">Giới thiệu</a></li>
-                                    <li role="presentation"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Thông tin</a></li>
-                                    <li role="presentation"><a href="#fortunitis" aria-controls="fortunitis" role="tab" data-toggle="tab">Nội thất</a></li>
-                                    <li role="presentation"><a href="#utinities" aria-controls="utinities" role="tab" data-toggle="tab">Tiện ích</a></li>
+                                    <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">[{$languages.all_about|quotes_to_entities}]</a></li>
+                                    <li role="presentation"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">[{$languages.all_information|quotes_to_entities}]</a></li>
+                                    <li role="presentation"><a href="#fortunitis" aria-controls="fortunitis" role="tab" data-toggle="tab">[{$languages.all_furniture|quotes_to_entities}]</a></li>
+                                    <li role="presentation"><a href="#utinities" aria-controls="utinities" role="tab" data-toggle="tab">[{$languages.all_utilities|quotes_to_entities}]</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="about">
-                                        [{$product_detail->product_content}]
+                                        <div class="ckeditor">[{$product_detail->product_content}]</div>
                                         
                                     </div>
                                     
                                     <div role="tabpanel" class="tab-pane" id="general">
                                         <table class="table table-borderd">
                                             <tr>
-                                                <td>Diện tích</td>
+                                                <td>[{$languages.all_acreage|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_acreage|quotes_to_entities}]</td>
-                                                <td>Chiều Rộng</td>
+                                                <td>[{$languages.all_width|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_width|quotes_to_entities}]</td>
                                             </tr>
                                             <tr>
-                                                <td>Chiều Dài</td>
+                                                <td>[{$languages.all_height|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_height|quotes_to_entities}]</td>
                                                 <td>Gia</td>
                                                 <td>[{$product_detail->product_price|quotes_to_entities}]</td>
                                             </tr>
                                             <tr>
-                                                <td>Nội thất</td>
+                                                <td>[{$languages.all_furniture|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_furniture|quotes_to_entities}]</td>
-                                                <td>Tiện ích</td>
+                                                <td>[{$languages.all_utilities|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_utilities|quotes_to_entities}]</td>
                                             </tr>
                                             <tr>
-                                                <td>Phòng ngủ</td>
+                                                <td>[{$languages.all_bedroom|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_bathroom|quotes_to_entities}]</td>
-                                                <td>Phòng tắm</td>
+                                                <td>[{$languages.all_bathroom|quotes_to_entities}]</td>
                                                 <td>[{$product_detail->product_bedroom|quotes_to_entities}]</td>
                                             </tr>
                                         </table>
@@ -166,7 +166,7 @@
                         [{if $relateds}]
                         <br/>
                         <br/>
-                        <div>Các dự án gần nhất</div>
+                        <div>[{$languages.all_near_project|quotes_to_entities}]</div>
                         <div class="related-items">
                             <div id="owl-related" class="owl-carousel">
                                 [{foreach from=$relateds item=p}]
@@ -177,8 +177,12 @@
                                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
                                                   <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
                                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
+                                                    <span class="price">
+                                                      [{$p->product_price|number_format}]
+                                                      <span>[{$p->cat_unit|quotes_to_entities}]</span>
+                                                    </span>
                                                     <h4><span class="line-clamp-1">[{$p->product_title|quotes_to_entities}]</span></h4>
-                                                    <p><span class="line-clamp-1">[{$p->product_address|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                                    <p><span class="line-clamp-1">[{$p->product_address|quotes_to_entities|default:$languages.all_updating}]</span></p>
                                                   </a>
                                                 </div>
                                               </div>

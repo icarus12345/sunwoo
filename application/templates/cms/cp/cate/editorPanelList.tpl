@@ -22,136 +22,73 @@
                     value="0" 
                     name="cat_parent"
                     />
-                <div class="row half">
-                    <div class="col-mb-6 half">
-                        <div class="control-group pull-top">
-                            <div>
-                                Title :(*)1
-                                <div class="pull-right lang-tabs">
-                                    <ul class="nav-tabs">
-                                        <li class="active">
-                                            <a  title="Tiếng Việt"
-                                                href="#tab_cat_title_vi" 
-                                                data-toggle="tab" 
-                                                >Vi</a>
-                                        </li>
-                                        <li>
-                                            <a  title="English"
-                                                href="#tab_cat_title_en" 
-                                                data-toggle="tab" 
-                                                >En</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="controls tab-content">
-                                <div id="tab_cat_title_vi" class="tab-pane active">
-                                    <input type="text" 
-                                        rows="1"
-                                        onblur="AliasTo('#entryForm input[name=cat_title]','#entryForm input[name=cat_alias]')" 
-                                        class="form-control validate[required,minSize[2],maxSize[255]]"
-                                        name="cat_title" 
-                                        value="[{$item->cat_title|escape|default:''}]"/>
-                                </div>
-                                <div id="tab_cat_title_en" class="tab-pane">
-                                    <input type="text" 
-                                        rows="1"
-                                        onblur="AliasTo('#entryForm input[name=cat_title_en]','#entryForm input[name=cat_alias_en]')" 
-
-                                        class="form-control validate[required,minSize[2],maxSize[255]]"
-                                        name="cat_title_en" 
-                                        value="[{$item->cat_title_en|escape|default:''}]"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-mb-6 half">
-                        <div class="control-group pull-top">
-                            <div>Alias :
-                                <div class="pull-right lang-tabs">
-                                    <ul class="nav-tabs">
-                                        <li class="active">
-                                            <a  title="Tiếng Việt"
-                                                href="#tab_cat_alias_vi" 
-                                                data-toggle="tab" 
-                                                >Vi</a>
-                                        </li>
-                                        <li>
-                                            <a  title="English"
-                                                href="#tab_cat_alias_en" 
-                                                data-toggle="tab" 
-                                                >En</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="controls tab-content">
-                                <div id="tab_cat_alias_vi" class="tab-pane active">
-                                    <input type="text" 
-                                        rows="1"
-                                        class="form-control validate[required,minSize[2],maxSize[255]]"
-                                        name="cat_alias" 
-                                        value="[{$item->cat_alias|escape|default:''}]"/>
-                                </div>
-                                <div id="tab_cat_alias_en" class="tab-pane">
-                                    <input type="text" 
-                                        rows="1"
-                                        class="form-control validate[required,minSize[2],maxSize[255]]"
-                                        name="cat_alias_en" 
-                                        value="[{$item->cat_alias_en|escape|default:''}]"/>
-                                </div>
-                            </div>
+                <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                    <ul class="nav-tabs">
+                        [{assign var="f" value="active"}]
+                        [{foreach from=$langs item=la key =k}]
+                            <li class="[{$f|default:''}]">
+                                <a  title="[{$la->lang_name|ucwords}]"
+                                    href="#tab_lang_content_[{$la->lang_short}]"  
+                                    data-toggle="tab" 
+                                    >
+                                        [{$la->lang_name|ucwords}]
+                                </a>
+                            </li>
+                            [{assign var="f" value=""}]
+                        [{foreachelse}]
                             
-                        </div>
-                    </div>
+                        [{/foreach}]
+                    </ul>
                 </div>
-                <!-- <div class="row half">
-                    <div class="col-mb-4 half">
-                        <div class="control-group pull-top">
-                            <div>Image :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                    [{if $item->cat_image}]title="<img src='[{$item->cat_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->cat_image|default:''}]" 
-                                    name="cat_image" id="cat_image"
-                                    >
-                                <span class="add-on " onclick="BrowseServer('#cat_image')" title="Choose Image">
-                                    <i class="fa-image"></i>
-                                </span>
+                <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                    [{assign var="f" value="active"}]
+                    [{foreach from=$langs item=la key =k}]
+                        <div id="tab_lang_content_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                            <div class="row half">
+                                <div class="col-mb-6 half"> 
+                                    <div class="control-group pull-top">
+                                        <div>Title :(*)</div>
+                                        [{$attr= 'cat_title_'|cat:$la->lang_short}]
+
+                                        <input type="text" 
+                                            onblur="AliasTo('#entryForm input[name=cat_title_[{$la->lang_short}]]','#entryForm input[name=cat_alias_[{$la->lang_short}]]')" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]" 
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                            name="cat_title_[{$la->lang_short}]" 
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            
+                                            maxlength="255" 
+                                            >
+                                    </div>
+                                </div>
+                                <div class="col-mb-6 half">
+                                    <div class="control-group pull-top">
+                                        <div>Alias :</div>
+                                        [{$attr= 'cat_alias_'|cat:$la->lang_short}]
+                                        <input type="text" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]"
+                                            name="cat_alias_[{$la->lang_short}]" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group pull-top">
+                                <div>Desc :(*)</div>
+                                [{$attr= 'cat_desc_'|cat:$la->lang_short}]
+                                <textarea class="form-control validate[required]" 
+                                    name="cat_desc_[{$la->lang_short}]" 
+                                    rows="2" 
+                                    data-lang="[{$la->lang_short}]"
+                                    placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-mb-4 half">
-                        <div class="control-group pull-top">
-                            <div>Thumb :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                    [{if $item->cat_image}]title="<img src='[{$item->cat_thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->cat_thumb|default:''}]" 
-                                    name="cat_thumb" id="cat_thumb"
-                                    >
-                                <span class="add-on" onclick="BrowseServer('#cat_thumb')">
-                                    <i class="fa-image"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-mb-4 half">
-                        <div class="control-group pull-top">
-                            <div>Cover :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                    [{if $item->cat_cover}]title="<img src='[{$item->cat_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->cat_cover|default:''}]" 
-                                    name="cat_cover" id="cat_cover"
-                                    >
-                                <span class="add-on" onclick="BrowseServer('#cat_cover')">
-                                    <i class="fa-image"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+                        [{assign var="f" value=""}]
+                    [{/foreach}]
+                </div>
+                
                 
                 <div class="row half" style="display:none">
                     <div class="col-sm-6 half">
@@ -185,44 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-group pull-top">
-                    <div>
-                        Desc :(*)
-                        <div class="pull-right lang-tabs">
-                            <ul class="nav-tabs">
-                                <li class="active">
-                                    <a  title="Tiếng Việt"
-                                        href="#tab_cat_desc_vi" 
-                                        data-toggle="tab" 
-                                        >Vi</a>
-                                </li>
-                                <li>
-                                    <a  title="English"
-                                        href="#tab_cat_desc_en" 
-                                        data-toggle="tab" 
-                                        >En</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="controls tab-content">
-                        <div id="tab_cat_desc_vi" class="tab-pane active">
-                            <textarea class="form-control de-desc" 
-                                rows="3"
-                                name="cat_desc"
-                                data-putto=".error_desc" >[{$item->cat_desc|quotes_to_entities|default:''}]</textarea>
-                        </div>
-                        <div id="tab_cat_desc_en" class="tab-pane">
-                            <textarea class="form-control de-desc" 
-                                rows="3"
-                                name="cat_desc_en"
-                                data-putto=".error_desc" >[{$item->cat_desc_en|quotes_to_entities|default:''}]</textarea>
-                        </div>
-                    </div>
-                    
-                            
-                    <div class="erb error_desc"></div>
-                </div>
+               
 <!--                <div class="">
                     <button style="width: 100%" class="btn btn-default" type="button" onclick="sendquestion();">Gửi</button>
                 </div>-->

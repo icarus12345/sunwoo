@@ -36,8 +36,8 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Trang chủ</a></li>
-                          <li class="active">Blogs</li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
+                          <li class="active">[{$languages.all_blogs|quotes_to_entities}]</li>
                         </ol>
                         <div class="pull-top pull-bottom"></div>
                         <div class="row blogs-list">
@@ -52,9 +52,9 @@
                                 </div>
                                   <a class="cap" href="/blogs/detail/[{$p->news_id}]">
                                     <span class="cat">[{$p->cat_title|quotes_to_entities}]</span>
-                                    <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
+                                    <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities|default:$languages.all_updating}]</span></h4>
                                     
-                                    <p><span class="line-clamp-2">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                    <p><span class="line-clamp-2">[{$p->news_desc|quotes_to_entities|default:$languages.all_updating}]</span></p>
                                     <span class="date">[{$p->news_insert}]</span>
                                   </a>
                               </div>

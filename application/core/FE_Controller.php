@@ -3,6 +3,7 @@ class FE_Controller extends CI_Controller {
     public $assigns;
     public function __construct() {
         parent::__construct();
+        $this->assigns = new stdClass();
         $lang = $this->input->get('lang');
         if($lang){
             $_SESSION["lang"] = $lang;
@@ -10,7 +11,6 @@ class FE_Controller extends CI_Controller {
         $this->assigns->lang = isset($_SESSION["lang"])?$_SESSION["lang"]:'en';
 
         $this->smarty->caching = false;
-        $this->assigns = new stdClass();
         $this->load->library('pagination');
         $this->load->model('cms/cp/menu_model');
         $this->load->model('scooter/cate_model');
@@ -50,7 +50,6 @@ class FE_Controller extends CI_Controller {
             $this->_loadCategory();
             
         // }
-        
         $this->iLanguage =new CI_Language();
         $this->assigns->languages = $this->iLanguage->load('all',$this->assigns->lang,true);
         $this->assigns->acreage_arr = array(

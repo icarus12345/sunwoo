@@ -30,14 +30,14 @@
                     
                     <div class="box-search green-tabs">
                       <ol class="breadcrumb">
-                          <li><a href="/">Trang chủ</a></li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
                           <li class="active">[{$cate_detail->cat_title}]</li>
                         </ol>
                       [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                       <div class="row product-list">
                         [{foreach from=$product_list item=p key=i}]
                         <div class="col-sm-[{$format_grid.$i}]">
-                          <div class="product bsd" data-lat="" data-lon="">
+                          <div class="product bsd" data-pid="[{$p->product_id}]">
                             <div class="nailthumb">
                               [{if $format_grid.$i == 4}]
                               <div class="nailthumb-figure-square">
@@ -49,6 +49,10 @@
                                 <div class="nailthumb-container cover" style="background-image:url('[{$p->product_thumb|quotes_to_entities}]')">
                                   <div class="tag"><span>[{$p->cat_title|quotes_to_entities}]</span></div>
                                   <a class="cap" href="/project/detail/[{$p->product_id}]">
+                                    <span class="price">
+                                      [{$p->product_price|number_format}]
+                                      <span>[{$p->cat_unit|quotes_to_entities}]</span>
+                                    </span>
                                     <h4><span class="line-clamp-1">[{$p->product_title|quotes_to_entities}]</span></h4>
                                     <p><span class="line-clamp-1">[{$p->product_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
                                   </a>
@@ -57,9 +61,9 @@
                               <div class="serv">
                                 <table>
                                   <tr>
-                                    <td>Phòng ngủ:[{$p->product_bedroom|quotes_to_entities}]</td>
-                                    <td>Phòng tắm:[{$p->product_bathroom|quotes_to_entities}]</td>
-                                    <td>Diện tích:[{$p->product_acreage|quotes_to_entities}] m2</td>
+                                    <td><span class="fa fa-moon"></span> [{$languages.all_bedroom|quotes_to_entities}]:[{$p->product_bedroom|quotes_to_entities}]</td>
+                                    <td><span class="fa fa-tint"></span> [{$languages.all_bathroom|quotes_to_entities}]:[{$p->product_bathroom|quotes_to_entities}]</td>
+                                    <td><span class="fa fa-expand"></span> [{$languages.all_acreage|quotes_to_entities}]:[{$p->product_acreage|quotes_to_entities}] m2</td>
                                   </tr>
                                 </table>
                               </div>

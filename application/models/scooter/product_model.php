@@ -50,6 +50,7 @@ class product_model extends Core_Model {
                 cat_id,
                 cat_title_{$this->lang} as cat_title,
                 cat_alias_{$this->lang} as cat_alias,
+                cat_unit_{$this->lang} as cat_unit,
                 cat_value
                 "
             ,false);
@@ -97,6 +98,7 @@ class product_model extends Core_Model {
                 cat_id,
                 cat_title_{$this->lang} as cat_title,
                 cat_alias_{$this->lang} as cat_alias,
+                cat_unit_{$this->lang} as cat_unit,
                 cat_value
                 "
             ,false);
@@ -164,7 +166,7 @@ class product_model extends Core_Model {
     }
     
     function getInCategories($cat_value = null, $page = 1, $perpage = 10) {
-        if($this->type)$this->db->where('product_type', $this->type);
+        // if($this->type)$this->db->where('product_type', $this->type);
         if($cat_value)
             $this->db->like('cat_value', $cat_value,'after');
         $query = $this->db

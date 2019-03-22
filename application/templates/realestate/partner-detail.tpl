@@ -36,8 +36,8 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Trang chủ</a></li>
-                          <li><a href="/">Đối tác</a></li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
+                          <li><a href="/">[{$languages.all_partner|quotes_to_entities}]</a></li>
                           <li class="active">[{$news->news_title|quotes_to_entities}]</li>
                         </ol>
                         <h1>[{$news->news_title|quotes_to_entities}]</h1>

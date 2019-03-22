@@ -53,6 +53,9 @@ $(document).ready(function(){
                 content_info
             );
             popup.setMap(map);
+            $('[data-pid="'+item.product_id+'"]').click(function(){
+              map.panTo(latlng)
+            })
         })
         map.fitBounds(bounds);
         app.init_search();

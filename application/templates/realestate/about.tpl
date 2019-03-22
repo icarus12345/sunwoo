@@ -61,13 +61,13 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="about">
-                                        [{$product_detail->product_content}]
+                                        <div class="ckeditor">[{$product_detail->product_content}]</div>
                                         
                                     </div>
                                     [{assign var="f" value="active"}]
                                     [{foreach from=$news_list item=item}]
                                         <div role="tabpanel" class="tab-pane [{$f|default:''}]" id="tab-about-[{$item->news_id}]">
-                                                    [{$item->news_content}]
+                                                    <div class="ckeditor">[{$item->news_content}]</div>
                                         </div>
                                         [{assign var="f" value=""}]
                                     [{/foreach}]

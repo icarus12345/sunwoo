@@ -10,12 +10,11 @@ class news_model extends Core_Model {
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS _news.*,
-                _news.news_title_vi as news_title,
-                _news.news_desc_vi as news_desc,
-                _news.news_content_vi as news_content,
+                _news.news_title_{$this->lang} as news_title,
+                _news.news_desc_{$this->lang} as news_desc,
+                _news.news_content_{$this->lang} as news_content,
                 cat_id,
-                cat_title_vi as cat_title,
-                cat_alias_vi,
+                cat_title_{$this->lang} as cat_title,
                 cat_value
                 "
             ,false);

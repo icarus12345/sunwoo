@@ -36,8 +36,8 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Trang chủ</a></li>
-                          <li><a href="/">Blogs</a></li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
+                          <li><a href="/">[{$languages.all_blogs|quotes_to_entities}]</a></li>
                           <li class="active">[{$news->news_title|quotes_to_entities}]</li>
                         </ol>
                         <h1 class="h1-title">[{$news->news_title|quotes_to_entities}]</h1>
@@ -45,7 +45,7 @@
                         <div class="space-line"></div>
                         <div class="panel panel-default">
                           <div class="panel-body">
-                                [{$news->news_content}]
+                                <div class="ckeditor">[{$news->news_content}]</div>
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                         [{if $relateds}]
                         <br/>
                         <br/>
-                        <div>Liên quan</div>
+                        <div>[{$languages.all_related|quotes_to_entities}]</div>
                         <div class="related-items">
                             <div id="owl-related" class="owl-carousel">
                                 [{foreach from=$relateds item=p}]
@@ -71,7 +71,7 @@
                                                 <span class="cat">[{$p->cat_title|quotes_to_entities}]</span>
                                                 <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
                                                 
-                                                <p><span class="line-clamp-2">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                                <p><span class="line-clamp-2">[{$p->news_desc|quotes_to_entities|default:$languages.all_updating}]</span></p>
                                                 <span class="date">[{$p->news_insert}]</span>
                                               </a>
                                           </div>

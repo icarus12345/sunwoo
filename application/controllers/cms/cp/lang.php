@@ -47,8 +47,8 @@ class lang extends CP_Controller {
             "table"     =>"language",
             "select"    =>"SELECT SQL_CALC_FOUND_ROWS * ",
             "from"      =>"FROM language",
-            "where"     =>"WHERE lang_set = '$type'",
-            "group_by"  =>"GROUP BY lang_key",
+            "where"     =>"WHERE lang_set = '$type' AND lang_language='{$this->langs[0]}'",
+            // "group_by"  =>"GROUP BY lang_key",
             "order_by"  =>"ORDER BY `lang_key` ASC",
             "columnmaps"=>array(
 
@@ -89,6 +89,38 @@ class lang extends CP_Controller {
                 $output["message"] = ("Success. Data have been save.");
             }
         }
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
+    }
+    function ondelete() {
+        $this->beforedelete();
+        $output["result"] = -1;
+        $output["message"] = ("This function to requires an administrative account.<br/>Please check your authority, and try again.");
+        if ($this->privilege()) {
+            $id = $this->input->post('Id');
+            if (!empty($id)) {
+                $tmp = $this->lang_model->getByKey($id);
+                if ($tmp) {
+                    
+                        $rs = false;
+                        $rs = $this->lang_model->onDelete($id);
+                        if ($rs === true) {
+                            $output["result"] = 1;
+                            $output["message"] = ("Success. Record have been deleted.");
+                        } else {
+                            $output["result"] = -1;
+                            $output["error_number"] = $this->Core_Model->db->_error_number();
+                            $output["error_message"] = $this->Core_Model->db->_error_message();
+                            $output["message"] = ("Fail. Please check data input and try again.");
+                        }
+                }else {
+                    $output["message"] = ("Record does't exist.");
+                }
+            } else {
+                $output["message"] = ("Id invalid.");
+            }
+        }
+        $this->writelog("<div class='sql-query'>".$output["message"]."</div>","Delete record - $this->table['$id']",'e');
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($output));
     }

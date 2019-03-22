@@ -6,9 +6,10 @@ class product extends FE_Controller {
         parent::__construct();
 		$this->view = 'realestate/product';
         $this->country_model = new Core_Model('country','_','id','true');
+
     }
 	public function index(){
-
+        $this->assigns->active_tab='project';
 		$this->page(1);
 	}
     function page($page = 1){
@@ -20,21 +21,25 @@ class product extends FE_Controller {
         // $this->smarty->view( 'realestate/product', $this->assigns );
     }
     function real_estate($page = 1){
+        $this->assigns->active_tab='real-estate';
         $this->view = 'realestate/real-estate';
         $this->cat(420,$page);
 
     }
     function rent($page = 1){
+        $this->assigns->active_tab='rent';
         $this->view = 'realestate/rent';
         $this->cat(415,$page);
 
     }
     function selling($page = 1){
+        $this->assigns->active_tab='selling';
         $this->view = 'realestate/selling';
         $this->cat(414,$page);
 
     }
     function invest($page = 1){
+        $this->assigns->active_tab='invest';
         $this->view = 'realestate/invest';
         $countries = $this->country_model->onGets();
         $this->assigns->countries=$countries;
@@ -50,10 +55,54 @@ class product extends FE_Controller {
 		$cate_detail = $this->cate_model->onGet($cate_id);
         if(!$cate_detail) show_404();
         $this->assigns->cate_detail = $cate_detail;
+        $this->search();
         $this->assigns->product_list = $this->product_model->getLatest($cate_detail->cat_value,$page,$perpage);
+        // echo '<pre>',$this->db->last_query();die;
         $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
 		$this->smarty->view( $this->view, $this->assigns );
 	}
+    function search(){
+        $keyword = $this->input->get('keyword');
+        $category = $this->input->get('category');
+        $acreage = $this->input->get('acreage');
+        $price = $this->input->get('price');
+        $floor = $this->input->get('floor');
+        $bedroom = $this->input->get('bedroom');
+        $bathroom = $this->input->get('bathroom');
+        $utilities = $this->input->get('utilities');
+        $province = $this->input->get('province');
+        $district = $this->input->get('district');
+        $ward = $this->input->get('ward');
+        if($category){
+            $cat = $this->cate_model->onGet($category);
+        }
+        if($acreage){
+            $acreage = $this->line_model->onGet($acreage);
+        }
+        if($price){
+            $price = $this->line_model->onGet($price);
+        }
+        if($keyword){
+            $this->db->like("product_title_{$this->assigns->lang}", $keyword);
+        }
+        if($floor){
+        }
+        if($category){
+            $this->db->where("product_type", $category);
+        }
+        if($acreage){
+            $this->db->where($acreage->{"_desc_{$this->assigns->lang}"});
+        }
+        if($price){
+            $this->db->where($price->{"_desc_{$this->assigns->lang}"});
+        }
+        if($bedroom){
+            $this->db->where('product_bedroom',$bedroom);
+        }
+        if($bathroom){
+            $this->db->where('product_bathroom',$bathroom);
+        }
+    }
 	function noithat(){
 		$this->assigns->cate = '410';
 		$this->product_model->type='noithat';
