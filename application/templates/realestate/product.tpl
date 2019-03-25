@@ -2,15 +2,7 @@
 <body>
   [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
   <div id="wrap" class="cover">
-        <div id="header">
-            <div class="container">
-                <div id="logo" ui-yield-to="logo">
-                    <a href="/" class="hover-line" ui-content-for="logo"><span></span></a>
-                </div>
-                <div class="hot-line"><span class="fa fa-phone-square"></span> VN: (+84) 88 606 3577 | Korea: (+82) 10 4906 5736</div>
-                <div id="cnavi" class="nav" ui-yield-to="cnavi"></div>
-            </div>
-        </div>
+        [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/top.tpl"}]
         <div id="left-contents-wrap" ui-yield-to="left-contents">
           <div ui-content-for="left-contents" style="width: 100%;height: 100%;">
             <div id="map" style="width: 100%;height: 100%;"></div>

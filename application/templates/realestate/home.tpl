@@ -2,15 +2,7 @@
 <body>
 	[{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
 	<div id="wrap" class="cover">
-        <div id="header">
-            <div class="container">
-                <div id="logo" ui-yield-to="logo">
-                    <a href="/" class="hover-line" ui-content-for="logo"><span></span></a>
-                </div>
-                <div class="hot-line"><span class="fa fa-phone-square"></span> VN: (+84) 88 606 3577 | Korea: (+82) 10 4906 5736</div>
-                <div id="cnavi" class="nav" ui-yield-to="cnavi"></div>
-            </div>
-        </div>
+        [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/top.tpl"}]
         <div id="left-contents-wrap" ui-yield-to="left-contents"></div>
         <div id="contents-wrap">
             <div id="contents">
@@ -29,8 +21,25 @@
                 
             </div>
         </div>
+        <div class="dropup chats">
+          <button class="btn btn-default dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <img class="tada" src="/assets/sunwoo/images/more.png">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class=""><a href="viber://pa?chatURI=[public account URI]&text=[message text]"><img class="tada" src="/assets/sunwoo/images/viber.png"></a></li>
+            <li>
+                <a href="Javascript:$('.zalo-chat-widget').click();">
+                    <img class="tada" src="/assets/sunwoo/images/zl.png">
+                </a>
+            </li>
+            <li><a href="whatsapp://send?abid=[users name]&text=[message text]"><img class="tada" src="/assets/sunwoo/images/kk.png"></a></li>
+            <li><a href="#"><img class="tada" src="/assets/sunwoo/images/fb.png"></a></li>
+          </ul>
+        </div>
 
 
     </div>
+    <!-- <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script> -->
     [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/foot.tpl"}]
 </body>
