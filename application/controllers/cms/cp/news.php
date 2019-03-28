@@ -124,12 +124,12 @@ class news extends VD_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
-                    {$this->table}.{$this->prefix}title_vi,
+                    {$this->table}.{$this->prefix}title_{$this->lang} as {$this->prefix}title,
                     {$this->table}.{$this->prefix}thumb,
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,
                     {$this->table}.{$this->prefix}status,
-                    cat_title_vi as cat_title
+                    cat_title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}`
@@ -138,7 +138,8 @@ class news extends VD_Controller {
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` ASC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-                "cat_title"=>"cat_value"
+                "cat_title"=>"cat_value",
+                "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}",
             ),
             "filterfields"=>array(
                 

@@ -81,12 +81,12 @@
                 else return '';
             }
         },{
-            'mData': "news_title_vi",
+            'mData': "news_title",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
                 //     str+='<span class="code">' + datarow.cat_title + '</span>';
-                str+=value;
+                str+=value||'';
                 return str;
             }
         },{
@@ -148,9 +148,9 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
                                             value="[{$c->cat_value|escape|default:''}]">
-                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title_vi|default:''}]
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]

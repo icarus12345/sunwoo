@@ -96,7 +96,7 @@ $route["quan-tam"] = "frontend/product/cat/409";
 $route["thiet-ke"] = "frontend/product/cat/410";
 $route["noi-that"] = "frontend/product/noithat";
 $route["cataloue"] = "home/cataloue";
-$route["(lien-he|tu-van)"] = "home/contact";
+$route["contact"] = "home/contact";
 $route["tu-van/(:any)"] = "realestate/advisory/detail/$1";
 
 $route["(cong-trinh|quan-tam|thiet-ke)/([a-z0-9-]{4,255})"] = "frontend/product/detail/$2";

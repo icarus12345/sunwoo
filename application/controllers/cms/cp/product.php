@@ -110,8 +110,8 @@ class product extends CP_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     product_id,
-                    product_title_vi,
-                    product_desc_vi,
+                    product_title_{$this->lang} as {$this->prefix}title,
+                    product_desc_{$this->lang} as {$this->prefix}desc,
                     product_position,
                     product_status,
                     product_type,
@@ -124,7 +124,7 @@ class product extends CP_Controller {
                     product_category,
                     product_token,
                     product_price,
-                    cat_title_vi as cat_title
+                    cat_title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
@@ -133,7 +133,9 @@ class product extends CP_Controller {
             //"where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-                "cat_title"=>"cat_value"
+                "cat_title"=>"cat_value",
+                "product_title"=>"product_title_{$this->lang}",
+                "product_desc"=>"product_desc_{$this->lang}",
             ),
             "filterfields"=>array(
                 // 'product_title_vi','cat_title_vi'

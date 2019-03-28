@@ -72,13 +72,13 @@
             },
         },
         {
-            'mData': "cat_title_vi",
+            'mData': "cat_title",
             'mRender': function ( value, type, datarow ) {
                 //return '----'.repeater(datarow.Level) + datarow.Title;
                 var rowstr = '';
                 rowstr += '<span style="float:left;padding-left:' +(28*datarow.cat_level) +'px">'
                     + '<i class="row-push"></i>'
-                    + datarow.cat_title_vi
+                    + datarow.cat_title
                     + '</span>';
                 return rowstr;
             }

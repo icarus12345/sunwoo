@@ -89,12 +89,14 @@ class cate_model extends Core_Model {
         
         $this->datatables_config = array(
             "table" => "`cate`",
-            "select" => "SELECT SQL_CALC_FOUND_ROWS `cate`.*",
+            "select" => "SELECT SQL_CALC_FOUND_ROWS cat_id, cat_title_{$this->lang} as cat_title,cat_value,cat_parent",
             "from" => "FROM `cate`",
             "where" => "$where",
             "order_by" => "ORDER BY `cat_parent` ASC, `cat_position` ASC, `cat_insert` ASC",
             "filterfields"=>array('cat_title'),
-            "columnmaps" => array()
+            "columnmaps" => array(
+                'cat_title'=>"cat_title_{$this->lang}"
+            )
         );
         return $this->databinding();
     }

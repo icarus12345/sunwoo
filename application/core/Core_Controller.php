@@ -8,6 +8,7 @@ class Core_Controller extends CI_Controller {
         $this->colid = $colid;
         $this->privilege = new stdClass();
         $this->assigns = new stdClass();
+        $this->lang = isset($_SESSION["lang"])?$_SESSION["lang"]:'en';
         $this->langs = array('en','vi');
         $this->isAjax = $this->input->is_ajax_request();
         $this->load->model("cms/auth_model");

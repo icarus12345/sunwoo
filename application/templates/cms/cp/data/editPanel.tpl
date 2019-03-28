@@ -23,29 +23,81 @@
                     value="[{$item->data_type|default:$type}]" 
                     name="data_type"
                     />
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="control-group">
-                            <div>Title :</div>
-                            <input type="text" 
-                                rows="1"
-                                class="form-control validate[required,maxSize[255]]"
-                                name="data_title" 
-                                value="[{$item->data_title|escape|default:''}]"/>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="control-group">
-                            <div>Sub Title</div>
-                            <input type="text" 
-                                class="form-control validate[maxSize[255]]" 
-                                value="[{$item->data_subtitle|escape:'html'|default:''}]" 
-                                name="data_subtitle" 
-                                >
+                    <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                        <ul class="nav-tabs">
+                            [{assign var="f" value="active"}]
+                            [{foreach from=$langs item=la key =k}]
+                                <li class="[{$f|default:''}]">
+                                    <a  title="[{$la->lang_name|ucwords}]"
+                                        href="#tab_lang_content_[{$la->lang_short}]"  
+                                        data-toggle="tab" 
+                                        >
+                                            [{$la->lang_name|ucwords}]
+                                    </a>
+                                </li>
+                                [{assign var="f" value=""}]
+                            [{foreachelse}]
                                 
-                        </div>
+                            [{/foreach}]
+                        </ul>
                     </div>
-                </div>
+                    <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                        [{assign var="f" value="active"}]
+                        [{foreach from=$langs item=la key =k}]
+                            <div id="tab_lang_content_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                                <div class="row half">
+                                    <div class="col-xs-12 half pull-top">
+                                        <div class="control-group">
+                                            <div>Title :</div>
+                                            [{$attr= 'data_title_'|cat:$la->lang_short}]
+                                            <input type="text" 
+                                                rows="1"
+                                                class="form-control validate[required,maxSize[255]]"
+                                                name="data_title_[{$la->lang_short}]" 
+                                                value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                                />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="control-group pull-top">
+                                    <div>Desc :</div>
+                                    [{$attr= 'data_desc_'|cat:$la->lang_short}]
+                                    <textarea 
+                                        rows="3"
+                                        class="form-control validate[required,maxSize[4000]]"
+                                        name="data_desc_[{$la->lang_short}]" 
+                                        
+                                        >[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+
+                                </div>
+                                [{if $ci->agent->is_mobile()}]
+                                <div class="pull-top">
+                                    <div class="code">Editor is hidden in Mobile, please user desktop browser to edit.</div>
+                                </div>
+                                [{else}]
+                                <div class="control-group pull-top">
+                                    <div>Content :</div>
+                                    [{$attr= 'data_content_'|cat:$la->lang_short}]
+                                    <div class="">
+                                        <textarea 
+                                            class="form-control validate[required]" 
+                                            data-editor="basic"
+                                            id="data_content_[{$la->lang_short}]" 
+                                            name="data_content_[{$la->lang_short}]" 
+                                            rows="10" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                                    </div>
+
+                                </div>
+                                [{/if}]
+                            </div>
+                            [{assign var="f" value=""}]
+                        [{/foreach}]
+                    </div>
+
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="control-group pull-top">
@@ -91,30 +143,6 @@
                         </div>
                     </div>
                 </div> 
-                
-                <div class="control-group pull-top">
-                    <div>Desc :</div>
-                    <textarea 
-                        rows="3"
-                        class="form-control validate[required,maxSize[4000]]"
-                        name="data_desc">[{$item->data_desc|escape:'html'|default:''}]</textarea>
-
-                </div>
-                [{if $ci->agent->is_mobile()}]
-                <div class="pull-top">
-                    <div class="code">Editor is hidden in Mobile, please user desktop browser to edit.</div>
-                </div>
-                [{else}]
-                <div class="control-group pull-top">
-                    <div>Content :</div>
-                    <textarea 
-                        rows="10"
-                        class="form-control"
-                        id="data_content"
-                        name="data_content">[{$item->data_content|escape|default:''}]</textarea>
-
-                </div>
-                [{/if}]
             </form>
         </div>
     </div>

@@ -94,7 +94,7 @@ _oConfig.dataColumns = [
                 else return '';
             }
         },{
-            'mData': "product_title_vi",
+            'mData': "product_title",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')

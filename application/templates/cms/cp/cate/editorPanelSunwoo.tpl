@@ -156,12 +156,12 @@
                                             [{assign var="level" value=-1}]
                                         [{/if}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->cat_level*20+20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                            data-content="<span style='padding-left: [{$c->cat_level*20+20}]px;'>[{$c->cat_title|escape}]</span>"
                                             [{if $c->cat_id == $item->cat_parent}]selected="1"[{/if}]
                                             [{if $level!=-1 and $level < $c->cat_level}]disabled=1[{/if}]
                                             [{if $c->cat_id == $item->cat_id}]disabled=1[{/if}]
                                             value="[{$c->cat_id|default:''}]">
-                                                [{$c->cat_title_vi|escape|default:''}]
+                                                [{$c->cat_title|escape|default:''}]
                                         </option>
                                     [{/foreach}]
                                 </select>

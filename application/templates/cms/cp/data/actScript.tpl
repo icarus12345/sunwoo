@@ -99,10 +99,12 @@ var [{$tplConfig.name}] = (function() {
                         addNotice(rsdata.message,'danger');
                     }else{
                         $('#entry-container').html(rsdata.htmlreponse);
-                        if($('#[{$tplConfig.prefix}]content').length==1)
-                            addEditorBasic('[{$tplConfig.prefix}]content',240);
-                        if($('#[{$tplConfig.prefix}]content_en').length==1)
-                            addEditorBasic('[{$tplConfig.prefix}]content_en',240);
+                        if($('[data-editor="basic"]').length){
+                            $('[data-editor="basic"]').each(function(){
+                                var id = $(this).attr('id');
+                                addEditorBasic(id,240);
+                            })
+                        }
                         if($('#entryForm .selectpicker').length>0)
                         $('#entryForm .selectpicker').selectpicker();
                         $('#entryForm').validationEngine({
@@ -125,10 +127,12 @@ var [{$tplConfig.name}] = (function() {
             }).call();
         },
         'onSave': function(){
-            if($('#[{$tplConfig.prefix}]content').length==1)
-                $('#[{$tplConfig.prefix}]content').val(CKEDITOR.instances['[{$tplConfig.prefix}]content'].getData());
-            if($('#[{$tplConfig.prefix}]content_en').length==1)
-                $('#[{$tplConfig.prefix}]content_en').val(CKEDITOR.instances['[{$tplConfig.prefix}]content_en'].getData());
+            if($('[data-editor="basic"]').length){
+                $('[data-editor="basic"]').each(function(){
+                    var id = $(this).attr('id');
+                    $('#' + id).val(CKEDITOR.instances[id].getData());
+                })
+            }
             if( $('#entryForm').validationEngine('validate') === false){
                 addNotice('Please complete required input.','info');
                 return;

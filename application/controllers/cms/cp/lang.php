@@ -47,7 +47,7 @@ class lang extends CP_Controller {
             "table"     =>"language",
             "select"    =>"SELECT SQL_CALC_FOUND_ROWS * ",
             "from"      =>"FROM language",
-            "where"     =>"WHERE lang_set = '$type' AND lang_language='{$this->langs[0]}'",
+            "where"     =>"WHERE lang_set = '$type' AND lang_language='{$this->lang}'",
             // "group_by"  =>"GROUP BY lang_key",
             "order_by"  =>"ORDER BY `lang_key` ASC",
             "columnmaps"=>array(

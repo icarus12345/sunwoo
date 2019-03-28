@@ -21,7 +21,7 @@
                 
             </div>
         </div>
-        <div class="dropup chats">
+       <!--  <div class="dropup chats">
           <button class="btn btn-default dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <img class="tada" src="/assets/sunwoo/images/more.png">
           </button>
@@ -35,11 +35,11 @@
             <li><a href="whatsapp://send?abid=[users name]&text=[message text]"><img class="tada" src="/assets/sunwoo/images/kk.png"></a></li>
             <li><a href="#"><img class="tada" src="/assets/sunwoo/images/fb.png"></a></li>
           </ul>
-        </div>
+        </div> -->
 
 
     </div>
-    <!-- <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
-    <script src="https://sp.zalo.me/plugins/sdk.js"></script> -->
+    <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/foot.tpl"}]
 </body>

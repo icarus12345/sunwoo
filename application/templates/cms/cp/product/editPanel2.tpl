@@ -144,10 +144,10 @@
                                             [{if $cates|default:null}]
                                             [{foreach from=$cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
                                                     [{if $c->cat_id == $item->product_category}]selected="1"[{/if}]
                                                     value="[{$c->cat_id|default:''}]">
-                                                        [{$c->cat_title_vi|default:''}]
+                                                        [{$c->cat_title|default:''}]
                                                 </option>
                                             [{/foreach}]
                                             [{/if}]
@@ -171,10 +171,10 @@
                                             [{if $sub_cates|default:null}]
                                             [{foreach from=$sub_cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
                                                     [{if $c->cat_id == $item->product_type}]selected="1"[{/if}]
                                                     value="[{$c->cat_id|default:''}]">
-                                                        [{$c->cat_title_vi|default:''}]
+                                                        [{$c->cat_title|default:''}]
                                                 </option>
                                             [{/foreach}]
                                             [{/if}]

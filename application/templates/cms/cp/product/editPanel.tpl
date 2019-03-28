@@ -113,7 +113,8 @@
                                         <div>Content :</div>
                                         [{$attr= 'product_content_'|cat:$la->lang_short}]
                                         <div class="">
-                                            <textarea class="form-control validate[required]" 
+                                            <textarea 
+                                                class="form-control validate[required]" 
                                                 data-editor="basic"
                                                 id="product_content_[{$la->lang_short}]" 
                                                 name="product_content_[{$la->lang_short}]" 
@@ -147,10 +148,10 @@
                                             [{if $cates|default:null}]
                                             [{foreach from=$cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title_vi|escape}]</span>"
+                                                    data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
                                                     [{if $c->cat_id == $item->product_category}]selected="1"[{/if}]
                                                     value="[{$c->cat_id|default:''}]">
-                                                        [{$c->cat_title_vi|default:''}]
+                                                        [{$c->cat_title|default:''}]
                                                 </option>
                                             [{/foreach}]
                                             [{/if}]
