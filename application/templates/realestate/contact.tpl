@@ -43,10 +43,10 @@
                         <div class="pull-top pull-bottom"></div>
                         <div class="row">
                             <div class="col-lg-8">
-                                <h1 class="h1-title">[{$product_detail->product_title|quotes_to_entities}]</h1>
+                                <h1 class="h1-title">[{$data->data_title|quotes_to_entities}]</h1>
                                 <br/>
                                 <br/>
-                                <div class="ckeditor">[{$news->news_content}]</div>
+                                <div class="ckeditor">[{$data->data_content}]</div>
                             </div>
                             <div class="col-lg-4">
                                 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/contact-form.tpl"}]

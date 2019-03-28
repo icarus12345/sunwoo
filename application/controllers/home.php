@@ -27,8 +27,7 @@ class home extends FE_Controller {
 	}
 	function contact(){
 		$this->assigns->cate=0;
-		$this->assigns->site = $this->data_model->onGet(39);
-		var_dump($this->assigns->site);die;
+		$this->assigns->data = $this->data_model->onGet(41);
 		$this->smarty->view( 'realestate/contact', $this->assigns );
 		
 	}
