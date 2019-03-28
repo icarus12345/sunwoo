@@ -180,7 +180,7 @@
                                         name="product_is_hot" 
                                         value="[{$item->product_is_hot|escape|default:''}]"/> -->
                                     <div class="">
-                                        <input type='hidden' value='[{$item->product_is_hot}]' name='product_is_hot'>
+                                        <input type='hidden' value='[{$item->product_is_hot|default:"0"}]' name='product_is_hot'>
                                         <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->product_is_hot}]checked=1[{/if}]><span></span></label>
                                     </div>
                                 </div>

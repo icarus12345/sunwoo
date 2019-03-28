@@ -289,6 +289,9 @@ var [{$tplConfig.name}] = (function() {
             }
             var Id = $('#EntryId').val();
             var Params =$('#entryForm').serializeObject();
+            if(typeof Params.[{$tplConfig.prefix}]features == 'string'){
+                Params.[{$tplConfig.prefix}]features = [Params.[{$tplConfig.prefix}]features]
+            }
             Params.[{$tplConfig.prefix}]features = (Params.[{$tplConfig.prefix}]features||[]).join(',')
             if($('#sortable').length == 1){
                 var images = $('#sortable img.thumb').map(function(){return $(this).attr('src')});
