@@ -28,11 +28,13 @@
                     
                     <div class="box-search">
                         <ol class="breadcrumb">
-                          <li><a href="/">Home</a></li>
-                          <li class="active">About</li>
+                          <li><a href="/">[{$languages.all_home|quotes_to_entities}]</a></li>
+                          <li class="active">[{$languages.all_about|quotes_to_entities}]</li>
                         </ol>
                         <h1 class="h1-title">[{$languages.all_welcome|quotes_to_entities}]</h1>
-                        <div class="desc">[{$languages.all_addressStr|quotes_to_entities}]</div>
+                        <div class="desc">[{$languages.all_address|quotes_to_entities}]</div>
+                        <div class="pull-top pull-bottom"></div>
+                        <div class="fb-like" data-href="[{base_url()}]/about" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                         <div class="pull-top pull-bottom"></div>
                         <div class="row">
                             <div class="col-lg-8">

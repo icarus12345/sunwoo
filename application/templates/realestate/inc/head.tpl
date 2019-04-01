@@ -17,7 +17,9 @@
                     <li class="head"><b>[{$languages.all_open_your_life|quotes_to_entities}]</b></li>
                     <li><a href="/"><span>[{$languages.all_home|quotes_to_entities}]</span></a></li>
                     <li><a href="/about"><span>[{$languages.all_about_us|quotes_to_entities}]</span></a></li>
-                    <li><a href="/real-estate"><span>[{$languages.all_real_estate|quotes_to_entities}]</span></a>
+                    <li>
+                        <a href="/real-estate"><span>[{$languages.all_real_estate|quotes_to_entities}]</span></a>
+                        <span class="fa fa-angle-up"></span>
                         <ul>
                             <li><a href="/rent"><span>[{$languages.all_rent|quotes_to_entities}]</span></a></li>
                             <li><a href="/selling"><span>[{$languages.all_selling|quotes_to_entities}]</span></a></li>

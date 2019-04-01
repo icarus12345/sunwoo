@@ -62,6 +62,8 @@
                             </div>
                           </div>
                         </div>
+                        [{foreachelse}]
+                        <div class=" col-sm-12"><p class="alert alert-warning" role="alert">[{$languages.all_updating|quotes_to_entities}]</p></div>
                         [{/foreach}]
                       </div>
 

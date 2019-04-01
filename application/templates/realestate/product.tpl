@@ -46,7 +46,7 @@
                                       <span>[{$p->cat_unit|quotes_to_entities}]</span>
                                     </span>
                                     <h4><span class="line-clamp-1">[{$p->product_title|quotes_to_entities}]</span></h4>
-                                    <p><span class="line-clamp-1">[{$p->product_address|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                    <p><span class="line-clamp-1">[{$p->product_address|quotes_to_entities|default:$languages.all_updating}]</span></p>
                                   </a>
                                 </div>
                               </div>
@@ -62,6 +62,8 @@
                             </div>
                           </div>
                         </div>
+                        [{foreachelse}]
+                        <div class=" col-sm-12"><p class="alert alert-warning" role="alert">[{$languages.all_updating|quotes_to_entities}]</p></div>
                         [{/foreach}]
                       </div>
 

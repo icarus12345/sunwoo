@@ -1,6 +1,9 @@
 $(document).ready(function(){
     setTimeout(function(){
-
+        
+        app.switch_search = function(page){
+            $('#searchFrm').attr('action','/'+page).submit()
+        }
         var mapElement = document.getElementById('map')
         var lat = 10;
         var lon = 106;
@@ -57,7 +60,8 @@ $(document).ready(function(){
               map.panTo(latlng)
             })
         })
-        map.fitBounds(bounds);
+
+        if( app.product_list>1) map.fitBounds(bounds);
         app.init_search();
     },300)
 })

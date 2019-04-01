@@ -24,7 +24,14 @@
 		options = $.extend({}, this.defaults, options);
 		var clickEvent = ('ontouchstart' in window)? 'touchstart.navigation' : 'click.navigation';
 		var $b = $('body');
-
+		var $t = $(options.target+' '+options.btn);
+		var $n = $($t.attr('href'));
+		$n.find('li>a+span').click(function(e){
+			$(this).parent().toggleClass('open');
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		})
 		function clickHandler(e){
 			e.preventDefault();
 			e.stopPropagation();
@@ -62,6 +69,25 @@
 		}
 
 		$(document).on(clickEvent+'.open', options.target+' '+options.btn, clickHandler);
+		$(options.target+' '+options.btn).hover(function(){
+			console.log('H')
+			var $t = $(this);
+			var $p = $t.closest(options.target);
+			var $n = $($t.attr('href'));
+			var id = $p.attr('id');
+			if(!$p.hasClass(options.oepnClass)){
+				$(document).on(clickEvent+'.close', function(e){
+					if($(e.target).closest(options.cancelClick).length){
+						return;
+					}
+					$(document).off(clickEvent+'.close');
+					$t.trigger(clickEvent+'.open');
+				})
+				$p.addClass(options.oepnClass);
+				$n.addClass(options.oepnClass);
+				$b.addClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
+			}
+		},null);
 
 		this.closeMenu = function(){
 			var $t = $(options.target).filter('.'+options.oepnClass);

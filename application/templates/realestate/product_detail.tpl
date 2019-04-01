@@ -41,7 +41,10 @@
                         <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
                         [{/if}]
                         <h1 class="h1-title">[{$product_detail->product_title|quotes_to_entities}]</h1>
-                        <p class="desc">[{$product_detail->product_address|quotes_to_entities}]</p>
+                        <div class="desc pull-bottom">
+                            <span class="pull-right"><div class="fb-like" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></span>
+                            [{$product_detail->product_address|quotes_to_entities}]
+                        </div>
                         <div class="srvs">
                             <table class="table">
                                 <tr>
