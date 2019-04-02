@@ -3,7 +3,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width; initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-        <title>Sunwoo</title>
+        <title>[{$seo.title|default:'Sunwoo'}]</title>
+        <meta name="description" content="[{$seo.desc|default:''}]">
+        <meta name="keywords" content="[{$seo.keyword|default:''}]">
+        <meta itemprop="name" content="[{$seo.title|default:'Sunwoo'}]"/>
+        <meta itemprop="description" content="[{$seo.desc|default:''}]"/>
+        <meta itemprop="image" content="[{$seo.image|default:''}]"/>
+        <meta name="twitter:card" content="summary"/>  <!-- Card type -->
+        <meta name="twitter:site" content="[{$seo.title|default:'Sunwoo'}]"/>
+        <meta name="twitter:title" content="[{$seo.title|default:'Sunwoo'}]">
+        <meta name="twitter:description" content="[{$seo.desc|default:''}]"/>
+        <meta name="twitter:creator" content="[{$seo.title|default:'Sunwoo'}]"/>
+        <meta name="twitter:image:src" content="[{$seo.image|default:''}]"/>
+        <meta name="twitter:domain" content="[{base_url()}]"/>
+        <meta property="og:url" content="[{base_url()}]/">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="[{$seo.title|default:'Sunwoo'}]">
+        <meta property="og:image" content="[{$seo.image|default:''}]"/>
+        <meta property="og:description" content="[{$seo.desc|default:''}]">
+        <meta property="og:site_name" content="[{$seo.title|default:'Sunwoo'}]">
+        <!-- <meta property="article:author" content="https://www.facebook.com/dungculambanhanphu/"> -->
+        <!-- <meta property="article:publisher" content="https://www.facebook.com/dungculambanhanphu/"> -->
+        <meta name="geo.region" content="VN" />
+        <meta name="geo.placename" content="HCM" />
+        <meta name="geo.position" content="10.792048;106.679982" />
+        <meta name="ICBM" content="10.792048,106.679982"/>
+
         <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>

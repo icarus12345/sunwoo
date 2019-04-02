@@ -57,6 +57,9 @@
         </li>
         <li data-id="122">
         </li>
+        <li data-id="147">
+        <a href="/cms/cp/data/vp/.a.e./master"><i class="fa fa-cog"></i>Other</a>
+            </li>
         <li data-id="133">
         </li>
         <li data-id="135">

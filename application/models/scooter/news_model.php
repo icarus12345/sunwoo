@@ -71,7 +71,7 @@ class news_model extends Core_Model {
     function getFeature($cat_value, $page = 1, $perpage = 10){
         $this->select();
         $this->db
-            ->order_by('news_position','ASC')
+            ->order_by('news_position','DESC')
             ->order_by('news_view','DESC')
             ->order_by('news_publicday','DESC');
         return $this->getInCategories($cat_value, $page, $perpage); 
@@ -126,10 +126,14 @@ class news_model extends Core_Model {
             ->join('cate', 'news_category = cat_id', 'left')
             ->where('news_status', 'true')
             // ->where('news_type', $this->type)
-            ->where('news_publicday <= ', date('Y-m-d H:i:s'))
+            // ->where('news_publicday <= ', date('Y-m-d H:i:s'))
             ->limit($perpage, ($page - 1) * $perpage)
             ->get();
         return $query->result();
+    }
+    function addView($id){
+        $this->db->set('news_view', 'news_view+1', FALSE);
+        @$this->db->update($this->table);
     }
 }
 ?>

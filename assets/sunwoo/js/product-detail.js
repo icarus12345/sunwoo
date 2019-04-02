@@ -62,7 +62,7 @@ $(document).ready(function(){
                                   <div class="tag"><span>' + item.cat_title + '</span></div>\
                                   <div class="price">' + (1*item.product_price) + 'VND</div>\
                               </div>\
-                              <div class="info" style="padding:5px">\
+                              <div class="info" style="padding:5px" >\
                                 <div class="name"><h4><span class="line-clamp-1">' + item.product_title + '</span></h4></div>\
                                 <div class="addr"><span class="line-clamp-1">' + item.product_address + '</span></div>\
                                 <div class="serv">\
@@ -74,13 +74,13 @@ $(document).ready(function(){
                                       </tr>\
                                     </table>\
                                 </div>\
-                                <div><a class="btn btn-sm btn-success btn-block" href="/project/detail/' + item.product_id + '">XEM CHI TIẾT</a></div>\
                               </div>\
                           </div>';
             popup = new Popup(
                 latlng,
                 content_info
             );
+            popup.show();
             popup.setMap(map);
         })
         // map.fitBounds(bounds);

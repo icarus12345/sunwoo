@@ -35,6 +35,18 @@
                         <h1 class="h1-title">[{$news->news_title|quotes_to_entities}]</h1>
                         <br/>
                         <div class="space-line"></div>
+                        <div class="author-time">
+                            <div class="pull-right">
+                                <div class="fb-like" data-href="[{base_url()}]/blogs/detail/[{$news->news_id}]" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                            </div>
+                            <div class="">
+                                <div class="avt"></div>
+                                <div class="author-name"><b>Admin</b></div>
+                                <div class="date-time">[{$news->news_insert|date_format}]</div>
+                            </div>
+                        </div>
+                        <div class="space-line pull-top"></div>
+                        <div class="space-line pull-top"></div>
                         <div class="panel panel-default">
                           <div class="panel-body">
                                 <div class="ckeditor">[{$news->news_content}]</div>

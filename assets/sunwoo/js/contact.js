@@ -165,8 +165,8 @@ $(document).ready(function(){
         
 
         var mapElement = document.getElementById('map')
-        var lat = 10;
-        var lon = 106;
+        var lat = 10.778114;
+        var lon = 106.692965;
         // var latlon = [ 10.771921, 106.678296 ]; // 151.20929550000005&lat=-33.8688197
         // var lat  = latlon[0], lon = latlon[1];
         // Basic options for a simple Google Map
@@ -188,37 +188,21 @@ $(document).ready(function(){
         // var bounds = new google.maps.LatLngBounds();
 
         // app.product_list.map(function(item){
-        //     var latlng = new google.maps.LatLng(item.product_lat, item.product_lng)
+            var latlng = new google.maps.LatLng(lat, lon)
             
         //     bounds.extend(latlng);
 
-        //    var content_info ='\
-        //                   <div class="product-balloon" style="width:240px;font-size:13px;">\
-        //                       <div class="thumb cover" style="background-image:url(' + item.product_thumb + ');padding-top:56.4%">\
-        //                           ' + (item.product_is_hot==1?'<span class="hot"><span class="fa fa-star"></span></span>':'') + '\
-        //                           <div class="tag"><span>' + item.cat_title + '</span></div>\
-        //                           <div class="price">' + (1*item.product_price) + 'VND</div>\
-        //                       </div>\
-        //                       <div class="info" style="padding:5px">\
-        //                         <div class="name"><h4><span class="line-clamp-1">' + item.product_title + '</span></h4></div>\
-        //                         <div class="addr"><span class="line-clamp-1">' + item.product_address + '</span></div>\
-        //                         <div class="serv">\
-        //                             <table>\
-        //                               <tr>\
-        //                                 <td><span class="fa fa-moon"></span> ' + item.product_bedroom + '</td>\
-        //                                 <td><span class="fa fa-tint"></span> ' + item.product_bathroom + '</td>\
-        //                                 <td><span class="fa fa-expand"></span> ' + item.product_acreage + 'm2</td>\
-        //                               </tr>\
-        //                             </table>\
-        //                         </div>\
-        //                         <div><a class="btn btn-sm btn-success btn-block" href="/project/detail/' + item.product_id + '">XEM CHI TIẾT</a></div>\
-        //                       </div>\
-        //                   </div>';
-        //     popup = new Popup(
-        //         latlng,
-        //         content_info
-        //     );
-        //     popup.setMap(map);
+           var content_info ='\
+                          <div>\
+                              <div class="logo"></div>\
+                              <div class="phone">VN: (+84) 88 606 3577<br/>Korea: (+82) 10 4906 5736</div>\
+                              <div class="address">126 Nguyễn Thị Minh Khai, P.6, Q.3, TP.HCM</div>\
+                          </div>';
+            popup = new ContactPopup(
+                latlng,
+                content_info
+            );
+            popup.setMap(map);
         // })
         // map.fitBounds(bounds);
     },300);

@@ -119,6 +119,12 @@ class product extends FE_Controller {
             $cate_detail = $this->cate_model->onGet($p->product_category);
             if(!$cate_detail) show_404();
             $this->assigns->cate_detail = $cate_detail;
+            $this->assigns->seo = array(
+                'title'=>$p->product_title,
+                'desc'=>$p->product_desc,
+                'keyword'=>$p->product_tag,
+                'image'=>$p->product_thumb,
+            );
         }
 
 		$this->smarty->view( 'realestate/product_detail', $this->assigns );

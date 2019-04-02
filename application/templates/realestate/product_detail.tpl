@@ -32,7 +32,7 @@
                                 [{if $product_detail->product_images|default:''!=''}]
                                     [{assign var=images value='/\r\n|[\r\n]/'|preg_split:$product_detail->product_images}]
                                     [{foreach from=$images item=img}]
-                                        <div class="item bg-100" style="background-image:url('[{$img}]');background-position: top center;"></div>
+                                        <div class="item bg-100 cover" style="background-image:url('[{$img}]');background-position: top center;"></div>
                                     [{/foreach}]
                                 [{/if}]
                             </div>

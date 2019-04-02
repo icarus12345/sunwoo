@@ -61,7 +61,7 @@ $(document).ready(function(){
             })
         })
 
-        if( app.product_list>1) map.fitBounds(bounds);
+        if( app.product_list.length > 1) map.fitBounds(bounds);
         app.init_search();
     },300)
 })

@@ -123,7 +123,7 @@ class product extends CP_Controller {
                     product_owner,
                     product_category,
                     product_token,
-                    product_price,
+                    product_price_{$this->lang} as product_price,
                     cat_title_{$this->lang} as cat_title
                 ",
             "from"      =>"

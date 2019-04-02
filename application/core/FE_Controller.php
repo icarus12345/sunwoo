@@ -40,7 +40,7 @@ class FE_Controller extends CI_Controller {
             'event_cate'=>'event',
             'news_cate'=>'>406',
             'noti_cate'=>'>407',
-            'about_type'=>'about',
+            'about'=>'about',
             'advertise'=>'advertise',
             'advertise2'=>'advertise2',
             'homeslider'=>'slider',
@@ -65,6 +65,7 @@ class FE_Controller extends CI_Controller {
         $query = $this->db->where('setting_id',1)->get('_setting');
         $row = $query->row();
         $this->assigns->info = json_decode($row->setting_value,true);
+        $this->assigns->setting = $this->setting_model->getByType('other');
 
         $utilities  = $this->line_model->getByHeadId($this->assigns->fecog['utilities']);
         $acreages  = $this->line_model->getByHeadId($this->assigns->fecog['acreage']);

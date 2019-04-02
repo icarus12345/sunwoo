@@ -27,6 +27,9 @@ class news extends FE_Controller {
         $this->assigns->paging = $this->_getPaging($page,$perpage,$url);
         $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
 
+        $this->news_model->news_cond();
+        $this->assigns->news_feature = $this->news_model->getFeature($cat_value,1,4);
+
 		$this->smarty->view( 'realestate/news', $this->assigns );
 
 	}
@@ -54,8 +57,15 @@ class news extends FE_Controller {
         $this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
 
 		$this->assigns->news = $this->news_model->onGet($id);
-		if($this->assigns->news)
+		if($this->assigns->news){
 			$this->_addView('_news','news_',$this->assigns->news->news_id);
+			$this->assigns->seo = array(
+				'title'=>$this->assigns->news->news_title,
+				'desc'=>$this->assigns->news->news_desc,
+				'keyword'=>$this->assigns->news->news_tag,
+				'image'=>$this->assigns->news->news_thumb,
+			);
+		}
 		$this->news_model->news_cond();
 		$this->assigns->relateds = $this->news_model->getRelated($this->assigns->news,1,6);
 		$this->smarty->view( 'realestate/news_detail', $this->assigns );

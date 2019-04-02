@@ -28,7 +28,7 @@
                       [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                       <div class="row product-list">
                         [{foreach from=$product_list item=p key=i}]
-                        <div class="col-sm-[{$format_grid.$i}]">
+                        <div class="col-lg-[{$format_grid.$i}] col-md-12">
                           <div class="product bsd" data-pid="[{$p->product_id}]">
                             <div class="nailthumb">
                               [{if $format_grid.$i == 4}]

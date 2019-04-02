@@ -349,6 +349,20 @@
                                                     >
                                             </div>
                                         </div>
+                                        <div class="col-mb-6 half"> 
+                                            <div class="control-group pull-top">
+                                                <div>Price :</div>
+                                                [{$attr= 'product_price_'|cat:$la->lang_short}]
+
+                                                <input type="number" 
+                                                    class="form-control validate[maxSize[100]]" 
+                                                    value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                                    name="product_price_[{$la->lang_short}]" 
+                                                    placeholder="[{$la->lang_name|ucwords}]"
+                                                    min="0" 
+                                                    >
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 [{assign var="f" value=""}]
@@ -358,7 +372,7 @@
                             <div class="col-mb-6 half"> 
                                 <div class="row half">
                                     
-                                    <div class="col-xs-6 half">
+                                    <!-- <div class="col-xs-6 half">
                                         <div class="control-group pull-top">
                                             <div>Price :</div>
                                             <input type="number" 
@@ -367,7 +381,7 @@
                                                 name="product_price"
                                                 >
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-xs-6 half">
                                         <div class="control-group pull-top">
                                             <div>Acreage :</div>
