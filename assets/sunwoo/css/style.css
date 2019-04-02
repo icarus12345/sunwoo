@@ -1960,3 +1960,6 @@ li.current .sub-nav-links{
 	#left-contents-wrap{margin-top: 20px;}
 	#contents-wrap .box-search{padding-left: 0;padding-right: 0}
 }
+body .wp-copyright{
+	transform: scale(0) !important;
+}

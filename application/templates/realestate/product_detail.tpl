@@ -38,12 +38,12 @@
                             </div>
                         </div>
                         [{else}]
-                        <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom">
+                        <img src="[{$product_detail->product_cover|default:$product_detail->product_thumb}]" style="width: 100%;margin-bottom:15px">
                         [{/if}]
                         <h1 class="h1-title">[{$product_detail->product_title|quotes_to_entities}]</h1>
                         <div class="desc pull-bottom">
                             <span class="pull-right"><div class="fb-like" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></span>
-                            [{$product_detail->product_address|quotes_to_entities}]
+                            [{$product_detail->product_address|quotes_to_entities}]&nbsp;
                         </div>
                         <div class="srvs">
                             <table class="table">
@@ -52,21 +52,21 @@
                                     <td>
                                         <div class="item">
                                             <span class="srv-ico ico-1"></span>
-                                            <div>Kết cấu</div>
-                                            <div>[{$product_detail->product_bathroom|quotes_to_entities}] Phòng ngủ</div>
+                                            <div>[{$languages.all_structure|quotes_to_entities}]</div>
+                                            <div>[{$product_detail->product_bathroom|quotes_to_entities}] [{$languages.all_bathroom|quotes_to_entities}]</div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="item">
                                             <span class="srv-ico ico-2"></span>
-                                            <div>Tiện ích</div>
+                                            <div>[{$languages.all_utilities|quotes_to_entities}]</div>
                                             <div>[{$product_detail->product_utilities|quotes_to_entities}]</div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="item">
                                             <span class="srv-ico ico-3"></span>
-                                            <div>Diện tích</div>
+                                            <div>[{$languages.all_acreage|quotes_to_entities}]</div>
                                             <div>[{$product_detail->product_acreage|quotes_to_entities}]m2</div>
                                         </div>
                                     </td>
@@ -150,7 +150,23 @@
                                     </div>
                                 </div>
                                 <div class="fb-comment">
-                                    <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-numposts="5"></div>
+                                    <!-- <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-numposts="5"></div> -->
+                                    <br/>
+                                    <br/>
+                                    <div id="wpac-comment"></div>
+                                    <script type="text/javascript">
+                                    wpac_init = window.wpac_init || [];
+                                    wpac_init.push({widget: 'Comment', id: 17753});
+                                    (function() {
+                                        if ('WIDGETPACK_LOADED' in window) return;
+                                        WIDGETPACK_LOADED = true;
+                                        var mc = document.createElement('script');
+                                        mc.type = 'text/javascript';
+                                        mc.async = true;
+                                        mc.src = 'https://embed.widgetpack.com/widget.js';
+                                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+                                    })();
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-lg-4">

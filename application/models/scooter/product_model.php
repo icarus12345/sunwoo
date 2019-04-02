@@ -75,7 +75,7 @@ class product_model extends Core_Model {
                 `product_category`, 
                 `product_images`, 
                 `product_token`, 
-                `product_price_{$this->lang} as product_price`, 
+                `product_price_{$this->lang}` as product_price, 
                 `product_alias`, 
                 `product_publicday`, 
                 `product_view`, 

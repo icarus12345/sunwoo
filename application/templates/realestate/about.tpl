@@ -67,7 +67,23 @@
                                     [{/foreach}]
                                 </div>
                                 <div class="fb-comment">
-                                    <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-numposts="5"></div>
+                                    <!-- <div class="fb-comments" data-width="100%" data-href="[{base_url()}]/project/detail/[{$product_detail->product_id}]" data-numposts="5"></div> -->
+                                    <br/>
+                                    <br/>
+                                    <div id="wpac-comment"></div>
+                                    <script type="text/javascript">
+                                    wpac_init = window.wpac_init || [];
+                                    wpac_init.push({widget: 'Comment', id: 17753});
+                                    (function() {
+                                        if ('WIDGETPACK_LOADED' in window) return;
+                                        WIDGETPACK_LOADED = true;
+                                        var mc = document.createElement('script');
+                                        mc.type = 'text/javascript';
+                                        mc.async = true;
+                                        mc.src = 'https://embed.widgetpack.com/widget.js';
+                                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+                                    })();
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-lg-4">
