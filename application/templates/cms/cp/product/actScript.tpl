@@ -47,7 +47,7 @@ _oConfig.dataColumns = [
                 [{/if}]
                 str += [
                 '<div class="btn-group">',
-                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]>Edit</button>',
+                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil"></i> Edit</button>',
                   '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<span class="caret"></span>',
                     '<span class="sr-only">Toggle Dropdown</span>',
