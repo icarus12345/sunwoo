@@ -13,7 +13,7 @@
         'entryBindingUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/bindingbytype/',
         'entryEditUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/editpanel/',
         'entryCommitUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onCommit/',
-        'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/delete/'
+        'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/'
     };
     _oConfig.dataColumns = [
         {
@@ -69,10 +69,10 @@
             }
         },
         {
-            'mData': "_title_vi",
+            'mData': "_title",
         },
         {
-            'mData': "header_title_vi",
+            'mData': "header_title",
         }
     ];
 </script>

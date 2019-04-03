@@ -137,6 +137,79 @@ class Core_Controller extends CI_Controller {
         $this->output->set_output(json_encode($output));
     }
 
+    function putontop() {
+        $output["result"] = -1;
+        $output["message"] = "Data invalid.";
+        $Id = $this->input->post('Id');
+        if (!empty($Id)) {
+            $record = $this->Core_Model->onGet($Id);
+            if ($record) {
+                $rs = $this->Core_Model->putOnTop($Id);
+                if ($rs === true) {
+                    $output["result"] = 1;
+                    $output["message"] = ("Success. Data have been save.");
+                } else {
+                    $output["result"] = -1;
+                    $output["message"] = ("System rejected your data. Please check data input and try again.<br/>");
+                }
+            } else {
+                $output["result"] = -203;
+                $output["message"] = "Record doesn't exist.";
+            }
+        }
+        $this->writelog("<div class='sql-query'>".$output["message"]."</div>","Update entry - $this->table[$Id]",'e');
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
+    }
+    function putup() {
+        $output["result"] = -1;
+        $output["message"] = "Data invalid.";
+        $Id = $this->input->post('Id');
+        if (!empty($Id)) {
+            $record = $this->Core_Model->onGet($Id);
+            if ($record) {
+                $rs = $this->Core_Model->putUp($Id);
+                if ($rs === true) {
+                    $output["result"] = 1;
+                    $output["message"] = ("Success. Data have been save.");
+                } else {
+                    $output["result"] = -1;
+                    $output["message"] = ("System rejected your data. Please check data input and try again.<br/>");
+                }
+            } else {
+                $output["result"] = -203;
+                $output["message"] = "Record doesn't exist.";
+            }
+        }
+        $this->writelog("<div class='sql-query'>".$output["message"]."</div>","Update entry - $this->table[$Id]",'e');
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
+    }
+    function putdown() {
+        $output["result"] = -1;
+        $output["message"] = "Data invalid.";
+        $Id = $this->input->post('Id');
+        if (!empty($Id)) {
+            $record = $this->Core_Model->onGet($Id);
+            if ($record) {
+                $rs = $this->Core_Model->putDown($Id);
+                if ($rs === true) {
+                    $output["result"] = 1;
+                    $output["message"] = ("Success. Data have been save.");
+                } else {
+                    $output["result"] = -1;
+                    $output["message"] = ("System rejected your data. Please check data input and try again.<br/>");
+                }
+            } else {
+                $output["result"] = -203;
+                $output["message"] = "Record doesn't exist.";
+            }
+        }
+        $this->writelog("<div class='sql-query'>".$output["message"]."</div>","Update entry - $this->table[$Id]",'e');
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
+    }
+
     function oninsert() {
         $this->beforeinsert();
         $output["result"] = -1;

@@ -46,6 +46,8 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <script src="/assets/sunwoo/js/libs.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/libraries/plugin/validation-engine/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="/libraries/plugin/validation-engine/jquery.validationEngine-en.js"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-slider.js"></script>
         
@@ -59,5 +61,9 @@
         <script src="/assets/sunwoo/js/common.js" type="text/javascript"></script>
         <script src="/assets/sunwoo/js/main.js" type="text/javascript"></script>
     </head>
+    <body>
+        <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+
+        <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     <div id="fb-root"></div>
     <script async defer src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=877906388943054&autoLogAppEvents=1"></script>

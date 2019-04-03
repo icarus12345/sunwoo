@@ -70,6 +70,9 @@
 
 		$(document).on(clickEvent+'.open', options.target+' '+options.btn, clickHandler);
 		$(options.target+' '+options.btn).hover(function(){
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			 return;
+			}
 			console.log('H')
 			var $t = $(this);
 			var $p = $t.closest(options.target);

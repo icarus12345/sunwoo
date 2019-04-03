@@ -255,7 +255,7 @@ body {
 	z-index: 4;
 }
 
-.hot-line>span{
+.hot-line>span.fa{
 	font-size: 28px;
 	position: absolute;
 	left: 0;width: 40px;height: 40px;
@@ -1938,6 +1938,7 @@ li.current .sub-nav-links{
 	text-decoration: none;
 }
 @media screen and (max-width: 1020px) {
+
 	#left-contents-wrap:not(:empty){
 		top:0;
 		position: relative;
@@ -1959,6 +1960,52 @@ li.current .sub-nav-links{
 	}
 	#left-contents-wrap{margin-top: 20px;}
 	#contents-wrap .box-search{padding-left: 0;padding-right: 0}
+}
+@media screen and (max-width: 767px) {
+	#wrap{padding: 10px}
+	body:before{border-width: 10px;}
+	#header{padding: 10px;}
+	.hot-line{
+		    width: 120px;
+		    font-size: 11px;
+		    padding: 10px 0px 10px 10px;
+		    line-height: 20px;
+	}
+	.mb-block{
+		display: block;
+		white-space: nowrap;
+	}
+	#home{padding: 10px;}
+	#gnavi-links{
+		left: 10px;
+		top:10px;bottom: 10px;right: 10px;
+	}
+	#gnavi-links>div{
+		width: 100%;
+	}
+	#left-contents-wrap:not(:empty){
+		height: 75vmin
+	}
+	.hot-line .fa.fa-phone-square{display: none;}
+	.langs{margin-right: 0;    
+		width: 60px;
+    	top: 0;
+	}
+	#logo{left: 50px;}
+	#gnavi{
+		position: absolute;
+		left: 30px;
+		top: 50px;
+	}
+	#gnavi.nav-open{
+		/*display: none;*/
+	}
+	#gnavi .nav-btn a .bars .bar{
+		width: 60px;
+		border-radius: 0;
+		left: 0;
+	}
+	.popup-bubble{display: none !important}
 }
 body .wp-copyright{
 	transform: scale(0) !important;

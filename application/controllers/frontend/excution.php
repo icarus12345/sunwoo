@@ -10,19 +10,19 @@ class excution extends FE_Controller {
         $params = $this->input->post('params');
         $output["result"] = -1;
         $output["message"]='Data invalid !';
-        //if($params['captcha']==$_SESSION['captcha']['word']){
-            //unset($params['captcha']);
+        // if($params['captcha']==$_SESSION['captcha']['word']){
+            unset($params['captcha']);
             if($this->advisory_model->onInsert($params)){
                 $output["result"] = 1;
                 
                 $output["message"]='Thông tin đã được gửi đi. Chúng tôi sẽ trả lời trong thời gian sớm nhất.';
-                // $this->sendMail();
+                $this->sendMail();
             }else{
                 $output["message"]='Gửi thông tin thất bại, vui lòng kiểm tra lại.';
             }
-        //}else{
+        // }else{
         //    $output["message"]="Captcha does't match !";
-        //}
+        // }
         // $cap_parm = array(
         //     'length'  => 4,
         //     'img_path'  => APPPATH.'../captcha/',
@@ -33,7 +33,7 @@ class excution extends FE_Controller {
         // );
         // $_SESSION['captcha'] = create_captcha($cap_parm);
         // $output["captcha"] = $_SESSION['captcha']['image'];
-        // $output["dd"] = $_SESSION['captcha'];
+        $output["dd"] = $_SESSION['captcha'];
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($output));
     }
@@ -44,8 +44,8 @@ class excution extends FE_Controller {
         $mailer->prm = $this->setting_model->getByType('mailer');
         if($mailer->prm['Send Message']->Value=='true'){
             $this->assigns->item = $this->input->post('params');
-            $subject = "UC International - You have new request at ". date('d/m/Y');
-            $body = $this->smarty->view( 'ucinteration/mailbody', $this->assigns, true );
+            $subject = "You have new request at ". date('d/m/Y');
+            $body = $this->smarty->view( 'mailbody', $this->assigns, true );
             $mailer->send_mail($mailer->prm['To']->Value,$subject,$body);
         }
     }

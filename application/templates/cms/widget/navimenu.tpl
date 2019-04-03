@@ -3,7 +3,7 @@
             <li data-id="123">
         </li>
         <li data-id="136">
-        <a href="/cms"><i class="fa fa-question"></i>Hướng Dẫn</a>
+        <a href="/cms"><i class="fa fa-question"></i>Help</a>
             </li>
         <li data-id="137">
         </li>
@@ -24,7 +24,8 @@
         <li data-id="138">
         <a href="#"><i class="fa fa-bars"></i>Realestate | Project | Invest</a>
             <ul class="submenu">
-                            <li><a href="/cms/cp/cate/vp/.e./default?navi=138"><i class="fa fa-tree"></i>Categories</a></li>
+                            <li><a href="/cms/cp/cate/vp/.a.e.d./sunwoo?navi=138"><i class="fa fa-tree"></i>Categories</a></li>
+                                    <li><a href="/cms/cp/line/vp/.a.d.e./default?navi=138"><i class="fa fa-cogs"></i>Setting Utilities & Furniture</a></li>
                                     <li><a href="/cms/cp/product/vp/.a.d.e./default?navi=138"><i class="fa fa-newspaper-o"></i>All Project</a></li>
                         </ul>
             </li>
@@ -54,7 +55,8 @@
         <li data-id="131">
         </li>
         <li data-id="121">
-        </li>
+        <a href="#"><i class="fa fa-comments"></i>Advisory</a>
+            </li>
         <li data-id="122">
         </li>
         <li data-id="147">
@@ -63,7 +65,7 @@
         <li data-id="133">
         </li>
         <li data-id="135">
-        <a href="/cms/cp/lang/vp/.a.e./all?#"><i class="fa fa-list"></i>Dịch ngôn ngữ</a>
+        <a href="/cms/cp/lang/vp/.a.e./all?#"><i class="fa fa-list"></i>Translate</a>
             </li>
         <li data-id="3">
         </li>

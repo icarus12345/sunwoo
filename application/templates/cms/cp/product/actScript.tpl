@@ -8,32 +8,60 @@ var _oConfig = {
     'entryBindingUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/bindingbytype/',
     'entryEditUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/editpanel/',
     'entryCommitUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onCommit/',
-    'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/'
+    'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/',
+    'putontopUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putontop/',
+    'putupUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putup/',
+    'putdownUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putdown/',
 };
 _oConfig.dataColumns = [
         {
             'mData': "product_id",
             'sWidth': "36px", 'bSortable': false,
-            'sClass':'gridAction',
+            'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
                 [{if $unit}]
-                str =  '<ul class="table-controls">'
-                    [{if $unit|strpos:".e."!==false}]
-                    str +=  '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')" title="Edit entry (' + value + ')" ><i class="fa fa-edit"></i></a> </li>';
-                    [{/if}]
-                    [{if $unit|strpos:".d."!==false}]
-                    if(datarow.product_lock!=='true'){
-                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')" title="Delete entry (' + value + ')" ><i class="fa fa-trash-o"></i></a> </li>';
-                    }
-                    [{/if}]
-                    [{if $unit|strpos:".l."!==false}]
-                    if(datarow.product_lock!=='true'){
-                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i></a> </li>';
-                    }
-                    [{/if}]
-                
-                str += '</ul>';
+                var menu = [];
+                [{if $unit|strpos:".e."!==false}] 
+                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-edit"></i> Edit</a></li>')
+                [{/if}]
+                [{if $unit|strpos:".d."!==false}]
+                if(datarow.product_lock!=='true'){
+                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                }else{
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    
+                }
+                [{else}]
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                [{/if}]
+                [{if $unit|strpos:".l."!==false}]
+                if(datarow.product_lock!=='true'){
+                    menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+                }else{
+                    menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+
+                }
+                [{else}]
+                    menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+                [{/if}]
+                str += [
+                '<div class="btn-group">',
+                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]>Edit</button>',
+                  '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<span class="caret"></span>',
+                    '<span class="sr-only">Toggle Dropdown</span>',
+                  '</button>',
+                  '<ul class="dropdown-menu">',
+                    menu.join(''),
+                    
+                    '<li role="separator" class="divider"></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putontop(\'' + value + '\')" ><i class="fa fa-arrow-up"></i> Put on top</a></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putup(\'' + value + '\')"><i class="fa fa-arrow-up"></i> Put up</a></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putdown(\'' + value + '\')"><i class="fa fa-arrow-down"></i> Put down</a></li>',
+                  '</ul>',
+                '</div>',
+                ].join('')
                 [{/if}]
                 return str;
             }
@@ -349,6 +377,30 @@ var [{$tplConfig.name}] = (function() {
         'onLockItem':function(Id){
             this.onCommit( _oConfig.entryCommitUri, {
                 '[{$tplConfig.prefix}]lock':'true'
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putontop':function(Id){
+            this.onCommit( _oConfig.putontopUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putup':function(Id){
+            this.onCommit( _oConfig.putupUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putdown':function(Id){
+            this.onCommit( _oConfig.putdownUri, {
             }, Id, function(rsdata){
                 if(rsdata.result>=0){
                     [{$tplConfig.name}].onRefresh();

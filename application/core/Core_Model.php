@@ -94,6 +94,61 @@ class Core_Model extends CI_Model {
             return true;
         return false;
     }
+    function putOnTop($id) {
+        $this->db->set($this->prefix . 'position', time(), FALSE);
+        $this->db->where("$this->prefix$this->colid", $id);
+        @$this->db->update($this->table, $params);
+        $this->sqlLog('Update Entry');
+        @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
+        if ($count == 1)
+            return true;
+        return false;
+    }
+    function putUp($id) {
+        $row=$this->onGet($id);
+        if($row){
+            $pos = $row->{"{$this->prefix}position"};
+            $newpos = time();
+            $uprow = $this->db
+                ->where("{$this->prefix}position >", $pos)
+                ->get($this->table)
+                ->row();
+            if($uprow){
+                $newpos = $uprow->{"{$this->prefix}position"} + 1;
+            }
+            $this->db->set($this->prefix . 'position', $newpos, FALSE);
+            $this->db->where("$this->prefix$this->colid", $id);
+            @$this->db->update($this->table, $params);
+            $this->sqlLog('Update Entry');
+            @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
+            if ($count == 1)
+                return true;
+        }
+        return false;
+    }
+    function putDown($id) {
+        $row=$this->onGet($id);
+        if($row){
+            $pos = $row->{"{$this->prefix}position"};
+            $uprow = $this->db
+                ->where("{$this->prefix}position <", $pos)
+                ->get($this->table)
+                ->row();
+            if($uprow){
+                $newpos = $uprow->{"{$this->prefix}position"} - 1;
+            }else{
+                $newpos = $pos-1;
+            }
+            $this->db->set($this->prefix . 'position', $newpos, FALSE);
+            $this->db->where("$this->prefix$this->colid", $id);
+            @$this->db->update($this->table, $params);
+            $this->sqlLog('Update Entry');
+            @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
+            if ($count == 1)
+                return true;
+        }
+        return false;
+    }
     function insertOnduplicateUpdate($aParamsi,$aUpdate){
         $this->db->on_duplicate_update($this->table, $aUpdate, $aParamsi);
         $this->sqlLog('Insert On Duplicate Update Entry');

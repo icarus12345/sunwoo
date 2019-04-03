@@ -1019,3 +1019,14 @@ legend{padding: 0 4px;line-height: 20px;font-size: 12px;border: 0;width: auto;ma
     transform: rotate(360deg);
   }
 }
+.table>tbody>tr>td.action-dropdown{padding: 0;overflow: visible;}
+.action-dropdown>.btn-group{padding: 0;padding-right: 16px;}
+tr:hover .action-dropdown>.btn-group{}
+.action-dropdown>.btn-group>.btn{border: 0}
+.action-dropdown>.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+  padding-left: 5px;padding-right: 5px;
+}
+.action-dropdown>.btn-group>.dropdown-toggle{
+  position: absolute;right: 0;top: 0;
+  padding-left: 4px;padding-right: 4px;
+}

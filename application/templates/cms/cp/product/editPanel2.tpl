@@ -14,7 +14,7 @@
                 value="[{$item->product_id|default:''}]" 
                 id="EntryId"
                 />
-            
+            <input type="hidden" name="product_position" value="[{$item->product_position|default:time()}]">
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -255,21 +255,6 @@
                             </div>
                             <div class="col-mb-6 half"> 
                                 <div class="row half">
-                                    <div class="col-xs-6 half">
-                                        <div class="control-group pull-top">
-                                            <div>Position :</div>
-                                            
-                                                <input type="number" 
-                                                    class="form-control validate[required,custom[number]]" 
-                                                    data-prompt-position="topLeft:0,20"
-                                                    data-errormessage-custom-error="Numbers only"
-                                                    value="[{$item->product_position|escape|default:'100'}]" 
-                                                    name="product_position"
-                                                    data-putto="#err-product_position"
-                                                    >
-                                        </div>
-                                        <div id="err-product_position"></div>
-                                    </div>
                                     <div class="col-xs-6 half">
                                         <div class="control-group pull-top">
                                             <div>Status :</div>

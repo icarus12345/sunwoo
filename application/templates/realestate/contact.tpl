@@ -47,6 +47,8 @@
                                 <br/>
                                 <br/>
                                 <div class="ckeditor">[{$data->data_content}]</div>
+                                <br/>
+                                <br/>
                             </div>
                             <div class="col-lg-4">
                                 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/contact-form.tpl"}]

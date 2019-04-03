@@ -94,11 +94,11 @@ class line extends CP_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
-                    {$this->table}.{$this->prefix}title_vi,
+                    {$this->table}.{$this->prefix}title_{$this->lang} as {$this->prefix}title,
                     {$this->table}.{$this->prefix}insert,
                     {$this->table}.{$this->prefix}update,
                     {$this->table}.{$this->prefix}status,
-                    _header._title_vi as header_title_vi
+                    _header._title_{$this->lang} as header_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
@@ -107,12 +107,11 @@ class line extends CP_Controller {
             "where"     =>"WHERE {$this->table}.`{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
-                "_title_vi"=>"{$this->table}.{$this->prefix}title_vi",
-                "_title_en"=>"{$this->table}.{$this->prefix}title_en",
+                "_title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
+                "header_title"=>"_header._title_{$this->lang}",
             ),
             "filterfields"=>array(
-                "{$this->prefix}title_vi",
-                "{$this->prefix}title_en",
+                "{$this->prefix}title_{$this->lang}"
             )
         );
         $result = $this->line_model->datatableBinding($type);
