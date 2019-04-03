@@ -95,9 +95,9 @@ class Core_Model extends CI_Model {
         return false;
     }
     function putOnTop($id) {
-        $this->db->set($this->prefix . 'position', time(), FALSE);
+        $this->db->set($this->prefix . 'position', time());
         $this->db->where("$this->prefix$this->colid", $id);
-        @$this->db->update($this->table, $params);
+        @$this->db->update($this->table);
         $this->sqlLog('Update Entry');
         @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
         if ($count == 1)
@@ -111,14 +111,18 @@ class Core_Model extends CI_Model {
             $newpos = time();
             $uprow = $this->db
                 ->where("{$this->prefix}position >", $pos)
+                ->order_by("{$this->prefix}position",'ASC')
                 ->get($this->table)
                 ->row();
             if($uprow){
-                $newpos = $uprow->{"{$this->prefix}position"} + 1;
+                $newpos = $uprow->{"{$this->prefix}position"};
+                $this->db->set($this->prefix . 'position', $pos);
+                $this->db->where("$this->prefix$this->colid", $uprow->{"{$this->prefix}{$this->colid}"});
+                @$this->db->update($this->table);
             }
-            $this->db->set($this->prefix . 'position', $newpos, FALSE);
+            $this->db->set($this->prefix . 'position', $newpos);
             $this->db->where("$this->prefix$this->colid", $id);
-            @$this->db->update($this->table, $params);
+            @$this->db->update($this->table);
             $this->sqlLog('Update Entry');
             @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
             if ($count == 1)
@@ -130,18 +134,22 @@ class Core_Model extends CI_Model {
         $row=$this->onGet($id);
         if($row){
             $pos = $row->{"{$this->prefix}position"};
-            $uprow = $this->db
+            $downrow = $this->db
                 ->where("{$this->prefix}position <", $pos)
+                ->order_by("{$this->prefix}position",'DESC')
                 ->get($this->table)
                 ->row();
-            if($uprow){
-                $newpos = $uprow->{"{$this->prefix}position"} - 1;
+            if($downrow){
+                $newpos = $downrow->{"{$this->prefix}position"};
+                $this->db->set($this->prefix . 'position', $pos);
+                $this->db->where("$this->prefix$this->colid", $downrow->{"{$this->prefix}{$this->colid}"});
+                @$this->db->update($this->table);
             }else{
                 $newpos = $pos-1;
             }
-            $this->db->set($this->prefix . 'position', $newpos, FALSE);
+            $this->db->set($this->prefix . 'position', $newpos);
             $this->db->where("$this->prefix$this->colid", $id);
-            @$this->db->update($this->table, $params);
+            @$this->db->update($this->table);
             $this->sqlLog('Update Entry');
             @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
             if ($count == 1)
@@ -629,23 +637,23 @@ class Core_Model extends CI_Model {
         }
     }
     function writelog($data,$type=''){
-        // $username = 'Unknown';
-        // if(isset($_SESSION["auth"]["user"])){
-        //     $username = $_SESSION["auth"]["user"]->ause_name;
-        // }
-        // $logtime = date('Y/m/d');
-        // $time=  date('Y-m-d H:i:s');
-        // $log = "
-        //     <div class=\"inbox-item clearfix\">
-        //         <div class=\"media\"> 
-        //             <div class=\"media-body\">
-        //                 <div class=\"media-heading name\">$type</div>
-        //                 <div class=\"text\">$data</div>
-        //                 <span class=\"timestamp\">$time - $username</span> 
-        //             </div>
-        //         </div> 
-        //     </div>";
-        // write_file(APPPATH."logs/$logtime.txt", $log, 'a+');
+        $username = 'Unknown';
+        if(isset($_SESSION["auth"]["user"])){
+            $username = $_SESSION["auth"]["user"]->ause_name;
+        }
+        $logtime = date('Y/m/d');
+        $time=  date('Y-m-d H:i:s');
+        $log = "
+            <div class=\"inbox-item clearfix\">
+                <div class=\"media\"> 
+                    <div class=\"media-body\">
+                        <div class=\"media-heading name\">$type</div>
+                        <div class=\"text\">$data</div>
+                        <span class=\"timestamp\">$time - $username</span> 
+                    </div>
+                </div> 
+            </div>";
+        write_file(APPPATH."logs/$logtime.txt", $log, 'a+');
     }
     function ArrayToList($arr,$col){
         foreach ($arr as $item){
