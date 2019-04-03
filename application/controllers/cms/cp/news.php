@@ -136,7 +136,7 @@ class news extends VD_Controller {
                     LEFT JOIN cate ON cat_id = news_category
                 ",
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY `{$this->prefix}position` ASC,`{$this->prefix}insert` DESC",
+            "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
             "columnmaps"=>array(
                 "cat_title"=>"cat_value",
                 "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}",

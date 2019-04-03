@@ -9,7 +9,10 @@ var _oConfig = {
     'entryBindingUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/bindingbytype/',
     'entryEditUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/editpanel/',
     'entryCommitUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onCommit/',
-    'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/'
+    'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/',
+    'putontop': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putontop/',
+    'putup': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putup/',
+    'putdown': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putdown/',
 };
 var [{$tplConfig.name}] = (function() {
     var oTable, dtable, me = this, scrollTop = 0;
@@ -221,6 +224,30 @@ var [{$tplConfig.name}] = (function() {
         'onLockItem':function(Id){
             this.onCommit( _oConfig.entryCommitUri, {
                 '[{$tplConfig.prefix}]lock':'true'
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putontop':function(Id){
+            this.onCommit( _oConfig.putontopUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putup':function(Id){
+            this.onCommit( _oConfig.putupUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putdown':function(Id){
+            this.onCommit( _oConfig.putdownUri, {
             }, Id, function(rsdata){
                 if(rsdata.result>=0){
                     [{$tplConfig.name}].onRefresh();

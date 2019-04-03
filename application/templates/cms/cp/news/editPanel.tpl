@@ -18,7 +18,7 @@
                 value="[{$item->news_id|default:''}]" 
                 id="EntryId"
                 />
-            
+            <input type="hidden" name="news_position" value="[{$item->news_position|default:time()}]">
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="news_type" value="[{$item->post_type|default:$type}]">
                
@@ -187,15 +187,7 @@
                             </div>
                             <div class="col-sm-12 half"> 
                                 <div class="">
-                                    <div class="col-mb-4 half">
-                                        <div class="control-group pull-top">
-                                            <div>Position :</div>
-                                            <input type="number" 
-                                                    class="form-control" value="[{$item->news_position|default:'0'}]" 
-                                                    name="news_position"
-                                                    >
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-mb-4 half">
                                         <div class="control-group pull-top">
                                             <div>Status :</div>
