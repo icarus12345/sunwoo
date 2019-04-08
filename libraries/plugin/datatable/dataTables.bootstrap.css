@@ -223,3 +223,37 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
 .dataTables_scroll:before{left: 0}
 .DTFC_LeftBodyWrapper{overflow: visible !important;width: }
 .DTFC_LeftBodyLiner{width: 100% !important;overflow: visible !important}
+.bootstrap-checkbox {
+    display:inline-block;
+    position:relative;
+    width:16px;
+    height:16px;
+    border:1px solid #777;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.bootstrap-checkbox {display: block;margin: auto}
+
+.bootstrap-checkbox i.fa.fa-check{
+    text-align: center;
+    line-height: 14px;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+
+}
+.bootstrap-checkbox i.fa.fa-stop{
+    background: #333;
+    font-size: 10px;
+    text-indent: -1000px
+}
+.bootstrap-checkbox i{
+    left: 2px;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    position:absolute;
+}

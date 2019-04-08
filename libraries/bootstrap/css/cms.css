@@ -101,7 +101,7 @@ label{margin-bottom: 0}
     position: absolute;
     left: 0;
     background: #FFF;
-    border: 1px solid #ddd;
+    border: 1px solid #777;
     margin: 0;
 }
 .cb span:after {
@@ -685,7 +685,7 @@ table > tbody > tr > td.date-time-cell{font-size: 11px;font-family: tahoma;paddi
 .dataTable .filter-rows th,
 .dataTable .filter-rows td{padding: 2px}
 .dataTable .filter-rows select,
-.dataTable .filter-rows input{
+.dataTable .filter-rows input:not([type="checkbox"]){
     width: 100%;
     padding: 0 4px;height: 24px;
     /*border:0;*/

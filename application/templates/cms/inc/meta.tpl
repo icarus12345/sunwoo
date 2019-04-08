@@ -51,6 +51,7 @@
         <link rel="stylesheet" type="text/css" href="[{'libraries/plugin/datatable/fixedColumns.bootstrap.css'|base_url}]"/>
         <script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.bootstrap.min.js'|base_url}]"></script>
         <script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.fixedColumns.min.js'|base_url}]"></script>
+        <script type="text/javascript" src="[{'libraries/plugin/datatable/bootstrap-checkbox.js'|base_url}]"></script>
         <!--[if IE]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
         <![endif]-->

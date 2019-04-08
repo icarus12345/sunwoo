@@ -41,12 +41,14 @@
                             <th style="min-width: 120px;">Price</th>
                             <th style="min-width: 120px;">Lat</th>
                             <th style="min-width: 120px;">Lng</th>
-                            <th style="min-width: 120px;">Created At</th>
-                            <th style="min-width: 120px;">Modified At</th>
+                            <th >Created At</th>
+                            <th >Modified At</th>
                         </tr>
                         <tr class="filter-rows">
                             <td></td>
-                            <td></td>
+                            <td>
+                                <input type="checkbox" checked data-index="1">
+                            </td>
                             <td></td>
                             <td><input type="text" placeholder="Search for ..." data-index="3"></td>
                             <td>

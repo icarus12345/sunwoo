@@ -224,8 +224,19 @@ var [{$tplConfig.name}] = (function() {
                                 .draw();
                         }
                     } );
-                    // setTimeout(function(){
-
+                    setTimeout(function(){
+                    $('.filter-rows input[type="checkbox"]').each(function(){
+                        var index = $(this).data('index')
+                        var cb = $(this).checkbox()
+                        cb.chbxChecked(null);
+                        cb.on('check', function(e){
+                            var checked = e.checked;
+                            oTable
+                                .column( index )
+                                .search( checked===null?'':checked.toString() )
+                                .draw();
+                        });
+                    });
                     //     $('#entryDatatable_wrapper thead tr td').each( function (i) {
                      
                     //         $( 'input,select', this ).on( 'enterKey change', function () {
@@ -237,7 +248,7 @@ var [{$tplConfig.name}] = (function() {
                     //             }
                     //         } );
                     //     } );
-                    // },500)
+                    },120)
                 },
                 scrollX:        true,
                 scrollCollapse: true,
