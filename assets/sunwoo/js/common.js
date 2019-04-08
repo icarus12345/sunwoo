@@ -33,6 +33,9 @@
 			return false;
 		})
 		function clickHandler(e){
+			// if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			//  return;
+			// }
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -41,22 +44,22 @@
 			var $t = $(this);
 			var $p = $t.closest(options.target);
 			var $n = $($t.attr('href'));
-			if($b.hasClass(options.bodyOepnClass) && !$p.hasClass(options.oepnClass)){
-				var id = $target.filter('.'+options.oepnClass).attr('id');
-				$b.removeClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
-				$target.filter('.'+options.oepnClass).find(options.btn).trigger(clickEvent);
-			}
+			// if($b.hasClass(options.bodyOepnClass) && !$p.hasClass(options.oepnClass)){
+			// 	var id = $target.filter('.'+options.oepnClass).attr('id');
+			// 	$b.removeClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
+			// 	$target.filter('.'+options.oepnClass).find(options.btn).trigger(clickEvent);
+			// }
 
 			var id = $p.attr('id');
 
 			if(!$p.hasClass(options.oepnClass)){
-				$(document).on(clickEvent+'.close', function(e){
-					if($(e.target).closest(options.cancelClick).length){
-						return;
-					}
-					$(document).off(clickEvent+'.close');
-					$t.trigger(clickEvent+'.open');
-				})
+				// $(document).on(clickEvent+'.close', function(e){
+				// 	if($(e.target).closest(options.cancelClick).length){
+				// 		return;
+				// 	}
+				// 	$(document).off(clickEvent+'.close');
+				// 	$t.trigger(clickEvent+'.open');
+				// })
 				$p.addClass(options.oepnClass);
 				$n.addClass(options.oepnClass);
 				$b.addClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
@@ -64,7 +67,7 @@
 				$b.removeClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
 				$n.removeClass(options.oepnClass);
 				$p.removeClass(options.oepnClass);
-				$(document).off(clickEvent+'.close');
+				// $(document).off(clickEvent+'.close');
 			}
 		}
 
@@ -79,13 +82,13 @@
 			var $n = $($t.attr('href'));
 			var id = $p.attr('id');
 			if(!$p.hasClass(options.oepnClass)){
-				$(document).on(clickEvent+'.close', function(e){
-					if($(e.target).closest(options.cancelClick).length){
-						return;
-					}
-					$(document).off(clickEvent+'.close');
-					$t.trigger(clickEvent+'.open');
-				})
+				// $(document).on(clickEvent+'.close', function(e){
+				// 	if($(e.target).closest(options.cancelClick).length){
+				// 		return;
+				// 	}
+				// 	$(document).off(clickEvent+'.close');
+				// 	$t.trigger(clickEvent+'.open');
+				// })
 				$p.addClass(options.oepnClass);
 				$n.addClass(options.oepnClass);
 				$b.addClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
@@ -93,9 +96,9 @@
 		},null);
 
 		this.closeMenu = function(){
-			var $t = $(options.target).filter('.'+options.oepnClass);
-			if($t.length == 0) return;
-			$t.find(options.btn).trigger(clickEvent);
+			// var $t = $(options.target).filter('.'+options.oepnClass);
+			// if($t.length == 0) return;
+			// $t.find(options.btn).trigger(clickEvent);
 		};
 
 
@@ -104,7 +107,7 @@
 		btn : '.nav-btn a',
 		oepnClass : 'nav-open',
 		bodyOepnClass : 'nav-open',
-		cancelClick : '.nav, .nav-links > ul, #wrap > #contact .section.section-tabled'
+		cancelClick : ' #wrap > #contact .section.section-tabled'
 	});
 	bq.ui.autoload('navigation',true);
 

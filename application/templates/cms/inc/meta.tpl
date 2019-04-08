@@ -46,6 +46,11 @@
         <script type="text/javascript" src="[{'libraries/ckeditor/ckeditor.js'|base_url}]" ></script>
         <script type="text/javascript" src="[{'libraries/plugin/tokeninput/jquery.tokeninput.js'|base_url}]" ></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB6TJrMx3v003kFpoOUSgugZSk8j1WWK_s"></script>
+
+        <link rel="stylesheet" type="text/css" href="[{'libraries/plugin/datatable/dataTables.bootstrap.css'|base_url}]"/>
+        <link rel="stylesheet" type="text/css" href="[{'libraries/plugin/datatable/fixedColumns.bootstrap.css'|base_url}]"/>
+        <script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.bootstrap.min.js'|base_url}]"></script>
+        <script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.fixedColumns.min.js'|base_url}]"></script>
         <!--[if IE]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
         <![endif]-->

@@ -88,8 +88,11 @@ class news extends VD_Controller {
         
     }
     function editpanel($type=''){
-        $this->db->order_by('cat_value','ASC');
-        $this->assigns->cates = $this->cate_model->onGetByType($type);
+        $data = $this->cate_model->binding($type);
+        if(isset($data['aaData'])){
+            $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
+            $this->assigns->cates=$data['aaData'];
+        }
         $this->assigns->type=$type;
         $Id=$this->input->post('Id');
         $dataType="";

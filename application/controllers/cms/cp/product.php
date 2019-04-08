@@ -119,6 +119,8 @@ class product extends CP_Controller {
                     product_update,
                     product_thumb,
                     product_code,
+                    product_lat,
+                    product_lng,
                     product_lock,
                     product_owner,
                     product_category,

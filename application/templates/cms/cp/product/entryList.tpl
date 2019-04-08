@@ -30,24 +30,27 @@
             <div class="table-overflow">
                 <table id="entryDatatable" class="table table-bordered table-striped message-table -no-table" style="width: 100%">
                     <thead>
-                        <tr>
+                        <tr class="before-filter">
                             <th><span class="fa fa-key"></span></th>
-                            <th><span class="fa fa-circle-thin"></span></th>
+                            <th></th>
                             <th>Thumb</th>
-                            <th>Title</th>
+                            <th style="min-width: 240px;">Title</th>
                             <th>Category</th>
-                            <th>Created At</th>
+                            <th style="min-width: 100px;">Code</th>
+                            <th style="min-width: 120px;">Owner</th>
+                            <th style="min-width: 120px;">Price</th>
+                            <th style="min-width: 120px;">Lat</th>
+                            <th style="min-width: 120px;">Lng</th>
+                            <th style="min-width: 120px;">Created At</th>
+                            <th style="min-width: 120px;">Modified At</th>
                         </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot>
                         <tr class="filter-rows">
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><input type="text" placeholder="Search for ..."></td>
+                            <td><input type="text" placeholder="Search for ..." data-index="3"></td>
                             <td>
-                                <select>
+                                <select data-index="4">
                                     <option value=""></option>
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
@@ -61,7 +64,16 @@
                                 </select>
                             </td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
                     </tfoot>
                 </table>
                 <div class="clear"></div>

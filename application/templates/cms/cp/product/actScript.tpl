@@ -16,7 +16,7 @@ var _oConfig = {
 _oConfig.dataColumns = [
         {
             'mData': "product_id",
-            'sWidth': "36px", 'bSortable': false,
+            'width': "80px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
@@ -68,7 +68,7 @@ _oConfig.dataColumns = [
         },
         {
             'mData': "product_status",
-            'sWidth': "36px",
+            'width': "48px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
                 var str = [
@@ -114,7 +114,7 @@ _oConfig.dataColumns = [
             //     return elm;
             // }
         },{
-            'mData': "product_thumb",'sClass': "gridThumb",'sWidth': "40px",
+            'mData': "product_thumb",'sClass': "gridThumb",'width': "40",
             "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
@@ -122,7 +122,7 @@ _oConfig.dataColumns = [
                 else return '';
             }
         },{
-            'mData': "product_title",
+            'mData': "product_title",'width': "120px",'sWidth': "240px",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
@@ -131,9 +131,21 @@ _oConfig.dataColumns = [
                 return str;
             }
         },{
-            'mData': "cat_title",'sWidth': "120px"
+            'mData': "cat_title",'width': "120"
         },{
-            'mData': "product_insert",'sWidth': "126px",
+            'mData': "product_code",'width': "120"
+        },{
+            'mData': "product_owner",'width': "120"
+        },{
+            'mData': "product_price",'width': "120"
+        },{
+            'mData': "product_lat",'width': "120"
+        },{
+            'mData': "product_lng",'width': "120"
+        },{
+            'mData': "product_insert",'width': "126",
+        },{
+            'mData': "product_update",'width': "126",
         }
     ];
 var [{$tplConfig.name}] = (function() {
@@ -202,25 +214,62 @@ var [{$tplConfig.name}] = (function() {
                     }
                 },
                 initComplete: function () {
-                    $('#entryDatatable>tfoot>.filter-rows:first-child').appendTo($('#entryDatatable>thead'))
-                    
-                }
-            });
-            oTable.columns().every( function () {
-                var column = this;
-                var timer
-                $( 'input,select', this.footer() ).on( 'enterKey change', function () {
-                    var input = this;
-                    if(timer) clearTimeout(timer)
-                    // timer = setTimeout(function(){
-                        if ( column.search() !== input.value ) {
-                            column
-                                .search( input.value )
+                    $( oTable.table().container() ).on( 'enterKey change', 'thead input,thead select', function () {
+                        var index = $(this).data('index')
+                        console.log(index,'index')
+                        if ( oTable.column(index).search() !== this.value ) {
+                            oTable
+                                .column( index )
+                                .search( this.value )
                                 .draw();
                         }
-                    // },1000)
-                } );
-            } );
+                    } );
+                    // setTimeout(function(){
+
+                    //     $('#entryDatatable_wrapper thead tr td').each( function (i) {
+                     
+                    //         $( 'input,select', this ).on( 'enterKey change', function () {
+                    //             if ( oTable.column(i+1).search() !== this.value ) {
+                    //                 oTable
+                    //                     .column(i+1)
+                    //                     .search( this.value )
+                    //                     .draw();
+                    //             }
+                    //         } );
+                    //     } );
+                    // },500)
+                },
+                scrollX:        true,
+                scrollCollapse: true,
+                fixedColumns:   {
+                    leftColumns: 4
+                },
+                orderCellsTop: true,
+                "columnDefs": [
+                  { "width": "240px", "targets": 3 },
+                  { "width": "120px", "targets": 4 },
+                  { "width": "120px", "targets": 5 }
+                ],
+            });
+                // oTable.columns().every( function () {
+                //     var column = this;
+                //     var timer;
+                //     var index = $(this.header()).index();
+                //     var head_column = $('#entryDatatable_wrapper .filter-rows td:eq('+index+')')
+                //     console.log(this.header(),'HEADER')
+                //     console.log(head_column,'head_column')
+                //     head_column.find( 'input,select').on( 'enterKey change', function () {
+                //         var input = this;
+                //         if(timer) clearTimeout(timer)
+                //         // timer = setTimeout(function(){
+                //             if ( column.search() !== input.value ) {
+                //                 column
+                //                     .search( input.value )
+                //                     .draw();
+                //             }
+                //         // },1000)
+                //     } );
+                // } );
             // // oTable.fnSetFilteringDelay(2000);
         },
         'onInit': function(){
