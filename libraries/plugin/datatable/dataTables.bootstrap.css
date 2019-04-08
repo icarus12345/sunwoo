@@ -117,11 +117,11 @@ table.dataTable thead .sorting_desc_disabled:after {
   right: 4px;
   display: block;
   font-family: 'Glyphicons Halflings';
-  opacity: 0.5;
+  opacity: 0.9;
   transform: translateY(-50%);
 }
 table.dataTable thead .sorting:after {
-  opacity: 0.2;
+  opacity: 0.3;
   content: "\e150";
   /* sort */
 }
@@ -221,3 +221,5 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
 }
 .dataTables_scroll:after{right: 0}
 .dataTables_scroll:before{left: 0}
+.DTFC_LeftBodyWrapper{overflow: visible !important;width: }
+.DTFC_LeftBodyLiner{width: 100% !important;overflow: visible !important}
