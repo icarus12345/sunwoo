@@ -362,7 +362,7 @@
                                                 [{$attr= 'product_price_'|cat:$la->lang_short}]
 
                                                 <input type="number" 
-                                                    class="form-control validate[maxSize[100]]" 
+                                                    class="form-control validate[required,custom[number],min[0]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
                                                     name="product_price_[{$la->lang_short}]" 
                                                     placeholder="[{$la->lang_name|ucwords}]"
