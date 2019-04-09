@@ -191,7 +191,7 @@ var [{$tplConfig.name}] = (function() {
                 'aaSorting': [],
                 'aoColumns': _oConfig.dataColumns,
                 'sServerMethod': "POST",
-                'iDisplayLength': 10,
+                'iDisplayLength': 25,
                 'bProcessing': _oConfig.paginate,
                 'bServerSide': true,
                 'bPaginate': true,

@@ -1,31 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no" />
 <title>KCFinder: /<?php echo $this->session['dir'] ?></title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <?php INCLUDE "tpl/tpl_css.php" ?>
 <?php INCLUDE "tpl/tpl_javascript.php" ?>
 </head>
 <body>
-<script type="text/javascript">
-$('body').noContext();
-</script>
 <div id="resizer"></div>
-<div id="shadow"></div>
-<div id="dialog"></div>
-<div id="alert"></div>
+<div id="menu"></div>
 <div id="clipboard"></div>
 <div id="all">
+
 <div id="left">
     <div id="folders"></div>
 </div>
+
 <div id="right">
+
     <div id="toolbar">
         <div>
-        <a href="kcact:upload"><?php echo $this->label("Upload") ?></a>
-        <a href="kcact:refresh"><?php echo $this->label("Refresh") ?></a>
-        <a href="kcact:settings"><?php echo $this->label("Settings") ?></a>
-        <a href="kcact:maximize"><?php echo $this->label("Maximize") ?></a>
-        <a href="kcact:about"><?php echo $this->label("About") ?></a>
+        <a href="kcact:upload"><span><?php echo $this->label("Upload") ?></span></a>
+        <a href="kcact:refresh"><span><?php echo $this->label("Refresh") ?></span></a>
+        <a href="kcact:settings"><span><?php echo $this->label("Settings") ?></span></a>
+        <a href="kcact:maximize"><span><?php echo $this->label("Maximize") ?></span></a>
+        <a href="kcact:about"><span><?php echo $this->label("About") ?></span></a>
+		<a href="#" id="toggle-folders" onclick="$('#left').toggle()"><span>Folders</span></a>
         <div id="loading"></div>
         </div>
     </div>
@@ -75,13 +77,17 @@ $('body').noContext();
     </fieldset>
     </div>
 
+    <div>
+        <select id="lang"></select>
     </div>
+
+    </div>
+
     <div id="files">
         <div id="content"></div>
     </div>
 </div>
 <div id="status"><span id="fileinfo">&nbsp;</span></div>
 </div>
-
 </body>
 </html>
