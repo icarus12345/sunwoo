@@ -15,7 +15,7 @@ var _oConfig = {
 };
 _oConfig.dataColumns = [
         {
-            'mData': "product_id",
+            'mData': "id",
             'width': "80px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
@@ -26,7 +26,7 @@ _oConfig.dataColumns = [
                 menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-edit"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
-                if(datarow.product_lock!=='true'){
+                if(datarow.readonly!=='true'){
                     menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 }else{
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
@@ -36,7 +36,7 @@ _oConfig.dataColumns = [
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
-                if(datarow.product_lock!=='true'){
+                if(+datarow.readonly){
                     menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
                 }else{
                     menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
@@ -67,19 +67,19 @@ _oConfig.dataColumns = [
             }
         },
         {
-            'mData': "product_status",
+            'mData': "status",
             'width': "48px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
                 var str = [
                     '<label class="cb">',
                     '<input type="checkbox" ',
-                        (value == 'true'?'checked':'')
+                        (+value?'checked':'')
                         ];
                         [{if $unit}]
                             [{if $unit|strpos:".e."!==false}]
-                                if(row.[{$tplConfig.prefix}]lock!='false'){
-                                    var status = row.[{$tplConfig.prefix}]status =='false'?'true':'false'
+                                if(!+row.[{$tplConfig.prefix}]readonly){
+                                    var status = +(!+row.[{$tplConfig.prefix}]status)
                                 str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]id + '\')" ')
                                 }else{
                                     str.push('disabled');
@@ -101,7 +101,7 @@ _oConfig.dataColumns = [
             //             var status = datarow.[{$tplConfig.prefix}]status =='false'?'true':'false'
             //         elm = 
             //             '<span '+ 
-            //                 'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow.product_id + '\')" '+
+            //                 'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow.id + '\')" '+
             //                 'title="Click to turn on/off entry" ';
             //         if(value == 'false') 
             //             elm += 'class="fa fa-toggle-off"';
@@ -114,7 +114,7 @@ _oConfig.dataColumns = [
             //     return elm;
             // }
         },{
-            'mData': "product_thumb",'sClass': "gridThumb",'width': "40",
+            'mData': "thumb",'sClass': "gridThumb",'width': "40",
             "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
@@ -122,7 +122,7 @@ _oConfig.dataColumns = [
                 else return '';
             }
         },{
-            'mData': "product_title",'width': "120px",'sWidth': "240px",
+            'mData': "title",'width': "120px",'sWidth': "240px",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
@@ -133,19 +133,15 @@ _oConfig.dataColumns = [
         },{
             'mData': "cat_title",'width': "120"
         },{
-            'mData': "product_code",'width': "120"
+            'mData': "code",'width': "120"
         },{
-            'mData': "product_owner",'width': "120"
+            'mData': "owner",'width': "120"
         },{
-            'mData': "product_price",'width': "120"
+            'mData': "price",'width': "120"
         },{
-            'mData': "product_lat",'width': "120"
+            'mData': "created_at",'width': "126",
         },{
-            'mData': "product_lng",'width': "120"
-        },{
-            'mData': "product_insert",'width': "126",
-        },{
-            'mData': "product_update",'width': "126",
+            'mData': "modified_at",'width': "126",
         }
     ];
 var [{$tplConfig.name}] = (function() {
@@ -377,10 +373,6 @@ var [{$tplConfig.name}] = (function() {
             }
             var Id = $('#EntryId').val();
             var Params =$('#entryForm').serializeObject();
-            if(typeof Params.[{$tplConfig.prefix}]features == 'string'){
-                Params.[{$tplConfig.prefix}]features = [Params.[{$tplConfig.prefix}]features]
-            }
-            Params.[{$tplConfig.prefix}]features = (Params.[{$tplConfig.prefix}]features||[]).join(',')
             if($('#sortable').length == 1){
                 var images = $('#sortable img.thumb').map(function(){return $(this).attr('src')});
                 Params.[{$tplConfig.prefix}]images = images.get().join('\r\n');

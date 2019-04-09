@@ -180,7 +180,7 @@ var [{$tplConfig.name}] = (function() {
         },
         'onLockItem':function(Id){
             this.onCommit( _oConfig.entryCommitUri, {
-                '[{$tplConfig.prefix}]lock':'true'
+                '[{$tplConfig.prefix}]lock':1
             }, Id, function(rsdata){
                 if(rsdata.result>=0){
                     [{$tplConfig.name}].onRefresh();

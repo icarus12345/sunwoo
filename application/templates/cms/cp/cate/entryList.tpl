@@ -17,7 +17,7 @@
     };
     _oConfig.dataColumns = [
         {
-            'mData': "cat_id",
+            'mData': "id",
             'sWidth': "36px", 'bSortable': false,
             'sClass':'gridAction',
             'mRender': function ( value, type, datarow ) {
@@ -28,12 +28,12 @@
                     str +=  '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')" title="Edit entry (' + value + ')" ><i class="fa fa-edit"></i></a> </li>';
                     [{/if}]
                     [{if $unit|strpos:".d."!==false}]
-                    if(datarow.menu_lock!=='true'){
+                    if(datarow.lock!=1){
                         str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')" title="Delete entry (' + value + ')" ><i class="fa fa-trash-o"></i></a> </li>';
                     }
                     [{/if}]
                     [{if $unit|strpos:".l."!==false}]
-                    if(datarow.menu_lock!=='true'){
+                    if(datarow.lock!=1){
                         str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i></a> </li>';
                     }
                     [{/if}]
@@ -44,20 +44,20 @@
             }
         },
         {
-            'mData': "cat_status",
+            'mData': "status",
             'sWidth': "36px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
                 var str = [
                     '<label class="cb">',
                     '<input type="checkbox" ',
-                        (value == 'true'?'checked':'')
+                        (value == 1?'checked':'')
                         ];
                         [{if $unit}]
                             [{if $unit|strpos:".e."!==false}]
                                 if(row.[{$tplConfig.prefix}]lock!='false'){
-                                    var status = row.[{$tplConfig.prefix}]status =='false'?'true':'false'
-                                str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]id + '\')" ')
+                                    var status = +(!+row.[{$tplConfig.prefix}]status)
+                                    str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]id + '\')" ')
                                 }else{
                                     str.push('disabled');
                                 }
@@ -72,13 +72,13 @@
             },
         },
         {
-            'mData': "cat_title",
+            'mData': "title",
             'mRender': function ( value, type, datarow ) {
                 //return '----'.repeater(datarow.Level) + datarow.Title;
                 var rowstr = '';
-                rowstr += '<span style="float:left;padding-left:' +(28*datarow.cat_level) +'px">'
+                rowstr += '<span style="float:left;padding-left:' +(28*datarow.level) +'px">'
                     + '<i class="row-push"></i>'
-                    + datarow.cat_title
+                    + datarow.title
                     + '</span>';
                 return rowstr;
             }

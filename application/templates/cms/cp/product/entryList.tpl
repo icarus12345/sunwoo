@@ -39,10 +39,8 @@
                             <th style="min-width: 100px;">Code</th>
                             <th style="min-width: 120px;">Owner</th>
                             <th style="min-width: 120px;">Price</th>
-                            <th style="min-width: 120px;">Lat</th>
-                            <th style="min-width: 120px;">Lng</th>
-                            <th >Created At</th>
-                            <th >Modified At</th>
+                            <th style="min-width: 120px;">Created At</th>
+                            <th style="min-width: 120px;">Modified At</th>
                         </tr>
                         <tr class="filter-rows">
                             <td></td>
@@ -57,16 +55,14 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
-                                            value="[{$c->cat_value|escape|default:''}]">
-                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
+                                            value="[{$c->value|escape|default:''}]">
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->level}][{$c->title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]
                                 </select>
                             </td>
-                            <td></td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

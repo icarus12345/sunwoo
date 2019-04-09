@@ -41,7 +41,7 @@ class Core_Model extends CI_Model {
             $this->db->where("{$this->prefix}status",$this->status);
         }
         $query = $this->db
-                ->where("{$this->prefix}alias_vi", $alias)
+                ->where("{$this->prefix}alias_{$this->lang}", $alias)
                 ->get($this->table);
         $this->sqlLog('Get Entry');
         return $query->row();
@@ -61,13 +61,13 @@ class Core_Model extends CI_Model {
         }
         $query = $this->db
                 ->from($this->table)
-                ->order_by($this->prefix . 'insert', 'DESC')
+                ->order_by($this->prefix . 'created_at', 'DESC')
                 ->get();
         $this->sqlLog('Get Entrys');
         return $query->result();
     }
     function onInsert($params) {
-        $this->db->set($this->prefix . 'insert', 'NOW()', FALSE);
+        $this->db->set($this->prefix . 'created_at', 'NOW()', FALSE);
         @$this->db->insert($this->table, $params);
         $this->sqlLog('Insert Entry');
         @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
@@ -85,7 +85,7 @@ class Core_Model extends CI_Model {
         return false;
     }
     function onUpdate($id, $params) {
-        $this->db->set($this->prefix . 'update', 'NOW()', FALSE);
+        $this->db->set($this->prefix . 'modified_at', 'NOW()', FALSE);
         $this->db->where("$this->prefix$this->colid", $id);
         @$this->db->update($this->table, $params);
         $this->sqlLog('Update Entry');
@@ -95,7 +95,7 @@ class Core_Model extends CI_Model {
         return false;
     }
     function putOnTop($id) {
-        $this->db->set($this->prefix . 'position', time());
+        $this->db->set($this->prefix . 'ordering', time());
         $this->db->where("$this->prefix$this->colid", $id);
         @$this->db->update($this->table);
         $this->sqlLog('Update Entry');
@@ -107,20 +107,20 @@ class Core_Model extends CI_Model {
     function putUp($id) {
         $row=$this->onGet($id);
         if($row){
-            $pos = $row->{"{$this->prefix}position"};
+            $pos = $row->{"{$this->prefix}ordering"};
             $newpos = time();
             $uprow = $this->db
-                ->where("{$this->prefix}position >", $pos)
-                ->order_by("{$this->prefix}position",'ASC')
+                ->where("{$this->prefix}ordering >", $pos)
+                ->order_by("{$this->prefix}ordering",'ASC')
                 ->get($this->table)
                 ->row();
             if($uprow){
-                $newpos = $uprow->{"{$this->prefix}position"};
-                $this->db->set($this->prefix . 'position', $pos);
+                $newpos = $uprow->{"{$this->prefix}ordering"};
+                $this->db->set($this->prefix . 'ordering', $pos);
                 $this->db->where("$this->prefix$this->colid", $uprow->{"{$this->prefix}{$this->colid}"});
                 @$this->db->update($this->table);
             }
-            $this->db->set($this->prefix . 'position', $newpos);
+            $this->db->set($this->prefix . 'ordering', $newpos);
             $this->db->where("$this->prefix$this->colid", $id);
             @$this->db->update($this->table);
             $this->sqlLog('Update Entry');
@@ -133,21 +133,21 @@ class Core_Model extends CI_Model {
     function putDown($id) {
         $row=$this->onGet($id);
         if($row){
-            $pos = $row->{"{$this->prefix}position"};
+            $pos = $row->{"{$this->prefix}ordering"};
             $downrow = $this->db
-                ->where("{$this->prefix}position <", $pos)
-                ->order_by("{$this->prefix}position",'DESC')
+                ->where("{$this->prefix}ordering <", $pos)
+                ->order_by("{$this->prefix}ordering",'DESC')
                 ->get($this->table)
                 ->row();
             if($downrow){
-                $newpos = $downrow->{"{$this->prefix}position"};
-                $this->db->set($this->prefix . 'position', $pos);
+                $newpos = $downrow->{"{$this->prefix}ordering"};
+                $this->db->set($this->prefix . 'ordering', $pos);
                 $this->db->where("$this->prefix$this->colid", $downrow->{"{$this->prefix}{$this->colid}"});
                 @$this->db->update($this->table);
             }else{
                 $newpos = $pos-1;
             }
-            $this->db->set($this->prefix . 'position', $newpos);
+            $this->db->set($this->prefix . 'ordering', $newpos);
             $this->db->where("$this->prefix$this->colid", $id);
             @$this->db->update($this->table);
             $this->sqlLog('Update Entry');
@@ -169,7 +169,7 @@ class Core_Model extends CI_Model {
             }
             $this->datatables_config=array(
                     "table"=>$this->table,
-                    "order_by"=>"ORDER BY `{$this->prefix}Insert` DESC",
+                    "order_by"=>"ORDER BY `{$this->prefix}created_at` DESC",
                     "columnmaps"=>array(
                     )            
             );
@@ -600,6 +600,7 @@ class Core_Model extends CI_Model {
 				$sLimit
 			";
         }
+        // echo $sQuery;
         $query = $this->db->query($sQuery);
         $_error_number = $this->db->_error_number();
         if($_error_number!=0){

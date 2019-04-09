@@ -3,38 +3,38 @@
 class cate_model extends Core_Model {
 
     function __construct(){
-        parent::__construct('cate', 'cat_', 'id');
+        parent::__construct('cate', '', 'id');
     }
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS
-                `cat_id`, 
-                `cat_title_{$this->lang}` as cat_title, 
-                `cat_thumb`, 
-                `cat_desc_{$this->lang}` as cat_desc, 
-                `cat_parent`, 
-                `cat_status`, 
-                `cat_position`, 
-                `cat_link`, 
-                `cat_type`, 
-                `cat_insert`, 
-                `cat_update`, 
-                `cat_lock`, 
-                `cat_value`, 
-                `cat_image`, 
-                `cat_alias_{$this->lang}` as cat_alias, 
-                `cat_cover`
+                `id`, 
+                `title_{$this->lang}` as title, 
+                `thumb`, 
+                `description_{$this->lang}` as description, 
+                `parent`, 
+                `status`, 
+                `ordering`, 
+                `link`, 
+                `type`, 
+                `created_at`, 
+                `modified_at`, 
+                `readobly`, 
+                `value`, 
+                `image`, 
+                `alias_{$this->lang}` as alias, 
+                `cover`
                 "
             ,false);
     }
     function getCategoryByType($type=null){
         $this->select();
-        if($type!=null)$this->db->where('cat_type',$type);
+        if($type!=null)$this->db->where('type',$type);
         $query=$this->db
             ->from('cate')
-            ->order_by('cat_parent','ASC')
-            ->order_by('cat_position','ASC')
-            ->order_by('cat_insert','ASC')
+            ->order_by('parent_id','ASC')
+            ->order_by('ordering','ASC')
+            ->order_by('created_at','ASC')
             ->get(); 
         $this->sqlLog('getCategoryByType');
         return $query->result();
@@ -42,57 +42,57 @@ class cate_model extends Core_Model {
     function buildTree(array $elements, $parentId = 0,$parents=array(0)) {
         $branch = array();
         foreach ($elements as $element) {
-            if ($element->cat_parent == $parentId) {
-                $tmp=$parents;$tmp[]=$element->cat_id;
-                $children = $this->buildTree($elements, $element->cat_id,$tmp);
+            if ($element->parent_id == $parentId) {
+                $tmp=$parents;$tmp[]=$element->id;
+                $children = $this->buildTree($elements, $element->id,$tmp);
                 if ($children) {
-                    $element->cat_children = $children;
+                    $element->children = $children;
                 }
-                $element->cat_parents=$parents;
+                $element->parents=$parents;
                 $branch[] = $element;
             }
         }
         return $branch;
     }
-    function buildTreeArray(array $elements, $parentId = 0,$level=0,$parent_title='',$path='',$value='') {
+    function buildTreeArray(array $elements, $parentId = 0,$level=0,$parent_title='',$path='',$new_value='') {
         if($parentId==0){
             for ($i=0;$i<count($elements);$i++) {
                 $f=false;
                 
                 for ($j=0;$j<count($elements);$j++) {
                     if( 
-                        $elements[$i]->cat_parent==$elements[$j]->cat_id &&
-                        $elements[$i]->cat_type==$elements[$j]->cat_type
+                        $elements[$i]->parent_id==$elements[$j]->id &&
+                        $elements[$i]->type==$elements[$j]->type
                     ){
                         $f=true;
                         break;
                     }
                 }
                 if($f==false){
-                    $elements[$i]->cat_parent=0;
-                    $elements[$i]->cat_parent_title='';
-                    $elements[$i]->value='';
-                    $elements[$i]->cat_error='parent not exist';
-                    $elements[$i]->cat_path='';
+                    $elements[$i]->parent_id=0;
+                    $elements[$i]->parent_title='';
+                    $elements[$i]->new_value='';
+                    $elements[$i]->error='parent not exist';
+                    $elements[$i]->path='';
                 }
-                if($elements[$i]->cat_parent==$elements[$i]->cat_id){
-                    $elements[$i]->cat_parent=0;
-                    $elements[$i]->cat_parent_title='';
-                    $elements[$i]->value='';
-                    $elements[$i]->cat_path='';
-                    $elements[$i]->cat_error=2;
+                if($elements[$i]->parent_id==$elements[$i]->id){
+                    $elements[$i]->parent_id=0;
+                    $elements[$i]->parent_title='';
+                    $elements[$i]->new_value='';
+                    $elements[$i]->path='';
+                    $elements[$i]->error=2;
                 }
             }
         }
         $branch = array();
         foreach ($elements as $element) {
-            if ($element->cat_parent == $parentId) {
-                $element->cat_level=$level;$element->cat_parent_title=$parent_title;
-                $element->cat_display=repeater('----',$level).$element->cat_title;
-                $element->cat_display=$path."/".$element->cat_title;
-                $element->value=$value.">".$element->cat_id;
+            if ($element->parent_id == $parentId) {
+                $element->level=$level;$element->parent_title=$parent_title;
+                $element->display=repeater('----',$level).$element->title;
+                $element->display=$path."/".$element->title;
+                $element->new_value=$new_value.">".$element->id;
                 $element->isparent = 0;
-                $children = $this->buildTreeArray($elements, $element->cat_id,$level+1,$element->cat_title,$path.'/'.$element->cat_title,$element->value);
+                $children = $this->buildTreeArray($elements, $element->id,$level+1,$element->title,$path.'/'.$element->title,$element->new_value);
                 if (!empty($children)) $element->isparent = 1;
                 $branch[] = $element;
                 if (!empty($children)){
@@ -108,25 +108,25 @@ class cate_model extends Core_Model {
     function binding($type=null,$lang='en'){
         $where = "WHERE TRUE";
         if ($type!==null)
-            $where = "WHERE `cat_type` = '$type'";
+            $where = "WHERE `type` = '$type'";
         
         $this->datatables_config = array(
             "table" => "`cate`",
-            "select" => "SELECT SQL_CALC_FOUND_ROWS cat_id, cat_title_{$this->lang} as cat_title,cat_value,cat_parent,cat_status",
+            "select" => "SELECT SQL_CALC_FOUND_ROWS id, title_{$this->lang} as title,value,parent_id,status",
             "from" => "FROM `cate`",
             "where" => "$where",
-            "order_by" => "ORDER BY `cat_parent` ASC, `cat_position` ASC, `cat_insert` ASC",
-            "filterfields"=>array('cat_title'),
+            "order_by" => "ORDER BY `parent_id` ASC, `ordering` ASC, `created_at` ASC",
+            "filterfields"=>array('title'),
             "columnmaps" => array(
-                'cat_title'=>"cat_title_{$this->lang}"
+                'title'=>"title_{$this->lang}"
             )
         );
         return $this->databinding();
     }
     function updateNodeByParent($Parent=0,$NewParent=0){
-        $this->db->set('cat_update', 'NOW()', FALSE);
-        $this->db->where('cat_parent', $Parent);
-        @$this->db->update('cate', array('cat_parent'=>$NewParent));
+        $this->db->set('modified_at', 'NOW()', FALSE);
+        $this->db->where('parent_id', $Parent);
+        @$this->db->update('cate', array('parent_id'=>$NewParent));
         $this->sqlLog('updateNodeByParent');
         @$count = $this->db->affected_rows(); //should return the number of rows affected by the last query
         if ($count > 0)

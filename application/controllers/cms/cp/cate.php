@@ -2,14 +2,14 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class cate extends CP_Controller {
     function __construct() {
-        parent::__construct('cate', 'cat_', 'id');
+        parent::__construct('cate', '', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->load->model('cms/cp/cate_model');
         $this->assigns->tplConfig = array(
             'controller'   =>'cate',
-            'prefix'       =>'cat_',
+            'prefix'       =>'',
             'name'         =>'_oCate',
             'title'        =>'Category',
             'group'        =>'cp',
@@ -25,7 +25,7 @@ class cate extends CP_Controller {
     function event($unit='v-',$type=''){
         $this->assigns->tplConfig = array(
             'controller'   =>'cate',
-            'prefix'       =>'cat_',
+            'prefix'       =>'',
             'name'         =>'_oCate',
             'title'        =>'Event',
             'group'        =>'cp',
@@ -52,19 +52,19 @@ class cate extends CP_Controller {
         $Id=(int)$this->input->post('Id');
         if($Id>0){
             $this->assigns->item = $this->cate_model->onGet($Id);
-            $this->assigns->type=$this->assigns->item->cat_type;
+            $this->assigns->type=$this->assigns->item->type;
         }
         switch ($this->assigns->type){
-            case 'property':
-            // case 'sunwoo':
-            case 'real':
-            case 'tintuc':
-            case 'advisory':
-                $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelList', $this->assigns, true );
-                break;
-            case 'default':
-                $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelSunwoo', $this->assigns, true );
-                break;
+            // case 'property':
+            // // case 'sunwoo':
+            // case 'real':
+            // case 'tintuc':
+            // case 'advisory':
+            //     $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelList', $this->assigns, true );
+            //     break;
+            // case 'default':
+            //     $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelSunwoo', $this->assigns, true );
+            //     break;
             default :
                 $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanel2', $this->assigns, true );
         }
@@ -109,8 +109,8 @@ class cate extends CP_Controller {
     }
     function updateBatch($aaData){
         if(!empty($aaData)) foreach ($aaData as $c){
-            if($c->value!=$c->cat_value){
-                $this->cate_model->onUpdate($c->cat_id,array('cat_value'=>$c->value));
+            if($c->value!=$c->new_value){
+                $this->cate_model->onUpdate($c->id,array('cat_value'=>$c->new_value));
             }
         }
     }

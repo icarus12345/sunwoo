@@ -3,7 +3,7 @@
 class product_model extends Core_Model {
 
     function __construct(){
-        parent::__construct('_product','product_','id');
+        parent::__construct('product','','id');
     }
     function onGetByCode($code){
         if($this->status){

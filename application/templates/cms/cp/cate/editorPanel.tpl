@@ -15,22 +15,22 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->cat_id|default:''}]" 
+                value="[{$item->id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="cat_type" id="cat_type" 
-                    value="[{$item->cat_type|default:$type|default:''}]"/>
+                <input type="hidden" name="type" id="type" 
+                    value="[{$item->type|default:$type|default:''}]"/>
                 <div class="row">
                     <div class="col-mb-6">
                         <div class="control-group pull-top">
                             <div>Title :</div>
                             <input type="text" 
                                 rows="1"
-                                onblur="AliasTo('#entryForm input[name=cat_title]','#entryForm input[name=cat_alias]')" 
+                                onblur="AliasTo('#entryForm input[name=title]','#entryForm input[name=alias]')" 
                                 class="form-control validate[required,minSize[6],maxSize[255]]"
-                                name="cat_title" 
-                                value="[{$item->cat_title|escape|default:''}]"/>
+                                name="title" 
+                                value="[{$item->title|escape|default:''}]"/>
                         </div>
                     </div>
                     <div class="col-mb-6">
@@ -39,8 +39,8 @@
                             <input type="text" 
                                 rows="1"
                                 class="form-control validate[required,minSize[6],maxSize[255]]"
-                                name="cat_alias" 
-                                value="[{$item->cat_alias|escape|default:''}]"/>
+                                name="alias" 
+                                value="[{$item->alias|escape|default:''}]"/>
                         </div>
                     </div>
                 </div>
@@ -49,25 +49,25 @@
                         <div class="pull-top control-group">
                             <div>Parent :(*)</div>
                             <div class="row-fluid">
-                                <select name="cat_parent" class="form-control selectpicker"
+                                <select name="parent_id" class="form-control selectpicker"
                                         data-size="10"
                                         >
                                     <option value="0" data-title="[ Root ]" data-level="-1">[ Root ]</option>
                                     [{assign var="level" value=-1}]
                                     [{foreach from=$cates item=c}]
-                                        [{if $c->cat_id == $item->cat_id}]
-                                            [{assign var="level" value=$c->cat_level}]
+                                        [{if $c->id == $item->id}]
+                                            [{assign var="level" value=$c->level}]
                                         [{/if}]
-                                        [{if $level!=-1 and $c->cat_level <= $level and $c->cat_id != $item->cat_id}]
+                                        [{if $level!=-1 and $c->level <= $level and $c->id != $item->id}]
                                             [{assign var="level" value=-1}]
                                         [{/if}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->cat_level*20+20}]px;'>[{$c->cat_title|escape}]</span>"
-                                            [{if $c->cat_id == $item->cat_parent}]selected="1"[{/if}]
-                                            [{if $level!=-1 and $level < $c->cat_level}]disabled=1[{/if}]
-                                            [{if $c->cat_id == $item->cat_id}]disabled=1[{/if}]
-                                            value="[{$c->cat_id|default:''}]">
-                                                [{$c->cat_title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->level*20+20}]px;'>[{$c->title|escape}]</span>"
+                                            [{if $c->id == $item->parent_id}]selected="1"[{/if}]
+                                            [{if $level!=-1 and $level < $c->level}]disabled=1[{/if}]
+                                            [{if $c->id == $item->id}]disabled=1[{/if}]
+                                            value="[{$c->id|default:''}]">
+                                                [{$c->title|default:''}]
                                         </option>
                                     [{/foreach}]
                                 </select>
@@ -79,17 +79,17 @@
                             <div>Status :</div>
                             <div style="padding-top:5px">
                                 <span class="circleRad">
-                                    <input id="cat_status1" 
-                                        name="cat_status" type="radio" 
-                                        [{if $o->cat_status!='false'|default:''}]checked[{/if}]
+                                    <input id="status1" 
+                                        name="status" type="radio" 
+                                        [{if $o->status!='false'|default:''}]checked[{/if}]
                                         value="true">
-                                    <label for="cat_status1">Enable&nbsp;&nbsp;</label>
+                                    <label for="status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
-                                    <input id="cat_status2" name="cat_status" type="radio" value="false"
-                                        [{if $o->cat_status=='false'|default:''}]checked[{/if}]
+                                    <input id="status2" name="status" type="radio" value="false"
+                                        [{if $o->status=='false'|default:''}]checked[{/if}]
                                     >
-                                    <label for="cat_status2">Disable&nbsp;&nbsp;</label>
+                                    <label for="status2">Disable&nbsp;&nbsp;</label>
                                 </span>
 
                             </div>
@@ -101,8 +101,8 @@
                     <div>Link :</div>
                     <input type="text" class="form-control" 
                         placeholder="Link"
-                        name="cat_link"
-                        value="[{$item->cat_link|quotes_to_entities|default:''}]"
+                        name="link"
+                        value="[{$item->link|quotes_to_entities|default:''}]"
                         />
                 </div>
                 <div class="row">
@@ -111,10 +111,10 @@
                             <div>Image :</div>
                             <div class="input-append">
                                 <input type="text" 
-                                        class="form-control" value="[{$item->cat_thumb|default:''}]" 
-                                        name="cat_thumb" id="cat_thumb"
+                                        class="form-control" value="[{$item->thumb|default:''}]" 
+                                        name="thumb" id="thumb"
                                         >
-                                <span class="add-on" onclick="BrowseServer('#cat_thumb')">
+                                <span class="add-on" onclick="BrowseServer('#thumb')">
                                     <i class="fa-image"></i>
                                 </span>
                             </div>
@@ -124,8 +124,8 @@
                         <div class="control-group pull-top">
                             <div>Position :</div>
                             <input type="number" 
-                                    class="form-control" value="[{$item->cat_position|default:''}]" 
-                                    name="cat_position"
+                                    class="form-control" value="[{$item->position|default:''}]" 
+                                    name="position"
                                     >
                         </div>
                     </div>
@@ -136,8 +136,8 @@
                     </div>
                     <textarea class="form-control de-desc" 
                             rows="3"
-                            name="cat_desc"
-                            data-putto=".error_desc" >[{$item->cat_desc|quotes_to_entities|default:''}]</textarea>
+                            name="desc"
+                            data-putto=".error_desc" >[{$item->desc|quotes_to_entities|default:''}]</textarea>
                             
                     <div class="erb error_desc"></div>
                 </div>

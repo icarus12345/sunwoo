@@ -11,16 +11,18 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->cat_id|default:''}]" 
+                value="[{$item->id|default:''}]" 
                 id="EntryId"
                 />
+            <input type="hidden" name="ordering" value="[{$item->ordering|default:time()}]">
+                
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="cat_type" id="cat_type" 
-                    value="[{$item->cat_type|default:$type|default:''}]"/>
+                <input type="hidden" name="type" id="type" 
+                    value="[{$item->type|default:$type|default:''}]"/>
                 <input 
                     type="hidden" 
                     value="0" 
-                    name="cat_parent"
+                    name="parent_id"
                     />
                 <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                     <ul class="nav-tabs">
@@ -48,13 +50,13 @@
                                 <div class="col-mb-6 half"> 
                                     <div class="control-group pull-top">
                                         <div>Title :(*)</div>
-                                        [{$attr= 'cat_title_'|cat:$la->lang_short}]
+                                        [{$attr= 'title_'|cat:$la->lang_short}]
 
                                         <input type="text" 
-                                            onblur="AliasTo('#entryForm input[name=cat_title_[{$la->lang_short}]]','#entryForm input[name=cat_alias_[{$la->lang_short}]]')" 
+                                            onblur="AliasTo('#entryForm input[name=title_[{$la->lang_short}]]','#entryForm input[name=alias_[{$la->lang_short}]]')" 
                                             class="form-control validate[required,minSize[2],maxSize[255]]" 
                                             value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                            name="cat_title_[{$la->lang_short}]" 
+                                            name="title_[{$la->lang_short}]" 
                                             placeholder="[{$la->lang_name|ucwords}]"
                                             
                                             maxlength="255" 
@@ -64,10 +66,10 @@
                                 <div class="col-mb-6 half">
                                     <div class="control-group pull-top">
                                         <div>Alias :</div>
-                                        [{$attr= 'cat_alias_'|cat:$la->lang_short}]
+                                        [{$attr= 'alias_'|cat:$la->lang_short}]
                                         <input type="text" 
                                             class="form-control validate[required,minSize[2],maxSize[255]]"
-                                            name="cat_alias_[{$la->lang_short}]" 
+                                            name="alias_[{$la->lang_short}]" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]"
                                             value="[{$item->$attr|quotes_to_entities|default:''}]"
@@ -77,9 +79,9 @@
                             </div>
                             <div class="control-group pull-top">
                                 <div>Desc :(*)</div>
-                                [{$attr= 'cat_desc_'|cat:$la->lang_short}]
+                                [{$attr= 'description_'|cat:$la->lang_short}]
                                 <textarea class="form-control validate[required]" 
-                                    name="cat_desc_[{$la->lang_short}]" 
+                                    name="description_[{$la->lang_short}]" 
                                     rows="2" 
                                     data-lang="[{$la->lang_short}]"
                                     placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -96,29 +98,20 @@
                             <div>Status :</div>
                             <div style="padding-top:5px">
                                 <span class="circleRad">
-                                    <input id="cat_status1" 
-                                        name="cat_status" type="radio" 
-                                        [{if $o->cat_status!='false'|default:''}]checked[{/if}]
+                                    <input id="status1" 
+                                        name="status" type="radio" 
+                                        [{if $o->status!='false'|default:''}]checked[{/if}]
                                         value="true">
-                                    <label for="cat_status1">Enable&nbsp;&nbsp;</label>
+                                    <label for="status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
-                                    <input id="cat_status2" name="cat_status" type="radio" value="false"
-                                        [{if $o->cat_status=='false'|default:''}]checked[{/if}]
+                                    <input id="status2" name="status" type="radio" value="false"
+                                        [{if $o->status=='false'|default:''}]checked[{/if}]
                                     >
-                                    <label for="cat_status2">Disable&nbsp;&nbsp;</label>
+                                    <label for="status2">Disable&nbsp;&nbsp;</label>
                                 </span>
 
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 half">
-                        <div class="control-group pull-top">
-                            <div>Position :</div>
-                            <input type="number" 
-                                    class="form-control" value="[{$item->cat_position|default:0}]" 
-                                    name="cat_position"
-                                    >
                         </div>
                     </div>
                 </div>
