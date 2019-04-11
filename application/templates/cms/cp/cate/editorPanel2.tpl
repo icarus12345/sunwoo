@@ -161,13 +161,13 @@
                                 <span class="circleRad">
                                     <input id="status1" 
                                         name="status" type="radio" 
-                                        [{if $item->status}]checked[{/if}]
+                                        [{if $item->status|default:1}]checked[{/if}]
                                         value="1">
                                     <label for="status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
                                     <input id="status2" name="status" type="radio" value="0"
-                                        [{if !$item->status}]checked[{/if}]
+                                        [{if !$item->status|default:1}]checked[{/if}]
                                     >
                                     <label for="status2">Disable&nbsp;&nbsp;</label>
                                 </span>

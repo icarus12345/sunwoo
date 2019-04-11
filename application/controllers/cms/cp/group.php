@@ -1,22 +1,22 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class head extends CP_Controller {
+class group extends CP_Controller {
     function __construct() {
-        parent::__construct('_header', '_', 'id');
+        parent::__construct('_group', '_', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
-        $this->load->model('cms/cp/head_model');
+        $this->load->model('cms/cp/group_model');
         $this->assigns->tplConfig = array(
-            'controller'   =>'head',
+            'controller'   =>'group',
             'prefix'       =>'_',
             'name'         =>'_oHead',
-            'title'        =>'Head',
+            'title'        =>'Group',
             'group'        =>'cp',
-            'listEntryTitle'=>'Head Manager',
+            'listEntryTitle'=>'Group Manager',
             'addEntryTitle'=>'Add new entry',
             'editEntryTitle'=>'Modify entry',
-            'entryListTpl'=>'templates/cms/cp/head/entryList.tpl'
+            'entryListTpl'=>'templates/cms/cp/group/entryList.tpl'
         );
     }
     public function index(){
@@ -32,7 +32,7 @@ class head extends CP_Controller {
             'listEntryTitle'=>'Event Manager',
             'addEntryTitle'=>'Add new Event',
             'editEntryTitle'=>'Modify Event',
-            'entryListTpl'=>'templates/cms/cp/head/entryList.tpl'
+            'entryListTpl'=>'templates/cms/cp/group/entryList.tpl'
         );
         $this->vp($unit,$type);
     }
@@ -46,13 +46,13 @@ class head extends CP_Controller {
         
         $Id=(int)$this->input->post('Id');
         if($Id>0){
-            $this->assigns->item = $this->head_model->onGet($Id);
+            $this->assigns->item = $this->group_model->onGet($Id);
             $this->assigns->type=$this->assigns->item->cat_type;
         }
         switch ($this->assigns->type){
             
             default :
-                $htmlreponse = $this->smarty->view( 'cms/cp/head/editorPanel', $this->assigns, true );
+                $htmlreponse = $this->smarty->view( 'cms/cp/group/editorPanel', $this->assigns, true );
         }
         $output["result"] = 1;
         $output["message"]='SUCCESS !';
@@ -87,7 +87,7 @@ class head extends CP_Controller {
     //     $this->output->set_output(json_encode($output));
     // }
     function bindingbytype($type=""){
-         $this->head_model->datatables_config=array(
+         $this->group_model->datatables_config=array(
             "table"     =>"{$this->table}",
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
@@ -109,7 +109,7 @@ class head extends CP_Controller {
                 
             )
         );
-        $result = $this->head_model->datatableBinding($type);
+        $result = $this->group_model->datatableBinding($type);
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($result));
 

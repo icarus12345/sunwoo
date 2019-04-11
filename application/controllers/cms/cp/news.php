@@ -2,15 +2,15 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class news extends VD_Controller {
     function __construct() {
-        parent::__construct('_news', 'news_', 'id');
+        parent::__construct('_news', '_', 'id');
         $this->load->model('cms/cp/cate_model');
-        $this->news_model = new Core_Model('_news', 'news_', 'id');
+        $this->news_model = new Core_Model('_news', '_', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->assigns->tplConfig = array(
             'controller'   =>'news',
-            'prefix'       =>'news_',
+            'prefix'       =>'_',
             'name'         =>'_oNews',
             'title'        =>'News',
             'group'        =>'cp',
@@ -53,6 +53,12 @@ class news extends VD_Controller {
     }
     function vp($unit='v-',$type=''){
         switch ($type) {
+            case 'helper':
+                $this->assigns->tplConfig['title'] = 'Content';
+                $this->assigns->tplConfig['listEntryTitle'] = 'Content Page';
+                $this->assigns->tplConfig['addEntryTitle'] = 'Add new Content';
+                $this->assigns->tplConfig['editEntryTitle'] = 'Edit Content';
+                break;
             case 'about':
                 $this->assigns->tplConfig['title'] = 'About';
                 $this->assigns->tplConfig['listEntryTitle'] = 'About Page';
@@ -102,10 +108,7 @@ class news extends VD_Controller {
             $this->assigns->token = md5(time().strtoupper(random_string('alnum', 8)));
         }
         switch ($type) {
-            case 'about':
-            case 'service':
-            // case 'partner':
-            // case 'blog':
+            case 'helper':
                 $htmlreponse = $this->smarty->view( 'cms/cp/news/editPanelAbout', $this->assigns, true );
                 break;
             
@@ -129,19 +132,19 @@ class news extends VD_Controller {
                     {$this->table}.{$this->prefix}id,
                     {$this->table}.{$this->prefix}title_{$this->lang} as {$this->prefix}title,
                     {$this->table}.{$this->prefix}thumb,
-                    {$this->table}.{$this->prefix}insert,
-                    {$this->table}.{$this->prefix}update,
+                    {$this->table}.{$this->prefix}created_at,
+                    {$this->table}.{$this->prefix}modified_at,
                     {$this->table}.{$this->prefix}status,
-                    cat_title_{$this->lang} as cat_title
+                    cate.title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}`
-                    LEFT JOIN cate ON cat_id = news_category
+                    LEFT JOIN cate ON cate.id = _category_id
                 ",
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY `{$this->prefix}position` DESC,`{$this->prefix}insert` DESC",
+            "order_by"  =>"ORDER BY `{$this->prefix}ordering` DESC,`{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
-                "cat_title"=>"cat_value",
+                "cat_title"=>"value",
                 "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}",
             ),
             "filterfields"=>array(

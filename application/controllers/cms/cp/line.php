@@ -8,6 +8,8 @@ class line extends CP_Controller {
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->load->model('cms/cp/head_model');
         $this->load->model('cms/cp/line_model');
+        $this->load->model('cms/cp/cate_model');
+
         $this->assigns->tplConfig = array(
             'controller'   =>'line',
             'prefix'       =>'_',
@@ -46,10 +48,17 @@ class line extends CP_Controller {
         $this->assigns->type=$type;
         $head_data = $this->head_model->onGetByType($type);
         $this->assigns->head_data=$head_data;
+
+        $data = $this->cate_model->binding($type);
+        if(isset($data['aaData'])){
+            $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
+            $this->assigns->cates=$data['aaData'];
+        }
+
         $Id=(int)$this->input->post('Id');
         if($Id>0){
             $this->assigns->item = $this->line_model->onGet($Id);
-            $this->assigns->type=$this->assigns->item->cat_type;
+            $this->assigns->type=$this->assigns->item->_type;
         }
         switch ($this->assigns->type){
             
@@ -95,20 +104,23 @@ class line extends CP_Controller {
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
                     {$this->table}.{$this->prefix}title_{$this->lang} as {$this->prefix}title,
-                    {$this->table}.{$this->prefix}insert,
-                    {$this->table}.{$this->prefix}update,
+                    {$this->table}.{$this->prefix}created_at,
+                    {$this->table}.{$this->prefix}modified_at,
                     {$this->table}.{$this->prefix}status,
-                    _header._title_{$this->lang} as header_title
+                    _header._title_{$this->lang} as header_title,
+                    cate.title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
                 LEFT JOIN _header ON (_line._head_id = _header._id)
+                LEFT JOIN cate ON (_line._category_id = cate.id)
                 ",
             "where"     =>"WHERE {$this->table}.`{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}insert` DESC",
+            "order_by"  =>"ORDER BY cate.title_{$this->lang} ASC,_header._title_{$this->lang} ASC, {$this->table}.`{$this->prefix}ordering` DESC",
             "columnmaps"=>array(
                 "_title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
                 "header_title"=>"_header._title_{$this->lang}",
+                "cat_title"=>"cate.title_{$this->lang}",
             ),
             "filterfields"=>array(
                 "{$this->prefix}title_{$this->lang}"

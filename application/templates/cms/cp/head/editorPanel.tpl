@@ -17,7 +17,7 @@
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="_type" id="_type" 
                     value="[{$item->_type|default:$type|default:''}]"/>
-
+                <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
                 <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                     <ul class="nav-tabs">
                         [{assign var="f" value="active"}]
@@ -78,7 +78,7 @@
                                 [{$attr= '_desc_'|cat:$la->lang_short}]
                                 <textarea class="form-control validate[required]" 
                                     name="_desc_[{$la->lang_short}]" 
-                                    rows="10" 
+                                    rows="2" 
                                     data-lang="[{$la->lang_short}]"
                                     placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
 
@@ -137,7 +137,7 @@
                     </div>
                 </div> -->
 
-                <div class="row half" style="display:none">
+                <div class="row half" style="-display:none">
                     <div class="col-sm-6 half">
                         <div class="control-group pull-top">
                             <div>Status :</div>
@@ -145,17 +145,16 @@
                                 <span class="circleRad">
                                     <input id="_status1" 
                                         name="_status" type="radio" 
-                                        [{if $o->_status!='false'|default:''}]checked[{/if}]
-                                        value="true">
+                                        [{if $item->_status|default:1}]checked[{/if}]
+                                        value="1">
                                     <label for="_status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
-                                    <input id="_status2" name="_status" type="radio" value="false"
-                                        [{if $o->_status=='false'|default:''}]checked[{/if}]
+                                    <input id="_status2" name="_status" type="radio" value="0"
+                                        [{if !$item->_status}]checked[{/if}]
                                     >
                                     <label for="_status2">Disable&nbsp;&nbsp;</label>
                                 </span>
-
                             </div>
                         </div>
                     </div>

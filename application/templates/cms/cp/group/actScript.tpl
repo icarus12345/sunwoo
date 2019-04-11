@@ -45,23 +45,23 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').DataTable({
-                'sorting': [],
-                'columns': _oConfig.dataColumns,
-                'serverMethod': "POST",
-                'displayLength': 10,
-                'processing': true,
-                'serverSide': true,
-                'paginate': _oConfig.paginate,
-                'ajaxSource': 
+            oTable = $('#entryDatatable').dataTable({
+                'aaSorting': [],
+                'aoColumns': _oConfig.dataColumns,
+                'sServerMethod': "POST",
+                'iDisplayLength': 10,
+                'bProcessing': true,
+                'bServerSide': true,
+                'bPaginate': _oConfig.paginate,
+                'sAjaxSource': 
                     _oConfig.entryBindingUri+
                     _oConfig.entryType+'/'+
                     _oConfig.cateType,
-                'jQueryUI': false,
-                'autoWidth': false,
-                'paginationType': "full_numbers",
+                'bJQueryUI': false,
+                'bAutoWidth': false,
+                'sPaginationType': "full_numbers",
                 //sDom": '<"datatable-header"fl>t<"datatable-footer"ip>',
-                'album': {
+                'oalbum': {
                     'sSearch': "<span>Filter records:</span> _INPUT_",
                     'sLengthMenu': "<span>Show entries:</span> _MENU_",
                     'oPaginate': {
@@ -70,9 +70,6 @@ var [{$tplConfig.name}] = (function() {
                         "sNext": ">", 
                         "sPrevious": "<"
                     }
-                },
-                rowGroup: {
-                    dataSrc: 'cat_title'
                 }
             });
             // oTable.fnSetFilteringDelay(2000);
@@ -209,31 +206,7 @@ var [{$tplConfig.name}] = (function() {
         },
         'deletePhoto': function(elm){
             $(elm).parents('li.ui-state-default').hide(500,function(){$(this).remove()});
-        },
-        'putontop':function(Id){
-            this.onCommit( _oConfig.putontopUri, {
-            }, Id, function(rsdata){
-                if(rsdata.result>=0){
-                    [{$tplConfig.name}].onRefresh();
-                }
-            });
-        },
-        'putup':function(Id){
-            this.onCommit( _oConfig.putupUri, {
-            }, Id, function(rsdata){
-                if(rsdata.result>=0){
-                    [{$tplConfig.name}].onRefresh();
-                }
-            });
-        },
-        'putdown':function(Id){
-            this.onCommit( _oConfig.putdownUri, {
-            }, Id, function(rsdata){
-                if(rsdata.result>=0){
-                    [{$tplConfig.name}].onRefresh();
-                }
-            });
-        },
+        }
     };
 }());
 $(document).ready(function(){

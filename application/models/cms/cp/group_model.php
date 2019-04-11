@@ -1,9 +1,9 @@
 <?php
 
-class head_model extends Core_Model {
+class group_model extends Core_Model {
 
     function __construct(){
-        parent::__construct('_header','_','id');
+        parent::__construct('_group','_','id');
     }
     function select(){
         $this->db->select("

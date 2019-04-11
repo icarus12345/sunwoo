@@ -20,7 +20,7 @@
     };
     _oConfig.dataColumns = [
         {
-            'mData': "news_id",
+            'mData': "_id",
             'sWidth': "36px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
@@ -31,7 +31,7 @@
                 menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-edit"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
-                if(datarow.product_lock!=='true'){
+                if(datarow._lock!=='true'){
                     menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 }else{
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
@@ -41,7 +41,7 @@
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
-                if(datarow.product_lock!=='true'){
+                if(datarow._lock!=='true'){
                     menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
                 }else{
                     menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
@@ -72,19 +72,19 @@
             }
         },
         {
-            'mData': "news_status",
+            'mData': "_status",
             'sWidth': "36px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
                 var str = [
                     '<label class="cb">',
                     '<input type="checkbox" ',
-                        (value == 'true'?'checked':'')
+                        (+value?'checked':'')
                         ];
                         [{if $unit}]
                             [{if $unit|strpos:".e."!==false}]
                                 if(row.[{$tplConfig.prefix}]lock!='false'){
-                                    var status = row.[{$tplConfig.prefix}]status =='false'?'true':'false'
+                                    var status = +!+row.[{$tplConfig.prefix}]status
                                 str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]id + '\')" ')
                                 }else{
                                     str.push('disabled');
@@ -101,7 +101,7 @@
             // 'mRender': function ( value, type, datarow ) {
             // }
         },{
-            'mData': "news_thumb",'sClass': "gridThumb",'sWidth': "40px",
+            'mData': "_thumb",'sClass': "gridThumb",'sWidth': "40px",
             "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
@@ -109,7 +109,7 @@
                 else return '';
             }
         },{
-            'mData': "news_title",
+            'mData': "_title",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
@@ -120,7 +120,7 @@
         },{
             'mData': "cat_title",'sWidth': "120px"
         },{
-            'mData': "news_insert",'sWidth': "126px",
+            'mData': "_created_at",'sWidth': "126px",
         }
     ];
 </script>
@@ -176,9 +176,9 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
-                                            value="[{$c->cat_value|escape|default:''}]">
-                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->cat_level}][{$c->cat_title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
+                                            value="[{$c->value|escape|default:''}]">
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->level}][{$c->title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]

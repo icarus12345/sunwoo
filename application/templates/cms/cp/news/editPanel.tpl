@@ -15,12 +15,12 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->news_id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
-            <input type="hidden" name="news_position" value="[{$item->news_position|default:time()}]">
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="news_type" value="[{$item->post_type|default:$type}]">
+                <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
+                <input type="hidden" name="_type" value="[{$item->_type|default:$type}]">
                
                         <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                             <ul class="nav-tabs">
@@ -48,13 +48,13 @@
                                         <div class="col-mb-6 half"> 
                                             <div class="control-group pull-top">
                                                 <div>Title :(*)</div>
-                                                [{$attr= 'news_title_'|cat:$la->lang_short}]
+                                                [{$attr= '_title_'|cat:$la->lang_short}]
 
                                                 <input type="text" 
-                                                    onblur="AliasTo('#entryForm input[name=news_title_[{$la->lang_short}]]','#entryForm input[name=news_alias_[{$la->lang_short}]]')" 
+                                                    onblur="AliasTo('#entryForm input[name=_title_[{$la->lang_short}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                                    name="news_title_[{$la->lang_short}]" 
+                                                    name="_title_[{$la->lang_short}]" 
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     
                                                     maxlength="255" 
@@ -64,10 +64,10 @@
                                         <div class="col-mb-6 half">
                                             <div class="control-group pull-top">
                                                 <div>Alias :</div>
-                                                [{$attr= 'news_alias_'|cat:$la->lang_short}]
+                                                [{$attr= '_alias_'|cat:$la->lang_short}]
                                                 <input type="text" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]"
-                                                    name="news_alias_[{$la->lang_short}]" 
+                                                    name="_alias_[{$la->lang_short}]" 
                                                     data-lang="[{$la->lang_short}]"
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]"
@@ -77,9 +77,9 @@
                                     </div>
                                     <div class="control-group pull-top">
                                         <div>Desc :(*)</div>
-                                        [{$attr= 'news_desc_'|cat:$la->lang_short}]
+                                        [{$attr= '_desc_'|cat:$la->lang_short}]
                                         <textarea class="form-control validate[required]" 
-                                            name="news_desc_[{$la->lang_short}]" 
+                                            name="_desc_[{$la->lang_short}]" 
                                             rows="4" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -93,12 +93,12 @@
                                     [{else}]
                                     <div class="control-group pull-top">
                                         <div>Content :</div>
-                                        [{$attr= 'news_content_'|cat:$la->lang_short}]
+                                        [{$attr= '_content_'|cat:$la->lang_short}]
                                         <div class="">
                                             <textarea class="form-control validate[required]" 
                                                 data-editor="basic"
-                                                id="news_content_[{$la->lang_short}]" 
-                                                name="news_content_[{$la->lang_short}]" 
+                                                id="_content_[{$la->lang_short}]" 
+                                                name="_content_[{$la->lang_short}]" 
                                                 rows="10" 
                                                 data-lang="[{$la->lang_short}]"
                                                 placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -119,17 +119,17 @@
                                 <div class="pull-top control-group">
                                     <div>Category :</div>
                                     <div class='input-group'>
-                                        <select name="news_category" class="form-control selectpicker"
+                                        <select name="_category_id" class="form-control selectpicker"
                                             data-live-search="true"
                                             data-size="10"
                                             >
                                             <option value="0" >Nothing Select</option>
                                             [{foreach from=$cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{($c->cat_value|substr_count:'>' -1) *20}]px;'>[{$c->cat_title|escape:'html'}]</span>"
-                                                    [{if $c->cat_id == $item->news_category}]selected="1"[{/if}]
-                                                    value="[{$c->cat_id|default:''}]">
-                                                        [{$c->cat_title|default:''}]
+                                                    data-content="<span style='padding-left: [{($c->value|substr_count:'>' -1) *20}]px;'>[{$c->title|escape:'html'}]</span>"
+                                                    [{if $c->id == $item->_category_id}]selected="1"[{/if}]
+                                                    value="[{$c->id|default:''}]">
+                                                        [{$c->title|default:''}]
                                                 </option>
                                             [{/foreach}]
                                         </select>
@@ -144,17 +144,17 @@
                                             <div>Thumb image :(*)</div>
                                             <div class='input-group'>
                                                 <input type="text" 
-                                                    [{if $item->news_thumb}]title="<img src='[{$item->news_thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                                    [{if $item->_thumb}]title="<img src='[{$item->_thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
                                                     class="form-control tool-tip validate[maxSize[255]]" 
-                                                    value="[{$item->news_thumb|escape:'html'|default:''}]" 
-                                                    name="news_thumb" 
-                                                    id="news_thumb"
+                                                    value="[{$item->_thumb|escape:'html'|default:''}]" 
+                                                    name="_thumb" 
+                                                    id="_thumb"
                                                     data-putto="#frmErrorVideoThumb"
                                                     >
                                                 <span style"cursor:pointer"
                                                     class="input-group-addon"
                                                     title="Choose Image"
-                                                    onclick="BrowseServer('#news_thumb')"
+                                                    onclick="BrowseServer('#_thumb')"
                                                     ><i class="fa fa-image"></i></span>
                                             </div>
                                             <div id="frmErrorVideoThumb"></div>
@@ -166,17 +166,17 @@
                                             <div>Cover image :(*)</div>
                                             <div class='input-group'>
                                                 <input type="text" 
-                                                    [{if $item->news_cover}]title="<img src='[{$item->news_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                                    [{if $item->_cover}]title="<img src='[{$item->_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
                                                     class="form-control tool-tip validate[maxSize[255]]" 
-                                                    value="[{$item->news_cover|escape:'html'|default:''}]" 
-                                                    name="news_cover" 
-                                                    id="news_cover"
+                                                    value="[{$item->_cover|escape:'html'|default:''}]" 
+                                                    name="_cover" 
+                                                    id="_cover"
                                                     data-putto="#frmErrorVideoCover"
                                                     >
                                                 <span style"cursor:pointer"
                                                     class="input-group-addon"
                                                     title="Choose Image"
-                                                    onclick="BrowseServer('#news_cover')"
+                                                    onclick="BrowseServer('#_cover')"
                                                     ><i class="fa fa-image"></i></span>
                                             </div>
                                             <div id="frmErrorVideoCover"></div>
@@ -191,22 +191,10 @@
                                     <div class="col-mb-4 half">
                                         <div class="control-group pull-top">
                                             <div>Status :</div>
-                                            <select name="news_status" class="form-control selectpicker">
-                                                <option value="true">Enable</option>
-                                                <option value="false" [{if ($item->news_status|default:'')=='false'}]selected[{/if}]>Disable</option>
+                                            <select name="_status" class="form-control selectpicker">
+                                                <option value="1">Enable</option>
+                                                <option value="0" [{if ($item->_status|default:1)==0}]selected[{/if}]>Disable</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-mb-4 half" style="display:none">
-                                        <div class="control-group pull-top">
-                                            <div>Public date :</div>
-                                            <div class='input-group date'>
-                                                <input type='text' class="form-control validate[required]"
-                                                    name="news_publicday" 
-                                                    value="[{$item->news_publicday|default:('Y-m-d H:i:s'|date)}]"
-                                                    data-date-format="YYYY-MM-DD H:m:s"/>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +207,7 @@
                             <textarea 
                                 rows="3"
                                 class="form-control validate[maxSize[255]]"
-                                name="news_tag">[{$item->news_tag|escape:'html'|default:''}]</textarea>
+                                name="_tag">[{$item->_tag|escape:'html'|default:''}]</textarea>
 
                         </div>
                         

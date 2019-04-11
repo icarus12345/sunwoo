@@ -145,7 +145,7 @@
                                             [{foreach from=$cates item=c}]
                                                 <option 
                                                     data-content="<span style='padding-left: [{$c->cat_level*20}]px;'>[{$c->cat_title|escape}]</span>"
-                                                    [{if $c->cat_id == $item->category}]selected="1"[{/if}]
+                                                    [{if $c->cat_id == $item->category_id}]selected="1"[{/if}]
                                                     value="[{$c->cat_id|default:''}]">
                                                         [{$c->cat_title|default:''}]
                                                 </option>

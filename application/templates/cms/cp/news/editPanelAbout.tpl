@@ -3,9 +3,9 @@
     <div class="widget full">
         <div class="modal-header">
             [{if $item}]
-            <h4>Edit News</h4>
+            <h4>Edit Content</h4>
             [{else}]
-            <h4>Add new News</h4>
+            <h4>Add new Content</h4>
             [{/if}]
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
                 <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa-save"></i></a></li>
@@ -15,12 +15,12 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->news_id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
-            <input type="hidden" name="news_position" value="[{$item->news_position|default:time()}]">
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="news_type" value="[{$item->post_type|default:$type}]">
+                <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
+                <input type="hidden" name="_type" value="[{$item->post_type|default:$type}]">
                
                         <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                             <ul class="nav-tabs">
@@ -48,13 +48,13 @@
                                         <div class="col-mb-6 half"> 
                                             <div class="control-group pull-top">
                                                 <div>Title :(*)</div>
-                                                [{$attr= 'news_title_'|cat:$la->lang_short}]
+                                                [{$attr= '_title_'|cat:$la->lang_short}]
 
                                                 <input type="text" 
-                                                    onblur="AliasTo('#entryForm input[name=news_title_[{$la->lang_short}]]','#entryForm input[name=news_alias_[{$la->lang_short}]]')" 
+                                                    onblur="AliasTo('#entryForm input[name=_title_[{$la->lang_short}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                                    name="news_title_[{$la->lang_short}]" 
+                                                    name="_title_[{$la->lang_short}]" 
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     
                                                     maxlength="255" 
@@ -64,10 +64,10 @@
                                         <div class="col-mb-6 half">
                                             <div class="control-group pull-top">
                                                 <div>Alias :</div>
-                                                [{$attr= 'news_alias_'|cat:$la->lang_short}]
+                                                [{$attr= '_alias_'|cat:$la->lang_short}]
                                                 <input type="text" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]"
-                                                    name="news_alias_[{$la->lang_short}]" 
+                                                    name="_alias_[{$la->lang_short}]" 
                                                     data-lang="[{$la->lang_short}]"
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]"
@@ -77,9 +77,9 @@
                                     </div>
                                     <div class="control-group pull-top">
                                         <div>Desc :(*)</div>
-                                        [{$attr= 'news_desc_'|cat:$la->lang_short}]
+                                        [{$attr= '_desc_'|cat:$la->lang_short}]
                                         <textarea class="form-control validate[required,maxSize[255]]" 
-                                            name="news_desc_[{$la->lang_short}]" 
+                                            name="_desc_[{$la->lang_short}]" 
                                             rows="2" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -93,12 +93,12 @@
                                     [{else}]
                                     <div class="control-group pull-top">
                                         <div>Content :</div>
-                                        [{$attr= 'news_content_'|cat:$la->lang_short}]
+                                        [{$attr= '_content_'|cat:$la->lang_short}]
                                         <div class="">
                                             <textarea class="form-control validate[required]" 
                                                 data-editor="basic"
-                                                id="news_content_[{$la->lang_short}]" 
-                                                name="news_content_[{$la->lang_short}]" 
+                                                id="_content_[{$la->lang_short}]" 
+                                                name="_content_[{$la->lang_short}]" 
                                                 rows="10" 
                                                 data-lang="[{$la->lang_short}]"
                                                 placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
