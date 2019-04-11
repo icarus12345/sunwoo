@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2019-04-11 17:19:42
+Date: 2019-04-11 17:57:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -176,7 +176,7 @@ CREATE TABLE `_line` (
   `_ordering` int(11) DEFAULT NULL,
   `_category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _line
@@ -186,6 +186,9 @@ INSERT INTO `_line` VALUES ('2', '2', 'M', 'M', 'm', 'm', '', '', '1', '2019-04-
 INSERT INTO `_line` VALUES ('3', '9', 'Cotton', 'Cotton', 'cotton', 'cotton', '', '', '1', '2019-04-11 17:02:02', '2019-04-11 17:17:30', 'default', '1554976890', '413');
 INSERT INTO `_line` VALUES ('4', '2', '38', '38', '38', '38', '', '', '1', '2019-04-11 17:02:23', null, 'default', '1554976929', '416');
 INSERT INTO `_line` VALUES ('5', '2', '37', '37', '37', '37', '', '', '1', '2019-04-11 17:02:46', null, 'default', '1554976946', '416');
+INSERT INTO `_line` VALUES ('6', '9', 'Lynon', 'Lynon', 'lynon', 'lynon', '', '', '1', '2019-04-11 17:29:07', null, 'default', '1554978523', '413');
+INSERT INTO `_line` VALUES ('7', '3', 'Đỏ', 'Red', 'do', 'red', '', '', '1', '2019-04-11 17:30:17', null, 'default', '1554978562', '413');
+INSERT INTO `_line` VALUES ('8', '3', 'Trắng', 'White', 'trang', 'white', '', '', '1', '2019-04-11 17:30:32', null, 'default', '1554978619', '413');
 
 -- ----------------------------
 -- Table structure for `_news`
