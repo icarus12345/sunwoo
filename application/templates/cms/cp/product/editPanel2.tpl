@@ -19,7 +19,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#product-info" aria-controls="product-info" role="tab" data-toggle="tab">Information</a>
+                        <a href="#product-info" aria-controls="product-info" role="tab" data-toggle="tab">General Information</a>
                     </li>
                     <li role="presentation">
                         <a href="#product-opt" aria-controls="product-opt" role="tab" data-toggle="tab">General Information</a>

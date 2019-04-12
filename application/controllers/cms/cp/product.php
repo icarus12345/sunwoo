@@ -83,6 +83,7 @@ class product extends CP_Controller {
         $line_data = $this->line_model->onGetByType($type);
         $this->assigns->line_data=$line_data;
 
+
         $this->assigns->type=$type;
         $Id=$this->input->post('Id');
         $dataType="";

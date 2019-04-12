@@ -132,5 +132,9 @@ class line extends CP_Controller {
 
 
     }
+    function beforecommit(){
+        // $Params = $this->input->post('Params');
+        // $data = $Params['data'];
+    }
 }
 ?>

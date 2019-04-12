@@ -106,6 +106,16 @@ var [{$tplConfig.name}] = (function() {
                         if($('#[{$tplConfig.prefix}]content_en').length==1)
                             addEditorBasic('[{$tplConfig.prefix}]content_en',240);
                         $('#entryForm .selectpicker').selectpicker();
+                        $('#entryForm .color-picker').colorpicker();
+                        $('#entryForm [data-colorid]').change(function(){
+                            var colorid = $(this).data('colorid');
+                            if(this.value == colorid){
+                                $('#entryForm [data-colorbox]').show();
+                            }else{
+                                $('#entryForm [data-colorbox]').hide();
+                            }
+                        }).trigger('change')
+
                         $('#entryForm').validationEngine({
                             'scroll': false
                             , prettySelect : true
@@ -129,7 +139,7 @@ var [{$tplConfig.name}] = (function() {
                 return;
             }
             var Id = $('#EntryId').val();
-            var Params =$('#entryForm').serializeObject();
+            var Params =$('#entryForm').serializeJSON();
             if($('#sortable').length>0){
                 var images = $('#sortable img.thumb').map(function(){return $(this).attr('src')});
                 Params.[{$tplConfig.prefix}]images = images.get().join('\r\n');

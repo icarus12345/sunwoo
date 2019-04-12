@@ -16,13 +16,90 @@
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="ordering" value="[{$item->ordering|default:time()}]">
+
+                <div class="row half">
+                    <div class="col-mb-6 half">            
+                        <div class="pull-top control-group">
+                            <div>Category :(*)</div>
+
+                            <div class="row-fluid">
+                                <select 
+                                    data-cateid=1
+                                    name="category_id" 
+                                    class="form-control selectpicker"
+                                    data-putto="#frm-err-category"
+                                    data-live-search="true"
+                                    data-size="10"
+                                    >
+                                    [{if $cates|default:null}]
+                                    [{foreach from=$cates item=c}]
+                                        <option 
+                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
+                                            [{if $c->id == $item->category_id}]selected="1"[{/if}]
+                                            value="[{$c->id|default:''}]">
+                                                [{$c->title|default:''}]
+                                        </option>
+                                    [{/foreach}]
+                                    [{/if}]
+                                </select>
+                            </div>
+                            <div id="frm-err-category"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-mb-2 half"> 
+                        <div class="control-group pull-top">
+                            <div>Code :</div>
+                            <input type="text" 
+                                rows="1"
+                                class="form-control validate[required,minSize[2],maxSize[20]]"
+                                name="code" 
+                                value="[{$item->code|escape|default:''}]"/>
+                        </div>
+                    </div>
+                    <div class="col-mb-2 half"> 
+                            
+                                <div class="control-group pull-top">
+                                    <div>Status :</div>
+                                    <select name="status" class="form-control selectpicker">
+                                        <option value="1">Enable</option>
+                                        <option value="0" [{if $item->status|default:'1'=='0'}][{/if}]>Disable</option>
+                                    </select>
+                                </div>
+                        
+                    </div>
+                    <div class="col-mb-2 half">   
+                        <div class="control-group pull-top">
+                            <div>Is Hot :</div>
+                            <!-- <input type="text" 
+                                rows="1"
+                                class="form-control validate[required,minSize[4],maxSize[20]]"
+                                name="is_hot" 
+                                value="[{$item->is_hot|escape|default:''}]"/> -->
+                            <div class="">
+                                <input type='hidden' value='[{$item->is_hot|default:"0"}]' name='is_hot'>
+                                <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->is_hot}]checked=1[{/if}]><span></span></label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row half pull-bottom">
+                    
+                    <div class="col-mb-6 half"> 
+                        
+                    </div>
+                </div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#product-info" aria-controls="product-info" role="tab" data-toggle="tab">Information</a>
+                        <a href="#product-info" aria-controls="product-info" role="tab" data-toggle="tab">General Information</a>
                     </li>
                     <li role="presentation">
-                        <a href="#product-images" aria-controls="product-images" role="tab" data-toggle="tab">Image List</a>
+                        <a href="#product-images" aria-controls="product-images" role="tab" data-toggle="tab">Images</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#product-custom" aria-controls="product-custom" role="tab" data-toggle="tab">Customize</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
@@ -140,123 +217,51 @@
                             [{/foreach}]
                         </div>
                         
-                        <div class="row half">
-                            <div class="col-mb-6 half">            
-                                <div class="pull-top control-group">
-                                    <div>Category :(*)</div>
-
-                                    <div class="row-fluid">
-                                        <select 
-                                            name="category_id" 
-                                            class="form-control selectpicker"
-                                            data-putto="#frm-err-category"
-                                            data-live-search="true"
-                                            data-size="10"
-                                            >
-                                            [{if $cates|default:null}]
-                                            [{foreach from=$cates item=c}]
-                                                <option 
-                                                    data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
-                                                    [{if $c->id == $item->category_id}]selected="1"[{/if}]
-                                                    value="[{$c->id|default:''}]">
-                                                        [{$c->title|default:''}]
-                                                </option>
-                                            [{/foreach}]
-                                            [{/if}]
-                                        </select>
-                                    </div>
-                                    <div id="frm-err-category"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-mb-3 half"> 
-                                <div class="control-group pull-top">
-                                    <div>Code :</div>
-                                    <input type="text" 
-                                        rows="1"
-                                        class="form-control validate[required,minSize[2],maxSize[20]]"
-                                        name="code" 
-                                        value="[{$item->code|escape|default:''}]"/>
-                                </div>
-                            </div>
-                            <div class="col-mb-3 half"> 
-                                <div class="control-group pull-top">
-                                    <div>Is Hot :</div>
-                                    <!-- <input type="text" 
-                                        rows="1"
-                                        class="form-control validate[required,minSize[4],maxSize[20]]"
-                                        name="is_hot" 
-                                        value="[{$item->is_hot|escape|default:''}]"/> -->
-                                    <div class="">
-                                        <input type='hidden' value='[{$item->is_hot|default:"0"}]' name='is_hot'>
-                                        <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->is_hot}]checked=1[{/if}]><span></span></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row half">
-                            <div class="col-mb-6 half">   
-                                <div class="row half">
-                                    <div class="col-xs-6 half">
-                                        <div class="control-group pull-top">
-                                            <div>Image :(*)</div>
-                                            <div class="input-append">
-                                                <input type="text" 
-                                                    [{if $item->thumb}]title="<img src='[{$item->thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                                    class="form-control tool-tip validate[required,maxSize[255]]" 
-                                                    value="[{$item->thumb|escape|default:''}]" 
-                                                    name="thumb" 
-                                                    id="thumb"
-                                                    >
-                                                <span class="add-on" 
-                                                    title="Choose Image"
-                                                    onclick="BrowseServer('#thumb')">
-                                                    <i class="fa-image"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col-xs-6 half">
-                                        <div class="control-group pull-top">
-                                            <div>Cover :</div>
-                                            <div class="input-append">
-                                                <input type="text" 
-                                                    [{if $item->cover}]title="<img src='[{$item->cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                                    class="form-control tool-tip validate[maxSize[255]]" 
-                                                    value="[{$item->cover|escape|default:''}]" 
-                                                    name="cover" 
-                                                    id="cover"
-                                                    >
-                                                <span class="add-on" 
-                                                    title="Choose Image"
-                                                    onclick="BrowseServer('#cover')">
-                                                    <i class="fa-image"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>     
-                                
-                            </div>
-                            <div class="col-mb-6 half"> 
-                                <div class="row half">
-                                    
-                                    <div class="col-xs-6 half">
-                                        <div class="control-group pull-top">
-                                            <div>Status :</div>
-                                            <select name="status" class="form-control selectpicker">
-                                                <option value="1">Enable</option>
-                                                <option value="0" [{if $item->status|default:'1'=='0'}][{/if}]>Disable</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                     <div role="tabpanel" class="tab-pane" id="product-images">
+                        <div class="row half pull-top">
+                            <div class="col-xs-6 half">
+                                <div class="control-group pull-top">
+                                    <div>Image :(*)</div>
+                                    <div class="input-append">
+                                        <input type="text" 
+                                            [{if $item->thumb}]title="<img src='[{$item->thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                            class="form-control tool-tip validate[required,maxSize[255]]" 
+                                            value="[{$item->thumb|escape|default:''}]" 
+                                            name="thumb" 
+                                            id="thumb"
+                                            >
+                                        <span class="add-on" 
+                                            title="Choose Image"
+                                            onclick="BrowseServer('#thumb')">
+                                            <i class="fa-image"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-xs-6 half">
+                                <div class="control-group pull-top">
+                                    <div>Cover :</div>
+                                    <div class="input-append">
+                                        <input type="text" 
+                                            [{if $item->cover}]title="<img src='[{$item->cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                            class="form-control tool-tip validate[maxSize[255]]" 
+                                            value="[{$item->cover|escape|default:''}]" 
+                                            name="cover" 
+                                            id="cover"
+                                            >
+                                        <span class="add-on" 
+                                            title="Choose Image"
+                                            onclick="BrowseServer('#cover')">
+                                            <i class="fa-image"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
                         <div class="container pull-top">
                             <span class="code cursor" 
                                 title="Add new Photo" 
@@ -289,6 +294,9 @@
                             Press Ctrl to select multi images.
                         </div>
                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="product-custom">
+                        [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/product/entry-custom.tpl"}]
                     </div>
                 </div>
                 <div class="clearfix"></div>

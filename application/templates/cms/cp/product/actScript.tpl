@@ -355,6 +355,13 @@ var [{$tplConfig.name}] = (function() {
 
                         productopt_config.entryType = $('#product_token').val();
                         productopt.onInit();
+
+                        $('#entryForm [data-cateid]').change(function(){
+                            console.log(this.value,'this.value')
+                            $('[data-headid]').hide()
+                            $('[data-headid="'+this.value+'"]').show()
+                            $('[data-custombox] [data-headid]:not([data-headid="'+this.value+'"]) input[type="checkbox"]').prop('checked',false)
+                        }).trigger('change')
                     }
                 }
             }).call();
@@ -372,7 +379,7 @@ var [{$tplConfig.name}] = (function() {
                 return;
             }
             var Id = $('#EntryId').val();
-            var Params =$('#entryForm').serializeObject();
+            var Params =$('#entryForm').serializeJSON();
             if($('#sortable').length == 1){
                 var images = $('#sortable img.thumb').map(function(){return $(this).attr('src')});
                 Params.[{$tplConfig.prefix}]images = images.get().join('\r\n');

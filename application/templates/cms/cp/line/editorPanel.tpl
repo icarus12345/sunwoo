@@ -28,6 +28,7 @@
                                     name="_head_id" 
                                     class="form-control selectpicker"
                                     data-size="10"
+                                    data-colorid="3"
                                     >
                                     <option value="0"></option>
 
@@ -165,10 +166,30 @@
                         [{assign var="f" value=""}]
                     [{/foreach}]
                 </div>
+                <div class="row half" data-colorbox="3">
+                    <div class="col-mb-4 half">
+                        <div class="control-group pull-top">
+                            <div>Color :</div>
+                            <div class="input-append color-picker">
+                                <input 
+                                    type="text"
+                                    data-colorpicker
+                                    class="form-control"
+                                    name="_data[color]" 
+                                    value="[{$item->_data.color}]" 
+                                    >
+                                <span class="add-on">
+                                    <i></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 
 
-                <!-- <div class="row half">
+                <!-- 
+                <div class="row half">
                     <div class="col-mb-4 half">
                         <div class="control-group pull-top">
                             <div>Image :</div>

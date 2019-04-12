@@ -34,7 +34,13 @@ class Core_Model extends CI_Model {
                 ->where("{$this->prefix}{$this->colid}", $id)
                 ->get($this->table);
         $this->sqlLog('Get Entry');
-        return $query->row();
+        $row = $query->row();
+        if($row){
+            if(isset($row->{"{$this->prefix}data"})){
+                $row->{"{$this->prefix}data"} = json_decode($row->{"{$this->prefix}data"},true);
+            }
+        }
+        return $row;
     }
     function onGetByAlias($alias) {
         if($this->status){
@@ -67,6 +73,11 @@ class Core_Model extends CI_Model {
         return $query->result();
     }
     function onInsert($params) {
+        if(isset($params["{$this->prefix}data"])){
+            if(is_array($params["{$this->prefix}data"])){
+                $params["{$this->prefix}data"] = json_encode($params["{$this->prefix}data"],true);
+            }
+        }
         $this->db->set($this->prefix . 'created_at', 'NOW()', FALSE);
         @$this->db->insert($this->table, $params);
         $this->sqlLog('Insert Entry');
@@ -85,6 +96,11 @@ class Core_Model extends CI_Model {
         return false;
     }
     function onUpdate($id, $params) {
+        if(isset($params["{$this->prefix}data"])){
+            if(is_array($params["{$this->prefix}data"])){
+                $params["{$this->prefix}data"] = json_encode($params["{$this->prefix}data"],true);
+            }
+        }
         $this->db->set($this->prefix . 'modified_at', 'NOW()', FALSE);
         $this->db->where("$this->prefix$this->colid", $id);
         @$this->db->update($this->table, $params);

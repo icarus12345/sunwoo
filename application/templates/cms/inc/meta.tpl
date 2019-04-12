@@ -21,6 +21,7 @@
         
 
         <script type="text/javascript" src="[{'libraries/bootstrap/js/jquery-1.9.1.min.js'|base_url}]"></script>
+        <script type="text/javascript" src="[{'libraries/plugin/jquery.serializejson.js'|base_url}]"></script>
 
         
         
