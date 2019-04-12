@@ -24,9 +24,11 @@
                         <div class="pull-top control-group">
                             <div>Head :(*)</div>
                             <div class="row-fluid">
-                                <select name="_head_id" class="form-control selectpicker"
-                                        data-size="10"
-                                        >
+                                <select 
+                                    name="_head_id" 
+                                    class="form-control selectpicker"
+                                    data-size="10"
+                                    >
                                     <option value="0"></option>
 
                                     [{foreach from=$head_data item=c}]
@@ -114,13 +116,13 @@
                         
                         <div id="tab_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
                             <div class="row half">
-                                <div class="col-mb-6 half">
+                                <div class="col-mb-12 half">
                                     <div class="control-group pull-top">
                                         <div>Title :(*)</div>
                                         [{$attr= '_title_'|cat:$la->lang_short}]
                                         <input type="text" 
                                             class="form-control validate[requiredmaxSize[255]]"
-                                            onblur="AliasTo('#entryForm input[name=_title_[{$la->lang_short}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
+                                            -onblur="AliasTo('#entryForm input[name=_title_[{$la->lang_short}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
                                             name="_title_[{$la->lang_short}]" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]"
@@ -129,7 +131,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="col-mb-6 half">
+                                <!-- <div class="col-mb-6 half">
                                     <div class="control-group pull-top">
                                         <div>Alias :</div>
                                         [{$attr= '_alias_'|cat:$la->lang_short}]
@@ -141,7 +143,7 @@
                                             value="[{$item->$attr|quotes_to_entities|default:''}]"
                                             />
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             
                             
