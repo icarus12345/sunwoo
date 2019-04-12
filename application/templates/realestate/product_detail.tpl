@@ -1,7 +1,7 @@
 [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/meta.tpl"}]
 <body>
   [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/head.tpl"}]
-  <div id="wrap" class="cover">
+  <div id="wrap" class="cover custom-wrap">
         [{include file=$smarty.const.APPPATH|cat:"templates/realestate/inc/top.tpl"}]
         <div id="left-contents-wrap" ui-yield-to="left-contents">
           <div ui-content-for="left-contents" style="width: 100%;height: 100%;" id="google-map">

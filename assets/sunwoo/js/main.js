@@ -332,4 +332,9 @@ Country.prototype.draw = function() {
 };
 $(document).ready(function(){
     app.init_search();
+    setTimeout(function(){
+        app.switch_search = function(page){
+            $('#searchFrm').attr('action','/'+page).submit()
+        }
+    },500)
 })
