@@ -93,7 +93,7 @@
 				$n.addClass(options.oepnClass);
 				$b.addClass(options.bodyOepnClass+' '+id+'-'+options.bodyOepnClass);
 			}
-		},null);
+		},function(){});
 
 		this.closeMenu = function(){
 			// var $t = $(options.target).filter('.'+options.oepnClass);

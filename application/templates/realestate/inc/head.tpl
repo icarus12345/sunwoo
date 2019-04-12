@@ -12,7 +12,7 @@
         </div>
         <nav id="gnavi-links" class="nav-links" ui-yield-to="left-nav">
             <div class="hover-line-links" ui-content-for="left-nav">
-                <span class="close-gnavi fa fa-times" onclick="$('#gnavi .nav-btn').click()"></span>
+                <span class="close-gnavi fa fa-times" onclick="$('#gnavi .nav-btn a').click()"></span>
                 <ul>
                     <li class="head"><b>[{$languages.all_open_your_life|quotes_to_entities}]</b></li>
                     <li><a href="/"><span>[{$languages.all_home|quotes_to_entities}]</span></a></li>
