@@ -1,4 +1,4 @@
-
+<input type="hidden" name="data[]" value="">
 <div data-custombox=1>
     [{foreach from=$head_data item=head}]
         <fieldset>

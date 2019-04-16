@@ -47,7 +47,7 @@ class head extends CP_Controller {
         $Id=(int)$this->input->post('Id');
         if($Id>0){
             $this->assigns->item = $this->head_model->onGet($Id);
-            $this->assigns->type=$this->assigns->item->cat_type;
+            $this->assigns->type=$this->assigns->item->_type;
         }
         switch ($this->assigns->type){
             

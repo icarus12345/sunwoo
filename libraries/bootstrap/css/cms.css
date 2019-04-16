@@ -991,11 +991,11 @@ legend{padding: 0 4px;line-height: 20px;font-size: 12px;border: 0;width: auto;ma
         .table-footer .pagination { margin-top: 12px; }
         table.message-table{table-layout: fixed;}
 }
-[class^="fa-"], [class*=" fa-"] {
+/*[class^="fa-"], [class*=" fa-"] {
 	font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;width: auto;height: auto;
 	line-height: normal;vertical-align: baseline;background-image: none;background-position: 0% 0%;background-repeat: repeat;margin-top: 0;font-size: 14px;
-}
+}*/
 .cursor{
     cursor: pointer
 }

@@ -965,6 +965,60 @@ App.KCFinder.BrowseServer = function (elementid) {
         toastr.error(e.message,'Error');
     }
 }
+App.SEO = function(type,id){
+    if ($("#seo-dialog").length === 0) {
+        $('body').append('<div id="seo-dialog"><div style="padding:40px">Loading...</div></div>');
+    }
+    httpRequest({
+        'url'         :  base_url + 'cms/cp/seo/editpanel/'+type,
+        'data'        :   {
+            'Id'  :   id
+        },
+        'callback'    :   function(rsdata){
+            if(rsdata.result<0){
+                addNotice(rsdata.message,'danger');
+            }else{
+                $('#seo-dialog').html(rsdata.htmlreponse);
+                $('#seoform').validationEngine({'scroll': false});
+            }
+        }
+    }).call();
+    uidialog({
+        'message' : $('#seo-dialog'),
+        'title': 'SEO information !',
+        'width':'480px',
+        'type':'notice',
+        'buttons' : [{
+            'text': 'Update',
+            'class': 'ui-btn',
+            'click': function() {
+                if( $('#seoform').validationEngine('validate') === false)return false;
+                var Params = $('#seoform').serializeObject();
+                httpRequest({
+                    'url': base_url+'cms/excution/updateinfo',
+                    'data': {
+                        'Params': Params
+                    },
+                    'callback': function(rsdata) {
+                        if (rsdata.result < 0) {
+                            addNotice(rsdata.message,'danger');
+                        } else {
+                            addNotice(rsdata.message,'info');
+                            $('#iDialog').dialog("close");
+                        }
+                    }
+                }).call();
+                
+            }
+        },{
+            'text': 'Cancel',
+            'class': 'ui-btn',
+            'click': function() {
+                $(this).dialog("close");
+            }
+        }]
+    }).open();
+}
 //////
 //// END
 //

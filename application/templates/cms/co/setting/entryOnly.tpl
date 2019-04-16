@@ -47,7 +47,7 @@
         <div class="modal-header">
             <h4>Setting</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Save" onclick="onSave()"><i class="fa-save"></i></a></li>
+                <li><a href="JavaScript:" title="Save" onclick="onSave()"><i class="fa fa-save"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -97,7 +97,7 @@
                                                 name="hometitle" id="_hometitle"
                                                 >
                                             <span class="add-on" onclick="BrowseServer('#_hometitle')">
-                                                <i class="fa-image"></i>
+                                                <i class="fa fa-image"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                                 name="homebanner" id="_homebanner"
                                                 >
                                             <span class="add-on" onclick="BrowseServer('#_homebanner')">
-                                                <i class="fa-image"></i>
+                                                <i class="fa fa-image"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -176,7 +176,7 @@
                                                 name="contacttitle" id="_contacttitle"
                                                 >
                                             <span class="add-on" onclick="BrowseServer('#_contacttitle')">
-                                                <i class="fa-image"></i>
+                                                <i class="fa fa-image"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -208,7 +208,7 @@
             </form>
             <div class="pull-top">
                 <div class="btn btn-default" title="Save" onclick="onSave()">
-                    <i class="fa-save"></i>&nbsp;Save
+                    <i class="fa fa-save"></i>&nbsp;Save
                 </div>
             </div>
         </div>

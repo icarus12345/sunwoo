@@ -3,7 +3,7 @@
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="Image" class="tip" data-original-title="Logout">
-                    <i class="fa-image"></i>
+                    <i class="fa fa-image"></i>
                 </a>
             </div>
         </li>
@@ -38,35 +38,35 @@
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="Chart" class="tip">
-                    <i class="fa-line-chart"></i>
+                    <i class="fa fa-line-chart"></i>
                 </a>
             </div>
         </li>
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="Setting" class="tip" data-original-title="Logout">
-                    <i class="fa-toggle-off"></i>
+                    <i class="fa fa-toggle-off"></i>
                 </a>
             </div>
         </li>
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="User" class="tip">
-                    <i class="fa-users"></i>
+                    <i class="fa fa-users"></i>
                 </a>
             </div>
         </li>
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="Setting" class="tip">
-                    <i class="fa-cogs"></i>
+                    <i class="fa fa-cogs"></i>
                 </a>
             </div>
         </li>
         <li>
             <div class="depth">
                 <a href="#" data-placement="bottom" title="Logout" class="tip" data-original-title="Logout">
-                    <i class="fa-sign-out"></i>
+                    <i class="fa fa-sign-out"></i>
                 </a>
             </div>
         </li>

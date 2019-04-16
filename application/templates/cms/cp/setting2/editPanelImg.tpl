@@ -52,7 +52,7 @@
                                 <span class="add-on"
                                       data-toggle="tooltip" data-placement="left" title="Tooltip on left"
                                       onclick="BrowseServer('#Image')">
-                                    <i class="fa-image"></i>
+                                    <i class="fa fa-image"></i>
                                 </span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                 <span class="add-on"
                                       data-toggle="tooltip" data-placement="left" title="Tooltip on left"
                                       onclick="BrowseServer('#Image_en')">
-                                    <i class="fa-image"></i>
+                                    <i class="fa fa-image"></i>
                                 </span>
                             </div>
                         </div>

@@ -46,7 +46,7 @@
         <div class="modal-header">
             <h4>Webpage</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Save" onclick="onSave()"><i class="fa-save"></i></a></li>
+                <li><a href="JavaScript:" title="Save" onclick="onSave()"><i class="fa fa-save"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -92,7 +92,7 @@
                                         name="site_image" id="site_image"
                                         >
                                 <span class="add-on" onclick="BrowseServer('#site_image')">
-                                    <i class="fa-image"></i>
+                                    <i class="fa fa-image"></i>
                                 </span>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                         name="site_social_image" id="site_social_image"
                                         >
                                 <span class="add-on" onclick="BrowseServer('#site_social_image')">
-                                    <i class="fa-image"></i>
+                                    <i class="fa fa-image"></i>
                                 </span>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
             </form>
             <div class="pull-top">
                 <div class="btn btn-default" title="Save" onclick="onSave()">
-                    <i class="fa-save"></i>&nbsp;Save
+                    <i class="fa fa-save"></i>&nbsp;Save
                 </div>
             </div>
         </div>

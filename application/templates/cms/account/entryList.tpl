@@ -9,9 +9,9 @@
         <div class="modal-header">
             <h4>User Account</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Add new entry" onclick="account.onAddItem()"><i class="fa-plus"></i></a></li>
-                <li><a href="JavaScript:" title="Refresh entrys" onclick="account.onRefresh()"><i class="fa-rotate-left"></i></a></li>
-                <li><a href="JavaScript:" title="Setting" ><i class="fa-cogs"></i></a></li>
+                <li><a href="JavaScript:" title="Add new entry" onclick="account.onAddItem()"><i class="fa fa-plus"></i></a></li>
+                <li><a href="JavaScript:" title="Refresh entrys" onclick="account.onRefresh()"><i class="fa fa-rotate-left"></i></a></li>
+                <li><a href="JavaScript:" title="Setting" ><i class="fa fa-cogs"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -30,7 +30,7 @@
                 <li>
                     <div class="depth">
                         <a  href="JavaScript:" title="Add new entry" onclick="account.onAddItem()">
-                            <i class="fa-plus"></i>
+                            <i class="fa fa-plus"></i>
                         </a>
                     </div>
                 </li>

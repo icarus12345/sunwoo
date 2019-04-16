@@ -3,9 +3,9 @@
 
 
 <ul class="jqx-navbar-icons navbar-icons">
-    <li><a href="JavaScript:" title="Add new entry" onclick="[{$tplConfig.name}].onAddItem()"><i class="fa-plus"></i></a></li>
-    <li><a href="JavaScript:" title="Refresh entrys" onclick="[{$tplConfig.name}].onRefresh()"><i class="fa-rotate-left"></i></a></li>
-    <li><a href="JavaScript:" title="Setting" onclick="[{$tplConfig.name}].toggleSetting()"><i class="fa-cogs"></i></a></li>
+    <li><a href="JavaScript:" title="Add new entry" onclick="[{$tplConfig.name}].onAddItem()"><i class="fa fa-plus"></i></a></li>
+    <li><a href="JavaScript:" title="Refresh entrys" onclick="[{$tplConfig.name}].onRefresh()"><i class="fa fa-rotate-left"></i></a></li>
+    <li><a href="JavaScript:" title="Setting" onclick="[{$tplConfig.name}].toggleSetting()"><i class="fa fa-cogs"></i></a></li>
 </ul>
 <div id='contextMenu' class="jqx-contextMenu">
     <ul>
@@ -19,7 +19,7 @@
 <div id= "jqwidget-entry-setting" class="jqwidget-entry-setting">
     <div class="mark" onclick="[{$tplConfig.name}].toggleSetting()"></div>
     <div>
-        <div><i class="fa-cogs"></i> Setting</div>
+        <div><i class="fa fa-cogs"></i> Setting</div>
         <div>
             
             [{assign var="columns" value=[

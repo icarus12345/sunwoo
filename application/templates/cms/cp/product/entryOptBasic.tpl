@@ -4,7 +4,7 @@ value="[{$item->product_token|default:$token|default:''}]"/>
     <span class="code cursor"
         title="Add new Photo"
         onclick="productopt.onAddItem()">
-        <i class="fa-plus"></i>&nbsp;Add Option
+        <i class="fa fa-plus"></i>&nbsp;Add Option
     </span>
     &nbsp;&nbsp;
     <span class="code cursor"

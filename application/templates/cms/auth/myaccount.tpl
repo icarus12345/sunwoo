@@ -26,7 +26,7 @@
                     value=""
                     />
                 <span class="add-on" title="Random new password" onclick="getNewPass()">
-                    <i class="fa-random"></i>
+                    <i class="fa fa-random"></i>
                 </span>
             </div>
         </div>

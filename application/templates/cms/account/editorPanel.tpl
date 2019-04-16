@@ -4,8 +4,8 @@
         <div class="modal-header">
             <h4>User Account</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Save" onclick="account.onSave()"><i class="fa-save"></i></a></li>
-                <li><a href="JavaScript:" title="Back to entry list" onclick="account.onCancel()"><i class="fa-reply-all"></i></a></li>
+                <li><a href="JavaScript:" title="Save" onclick="account.onSave()"><i class="fa fa-save"></i></a></li>
+                <li><a href="JavaScript:" title="Back to entry list" onclick="account.onCancel()"><i class="fa fa-reply-all"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -83,7 +83,7 @@
                                     value=""
                                     />
                                 <span class="add-on" title="Random new password" onclick="account.getNewPass()">
-                                    <i class="fa-random"></i>
+                                    <i class="fa fa-random"></i>
                                 </span>
                             </div>
                         </div>

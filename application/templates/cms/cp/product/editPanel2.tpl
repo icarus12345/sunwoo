@@ -4,8 +4,8 @@
         <div class="modal-header">
             <h4>Product</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa-save"></i></a></li>
-                <li><a href="JavaScript:" title="Back to entry list" onclick="[{$tplConfig.name}].onCancel()"><i class="fa-reply-all"></i></a></li>
+                <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa fa-save"></i></a></li>
+                <li><a href="JavaScript:" title="Back to entry list" onclick="[{$tplConfig.name}].onCancel()"><i class="fa fa-reply-all"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -225,7 +225,7 @@
                                                 <span class="add-on" 
                                                     title="Choose Image"
                                                     onclick="BrowseServer('#thumb')">
-                                                    <i class="fa-image"></i>
+                                                    <i class="fa fa-image"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@
                                                 <span class="add-on" 
                                                     title="Choose Image"
                                                     onclick="BrowseServer('#cover')">
-                                                    <i class="fa-image"></i>
+                                                    <i class="fa fa-image"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -274,7 +274,7 @@
                             <span class="code cursor" 
                                 title="Add new Photo" 
                                 onclick="[{$tplConfig.name}].choosePhotos()">
-                                <i class="fa-plus"></i>&nbsp;Add Images
+                                <i class="fa fa-plus"></i>&nbsp;Add Images
                             </span>
                             &nbsp;&nbsp;
                             <span class="code cursor" 
@@ -474,7 +474,7 @@
     <li>
         <div class="depth">
             <a  href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()">
-                <i class="fa-save fa"></i>
+                <i class="fa fa-save fa"></i>
             </a>
         </div>
     </li>

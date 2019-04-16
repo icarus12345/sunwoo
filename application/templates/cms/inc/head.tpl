@@ -11,12 +11,12 @@
             </a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <li><a href="#" onclick="toggleQuickBar()" title="Quick navigation"><span class="fa fa-send-o"></span></a></li>
+            <li><a href="#" onclick="toggleQuickBar()" title="Quick navigation"><span class="fa fa-send"></span></a></li>
             <li>
                 <a href="JavaScript:" 
                    onclick="cms.logMessage()"
                    title="Notication message">
-                    <span class="fa fa-comments-o"></span>
+                    <span class="fa fa-comments"></span>
                 </a>
             </li>
             <li>
@@ -33,7 +33,7 @@
                 </a>
                 <ul class="dropdown-menu pull-right">
                     <li><a href="JavaScript:void(0)" onclick="accountdialog()"><span class="fa fa-info-circle"></span> Account Info</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="[{'cms/auth/logout'|base_url}]?state=[{uri_string()}]&query=[{$smarty.get|http_build_query|urlencode}]"><i class="fa-sign-out"></i> Logout</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="[{'cms/auth/logout'|base_url}]?state=[{uri_string()}]&query=[{$smarty.get|http_build_query|urlencode}]"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

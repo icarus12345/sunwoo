@@ -23,11 +23,11 @@ _oConfig.dataColumns = [
                 [{if $unit}]
                 var menu = [];
                 [{if $unit|strpos:".e."!==false}] 
-                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-edit"></i> Edit</a></li>')
+                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-pencil-alt"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
                 if(datarow.readonly!=='true'){
-                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                     
@@ -47,7 +47,7 @@ _oConfig.dataColumns = [
                 [{/if}]
                 str += [
                 '<div class="btn-group">',
-                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil"></i> Edit</button>',
+                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil-alt"></i> Edit</button>',
                   '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<span class="caret"></span>',
                     '<span class="sr-only">Toggle Dropdown</span>',
@@ -55,6 +55,8 @@ _oConfig.dataColumns = [
                   '<ul class="dropdown-menu">',
                     menu.join(''),
                     
+                    '<li role="separator" class="divider"></li>',
+                    '<li><a href="#" onclick="App.SEO(\'product\',\'' + value + '\')" ><i class="fa fa-hashtag"></i> SEO</a></li>',
                     '<li role="separator" class="divider"></li>',
                     '<li><a href="#" onclick="[{$tplConfig.name}].putontop(\'' + value + '\')" ><i class="fa fa-arrow-up"></i> Put on top</a></li>',
                     '<li><a href="#" onclick="[{$tplConfig.name}].putup(\'' + value + '\')"><i class="fa fa-arrow-up"></i> Put up</a></li>',

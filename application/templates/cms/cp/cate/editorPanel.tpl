@@ -8,8 +8,8 @@
                 <h4>[{$tplConfig.addEntryTitle}]</h4>
             [{/if}]
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
-                <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa-save"></i></a></li>
-                <li><a href="JavaScript:" title="Back to entry list" onclick="[{$tplConfig.name}].onCancel()"><i class="fa-reply-all"></i></a></li>
+                <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa fa-save"></i></a></li>
+                <li><a href="JavaScript:" title="Back to entry list" onclick="[{$tplConfig.name}].onCancel()"><i class="fa fa-reply-all"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -115,7 +115,7 @@
                                         name="thumb" id="thumb"
                                         >
                                 <span class="add-on" onclick="BrowseServer('#thumb')">
-                                    <i class="fa-image"></i>
+                                    <i class="fa fa-image"></i>
                                 </span>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
     <li>
         <div class="depth">
             <a  href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()">
-                <i class="fa-save fa"></i>
+                <i class="fa fa-save fa"></i>
             </a>
         </div>
     </li>

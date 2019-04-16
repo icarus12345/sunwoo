@@ -10,6 +10,8 @@
         <link rel="stylesheet" type="text/css" href="[{'libraries/bootstrap/css/bootstrap-select.min.css'|base_url}]"/>
 <!--        <link rel="stylesheet" type="text/css" href="[{'libraries/plugin/select2/select2.css'|base_url}]"/>-->
         <link rel="stylesheet" type="text/css" href="[{'libraries/bootstrap/css/font-awesome.css'|base_url}]">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="[{'libraries/bootstrap/css/bootstrap-datetimepicker.min.css'|base_url}]"/>
         <link rel="stylesheet" type="text/css" href="[{'libraries/bootstrap/css/bootstrap-colorpicker.min.css'|base_url}]"/>
         <link rel="stylesheet" type="text/css" href="[{'libraries/plugin/mCustomSrollbar/jquery.mCustomScrollbar.css'|base_url}]"/>

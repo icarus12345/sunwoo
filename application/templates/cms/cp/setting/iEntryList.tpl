@@ -124,10 +124,10 @@
             <h4>[{$tplConfig.title}]</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
                 [{if $unit|strpos:".a."!==false}]
-                <li><a href="JavaScript:" title="Add new entry" onclick="[{$tplConfig.name}].onPopAddItem('[{$layout}]')"><i class="fa-plus"></i></a></li>
+                <li><a href="JavaScript:" title="Add new entry" onclick="[{$tplConfig.name}].onPopAddItem('[{$layout}]')"><i class="fa fa-plus"></i></a></li>
                 [{/if}]
-                <li><a href="JavaScript:" title="Refresh entrys" onclick="[{$tplConfig.name}].onRefresh()"><i class="fa-rotate-left"></i></a></li>
-                <li><a href="JavaScript:" title="Setting" ><i class="fa-cogs"></i></a></li>
+                <li><a href="JavaScript:" title="Refresh entrys" onclick="[{$tplConfig.name}].onRefresh()"><i class="fa fa-rotate-left"></i></a></li>
+                <li><a href="JavaScript:" title="Setting" ><i class="fa fa-cogs"></i></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -174,7 +174,7 @@
                 onclick="[{$tplConfig.name}].onPopAddItem('[{$layout}]')"
                 [{/if}]
                 >
-                <i class="fa-plus"></i>
+                <i class="fa fa-plus"></i>
             </a>
         </div>
     </li>
