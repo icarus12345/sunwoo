@@ -2036,6 +2036,10 @@ li.current .sub-nav-links{
 	.popup-bubble{display: none !important}
 	.nav-links>div>ul{padding-left: 40px;}
 	#gnavi-links li>ul{display: block;}
+	.srvs .table td{
+		display: block;padding: 10px;
+	}
+	.srvs .table h4{font-size: 24px;    font-weight: bold;}
 }
 body .wp-copyright{
 	transform: scale(0) !important;

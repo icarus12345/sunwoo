@@ -53,13 +53,13 @@
                                         <div class="item">
                                             <span class="srv-ico ico-1"></span>
                                             <div>[{$languages.all_structure|quotes_to_entities}]</div>
-                                            <div>[{$product_detail->product_bathroom|quotes_to_entities}] [{$languages.all_bathroom|quotes_to_entities}]</div>
+                                            <div>[{$product_detail->product_bedroom|quotes_to_entities}] [{$languages.all_bedroom|quotes_to_entities}]</div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="item">
                                             <span class="srv-ico ico-2"></span>
-                                            <div>[{$languages.all_utilities|quotes_to_entities}]</div>
+                                            <div>[{$languages.all_utilities|quotes_to_entities}] & [{$languages.all_furniture|quotes_to_entities}]</div>
                                             <div>[{$product_detail->product_utilities|quotes_to_entities}]</div>
                                         </div>
                                     </td>
