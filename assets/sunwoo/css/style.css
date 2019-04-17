@@ -135,7 +135,10 @@ body {
 	        padding: 15px 15px 15px 30px;
 	        min-height: 100vh;
 	        background-color: #fff;
-
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: 100% auto;
+	background-attachment: fixed;
 }
 
 .no-footer #wrap{
@@ -1387,6 +1390,46 @@ li.current .sub-nav-links{
 		-webkit-width: calc(70% - 15px);
 	}
 }
+@media screen and (min-width: 1200px) {
+	.features .product:nth-child(1),
+	.features .product:nth-child(2){
+		width: 50%;
+		padding: 10px;
+		float: left;
+	}
+	.features .product:nth-child(3),
+	.features .product:nth-child(4){
+		width: 25%;
+		padding: 10px;
+		float: left;
+	}
+	.features .product:nth-child(1) .nailthumb-figure-square{
+		padding-bottom: calc(100% + 22px);
+		padding-bottom: -ms-calc(100% + 22px);
+		padding-bottom: -webkit-calc(100% + 22px)
+	}
+	.features .product:nth-child(2) .nailthumb-figure-square{
+		padding-bottom: calc(50% - 16px);
+		padding-bottom: -ms-calc(50% - 16px);
+		padding-bottom: -webkit-calc(50% - 16px)
+	}
+	.features .product:nth-child(3) .nailthumb-figure-square,
+	.features .product:nth-child(4) .nailthumb-figure-square{
+		padding-bottom: calc(100% - 10px);
+		padding-bottom: -ms-calc(100% - 10px);
+		padding-bottom: -webkit-calc(100% - 10px)
+	}
+}
+@media screen and (max-width: 1199px) {
+	.features .product{
+		width: 50%;
+		padding: 10px;
+		float: left;
+	}
+	.features .product.nailthumb-figure-square{
+		padding-bottom: 75%
+	}
+}
 .nailthumb{position:relative;display: block;}
 .nailthumb .nailthumb-figure{position:relative;width:100%;padding-bottom:56%;display: block;}
 .nailthumb .nailthumb-figure-comic{position:relative;width:100%;padding-bottom:147.5%;display: block;}
@@ -1959,6 +2002,13 @@ li.current .sub-nav-links{
 	padding: 20px;
 	text-decoration: none;
 }
+.features{margin-left: -10px;}
+.features{margin-right: -10px;}
+.features .product .nailthumb{
+	    border-radius: 15px;
+}
+
+
 @media screen and (max-width: 1020px) {
 
 	#left-contents-wrap:not(:empty){
@@ -1982,8 +2032,13 @@ li.current .sub-nav-links{
 	}
 	#left-contents-wrap{margin-top: 20px;}
 	#contents-wrap .box-search{padding-left: 0;padding-right: 0}
+	.table-box-center{min-height: 0}
+
 }
 @media screen and (max-width: 767px) {
+	.features .product{
+		width: 100%
+	}
 	#wrap{padding: 10px}
 	body:before{border-width: 10px;}
 	#header{padding: 10px;}
@@ -2040,6 +2095,7 @@ li.current .sub-nav-links{
 		display: block;padding: 10px;
 	}
 	.srvs .table h4{font-size: 24px;    font-weight: bold;}
+	.table-box-center{min-height: 0}
 }
 body .wp-copyright{
 	transform: scale(0) !important;

@@ -12,17 +12,10 @@ class home extends FE_Controller {
 		// $this->news_model->news_cond();
 		// $this->assigns->noti_list = $this->news_model->getLatest($this->assigns->fecog['noti_cate'],1,4);
 		// $this->product_model->type='default';
-		// $tmp = $this->product_model->getFeature(null,1,3);
-		//if($tmp && count($tmp)==1)
-			$this->assigns->ctProduct = $tmp[0];
-		//$tmp = $this->product_model->getFeature('>409',1,1);
-		//if($tmp && count($tmp)==1)
-			$this->assigns->khProduct = $tmp[1];
-		//$tmp = $this->product_model->getFeature('>410',1,1);
-		//if($tmp && count($tmp)==1)
-			$this->assigns->tkProduct = $tmp[2];
-
-
+		$features = $this->product_model->getFeature(null,1,4);
+		$this->assigns->features = $features;
+		$this->news_model->partner_cond();
+		$this->assigns->partners = $this->news_model->getLatest(null,1,4);
         $this->smarty->view( 'realestate/home', $this->assigns );
 	}
 	function contact(){
