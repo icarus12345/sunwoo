@@ -2,14 +2,14 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class cate extends CP_Controller {
     function __construct() {
-        parent::__construct('cate', '', 'id');
+        parent::__construct('_cate', '_', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->load->model('cms/cp/cate_model');
         $this->assigns->tplConfig = array(
             'controller'   =>'cate',
-            'prefix'       =>'',
+            'prefix'       =>'_',
             'name'         =>'_oCate',
             'title'        =>'Category',
             'group'        =>'cp',
@@ -52,7 +52,7 @@ class cate extends CP_Controller {
         $Id=(int)$this->input->post('Id');
         if($Id>0){
             $this->assigns->item = $this->cate_model->onGet($Id);
-            $this->assigns->type=$this->assigns->item->type;
+            $this->assigns->type=$this->assigns->item->_type;
         }
         switch ($this->assigns->type){
             // case 'property':
@@ -66,7 +66,7 @@ class cate extends CP_Controller {
             //     $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanelSunwoo', $this->assigns, true );
             //     break;
             default :
-                $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanel2', $this->assigns, true );
+                $htmlreponse = $this->smarty->view( 'cms/cp/cate/editorPanel', $this->assigns, true );
         }
         $output["result"] = 1;
         $output["message"]='SUCCESS !';
@@ -81,9 +81,9 @@ class cate extends CP_Controller {
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
                     {$this->table}.{$this->prefix}id,
-                    {$this->table}.{$this->prefix}title_vi,
-                    {$this->table}.{$this->prefix}insert,
-                    {$this->table}.{$this->prefix}update,
+                    {$this->table}.{$this->prefix}title{$this->lang} as {$this->prefix}title,
+                    {$this->table}.{$this->prefix}created_at,
+                    {$this->table}.{$this->prefix}modified_at,
                     {$this->table}.{$this->prefix}status
                 ",
             "from"      =>" FROM `{$this->table}` ",
@@ -93,7 +93,7 @@ class cate extends CP_Controller {
                 
             ),
             "filterfields"=>array(
-
+                "{$this->prefix}title"=>"{$this->table}.{$this->prefix}title{$this->lang}"
             )
         );
         $output = $this->cate_model->jqxBinding();
@@ -109,8 +109,8 @@ class cate extends CP_Controller {
     }
     function updateBatch($aaData){
         if(!empty($aaData)) foreach ($aaData as $c){
-            if($c->value!=$c->new_value){
-                $this->cate_model->onUpdate($c->id,array('cat_value'=>$c->new_value));
+            if($c->_value!=$c->new_value){
+                $this->cate_model->onUpdate($c->id,array('_value'=>$c->new_value));
             }
         }
     }
@@ -124,8 +124,8 @@ class cate extends CP_Controller {
             if ($Id != 0) {
                 $Node=$this->cate_model->onGet($Id);
                 if($Node){
-                    if(isset($Params['cate_parent'])){
-                        $ParentId=(int)$Params['cate_parent'];
+                    if(isset($Params['_parent_id'])){
+                        $ParentId=(int)$Params['_parent_id'];
                         if($ParentId==$Id){
                             //node cha bang node code::loi
                             $output["result"] = -206;
@@ -202,8 +202,8 @@ class cate extends CP_Controller {
         $output["message"]='SUCCESS !';
         foreach ($nodes as $node){
             if($checking){
-                if($node->cat_level > $nodelevel){
-                    if($node->cate_id==$pnodeid){
+                if($node->_level > $nodelevel){
+                    if($node->_id==$pnodeid){
                         return false;
                         break;
                     }
@@ -212,9 +212,9 @@ class cate extends CP_Controller {
                    break;
                 }
             }
-            if($node->cate_id==$nodeid){
+            if($node->_id==$nodeid){
                 $checking=true;
-                $nodelevel=$node->cate_level;
+                $nodelevel=$node->_level;
             }
         }
         return true;
@@ -230,7 +230,7 @@ class cate extends CP_Controller {
                 if ($tmp) {
                     $this->db->trans_begin();
                     $rs = $this->cate_model->onDelete($id);
-                    $this->cate_model->updateNodeByParent($tmp->cate_id,$tmp->cate_parent);
+                    $this->cate_model->updateNodeByParent($tmp->_id,$tmp->_parent_id);
                     if($this->db->trans_status() === FALSE || $rs === false){
                         $this->db->trans_rollback();
                         $output["result"] = -1;

@@ -11,11 +11,11 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="ordering" value="[{$item->ordering|default:time()}]">
+                <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
 
                 <div class="row half">
                     <div class="col-mb-6 half">            
@@ -25,7 +25,7 @@
                             <div class="row-fluid">
                                 <select 
                                     data-cateid=1
-                                    name="category_id" 
+                                    name="_category_id" 
                                     class="form-control selectpicker"
                                     data-putto="#frm-err-category"
                                     data-live-search="true"
@@ -34,10 +34,10 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
-                                            [{if $c->id == $item->category_id}]selected="1"[{/if}]
-                                            value="[{$c->id|default:''}]">
-                                                [{$c->title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->_level*20}]px;'>[{$c->_title|escape}]</span>"
+                                            [{if $c->_id == $item->_category_id}]selected="1"[{/if}]
+                                            value="[{$c->_id|default:''}]">
+                                                [{$c->_title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]
@@ -53,17 +53,17 @@
                             <input type="text" 
                                 rows="1"
                                 class="form-control validate[required,minSize[2],maxSize[20]]"
-                                name="code" 
-                                value="[{$item->code|escape|default:''}]"/>
+                                name="_code" 
+                                value="[{$item->_code|escape|default:''}]"/>
                         </div>
                     </div>
                     <div class="col-mb-2 half"> 
                             
                                 <div class="control-group pull-top">
                                     <div>Status :</div>
-                                    <select name="status" class="form-control selectpicker">
+                                    <select name="_status" class="form-control selectpicker">
                                         <option value="1">Enable</option>
-                                        <option value="0" [{if $item->status|default:'1'=='0'}][{/if}]>Disable</option>
+                                        <option value="0" [{if $item->_status|default:'1'=='0'}][{/if}]>Disable</option>
                                     </select>
                                 </div>
                         
@@ -77,8 +77,8 @@
                                 name="is_hot" 
                                 value="[{$item->is_hot|escape|default:''}]"/> -->
                             <div class="">
-                                <input type='hidden' value='[{$item->is_hot|default:"0"}]' name='is_hot'>
-                                <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->is_hot}]checked=1[{/if}]><span></span></label>
+                                <input type='hidden' value='[{$item->is_hot|default:"0"}]' name='_is_hot'>
+                                <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->_is_hot}]checked=1[{/if}]><span></span></label>
                             </div>
                         </div>
                         
@@ -134,13 +134,13 @@
                                         <div class="col-mb-6 half"> 
                                             <div class="control-group pull-top">
                                                 <div>Title :(*)</div>
-                                                [{$attr= 'title_'|cat:$la->lang_short}]
+                                                [{$attr= '_title_'|cat:$la->lang_short}]
 
                                                 <input type="text" 
                                                     onblur="AliasTo('#entryForm input[name=title_[{$la->lang_short}]]','#entryForm input[name=alias_[{$la->lang_short}]]')" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                                    name="title_[{$la->lang_short}]" 
+                                                    name="[{$attr}]" 
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     
                                                     maxlength="255" 
@@ -150,10 +150,10 @@
                                         <div class="col-mb-6 half">
                                             <div class="control-group pull-top">
                                                 <div>Alias :</div>
-                                                [{$attr= 'alias_'|cat:$la->lang_short}]
+                                                [{$attr= '_alias_'|cat:$la->lang_short}]
                                                 <input type="text" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]"
-                                                    name="alias_[{$la->lang_short}]" 
+                                                    name="[{$attr}]" 
                                                     data-lang="[{$la->lang_short}]"
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]"
@@ -165,12 +165,12 @@
                                         <div class="col-mb-6 half"> 
                                             <div class="control-group pull-top">
                                                 <div>Price :(*)</div>
-                                                [{$attr= 'price_'|cat:$la->lang_short}]
+                                                [{$attr= '_price_'|cat:$la->lang_short}]
 
                                                 <input type="text" 
                                                     class="form-control validate[required,min[0],custom[number]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                                    name="price_[{$la->lang_short}]" 
+                                                    name="[{$attr}]" 
                                                     placeholder="[{$la->lang_name|ucwords}]"
                                                     
                                                     maxlength="255" 
@@ -180,9 +180,9 @@
                                     </div>
                                     <div class="control-group pull-top">
                                         <div>Desc :(*)</div>
-                                        [{$attr= 'description_'|cat:$la->lang_short}]
+                                        [{$attr= '_desc_'|cat:$la->lang_short}]
                                         <textarea class="form-control validate[required]" 
-                                            name="description_[{$la->lang_short}]" 
+                                            name="[{$attr}]" 
                                             rows="2" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -196,13 +196,13 @@
                                     [{else}]
                                     <div class="control-group pull-top">
                                         <div>Content :</div>
-                                        [{$attr= 'content_'|cat:$la->lang_short}]
+                                        [{$attr= '_content_'|cat:$la->lang_short}]
                                         <div class="">
                                             <textarea 
                                                 class="form-control validate[required]" 
                                                 data-editor="basic"
-                                                id="content_[{$la->lang_short}]" 
-                                                name="content_[{$la->lang_short}]" 
+                                                id="[{$attr}]" 
+                                                name="[{$attr}]" 
                                                 rows="10" 
                                                 data-lang="[{$la->lang_short}]"
                                                 placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -227,15 +227,15 @@
                                     <div>Image :(*)</div>
                                     <div class="input-append">
                                         <input type="text" 
-                                            [{if $item->thumb}]title="<img src='[{$item->thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                            [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
                                             class="form-control tool-tip validate[required,maxSize[255]]" 
-                                            value="[{$item->thumb|escape|default:''}]" 
-                                            name="thumb" 
-                                            id="thumb"
+                                            value="[{$item->_image|escape|default:''}]" 
+                                            name="_image" 
+                                            id="_image"
                                             >
                                         <span class="add-on" 
                                             title="Choose Image"
-                                            onclick="BrowseServer('#thumb')">
+                                            onclick="BrowseServer('#_image')">
                                             <i class="fa fa-image"></i>
                                         </span>
                                     </div>
@@ -247,15 +247,15 @@
                                     <div>Cover :</div>
                                     <div class="input-append">
                                         <input type="text" 
-                                            [{if $item->cover}]title="<img src='[{$item->cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                            [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
                                             class="form-control tool-tip validate[maxSize[255]]" 
-                                            value="[{$item->cover|escape|default:''}]" 
-                                            name="cover" 
-                                            id="cover"
+                                            value="[{$item->_image|escape|default:''}]" 
+                                            name="_image" 
+                                            id="_image"
                                             >
                                         <span class="add-on" 
                                             title="Choose Image"
-                                            onclick="BrowseServer('#cover')">
+                                            onclick="BrowseServer('#_image')">
                                             <i class="fa fa-image"></i>
                                         </span>
                                     </div>
@@ -279,7 +279,7 @@
                             </div>
                         </div>
                         <ul id="sortable" class="sortable" style="min-height: 100px">
-                            [{if $item->images|default:''!=''}]
+                            [{if $item->_images|default:''!=''}]
                                 [{assign var=images value='/\r\n|[\r\n]/'|preg_split:$item->images}]
                                 [{foreach from=$images item=img}]
                                     <li class="ui-state-default">

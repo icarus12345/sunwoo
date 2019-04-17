@@ -965,14 +965,14 @@ App.KCFinder.BrowseServer = function (elementid) {
         toastr.error(e.message,'Error');
     }
 }
-App.SEO = function(type,id){
+App.SEO = function(type,head_id){
     if ($("#seo-dialog").length === 0) {
         $('body').append('<div id="seo-dialog"><div style="padding:40px">Loading...</div></div>');
     }
     httpRequest({
         'url'         :  base_url + 'cms/cp/seo/editpanel/'+type,
         'data'        :   {
-            'Id'  :   id
+            'head_id'  :   head_id
         },
         'callback'    :   function(rsdata){
             if(rsdata.result<0){
@@ -994,9 +994,11 @@ App.SEO = function(type,id){
             'click': function() {
                 if( $('#seoform').validationEngine('validate') === false)return false;
                 var Params = $('#seoform').serializeObject();
+                var Id = $('#seoEntryId').val();
                 httpRequest({
-                    'url': base_url+'cms/excution/updateinfo',
+                    'url': base_url+'cms/cp/seo/oncommit',
                     'data': {
+                        "Id":Id,
                         'Params': Params
                     },
                     'callback': function(rsdata) {
@@ -1004,7 +1006,7 @@ App.SEO = function(type,id){
                             addNotice(rsdata.message,'danger');
                         } else {
                             addNotice(rsdata.message,'info');
-                            $('#iDialog').dialog("close");
+                            $('#seo-dialog').dialog("close");
                         }
                     }
                 }).call();

@@ -11,11 +11,11 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-            <input type="hidden" name="ordering" value="[{$item->ordering|default:time()}]">
+            <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
                 <input type="hidden" name="type" id="type" 
                     value="[{$item->type|default:$type|default:''}]"/>
                 <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
@@ -44,13 +44,13 @@
                                 <div class="col-mb-6 half"> 
                                     <div class="control-group pull-top">
                                         <div>Title :(*)</div>
-                                        [{$attr= 'title_'|cat:$la->lang_short}]
+                                        [{$attr= '_title_'|cat:$la->lang_short}]
 
                                         <input type="text" 
-                                            onblur="AliasTo('#entryForm input[name=title_[{$la->lang_short}]]','#entryForm input[name=alias_[{$la->lang_short}]]')" 
+                                            onblur="AliasTo('#entryForm input[name=[{$attr}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
                                             class="form-control validate[required,minSize[2],maxSize[255]]" 
                                             value="[{$item->$attr|quotes_to_entities|default:''}]" 
-                                            name="title_[{$la->lang_short}]" 
+                                            name="[{$attr}]" 
                                             placeholder="[{$la->lang_name|ucwords}]"
                                             
                                             maxlength="255" 
@@ -60,10 +60,10 @@
                                 <div class="col-mb-6 half">
                                     <div class="control-group pull-top">
                                         <div>Alias :</div>
-                                        [{$attr= 'alias_'|cat:$la->lang_short}]
+                                        [{$attr= '_alias_'|cat:$la->lang_short}]
                                         <input type="text" 
                                             class="form-control validate[required,minSize[2],maxSize[255]]"
-                                            name="alias_[{$la->lang_short}]" 
+                                            name="[{$attr}]" 
                                             data-lang="[{$la->lang_short}]"
                                             placeholder="[{$la->lang_name|ucwords}]"
                                             value="[{$item->$attr|quotes_to_entities|default:''}]"
@@ -73,9 +73,9 @@
                             </div>
                             <div class="control-group pull-top">
                                 <div>Desc :(*)</div>
-                                [{$attr= 'description_'|cat:$la->lang_short}]
+                                [{$attr= '_desc_'|cat:$la->lang_short}]
                                 <textarea class="form-control validate[required]" 
-                                    name="description_[{$la->lang_short}]" 
+                                    name="[{$attr}]" 
                                     rows="2" 
                                     data-lang="[{$la->lang_short}]"
                                     placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
@@ -96,11 +96,11 @@
                             <div>Image :</div>
                             <div class="input-append">
                                 <input type="text" 
-                                    [{if $item->image}]title="<img src='[{$item->image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->image|default:''}]" 
-                                    name="image" id="image"
+                                    [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                    class="form-control tool-tip" value="[{$item->_image|default:''}]" 
+                                    name="_image" id="_image"
                                     >
-                                <span class="add-on " onclick="BrowseServer('#image')" title="Choose Image">
+                                <span class="add-on " onclick="BrowseServer('#_image')" title="Choose Image">
                                     <i class="fa fa-image"></i>
                                 </span>
                             </div>
@@ -108,14 +108,14 @@
                     </div>
                     <div class="col-mb-6 half">
                         <div class="control-group pull-top">
-                            <div>Thumb :</div>
+                            <div>Cover :</div>
                             <div class="input-append">
                                 <input type="text" 
-                                    [{if $item->image}]title="<img src='[{$item->thumb}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->thumb|default:''}]" 
-                                    name="thumb" id="thumb"
+                                    [{if $item->_cover}]title="<img src='[{$item->_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                    class="form-control tool-tip" value="[{$item->_cover|default:''}]" 
+                                    name="_cover" id="_cover"
                                     >
-                                <span class="add-on" onclick="BrowseServer('#thumb')">
+                                <span class="add-on" onclick="BrowseServer('#_cover')">
                                     <i class="fa fa-image"></i>
                                 </span>
                             </div>
@@ -128,26 +128,26 @@
                         <div class="pull-top control-group">
                             <div>Parent :(*)</div>
                             <div class="row-fluid">
-                                <select name="parent_id" class="form-control selectpicker"
+                                <select name="_parent_id" class="form-control selectpicker"
                                     data-live-search="true"
                                     data-size="10"
                                     >
                                     <option value="0" data-title="[ Root ]" data-level="-1">[ Root ]</option>
                                     [{assign var="level" value=-1}]
                                     [{foreach from=$cates item=c}]
-                                        [{if $c->id == $item->id}]
-                                            [{assign var="level" value=$c->level}]
+                                        [{if $c->_id == $item->_id}]
+                                            [{assign var="level" value=$c->_level}]
                                         [{/if}]
-                                        [{if $level!=-1 and $c->level <= $level and $c->id != $item->id}]
+                                        [{if $level!=-1 and $c->_level <= $level and $c->_id != $item->_id}]
                                             [{assign var="level" value=-1}]
                                         [{/if}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->level*20+20}]px;'>[{$c->title|escape}]</span>"
-                                            [{if $c->id == $item->parent_id}]selected="1"[{/if}]
-                                            [{if $level!=-1 and $level < $c->level}]disabled=1[{/if}]
-                                            [{if $c->id == $item->id}]disabled=1[{/if}]
-                                            value="[{$c->id|default:''}]">
-                                                [{$c->title|escape|default:''}]
+                                            data-content="<span style='padding-left: [{$c->_level*20+20}]px;'>[{$c->_title|escape}]</span>"
+                                            [{if $c->_id == $item->_parent_id}]selected="1"[{/if}]
+                                            [{if $level!=-1 and $level < $c->_level}]disabled=1[{/if}]
+                                            [{if $c->_id == $item->_id}]disabled=1[{/if}]
+                                            value="[{$c->_id|default:''}]">
+                                                [{$c->_title|escape|default:''}]
                                         </option>
                                     [{/foreach}]
                                 </select>
@@ -160,14 +160,14 @@
                             <div style="padding-top:5px">
                                 <span class="circleRad">
                                     <input id="status1" 
-                                        name="status" type="radio" 
-                                        [{if $item->status|default:1}]checked[{/if}]
+                                        name="_status" type="radio" 
+                                        [{if $item->_status|default:1}]checked[{/if}]
                                         value="1">
                                     <label for="status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
-                                    <input id="status2" name="status" type="radio" value="0"
-                                        [{if !$item->status|default:1}]checked[{/if}]
+                                    <input id="status2" name="_status" type="radio" value="0"
+                                        [{if !$item->_status|default:1}]checked[{/if}]
                                     >
                                     <label for="status2">Disable&nbsp;&nbsp;</label>
                                 </span>

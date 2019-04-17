@@ -17,7 +17,7 @@
     };
     _oConfig.dataColumns = [
         {
-            'mData': "id",
+            'mData': "[{$tplConfig.prefix}]id",
             'width': "60px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
@@ -25,20 +25,20 @@
                 [{if $unit}]
                 var menu = [];
                 [{if $unit|strpos:".e."!==false}] 
-                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-edit"></i> Edit</a></li>')
+                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-pencil-alt"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
-                if(datarow.readonly!=='true'){
-                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                if(datarow.[{$tplConfig.prefix}]readonly!=='true'){
+                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                     
                 }
                 [{else}]
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
-                if(+datarow.readonly){
+                if(+datarow.[{$tplConfig.prefix}]readonly){
                     menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
                 }else{
                     menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
@@ -49,7 +49,7 @@
                 [{/if}]
                 str += [
                 '<div class="btn-group">',
-                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil"></i> Edit</button>',
+                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil-alt"></i> Edit</button>',
                   '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<span class="caret"></span>',
                     '<span class="sr-only">Toggle Dropdown</span>',
@@ -69,7 +69,7 @@
             }
         },
         {
-            'mData': "status",
+            'mData': "[{$tplConfig.prefix}]status",
             'sWidth': "36px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
@@ -97,13 +97,13 @@
             },
         },
         {
-            'mData': "title",
+            'mData': "[{$tplConfig.prefix}]title",
             'mRender': function ( value, type, datarow ) {
                 //return '----'.repeater(datarow.Level) + datarow.Title;
                 var rowstr = '';
-                rowstr += '<span style="float:left;padding-left:' +(28*datarow.level) +'px">'
+                rowstr += '<span style="float:left;padding-left:' +(28*datarow._level) +'px">'
                     + '<i class="row-push"></i>'
-                    + datarow.title
+                    + datarow._title
                     + '</span>';
                 return rowstr;
             }

@@ -1,15 +1,14 @@
 [{nocache}]
     <div class="row">
         <div class="col-sm-12">
-            <input 
+            <!-- <input 
                 type="hidden" 
                 value="[{$item->_id|default:''}]" 
-                id="EntryId"
-                />
+                id="seoEntryId"
+                /> -->
             <form name="seoform" id="seoform" target="integration_asynchronous">
-                <input type="hidden" name="_type" id="_type" 
-                    value="[{$item->_type|default:$type|default:''}]"/>
-                <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
+                <input type="hidden" name="_type" id="_type" value="[{$type}]"/>
+                <input type="hidden" name="_head_id" id="head_id" value="[{$head_id}]"/>
                 <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                     <ul class="nav-tabs">
                         [{assign var="f" value="active"}]

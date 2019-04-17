@@ -2,7 +2,7 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class product extends CP_Controller {
     function __construct() {
-        parent::__construct('product', '', 'id');
+        parent::__construct('product', '_', 'id');
         $this->load->model('cms/cp/cate_model');
         $this->load->model('cms/cp/product_model');
         $this->load->model('cms/cp/head_model');
@@ -12,7 +12,7 @@ class product extends CP_Controller {
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->assigns->tplConfig = array(
             'controller'   =>'product',
-            'prefix'       =>'',
+            'prefix'       =>'_',
             'name'         =>'_oProduct',
             'title'        =>'Product',
             'group'        =>'cp',
@@ -29,8 +29,8 @@ class product extends CP_Controller {
     function beforecommit(){
         $Id = $this->input->post('Id');
         $Params = $this->input->post('Params');
-        if(!empty($Params['alias'])){
-            $alias = $Params['alias'];
+        if(!empty($Params['_alias'])){
+            $alias = $Params['_alias'];
             if($Id) $this->db->where('id <>',$Id);
             $item = $this->product_model->onGetByAlias($alias);
             if($item){
@@ -40,9 +40,9 @@ class product extends CP_Controller {
                 die;
             }
         }
-        if(!empty($Params['code'])){
-            $code = $Params['code'];
-            if($Id) $this->db->where('id <>',$Id);
+        if(!empty($Params['_code'])){
+            $code = $Params['_code'];
+            if($Id) $this->db->where('_id <>',$Id);
             $item = $this->product_model->onGetByCode($code);
             if($item){
                 $output["result"] = -1;
@@ -89,7 +89,7 @@ class product extends CP_Controller {
         $dataType="";
         if($Id){
             $this->assigns->item = $this->product_model->onGet($Id);
-            $dataType = $this->assigns->item->type;
+            $dataType = $this->assigns->item->_type;
         }else{
             $this->assigns->token = md5(time().strtoupper(random_string('alnum', 8)));
         }
@@ -110,33 +110,33 @@ class product extends CP_Controller {
             "table"     =>"{$this->table}",
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 
-                    {$this->table}.id,
-                    {$this->table}.title_{$this->lang} as {$this->prefix}title,
-                    {$this->table}.description_{$this->lang} as {$this->prefix}description,
-                    {$this->table}.ordering,
-                    {$this->table}.status,
-                    {$this->table}.type,
-                    {$this->table}.created_at,
-                    {$this->table}.modified_at,
-                    {$this->table}.thumb,
-                    {$this->table}.code,
-                    {$this->table}.readonly,
-                    {$this->table}.owner,
-                    {$this->table}.category_id,
-                    {$this->table}.token,
-                    {$this->table}.price_{$this->lang} as price,
-                    cate.title_{$this->lang} as cat_title
+                    {$this->table}.{$this->prefix}id,
+                    {$this->table}.{$this->prefix}title_{$this->lang} as {$this->prefix}title,
+                    {$this->table}.{$this->prefix}desc_{$this->lang} as {$this->prefix}desc,
+                    {$this->table}.{$this->prefix}ordering,
+                    {$this->table}.{$this->prefix}status,
+                    {$this->table}.{$this->prefix}type,
+                    {$this->table}.{$this->prefix}created_at,
+                    {$this->table}.{$this->prefix}modified_at,
+                    {$this->table}.{$this->prefix}image,
+                    {$this->table}.{$this->prefix}code,
+                    {$this->table}.{$this->prefix}readonly,
+                    {$this->table}.{$this->prefix}owner,
+                    {$this->table}.{$this->prefix}category_id,
+                    {$this->table}.{$this->prefix}token,
+                    {$this->table}.{$this->prefix}price_{$this->lang} as {$this->prefix}price,
+                    _cate._title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
-                    LEFT JOIN `cate` 
-                    ON `{$this->prefix}category_id` = `cate`.`id`",
+                    LEFT JOIN `_cate` 
+                    ON `{$this->prefix}category_id` = `_cate`.`_id`",
             //"where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}ordering` DESC,{$this->table}.`{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
-                "cat_title"=>"cate.value",
-                "title"=>"{$this->table}.title_{$this->lang}",
-                "desc"=>"{$this->table}.desc_{$this->lang}",
+                "cat_title"=>"_cate._value",
+                "title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
+                "desc"=>"{$this->table}.{$this->prefix}desc_{$this->lang}",
             ),
             "filterfields"=>array(
                 // 'product_title_vi','cat_title_vi'

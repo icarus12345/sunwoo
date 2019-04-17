@@ -2,11 +2,7 @@
 <div class="row-fluid">
     <div class="widget full">
         <div class="modal-header">
-            [{if $item}]
-                <h4>[{$tplConfig.editEntryTitle}]</h4>
-            [{else}]
-                <h4>[{$tplConfig.addEntryTitle}]</h4>
-            [{/if}]
+            <h4>Category</h4>
             <ul class="navbar-icons" style="position: absolute;right: 0;top:0px;">
                 <li><a href="JavaScript:" title="Save" onclick="[{$tplConfig.name}].onSave()"><i class="fa fa-save"></i></a></li>
                 <li><a href="JavaScript:" title="Back to entry list" onclick="[{$tplConfig.name}].onCancel()"><i class="fa fa-reply-all"></i></a></li>
@@ -15,79 +11,131 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
+            <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
                 <input type="hidden" name="type" id="type" 
                     value="[{$item->type|default:$type|default:''}]"/>
-                <div class="row">
-                    <div class="col-mb-6">
-                        <div class="control-group pull-top">
-                            <div>Title :</div>
-                            <input type="text" 
-                                rows="1"
-                                onblur="AliasTo('#entryForm input[name=title]','#entryForm input[name=alias]')" 
-                                class="form-control validate[required,minSize[6],maxSize[255]]"
-                                name="title" 
-                                value="[{$item->title|escape|default:''}]"/>
-                        </div>
-                    </div>
-                    <div class="col-mb-6">
-                        <div class="control-group pull-top">
-                            <div>Alias :</div>
-                            <input type="text" 
-                                rows="1"
-                                class="form-control validate[required,minSize[6],maxSize[255]]"
-                                name="alias" 
-                                value="[{$item->alias|escape|default:''}]"/>
-                        </div>
-                    </div>
+                
+                <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
+                    <ul class="nav-tabs">
+                        [{assign var="f" value="active"}]
+                        [{foreach from=$langs item=la key =k}]
+                            <li class="[{$f|default:''}]">
+                                <a  title="[{$la->lang_name|ucwords}]"
+                                    href="#tab_lang_content_[{$la->lang_short}]"  
+                                    data-toggle="tab" 
+                                    >
+                                        [{$la->lang_name|ucwords}]
+                                </a>
+                            </li>
+                            [{assign var="f" value=""}]
+                        [{foreachelse}]
+                            
+                        [{/foreach}]
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="col-mb-6">
+                <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                    [{assign var="f" value="active"}]
+                    [{foreach from=$langs item=la key =k}]
+                        <div id="tab_lang_content_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                            <div class="row half">
+                                <div class="col-mb-6 half"> 
+                                    <div class="control-group pull-top">
+                                        <div>Title :(*)</div>
+                                        [{$attr= '_title_'|cat:$la->lang_short}]
+
+                                        <input type="text" 
+                                            onblur="AliasTo('#entryForm input[name=[{$attr}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]" 
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]" 
+                                            name="[{$attr}]" 
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            
+                                            maxlength="255" 
+                                            >
+                                    </div>
+                                </div>
+                                <div class="col-mb-6 half">
+                                    <div class="control-group pull-top">
+                                        <div>Alias :</div>
+                                        [{$attr= '_alias_'|cat:$la->lang_short}]
+                                        <input type="text" 
+                                            class="form-control validate[required,minSize[2],maxSize[255]]"
+                                            name="[{$attr}]" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]"
+                                            value="[{$item->$attr|quotes_to_entities|default:''}]"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group pull-top">
+                                <div>Desc :(*)</div>
+                                [{$attr= '_desc_'|cat:$la->lang_short}]
+                                <textarea class="form-control validate[required]" 
+                                    name="[{$attr}]" 
+                                    rows="2" 
+                                    data-lang="[{$la->lang_short}]"
+                                    placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                            </div>
+
+                            
+
+                        </div>
+
+
+                        [{assign var="f" value=""}]
+                    [{/foreach}]
+                </div>
+                
+                <div class="row half pull-bottom">
+                    <div class="col-mb-6 half">
                         <div class="pull-top control-group">
                             <div>Parent :(*)</div>
                             <div class="row-fluid">
-                                <select name="parent_id" class="form-control selectpicker"
-                                        data-size="10"
-                                        >
+                                <select name="_parent_id" class="form-control selectpicker"
+                                    data-live-search="true"
+                                    data-size="10"
+                                    >
                                     <option value="0" data-title="[ Root ]" data-level="-1">[ Root ]</option>
                                     [{assign var="level" value=-1}]
                                     [{foreach from=$cates item=c}]
-                                        [{if $c->id == $item->id}]
-                                            [{assign var="level" value=$c->level}]
+                                        [{if $c->_id == $item->_id}]
+                                            [{assign var="level" value=$c->_level}]
                                         [{/if}]
-                                        [{if $level!=-1 and $c->level <= $level and $c->id != $item->id}]
+                                        [{if $level!=-1 and $c->_level <= $level and $c->_id != $item->_id}]
                                             [{assign var="level" value=-1}]
                                         [{/if}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->level*20+20}]px;'>[{$c->title|escape}]</span>"
-                                            [{if $c->id == $item->parent_id}]selected="1"[{/if}]
-                                            [{if $level!=-1 and $level < $c->level}]disabled=1[{/if}]
-                                            [{if $c->id == $item->id}]disabled=1[{/if}]
-                                            value="[{$c->id|default:''}]">
-                                                [{$c->title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->_level*20+20}]px;'>[{$c->_title|escape}]</span>"
+                                            [{if $c->_id == $item->_parent_id}]selected="1"[{/if}]
+                                            [{if $level!=-1 and $level < $c->_level}]disabled=1[{/if}]
+                                            [{if $c->_id == $item->_id}]disabled=1[{/if}]
+                                            value="[{$c->_id|default:''}]">
+                                                [{$c->_title|escape|default:''}]
                                         </option>
                                     [{/foreach}]
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-mb-6">
+                    <div class="col-mb-3 half">
                         <div class="control-group pull-top">
                             <div>Status :</div>
                             <div style="padding-top:5px">
                                 <span class="circleRad">
                                     <input id="status1" 
-                                        name="status" type="radio" 
-                                        [{if $o->status!='false'|default:''}]checked[{/if}]
-                                        value="true">
+                                        name="_status" type="radio" 
+                                        [{if $item->_status|default:1}]checked[{/if}]
+                                        value="1">
                                     <label for="status1">Enable&nbsp;&nbsp;</label>
                                 </span>
                                 <span class="circleRad">
-                                    <input id="status2" name="status" type="radio" value="false"
-                                        [{if $o->status=='false'|default:''}]checked[{/if}]
+                                    <input id="status2" name="_status" type="radio" value="0"
+                                        [{if !$item->_status|default:1}]checked[{/if}]
                                     >
                                     <label for="status2">Disable&nbsp;&nbsp;</label>
                                 </span>
@@ -97,62 +145,17 @@
                     </div>
                 </div>
                 
-                <div class="control-group pull-top">
-                    <div>Link :</div>
-                    <input type="text" class="form-control" 
-                        placeholder="Link"
-                        name="link"
-                        value="[{$item->link|quotes_to_entities|default:''}]"
-                        />
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="control-group pull-top">
-                            <div>Image :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                        class="form-control" value="[{$item->thumb|default:''}]" 
-                                        name="thumb" id="thumb"
-                                        >
-                                <span class="add-on" onclick="BrowseServer('#thumb')">
-                                    <i class="fa fa-image"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="control-group pull-top">
-                            <div>Position :</div>
-                            <input type="number" 
-                                    class="form-control" value="[{$item->position|default:''}]" 
-                                    name="position"
-                                    >
-                        </div>
-                    </div>
-                </div>
-                <div class="control-group pull-top">
-                    <div>
-                        Desc :
-                    </div>
-                    <textarea class="form-control de-desc" 
-                            rows="3"
-                            name="desc"
-                            data-putto=".error_desc" >[{$item->desc|quotes_to_entities|default:''}]</textarea>
-                            
-                    <div class="erb error_desc"></div>
-                </div>
+<!--                <div class="">
+                    <button style="width: 100%" class="btn btn-default" type="button" onclick="sendquestion();">Gửi</button>
+                </div>-->
                 <div id="sendquestion-message"></div>
             </form>
-            <div class="bs-callout bs-callout-danger">
-                <h4>CSS3 Browser support</h4>
-                <p>
-                    <img src="http://www.w3schools.com/images/compatible_ie2020.gif"/> IE 9+, 
-                    <img src="http://www.w3schools.com/images/compatible_firefox2020.gif"/> Firefox, 
-                    <img src="http://www.w3schools.com/images/compatible_chrome2020.gif"/> Chrome, 
-                    <img src="http://www.w3schools.com/images/precompatible_safari5920.gif"/> Safari
-                </p>
-            </div>
         </div>
+<!--        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="toggleContent()">Done</button>
+            <button class="btn btn-default" onclick="language.onCancel()">Cancel</button>
+            <div class="base_loading modal-loading" style="display: none;"></div>
+        </div>-->
     </div>
 </div>
 <ul class="round-buttons round-fixed f-second">

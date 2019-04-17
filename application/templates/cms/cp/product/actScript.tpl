@@ -15,7 +15,7 @@ var _oConfig = {
 };
 _oConfig.dataColumns = [
         {
-            'mData': "id",
+            'mData': "[{$tplConfig.prefix}]id",
             'width': "80px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
@@ -26,7 +26,7 @@ _oConfig.dataColumns = [
                 menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-pencil-alt"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
-                if(datarow.readonly!=='true'){
+                if(datarow.[{$tplConfig.prefix}]readonly!=='true'){
                     menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
@@ -36,7 +36,7 @@ _oConfig.dataColumns = [
                     menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
-                if(+datarow.readonly){
+                if(+datarow.[{$tplConfig.prefix}]readonly){
                     menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
                 }else{
                     menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
@@ -69,7 +69,7 @@ _oConfig.dataColumns = [
             }
         },
         {
-            'mData': "status",
+            'mData': "[{$tplConfig.prefix}]status",
             'width': "48px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
@@ -116,7 +116,7 @@ _oConfig.dataColumns = [
             //     return elm;
             // }
         },{
-            'mData': "thumb",'sClass': "gridThumb",'width': "40",
+            'mData': "[{$tplConfig.prefix}]image",'sClass': "gridThumb",'width': "40",
             "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
@@ -124,7 +124,7 @@ _oConfig.dataColumns = [
                 else return '';
             }
         },{
-            'mData': "title",'width': "120px",'sWidth': "240px",
+            'mData': "[{$tplConfig.prefix}]title",'width': "120px",'sWidth': "240px",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
@@ -135,15 +135,15 @@ _oConfig.dataColumns = [
         },{
             'mData': "cat_title",'width': "120"
         },{
-            'mData': "code",'width': "120"
+            'mData': "[{$tplConfig.prefix}]code",'width': "120"
         },{
-            'mData': "owner",'width': "120"
+            'mData': "[{$tplConfig.prefix}]owner",'width': "120"
         },{
-            'mData': "price",'width': "120"
+            'mData': "[{$tplConfig.prefix}]price",'width': "120"
         },{
-            'mData': "created_at",'width': "126",
+            'mData': "[{$tplConfig.prefix}]created_at",'width': "126",
         },{
-            'mData': "modified_at",'width': "126",
+            'mData': "[{$tplConfig.prefix}]modified_at",'width': "126",
         }
     ];
 var [{$tplConfig.name}] = (function() {

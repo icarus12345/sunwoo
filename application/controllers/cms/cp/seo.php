@@ -2,11 +2,11 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class seo extends CP_Controller {
     function __construct() {
-        parent::__construct('_group', '_', 'id');
+        parent::__construct('_seo', '_', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
-        $this->load->model('cms/cp/group_model');
+        $this->load->model('cms/cp/seo_model');
         $this->assigns->tplConfig = array(
             'controller'   =>'group',
             'prefix'       =>'_',
@@ -16,7 +16,7 @@ class seo extends CP_Controller {
             'listEntryTitle'=>'Group Manager',
             'addEntryTitle'=>'Add new entry',
             'editEntryTitle'=>'Modify entry',
-            'entryListTpl'=>'templates/cms/cp/group/entryList.tpl'
+            'entryListTpl'=>'templates/cms/cp/seo/entryList.tpl'
         );
     }
     public function index(){
@@ -29,18 +29,18 @@ class seo extends CP_Controller {
     }
     function editpanel($type=''){
         $this->assigns->type=$type;
-        $this->assigns->item = (object)array(
-            '_title_vi'=>'Title VI',
-            '_title_en'=>'Title EN',
-            '_keyword_vi'=>'KEY EN',
-            '_keyword_en'=>'KEY EN',
-        );
-        
-        $Id=100;//(int)$this->input->post('Id');
-        if($Id>0){
-            // $this->assigns->item = $this->group_model->onGet($Id);
-            // $this->assigns->type=$this->assigns->item->_type;
-        }else{
+        $head_id = (int)$this->input->post('head_id');
+        $this->assigns->head_id=$head_id;
+        if($head_id>0){
+            $item = $this->seo_model->onGetByHead($type,$head_id);
+            if(!$item){
+                $this->model = new Core_Model($type, '_', 'id');
+                $item = $this->model->onGet($head_id);
+                if($item){
+                    unset($item->id);
+                }
+            }
+            $this->assigns->item = $item;
         }
         switch ($this->assigns->type){
             
@@ -56,7 +56,7 @@ class seo extends CP_Controller {
     }
     
     function bindingbytype($type=""){
-         $this->group_model->datatables_config=array(
+         $this->seo_model->datatables_config=array(
             "table"     =>"{$this->table}",
             "select"    =>"
                 SELECT SQL_CALC_FOUND_ROWS 

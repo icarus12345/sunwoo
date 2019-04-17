@@ -176,9 +176,9 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
-                                            value="[{$c->value|escape|default:''}]">
-                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->level}][{$c->title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->_level*20}]px;'>[{$c->_title|escape}]</span>"
+                                            value="[{$c->_value|escape|default:''}]">
+                                                [{'&nbsp;&nbsp;&nbsp;&nbsp;'|str_repeat:$c->_level}][{$c->_title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]

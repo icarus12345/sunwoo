@@ -135,16 +135,16 @@ class news extends VD_Controller {
                     {$this->table}.{$this->prefix}created_at,
                     {$this->table}.{$this->prefix}modified_at,
                     {$this->table}.{$this->prefix}status,
-                    cate.title_{$this->lang} as cat_title
+                    _cate._title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}`
-                    LEFT JOIN cate ON cate.id = _category_id
+                    LEFT JOIN _cate ON _cate._id = _category_id
                 ",
-            "where"     =>"WHERE `{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY `{$this->prefix}ordering` DESC,`{$this->prefix}created_at` DESC",
+            "where"     =>"WHERE {$this->table}.`{$this->prefix}type` = '$type'",
+            "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}ordering` DESC,{$this->table}.`{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
-                "cat_title"=>"value",
+                "cat_title"=>"_cate._value",
                 "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}",
             ),
             "filterfields"=>array(

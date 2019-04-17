@@ -11,9 +11,9 @@
                             <label class="cb" > 
                                 <input  
                                     type="checkbox"
-                                    name="data[[{$head->_id}]][]"
+                                    name="_data[[{$head->_id}]][]"
                                     value="[{$line->_id}]"
-                                    [{if $line->_id|in_array:$item->data[$head->_id]}]checked[{/if}]
+                                    [{if $line->_id|in_array:$item->_data[$head->_id]}]checked[{/if}]
                                     >
                                 <span></span>
                                 [{$line->_title}]
