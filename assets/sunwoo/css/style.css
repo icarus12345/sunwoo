@@ -1419,6 +1419,71 @@ li.current .sub-nav-links{
 		padding-bottom: -ms-calc(100% - 10px);
 		padding-bottom: -webkit-calc(100% - 10px)
 	}
+	#home .box-search{position: relative;}
+	#home .box-search:first-child:after{
+		content: '';
+		display: block;
+		position: absolute;
+		background: url(../images/down-arrow.png) no-repeat center;
+		background-size:32px 32px;
+		width: 32px;height: 32px;
+		left: 50%;bottom: 32px;
+		margin-left: -16px;
+		-webkit-animation: chop 1s linear infinite;
+	    -moz-animation: chop 1s linear infinite;
+	    animation: chop 1s  linear infinite;
+	}
+}
+@-webkit-keyframes chop {
+  0% {
+    margin-bottom:0px;
+  }
+  25% {
+    margin-bottom:10px;
+  }
+  50% {
+    margin-bottom:0px;
+  }
+  75% {
+    margin-bottom:-10px;
+  }
+  100% {
+    margin-bottom:0px;
+  }
+}
+@-moz-keyframes chop {
+  0% {
+    margin-bottom:0px;
+  }
+  25% {
+    margin-bottom:10px;
+  }
+  50% {
+    margin-bottom:0px;
+  }
+  75% {
+    margin-bottom:-10px;
+  }
+  100% {
+    margin-bottom:0px;
+  }
+}
+@keyframes chop {
+  0% {
+    margin-bottom:0px;
+  }
+  25% {
+    margin-bottom:10px;
+  }
+  50% {
+    margin-bottom:0px;
+  }
+  75% {
+    margin-bottom:-10px;
+  }
+  100% {
+    margin-bottom:0px;
+  }
 }
 @media screen and (max-width: 1199px) {
 	.features .product{
@@ -1738,7 +1803,7 @@ li.current .sub-nav-links{
 	margin-bottom: 10px;
 }
 .blog .cap {padding: 5px;display: block;}
-.partner .cap {padding: 5px 5px 10px 5px;display: block;text-align: center;padding-top: 30%;color: #000}
+.partner .cap {padding: 5px 5px 10px 5px;display: block;text-align: center;padding-top: 30%;color: #000;background: #fff;}
 .blog .cap p,
 .partner .cap p{padding: 0;margin: 0}
 .partner .avt{
@@ -2006,6 +2071,7 @@ li.current .sub-nav-links{
 .features{margin-right: -10px;}
 .features .product .nailthumb{
 	    border-radius: 15px;
+	    overflow: hidden;
 }
 
 

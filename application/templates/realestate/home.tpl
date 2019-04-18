@@ -7,49 +7,19 @@
         <div id="contents-wrap">
             <div id="contents">
                 <div id="home" class="content">
-                    <style type="text/css">
-                        #wrap{
-                            background-image: url(/assets/sunwoo/images/home-bg.jpg);
-                        }
-                    </style>
                     <div class="box-search table-box-center">
                         <div>
                             [{include file=$smarty.const.APPPATH|cat:"templates/realestate/widget/search-box.tpl"}]
                         </div>
                     </div>
-                    <div class="box-search" style="margin-top: 30px;background:#fff">
-                        <h2 class="h2" style="margin: 0;color: #1b9290">Why Sunwoo is your reliable property partner ?</h2>
-                        <br/>
-                        <div class="row partner-list">
-                            [{foreach from=$partners item=p key=i}]
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                              <div class="partner bsd" data-lat="" data-lon="">
-                                <div class="nailthumb">
-                                  <div class="nailthumb-figure-9-16">
-                                    <div class="nailthumb-container cover" style="background-image:url('[{$p->news_cover|quotes_to_entities}]')">
-                                    </div>
-                                  </div>
-                                  <div class="avt"><span class="cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')"></span></div>
-                                </div>
-                                  <a class="cap" href="/partner/detail/[{$p->news_id}]">
-                                    <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
-                                    <div class="stars">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <p><span class="line-clamp-1">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
-                                  </a>
-                              </div>
-                            </div>
-                            [{/foreach}]
-                        </div>
-
-                        <br/>
-                        <br/>
-                        <h2 class="h2" style="margin: 0;color: #1b9290">Featured Projects</h2>
+                    <style type="text/css">
+                        #wrap{
+                            background-image: url(/assets/sunwoo/images/home-bg.jpg);
+                        }
+                    </style>
+                    <div class="box-search" style="margin-top: 30px;background:rgba(255, 255, 255, 0.9)">
+                        
+                        <h2 class="h2" style="margin: 0;color: #1b9290;font-weight: bold;">Featured Projects</h2>
                         <br/>
                         <div class="features">
                             [{foreach from=$features item=p key=i}]
@@ -81,6 +51,42 @@
                               </div>
                             [{/foreach}]
                         </div>
+                        <div class="clearfix"></div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h2 class="h2" style="margin: 0;color: #1b9290;font-weight: bold;">Why Sunwoo is your reliable property partner ?</h2>
+                        <br/>
+                        <div class="row partner-list">
+                            [{foreach from=$partners item=p key=i}]
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                              <div class="partner bsd" data-lat="" data-lon="">
+                                <div class="nailthumb">
+                                  <div class="nailthumb-figure-9-16">
+                                    <div class="nailthumb-container cover" style="background-image:url('[{$p->news_cover|quotes_to_entities}]')">
+                                    </div>
+                                  </div>
+                                  <div class="avt"><span class="cover" style="background-image:url('[{$p->news_thumb|quotes_to_entities}]')"></span></div>
+                                </div>
+                                  <a class="cap" href="/partner/detail/[{$p->news_id}]">
+                                    <h4><span class="line-clamp-1">[{$p->news_title|quotes_to_entities}]</span></h4>
+                                    <div class="stars">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <p><span class="line-clamp-1">[{$p->news_desc|quotes_to_entities|default:"Đang cập nhật"}]</span></p>
+                                  </a>
+                              </div>
+                            </div>
+                            [{/foreach}]
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br/>
+                        <br/>
                     </div>
                 </div>
                 
