@@ -7,6 +7,7 @@ class product extends CP_Controller {
         $this->load->model('cms/cp/product_model');
         $this->load->model('cms/cp/head_model');
         $this->load->model('cms/cp/line_model');
+        $this->load->model('cms/cp/supplier_model');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
@@ -25,6 +26,9 @@ class product extends CP_Controller {
     }
     public function index(){
         $this->vp();
+    }
+    function beforeinsert(){
+        $_POST['Params']['_owner'] = $_SESSION["auth"]["user"]->ause_name;
     }
     function beforecommit(){
         $Id = $this->input->post('Id');
@@ -61,6 +65,8 @@ class product extends CP_Controller {
             $data['aaData']=$this->cate_model->buildTreeArray($data['aaData']);
             $this->assigns->cates=$data['aaData'];
         }
+        $suppliers = $this->supplier_model->onGetByType($type);
+        $this->assigns->suppliers=$suppliers;
         $this->smarty->view( 'cms/000/template', $this->assigns );
     }
     function editpanel($type=''){
@@ -82,6 +88,8 @@ class product extends CP_Controller {
         $this->assigns->head_data=$head_data;
         $line_data = $this->line_model->onGetByType($type);
         $this->assigns->line_data=$line_data;
+        $supplier_data = $this->supplier_model->onGetByType($type);
+        $this->assigns->supplier_data=$supplier_data;
 
 
         $this->assigns->type=$type;
@@ -122,19 +130,23 @@ class product extends CP_Controller {
                     {$this->table}.{$this->prefix}code,
                     {$this->table}.{$this->prefix}readonly,
                     {$this->table}.{$this->prefix}owner,
+                    {$this->table}.{$this->prefix}discount,
                     {$this->table}.{$this->prefix}category_id,
                     {$this->table}.{$this->prefix}token,
                     {$this->table}.{$this->prefix}price_{$this->lang} as {$this->prefix}price,
-                    _cate._title_{$this->lang} as cat_title
+                    _cate._title_{$this->lang} as cat_title,
+                    _supplier._title_{$this->lang} as supplier_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
-                    LEFT JOIN `_cate` 
-                    ON `{$this->prefix}category_id` = `_cate`.`_id`",
+                    LEFT JOIN `_cate` ON `{$this->prefix}category_id` = `_cate`.`_id`
+                    LEFT JOIN `_supplier` ON `{$this->prefix}supplier_id` = `_supplier`.`_id`
+                ",
             //"where"     =>"WHERE `{$this->prefix}type` = '$type'",
             "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}ordering` DESC,{$this->table}.`{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
                 "cat_title"=>"_cate._value",
+                "supplier_title"=>"_supplier._id",
                 "title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
                 "desc"=>"{$this->table}.{$this->prefix}desc_{$this->lang}",
             ),

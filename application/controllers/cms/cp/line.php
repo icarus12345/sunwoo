@@ -108,19 +108,19 @@ class line extends CP_Controller {
                     {$this->table}.{$this->prefix}modified_at,
                     {$this->table}.{$this->prefix}status,
                     _header._title_{$this->lang} as header_title,
-                    cate.title_{$this->lang} as cat_title
+                    _cate._title_{$this->lang} as cat_title
                 ",
             "from"      =>"
                 FROM `{$this->table}` 
                 LEFT JOIN _header ON (_line._head_id = _header._id)
-                LEFT JOIN cate ON (_line._category_id = cate.id)
+                LEFT JOIN _cate ON (_line._category_id = _cate._id)
                 ",
             "where"     =>"WHERE {$this->table}.`{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY cate.title_{$this->lang} ASC,_header._title_{$this->lang} ASC, {$this->table}.`{$this->prefix}ordering` DESC",
+            "order_by"  =>"ORDER BY _cate._title_{$this->lang} ASC,_header._title_{$this->lang} ASC, {$this->table}.`{$this->prefix}ordering` DESC",
             "columnmaps"=>array(
                 "_title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
                 "header_title"=>"_header._title_{$this->lang}",
-                "cat_title"=>"cate.title_{$this->lang}",
+                "cat_title"=>"_cate._title_{$this->lang}",
             ),
             "filterfields"=>array(
                 "{$this->prefix}title_{$this->lang}"

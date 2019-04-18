@@ -31,14 +31,16 @@
                 <table id="entryDatatable" class="table table-bordered table-striped message-table -no-table" style="width: 100%">
                     <thead>
                         <tr class="before-filter">
-                            <th><span class="fa fa-key"></span></th>
+                            <th style="width: 80px"><span class="fa fa-key"></span></th>
                             <th></th>
                             <th>Thumb</th>
                             <th style="min-width: 240px;">Title</th>
                             <th>Category</th>
+                            <th>Supplier</th>
                             <th style="min-width: 100px;">Code</th>
                             <th style="min-width: 120px;">Owner</th>
-                            <th style="min-width: 120px;">Price</th>
+                            <th style="min-width: 80px;">Price</th>
+                            <th >Discount</th>
                             <th style="min-width: 120px;">Created At</th>
                             <th style="min-width: 120px;">Modified At</th>
                         </tr>
@@ -63,6 +65,20 @@
                                     [{/if}]
                                 </select>
                             </td>
+                            <td>
+                                <select data-index="5">
+                                    <option value=""></option>
+                                    [{if $suppliers|default:null}]
+                                    [{foreach from=$suppliers item=c}]
+                                        <option 
+                                            value="[{$c->_id|escape|default:''}]">
+                                                [{$c->_title|default:''}]
+                                        </option>
+                                    [{/foreach}]
+                                    [{/if}]
+                                </select>
+                            </td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

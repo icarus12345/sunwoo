@@ -16,7 +16,8 @@ var _oConfig = {
 _oConfig.dataColumns = [
         {
             'mData': "[{$tplConfig.prefix}]id",
-            'width': "80px", 'bSortable': false,
+            // 'width': "80px", 
+            'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
@@ -95,26 +96,6 @@ _oConfig.dataColumns = [
                     str.push('><span></span></label>');
                 return str.join(' ');
             },
-            // 'mRender': function ( value, type, datarow ) {
-            //     var elm = '';
-            //     [{if $unit}]
-            //         [{if $unit|strpos:".e."!==false}]
-            //         if(datarow.[{$tplConfig.prefix}]lock!='false'){
-            //             var status = datarow.[{$tplConfig.prefix}]status =='false'?'true':'false'
-            //         elm = 
-            //             '<span '+ 
-            //                 'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow.id + '\')" '+
-            //                 'title="Click to turn on/off entry" ';
-            //         if(value == 'false') 
-            //             elm += 'class="fa fa-toggle-off"';
-            //         else
-            //             elm += 'class="fa fa-toggle-on"';
-            //         elm += '></span>';
-            //         }
-            //         [{/if}]
-            //     [{/if}]
-            //     return elm;
-            // }
         },{
             'mData': "[{$tplConfig.prefix}]image",'sClass': "gridThumb",'width': "40",
             "bVisible": _oConfig.showImage,
@@ -135,11 +116,15 @@ _oConfig.dataColumns = [
         },{
             'mData': "cat_title",'width': "120"
         },{
+            'mData': "supplier_title",'width': "120"
+        },{
             'mData': "[{$tplConfig.prefix}]code",'width': "120"
         },{
             'mData': "[{$tplConfig.prefix}]owner",'width': "120"
         },{
             'mData': "[{$tplConfig.prefix}]price",'width': "120"
+        },{
+            'mData': "[{$tplConfig.prefix}]discount",'width': "60"
         },{
             'mData': "[{$tplConfig.prefix}]created_at",'width': "126",
         },{

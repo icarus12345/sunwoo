@@ -1,8 +1,8 @@
 table.dataTable {
-  clear: both;
+  /*clear: both;*/
   /*margin-top: 6px !important;*/
   /*margin-bottom: 6px !important;*/
-  max-width: none !important;
+  /*max-width: none !important;*/
   border-collapse: separate !important;
 }
 table.dataTable td,
@@ -17,6 +17,7 @@ table.dataTable th.dataTables_empty {
 table.dataTable.nowrap th,
 table.dataTable.nowrap td {
   white-space: nowrap;
+
 }
 table.dataTable.table-bordered>thead>tr>td, 
 table.dataTable.table-bordered>thead>tr>th {

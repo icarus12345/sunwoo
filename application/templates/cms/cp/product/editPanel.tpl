@@ -16,7 +16,8 @@
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
                 <input type="hidden" name="_ordering" value="[{$item->_ordering|default:time()}]">
-
+                <input type="hidden" name="_type" 
+                            value="[{$item->_type|default:$type|default:''}]"/>
                 <div class="row half">
                     <div class="col-mb-6 half">            
                         <div class="pull-top control-group">
@@ -46,12 +47,39 @@
                             <div id="frm-err-category"></div>
                         </div>
                     </div>
+                    <div class="col-mb-6 half">            
+                        <div class="pull-top control-group">
+                            <div>Supplier :(*)</div>
+
+                            <div class="row-fluid">
+                                <select 
+                                    data-cateid=1
+                                    name="_supplier_id" 
+                                    class="form-control selectpicker"
+                                    data-putto="#frm-err-supplier"
+                                    data-live-search="true"
+                                    data-size="10"
+                                    >
+                                    <option value="0"></option>
+                                    [{if $cates|default:null}]
+                                    [{foreach from=$supplier_data item=c}]
+                                        <option 
+                                            [{if $c->_id == $item->_supplier_id}]selected="1"[{/if}]
+                                            value="[{$c->_id|default:''}]">
+                                                [{$c->_title|default:''}]
+                                        </option>
+                                    [{/foreach}]
+                                    [{/if}]
+                                </select>
+                            </div>
+                            <div id="frm-err-supplier"></div>
+                        </div>
+                    </div>
                     
                     <div class="col-mb-2 half"> 
                         <div class="control-group pull-top">
                             <div>Code :</div>
                             <input type="text" 
-                                rows="1"
                                 class="form-control validate[required,minSize[2],maxSize[20]]"
                                 name="_code" 
                                 value="[{$item->_code|escape|default:''}]"/>
@@ -59,13 +87,13 @@
                     </div>
                     <div class="col-mb-2 half"> 
                             
-                                <div class="control-group pull-top">
-                                    <div>Status :</div>
-                                    <select name="_status" class="form-control selectpicker">
-                                        <option value="1">Enable</option>
-                                        <option value="0" [{if $item->_status|default:'1'=='0'}][{/if}]>Disable</option>
-                                    </select>
-                                </div>
+                        <div class="control-group pull-top">
+                            <div>Status :</div>
+                            <select name="_status" class="form-control selectpicker">
+                                <option value="1">Enable</option>
+                                <option value="0" [{if $item->_status|default:'1'=='0'}][{/if}]>Disable</option>
+                            </select>
+                        </div>
                         
                     </div>
                     <div class="col-mb-2 half">   
@@ -82,6 +110,15 @@
                             </div>
                         </div>
                         
+                    </div>
+                    <div class="col-mb-3 half"> 
+                        <div class="control-group pull-top">
+                            <div>Discount (%):</div>
+                            <input type="number" 
+                                class="form-control validate[required,min[0],custom[number]]"
+                                name="_discount" 
+                                value="[{$item->_discount|escape|default:''}]"/>
+                        </div>
                     </div>
                 </div>
                 <div class="row half pull-bottom">
@@ -105,8 +142,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active pull-top" id="product-info">
-                        <input type="hidden" name="type" 
-                            value="[{$item->type|default:$type|default:''}]"/>
+                        
 
                         <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px">
                             <ul class="nav-tabs">
@@ -137,7 +173,7 @@
                                                 [{$attr= '_title_'|cat:$la->lang_short}]
 
                                                 <input type="text" 
-                                                    onblur="AliasTo('#entryForm input[name=title_[{$la->lang_short}]]','#entryForm input[name=alias_[{$la->lang_short}]]')" 
+                                                    onblur="AliasTo('#entryForm input[name=[{$attr}]]','#entryForm input[name=_alias_[{$la->lang_short}]]')" 
                                                     class="form-control validate[required,minSize[2],maxSize[255]]" 
                                                     value="[{$item->$attr|quotes_to_entities|default:''}]" 
                                                     name="[{$attr}]" 
@@ -247,15 +283,15 @@
                                     <div>Cover :</div>
                                     <div class="input-append">
                                         <input type="text" 
-                                            [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                            [{if $item->_cover}]title="<img src='[{$item->_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
                                             class="form-control tool-tip validate[maxSize[255]]" 
-                                            value="[{$item->_image|escape|default:''}]" 
-                                            name="_image" 
-                                            id="_image"
+                                            value="[{$item->_cover|escape|default:''}]" 
+                                            name="_cover" 
+                                            id="_cover"
                                             >
                                         <span class="add-on" 
                                             title="Choose Image"
-                                            onclick="BrowseServer('#_image')">
+                                            onclick="BrowseServer('#_cover')">
                                             <i class="fa fa-image"></i>
                                         </span>
                                     </div>

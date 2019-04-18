@@ -17,56 +17,86 @@
     };
     _oConfig.dataColumns = [
         {
-            'mData': "_id",
-            'sWidth': "36px", 'bSortable': false,
-            'sClass':'gridAction',
+            'data': "[{$tplConfig.prefix}]id",
+            'width': "20px", 'bSortable': false,
+            'class':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
                 [{if $unit}]
-                str =  '<ul class="table-controls">'
-                    [{if $unit|strpos:".e."!==false}]
-                    str +=  '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')" title="Edit entry (' + value + ')" ><i class="fa fa-edit"></i></a> </li>';
-                    [{/if}]
-                    [{if $unit|strpos:".d."!==false}]
-                    if(datarow.menu_lock!=='true'){
-                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')" title="Delete entry (' + value + ')" ><i class="fa fa-trash-o"></i></a> </li>';
-                    }
-                    [{/if}]
-                    [{if $unit|strpos:".l."!==false}]
-                    if(datarow.menu_lock!=='true'){
-                        str += '<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i></a> </li>';
-                    }
-                    [{/if}]
-                
-                str += '</ul>';
+                var menu = [];
+                [{if $unit|strpos:".e."!==false}] 
+                menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-pencil-alt"></i> Edit</a></li>')
+                [{/if}]
+                [{if $unit|strpos:".d."!==false}]
+                if(datarow.[{$tplConfig.prefix}]readonly!=='true'){
+                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
+                }else{
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    
+                }
+                [{else}]
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                [{/if}]
+                [{if $unit|strpos:".l."!==false}]
+                if(+datarow.[{$tplConfig.prefix}]readonly){
+                    menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+                }else{
+                    menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+
+                }
+                [{else}]
+                    menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
+                [{/if}]
+                str += [
+                '<div class="btn-group">',
+                  '<button type="button" class="btn btn-default btn-sm" [{if $unit|strpos:".e."!==false}] onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"[{/if}]><i class="fa fa-pencil-alt"></i> Edit</button>',
+                  '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<span class="caret"></span>',
+                    '<span class="sr-only">Toggle Dropdown</span>',
+                  '</button>',
+                  '<ul class="dropdown-menu">',
+                    menu.join(''),
+                    
+                    '<li role="separator" class="divider"></li>',
+                    '<li><a href="#" onclick="App.SEO(\'product\',\'' + value + '\')" ><i class="fa fa-hashtag"></i> SEO</a></li>',
+                    '<li role="separator" class="divider"></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putontop(\'' + value + '\')" ><i class="fa fa-arrow-up"></i> Put on top</a></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putup(\'' + value + '\')"><i class="fa fa-arrow-up"></i> Put up</a></li>',
+                    '<li><a href="#" onclick="[{$tplConfig.name}].putdown(\'' + value + '\')"><i class="fa fa-arrow-down"></i> Put down</a></li>',
+                  '</ul>',
+                '</div>',
+                ].join('')
                 [{/if}]
                 return str;
             }
         },
         {
-            'mData': "_status",
-            'sWidth': "36px",
-            'sClass':'gridStatus',
-            'mRender': function ( value, type, datarow ) {
-                var elm = '';
-                [{if $unit}]
-                    [{if $unit|strpos:".e."!==false}]
-                    // if(+datarow.[{$tplConfig.prefix}]lock){
-                        var status = +!+datarow.[{$tplConfig.prefix}]status
-                    elm = 
-                        '<span '+ 
-                            'onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + datarow._id + '\')" '+
-                            'title="Click to turn on/off entry" ';
-                    if(!+value) 
-                        elm += 'class="fa fa-toggle-off"';
-                    else
-                        elm += 'class="fa fa-toggle-on"';
-                    elm += '></span>';
-                    // }
-                    [{/if}]
-                [{/if}]
-                return elm;
-            }
+            'data': "[{$tplConfig.prefix}]status",
+            'width': "48px",
+            'class':'cb-column',
+            render: function ( value, type, row ) {
+                var str = [
+                    '<label class="cb">',
+                    '<input type="checkbox" ',
+                        (+value?'checked':'')
+                        ];
+                        [{if $unit}]
+                            [{if $unit|strpos:".e."!==false}]
+                                if(!+row.[{$tplConfig.prefix}]readonly){
+                                    var status = +(!+row.[{$tplConfig.prefix}]status)
+                                str.push(' onclick="[{$tplConfig.name}].changeStatus('+status+',\'' + row.[{$tplConfig.prefix}]id + '\')" ')
+                                }else{
+                                    str.push('disabled');
+                                }
+                            [{else}]
+                                str.push('disabled');
+                            [{/if}]
+                        [{else}]
+                            str.push('disabled');
+                        [{/if}]
+                    str.push('><span></span></label>');
+                return str.join(' ');
+            },
         },
         {
             'mData': "_title",
@@ -101,11 +131,11 @@
                 <div class="clearfix"></div>
             </div>
             <div class="table-overflow">
-                <table id="entryDatatable" class="table table-bordered table-striped message-table">
+                <table id="entryDatatable" class="table table-bordered table-striped -message-table">
                     <thead>
                         <tr>
-                            <th><span class="fa fa-key"></span></th>
-                            <th><span class="fa fa-circle-thin"></span></th>
+                            <th style="max-width: 80px;width: 80px;"><span class="fa fa-key"></span></th>
+                            <th style="max-width: 60px;width: 60px;"></th>
                             <th>Name</th>
                             
                             

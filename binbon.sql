@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2019-04-17 14:39:58
+Date: 2019-04-18 14:33:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -556,7 +556,7 @@ CREATE TABLE `_header` (
 -- ----------------------------
 INSERT INTO `_header` VALUES ('2', 'Cỡ', 'Size', 'co', 'size', 'Cỡ', 'Size', '1', '2019-02-18 13:42:03', '2019-04-10 09:37:43', 'default', '1554863645');
 INSERT INTO `_header` VALUES ('3', 'Màu sắc', 'Color', 'mau-sac', 'color', 'Màu sắc', 'Color', '1', '2019-02-18 13:42:14', '2019-04-10 09:37:52', 'default', '1554863621');
-INSERT INTO `_header` VALUES ('9', 'Chất liệu', 'Material', 'chat-lieu', 'material', 'Chất liệu', 'Material', '1', '2019-04-10 09:44:21', null, 'default', '1554864191');
+INSERT INTO `_header` VALUES ('9', 'Chất liệu', 'Material', 'chat-lieu', 'material', 'Chất liệu', 'Material', '1', '2019-04-10 09:44:21', '2019-04-18 13:48:42', 'default', '1554864191');
 
 -- ----------------------------
 -- Table structure for `_line`
@@ -716,6 +716,34 @@ CREATE TABLE `_setting` (
 -- Records of _setting
 -- ----------------------------
 INSERT INTO `_setting` VALUES ('1', null, '{\"name\":\"iHope\",\"copyright\":\"Copyright \",\"logo\":\"\\/assets\\/video\\/img\\/www\\/logo.png\",\"banner\":\"http:\\/\\/1109.com\\/assets\\/Video\\/img\\/www\\/bg-header.jpg\",\"facebook\":\"Facebook  link\",\"twitter\":\"Twitter link\",\"google\":\"Google \",\"youtube\":\"Youtube \",\"ourpage\":\"Our page\",\"link\":\"Link \",\"about\":\"About\"}', '2015-04-04 22:27:58', '2015-04-05 08:12:00');
+
+-- ----------------------------
+-- Table structure for `_supplier`
+-- ----------------------------
+DROP TABLE IF EXISTS `_supplier`;
+CREATE TABLE `_supplier` (
+  `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `_title_vi` varchar(255) DEFAULT NULL,
+  `_title_en` varchar(255) DEFAULT NULL,
+  `_alias_vi` varchar(255) DEFAULT NULL,
+  `_alias_en` varchar(255) DEFAULT NULL,
+  `_desc_vi` varchar(255) DEFAULT NULL,
+  `_desc_en` varchar(255) DEFAULT NULL,
+  `_status` tinyint(1) DEFAULT '1',
+  `_created_at` datetime DEFAULT NULL,
+  `_modified_at` datetime DEFAULT NULL,
+  `_type` varchar(50) DEFAULT NULL,
+  `_ordering` int(11) DEFAULT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of _supplier
+-- ----------------------------
+INSERT INTO `_supplier` VALUES ('5', 'Hugies', 'Hugies', 'hugies', 'hugies', 'Hugies', 'Hugies', '1', '2019-04-18 14:04:06', null, 'default', '1555570987');
+INSERT INTO `_supplier` VALUES ('6', 'Công Ty TNHH Sản Xuất Thương Mại Nhựa Xốp EPS', 'EPS', 'cong-ty-tnhh-san-xuat-thuong-mai-nhua-xop-eps', 'eps', 'Công Ty TNHH Sản Xuất Thương Mại Nhựa Xốp EPS', 'EPS', '1', '2019-04-18 14:05:57', null, 'default', '1555571107');
+INSERT INTO `_supplier` VALUES ('7', 'Poppy', 'Poppy', 'poppy', 'poppy', 'Poppy', 'Poppy', '1', '2019-04-18 14:06:34', null, 'default', '1555571185');
+INSERT INTO `_supplier` VALUES ('8', 'Moony', 'Moony', 'moony', 'moony', 'moony', 'moony', '1', '2019-04-18 14:07:02', '2019-04-18 14:07:06', 'default', '1555571200');
 
 -- ----------------------------
 -- Table structure for `auth_users`
@@ -1923,13 +1951,15 @@ CREATE TABLE `product` (
   `_discount` int(3) DEFAULT NULL,
   `_tag_vi` varchar(255) DEFAULT NULL,
   `_tag_en` varchar(255) DEFAULT NULL,
+  `_supplier_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', 'Bàn', 'Table', 'table', 'bàn', 'b&agrave;n', 'table', 'ban', 'table', '1554796031', '1', 'default', '2019-04-09 14:56:16', '2019-04-12 15:06:48', '/data/image/400x400/04035_BeautePaillettes_TB.jpg', 'TBLS', null, null, '413', '', null, '2300000', '100', null, '', '{\"2\":[\"1\",\"2\"],\"3\":[\"8\"]}', '1', null, null, null);
+INSERT INTO `product` VALUES ('1', 'Bàn', 'Table', 'table', 'bàn', 'b&agrave;n', 'table', 'ban', 'table', '1554796031', '1', 'default', '2019-04-09 14:56:16', '2019-04-18 14:21:27', '/data/image/400x400/04035_BeautePaillettes_TB.jpg', 'TBLS', null, null, '413', '', null, '2300000', '100', null, '', '[\"\"]', '0', '0', null, null, '6');
+INSERT INTO `product` VALUES ('2', 'Áo thun gấu cute', 'Ao thun gau cute', 'Ao thun gau cute', 'Áo thun gấu cute', '&Aacute;o thun gấu cute', 'Ao thun gau cute', 'ao-thun-gau-cute', 'ao-thun-gau-cute', '1555555868', '1', 'default', '2019-04-18 09:55:53', '2019-04-18 14:11:51', '', 'S100', null, 'Trường Khương', '413', '', null, '2300000', '100', null, '', '[\"\"]', '0', '25', null, null, '7');
 
 -- ----------------------------
 -- Table structure for `province`

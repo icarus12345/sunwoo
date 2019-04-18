@@ -1,9 +1,7 @@
 
 [{nocache}]
 [{include file=$smarty.const.APPPATH|cat:"templates/cms/003/rowTmpl.tpl"}]
-[{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/line/actScript.tpl"}]
-<script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.rowGroup.min.js'|base_url}]"></script>
-
+[{include file=$smarty.const.APPPATH|cat:"templates/cms/003/actScript.tpl"}]
 <script type="text/javascript">
     _oConfig = {
         'showImage':false,
@@ -15,15 +13,13 @@
         'entryBindingUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/bindingbytype/',
         'entryEditUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/editpanel/',
         'entryCommitUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onCommit/',
-        'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/',
-        'putontopUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putontop/',
-        'putupUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putup/',
-        'putdownUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/putdown/',
+        'entryDeleteUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/onDelete/'
     };
     _oConfig.dataColumns = [
         {
-            'data': "_id",
-            'width': "60px", 'bSortable': false,
+            'mData': "[{$tplConfig.prefix}]id",
+            // 'width': "80px", 
+            'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
@@ -33,17 +29,17 @@
                 menu.push('<li onclick="[{$tplConfig.name}].onEditItem(\'' + value + '\')"><a href="#"><i class="fa fa-pencil-alt"></i> Edit</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
-                if(datarow._readonly!=='true'){
+                if(datarow.[{$tplConfig.prefix}]readonly!=='true'){
                     menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                     
                 }
                 [{else}]
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
-                if(+datarow._readonly){
+                if(+datarow.[{$tplConfig.prefix}]readonly){
                     menu.push('<li><a href="JavaScript:" onclick="[{$tplConfig.name}].onLockItem(\'' + value + '\')" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
                 }else{
                     menu.push('<li class="disabled"><a href="JavaScript:" title="Lock entry (' + value + ')" ><i class="fa fa-lock"></i> Lock</a> </li>');
@@ -63,6 +59,8 @@
                     menu.join(''),
                     
                     '<li role="separator" class="divider"></li>',
+                    '<li><a href="#" onclick="App.SEO(\'product\',\'' + value + '\')" ><i class="fa fa-hashtag"></i> SEO</a></li>',
+                    '<li role="separator" class="divider"></li>',
                     '<li><a href="#" onclick="[{$tplConfig.name}].putontop(\'' + value + '\')" ><i class="fa fa-arrow-up"></i> Put on top</a></li>',
                     '<li><a href="#" onclick="[{$tplConfig.name}].putup(\'' + value + '\')"><i class="fa fa-arrow-up"></i> Put up</a></li>',
                     '<li><a href="#" onclick="[{$tplConfig.name}].putdown(\'' + value + '\')"><i class="fa fa-arrow-down"></i> Put down</a></li>',
@@ -72,10 +70,9 @@
                 [{/if}]
                 return str;
             }
-        },
-        {
-            'data': "_status",
-            'width': "36px",
+        },{
+            'mData': "[{$tplConfig.prefix}]status",
+            'width': "48px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
                 var str = [
@@ -100,19 +97,9 @@
                     str.push('><span></span></label>');
                 return str.join(' ');
             },
-        },
-        {
-            'data': "cat_title",visible:false
-        },
-        {
-            'data': "header_title",
-        },
-        {
-            'data': "_title",
-        },
-        {
-            'data': "_created_at",
-        },
+        },{
+            'mData': "_title",
+        }
     ];
 </script>
 <div class="row-fluid">
@@ -146,12 +133,9 @@
                 <table id="entryDatatable" class="table table-bordered table-striped message-table">
                     <thead>
                         <tr>
-                            <th><span class="fa fa-key"></span></th>
+                            <th style="width: 80px;max-width: 80px"><span class="fa fa-key"></span></th>
                             <th><span class="fa fa-circle-thin"></span></th>
-                            <th>Category</th>
-                            <th>Head</th>
                             <th>Name</th>
-                            <th style="width: 120px">Created at</th>
                             
                             
                         </tr>
