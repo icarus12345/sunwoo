@@ -53,7 +53,6 @@
 
                             <div class="row-fluid">
                                 <select 
-                                    data-cateid=1
                                     name="_supplier_id" 
                                     class="form-control selectpicker"
                                     data-putto="#frm-err-supplier"
@@ -253,7 +252,7 @@
                             [{/foreach}]
                         </div>
                         
-                        
+                        <div class="clearfix"></div>
                         
                     </div>
                     <div role="tabpanel" class="tab-pane" id="product-images">

@@ -216,7 +216,7 @@ var [{$tplConfig.name}] = (function() {
                             var checked = e.checked;
                             oTable
                                 .column( index )
-                                .search( checked===null?'':checked.toString() )
+                                .search( checked===null?'':+checked )
                                 .draw();
                         });
                     });

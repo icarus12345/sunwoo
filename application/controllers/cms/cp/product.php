@@ -149,6 +149,7 @@ class product extends CP_Controller {
                 "supplier_title"=>"_supplier._id",
                 "title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
                 "desc"=>"{$this->table}.{$this->prefix}desc_{$this->lang}",
+                "_status"=>"{$this->table}.{$this->prefix}status",
             ),
             "filterfields"=>array(
                 // 'product_title_vi','cat_title_vi'

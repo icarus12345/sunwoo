@@ -827,6 +827,12 @@ table.dataTable th:active { outline: none; }
     border-right-color:  #bbb;
     /*color:#1887ce;*/
 }
+.tab-content{
+  border:1px solid #bbb;
+  border-top:0;
+  padding: 10px;
+}
+.lang-tabs+.tab-content{border-color: #ddd}
 .sortable { list-style-type: none; margin: 0; padding: 0; width: 100%;float: left;padding: 4px}
 .sortable li { 
     border: 0;margin: 4px; padding: 1px; float: left; width: 96px; height: 96px; 
