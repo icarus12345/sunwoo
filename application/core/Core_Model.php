@@ -42,6 +42,20 @@ class Core_Model extends CI_Model {
         }
         return $row;
     }
+    function fixData(&$row){
+        if($row){
+            if(is_array($row)){
+                foreach ($row as &$value) {
+                    if(isset($value->{"{$this->prefix}data"})){
+                        $value->{"{$this->prefix}data"} = json_decode($value->{"{$this->prefix}data"},true);
+                    }
+                }
+            }elseif(isset($row->{"{$this->prefix}data"})){
+                $row->{"{$this->prefix}data"} = json_decode($row->{"{$this->prefix}data"},true);
+            }
+        }
+        return $row;
+    }
     function onGetByAlias($alias) {
         if($this->status){
             $this->db->where("{$this->prefix}status",$this->status);

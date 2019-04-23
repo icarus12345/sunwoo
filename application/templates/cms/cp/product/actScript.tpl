@@ -129,7 +129,7 @@ _oConfig.dataColumns = [
         },{
             'data': "[{$tplConfig.prefix}]discount",'width': "60",
             render:function ( value, type, datarow ) {
-                return value + '%'
+                return value + 'K'
             }
         },{
             'data': "[{$tplConfig.prefix}]label",'width': "60"
@@ -298,58 +298,58 @@ var [{$tplConfig.name}] = (function() {
                         addNotice(rsdata.message,'danger');
                     }else{
                         $('#entry-container').html(rsdata.htmlreponse);
+                        App.InitForm($('#entryForm'))
+                        // if($('[data-editor="basic"]').length){
+                        //     $('[data-editor="basic"]').each(function(){
+                        //         var id = $(this).attr('id');
+                        //         addEditorBasic(id,240);
+                        //     })
+                        // }
+                        // $('#entryForm .selectpicker').selectpicker();
 
-                        if($('[data-editor="basic"]').length){
-                            $('[data-editor="basic"]').each(function(){
-                                var id = $(this).attr('id');
-                                addEditorBasic(id,240);
-                            })
-                        }
-                        $('#entryForm .selectpicker').selectpicker();
+                        // $('#entryForm').validationEngine({
+                        //     'scroll': false
+                        //     , prettySelect : true
+                        //     , validateNonVisibleFields:false
+                        // }); 
+                        // $('#entryForm .date').datetimepicker({
+                        //     'pickDate': true,
+                        //     'pickTime': true   ,
+                        //     'dayOfWeekStart': 1
+                        // });
+                        // if($('#sortable').length == 1){
+                        //     $( "#sortable" ).sortable({placeholder: "ui-state-highlight"});
+                        //     $( "#sortable" ).disableSelection();
+                        // }
+                        // var frm = $('#entryForm')
+                        // setTimeout(function(){
+                        //     frm.find('[data-googlemap]').get().map(function(elm){
+                        //         console.log($(elm).data('latcolumn'),'latclm')
+                        //         console.log($(elm).data('loncolumn'),'loncolumn')
+                        //         App.AddGoogleMap(elm,function(e){
+                        //             console.log(e)
+                        //             frm.find('input[name="'+$(elm).data('latcolumn')+'"]').val(e.latLng.lat());
+                        //             frm.find('input[name="'+$(elm).data('loncolumn')+'"]').val(e.latLng.lng());
+                        //             frm.find('span[data-latlonpreview="'+$(elm).data('latcolumn')+$(elm).data('loncolumn')+'"]').text(e.latLng.lat() + ' ' + e.latLng.lng());
+                        //             var address_input = $(elm).data('address-input');
+                        //             if(address_input){
+                        //                 App.getAddress(e.latLng.lat(),e.latLng.lng(),function(res){
+                        //                     if(res && res.results && res.results[0]){
+                        //                         console.log(res.results[0].formatted_address,address_input)
+                        //                         $('#'+address_input).val(res.results[0].formatted_address)
+                        //                     }else{
+                        //                         $('#'+address_input).val('')
+                        //                         console.log('Unkown address')
+                        //                     }
+                        //                 })
+                        //             }
+                        //             //https://maps.googleapis.com/maps/api/geocode/json?latlng=10.759171651626405,106.42599052008768&sensor=false&key=AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw
+                        //         })
+                        //     })
+                        // },500)
 
-                        $('#entryForm').validationEngine({
-                            'scroll': false
-                            , prettySelect : true
-                            , validateNonVisibleFields:false
-                        }); 
-                        $('#entryForm .date').datetimepicker({
-                            'pickDate': true,
-                            'pickTime': true   ,
-                            'dayOfWeekStart': 1
-                        });
-                        if($('#sortable').length == 1){
-                            $( "#sortable" ).sortable({placeholder: "ui-state-highlight"});
-                            $( "#sortable" ).disableSelection();
-                        }
-                        var frm = $('#entryForm')
-                        setTimeout(function(){
-                            frm.find('[data-googlemap]').get().map(function(elm){
-                                console.log($(elm).data('latcolumn'),'latclm')
-                                console.log($(elm).data('loncolumn'),'loncolumn')
-                                App.AddGoogleMap(elm,function(e){
-                                    console.log(e)
-                                    frm.find('input[name="'+$(elm).data('latcolumn')+'"]').val(e.latLng.lat());
-                                    frm.find('input[name="'+$(elm).data('loncolumn')+'"]').val(e.latLng.lng());
-                                    frm.find('span[data-latlonpreview="'+$(elm).data('latcolumn')+$(elm).data('loncolumn')+'"]').text(e.latLng.lat() + ' ' + e.latLng.lng());
-                                    var address_input = $(elm).data('address-input');
-                                    if(address_input){
-                                        App.getAddress(e.latLng.lat(),e.latLng.lng(),function(res){
-                                            if(res && res.results && res.results[0]){
-                                                console.log(res.results[0].formatted_address,address_input)
-                                                $('#'+address_input).val(res.results[0].formatted_address)
-                                            }else{
-                                                $('#'+address_input).val('')
-                                                console.log('Unkown address')
-                                            }
-                                        })
-                                    }
-                                    //https://maps.googleapis.com/maps/api/geocode/json?latlng=10.759171651626405,106.42599052008768&sensor=false&key=AIzaSyBWqKci2rs1gaHG2PlcHjpMqef3XiQiJOw
-                                })
-                            })
-                        },500)
-
-                        productopt_config.entryType = $('#product_token').val();
-                        productopt.onInit();
+                        // productopt_config.entryType = $('#product_token').val();
+                        // productopt.onInit();
 
                         $('#entryForm [data-cateid]').change(function(){
                             console.log(this.value,'this.value')

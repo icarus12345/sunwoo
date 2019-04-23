@@ -725,6 +725,12 @@ App.InitForm = function(frm){
         })
         
     }
+    if($('[data-role="sortable"]').length > 0){
+
+        $('[data-role="sortable"]').sortable({placeholder: "ui-state-highlight"});
+        $('[data-role="sortable"]').disableSelection();
+    }
+    
     setTimeout(function(){
         frm.find('[data-googlemap]').get().map(function(elm){
             App.AddGoogleMap(elm,function(e){

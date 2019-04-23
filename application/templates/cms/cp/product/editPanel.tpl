@@ -101,11 +101,16 @@
                     
                     <div class="col-mb-2 half"> 
                         <div class="control-group pull-top">
-                            <div>Discount (%):</div>
-                            <input type="number" 
-                                class="form-control validate[required,min[0],custom[number]]"
-                                name="_discount" 
-                                value="[{$item->_discount|escape|default:'0'}]"/>
+                            <div>Discount:</div>
+                            <div class="input-append">
+                                <input type="text" 
+                                    class="form-control validate[required,custom[number]]"
+                                    name="_discount" 
+                                    value="[{$item->_discount|escape|default:'0'}]"/>
+                                <span class="add-on" title="Unit 1000">
+                                    K
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-mb-2 half"> 
@@ -126,6 +131,8 @@
                                 <option value=""></option>
                                 <option value="hot" [{if $item->_label|default:''=='hot'}]selected[{/if}]>Hot</option>
                                 <option value="new" [{if $item->_label|default:''=='new'}]selected[{/if}]>New</option>
+                                <option value="sale" [{if $item->_label|default:''=='sale'}]selected[{/if}]>Sale</option>
+                                <option value="sold" [{if $item->_label|default:''=='sold'}]selected[{/if}]>Sold</option>
                             </select>
                         </div>
                         
@@ -310,29 +317,19 @@
                         </div> 
                         <div class="pull-top">
                                 <div>List Images:</div>
-                            <div class="container">
-                                <span class="code cursor" 
-                                    title="Add new Photo" 
-                                    onclick="[{$tplConfig.name}].choosePhotos()">
-                                    <i class="fa fa-plus"></i>&nbsp;Add Images
-                                </span>
-                                &nbsp;&nbsp;
-                                <span class="code cursor" 
-                                    title="Delete all" 
-                                    onclick="[{$tplConfig.name}].deletePhotos()">
-                                    <i class="fa fa-trash-alt"></i>&nbsp;Delete all
-                                </span>
-                            </div>
                         </div>
-                        <ul id="sortable" class="sortable" style="min-height: 100px">
-                            [{if $item->_images|default:''!=''}]
-                                [{assign var=images value='/\r\n|[\r\n]/'|preg_split:$item->images}]
-                                [{foreach from=$images item=img}]
+                        <ul id="sortable-default"data-role="sortable" class="sortable" style="min-height: 100px" data-prefix="_data[images][default][]">
+                            [{if $item->_data}]
+                                <li class="ui-state-default ui-state-dashed" onclick="App.PhotoBook.add('#sortable-default')">
+                                        <i class="fa fa-plus"></i>
+                                </li>
+                                [{foreach from=$item->_data.images.default item=img}]
                                     <li class="ui-state-default">
-                                        <img class="thumb" src="[{$img}]"/>
-                                        <div class="action cursor" onclick="[{$tplConfig.name}].deletePhoto(this)">
+                                        <img class="thumb" src="[{$img|escape}]"/>
+                                        <div class="action cursor" onclick="App.PhotoBook.delete(this)">
                                             <i class="fa fa-trash-alt"></i>
                                         </div>
+                                        <input type="hidden" name="_data[images][default][]" value="[{$img|escape}]">
                                     </li>
                                 [{/foreach}]
                             [{/if}]

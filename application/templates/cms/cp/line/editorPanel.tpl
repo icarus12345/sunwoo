@@ -59,10 +59,10 @@
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 
-                                            data-content="<span style='padding-left: [{$c->level*20}]px;'>[{$c->title|escape}]</span>"
-                                            [{if $c->id == $item->category_id}]selected="1"[{/if}]
-                                            value="[{$c->id|default:''}]">
-                                                [{$c->title|default:''}]
+                                            data-content="<span style='padding-left: [{$c->_level*20}]px;'>[{$c->_title|escape}]</span>"
+                                            [{if $c->_id == $item->_category_id}]selected="1"[{/if}]
+                                            value="[{$c->_id|default:''}]">
+                                                [{$c->_title|default:''}]
                                         </option>
                                     [{/foreach}]
                                     [{/if}]

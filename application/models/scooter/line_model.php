@@ -11,6 +11,7 @@ class line_model extends Core_Model {
                 `_id`, 
                 _title_{$this->lang} as _title,
                 _desc_{$this->lang} as _desc,
+                _data
                 "
             ,false);
     }
@@ -21,7 +22,7 @@ class line_model extends Core_Model {
             ->from('_line')
             ->get(); 
         $this->sqlLog('getByHeadId');
-        return $query->result();
+        return $this->fixData($query->result());
     }
 }
 ?>

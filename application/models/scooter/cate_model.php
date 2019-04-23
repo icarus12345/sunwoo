@@ -3,46 +3,42 @@
 class cate_model extends Core_Model {
 
     function __construct(){
-        parent::__construct('cate', 'cat_', 'id');
+        parent::__construct('_cate', '_', 'id');
     }
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS
-                `cat_id`, 
-                `cat_title_{$this->lang}` as cat_title, 
-                `cat_thumb`, 
-                `cat_desc_{$this->lang}` as cat_desc, 
-                `cat_parent`, 
-                `cat_status`, 
-                `cat_position`, 
-                `cat_link`, 
-                `cat_type`, 
-                `cat_insert`, 
-                `cat_update`, 
-                `cat_lock`, 
-                `cat_value`, 
-                `cat_image`, 
-                `cat_alias_{$this->lang}` as cat_alias, 
-                `cat_cover`
+                `_id`, 
+                `_title_{$this->lang}` as _title, 
+                `_desc_{$this->lang}` as _desc, 
+                `_value`, 
+                `_alias_{$this->lang}` as _alias, 
                 "
             ,false);
     }
-    function onGetByAlias($alias){
+    function onGetByAlias($alias=''){
         $this->select();
-        return parent::onGetByAlias($alias);
+        $query = $this->db
+            ->from('_cate')
+            ->where('_status', '1')
+            ->where("`_alias_{$this->lang}`", $alias)
+            ->get();
+        $this->sqlLog('onGetByAlias');
+
+        return $query->row();
     }
     function onGet($id){
         $this->select();
         return parent::onGet($id);
     }
     function getCategoryByType($type=null){
-        if($type!=null)$this->db->where('cat_type',$type);
+        if($type!=null)$this->db->where('_type',$type);
         $this->select();
         $query=$this->db
-            ->from('cate')
-            ->order_by('cat_parent','ASC')
-            ->order_by('cat_position','ASC')
-            ->order_by('cat_insert','ASC')
+            ->from('_cate')
+            ->order_by('_parent_id','ASC')
+            ->order_by('_ordering','ASC')
+            ->order_by('_created_at','ASC')
             ->get(); 
         $this->sqlLog('getCategoryByType');
         return $query->result();
