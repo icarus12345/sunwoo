@@ -24,5 +24,14 @@ class line_model extends Core_Model {
         $this->sqlLog('getByHeadId');
         return $this->fixData($query->result());
     }
+    function getInIds($ids){
+        $this->select();
+        $query=$this->db
+            ->from('_line')
+            ->where_in('_id', $ids)
+            ->get(); 
+        $this->sqlLog('getByHeadId');
+        return $this->fixData($query->result());
+    }
 }
 ?>

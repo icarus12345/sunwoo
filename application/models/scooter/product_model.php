@@ -72,8 +72,15 @@ class product_model extends Core_Model {
             ->where("product.`_alias_{$this->lang}`", $alias)
             ->get();
         $this->sqlLog('onGetByAlias');
-
-        return $this->fixData($query->row());
+        $row = $query->row();
+        $this->fixData($row);
+        // if($row) $row->color = $this->db
+        //         ->from('_line')
+        //         // ->where('_status', '1')
+        //         ->where_in('_id', $row->_data['custom'][3])
+        //         ->get()
+        //         ->result();
+        return $row;
     }
     function onGet($id){
         $this->selectAll();

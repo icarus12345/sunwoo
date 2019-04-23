@@ -118,7 +118,17 @@
     </div>
     <script type="text/javascript">
         // var price_incurred = [{$product_detail->_data.price_incurred|json_encode}]
-        var product_detail = [{$product_detail|json_encode}]
+        var product_detail = {
+            _title: [{$product_detail->_title|json_encode}],
+            _price: [{$product_detail->_price|json_encode}],
+            _discount: [{$product_detail->_discount|json_encode}],
+            _image: [{$product_detail->_image|json_encode}],
+            _alias: [{$product_detail->_alias|json_encode}],
+            _data: [{$product_detail->_data|json_encode}],
+            colors: [{$product_detail->colors|json_encode}],
+            sizes: [{$product_detail->sizes|json_encode}],
+            materias: [{$product_detail->materias|json_encode}],
+        }
     </script>
     [{include file=$smarty.const.APPPATH|cat:"templates/binbon/inc/foot.tpl"}]
 </body>

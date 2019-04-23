@@ -1,3 +1,8 @@
+var App = {
+    addToCart: function(){
+        
+    }
+}
 $(document).ready(function(){
     $('img').error(function(){
         $(this).attr('src','/libraries/images/image_available.gif')
