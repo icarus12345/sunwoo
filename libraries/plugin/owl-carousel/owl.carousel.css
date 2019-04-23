@@ -218,6 +218,8 @@
 .owl-thumb-item img {
     width: auto;
     height: 60px;
+    max-height: 60px;
+    max-width: 100px;
     border:1px solid rgba(0,0,0,.2);
 }
 

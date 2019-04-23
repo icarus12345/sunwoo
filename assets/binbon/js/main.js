@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    $('img').error(function(){
+        $(this).attr('src','/libraries/images/image_available.gif')
+    })
     var owl = $('.owl-carousel');
     owl.owlCarousel({
         loop: true,
