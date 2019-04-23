@@ -15,11 +15,11 @@ var _oConfig = {
 };
 _oConfig.dataColumns = [
         {
-            'mData': "[{$tplConfig.prefix}]id",
+            'data': "[{$tplConfig.prefix}]id",
             // 'width': "80px", 
             'bSortable': false,
             'sClass':'action-dropdown',
-            'mRender': function ( value, type, datarow ) {
+            'render': function ( value, type, datarow ) {
                 var str = '';
                 [{if $unit}]
                 var menu = [];
@@ -70,9 +70,9 @@ _oConfig.dataColumns = [
             }
         },
         {
-            'mData': "[{$tplConfig.prefix}]status",
+            'data': "[{$tplConfig.prefix}]status",
             'width': "48px",
-            'sClass':'cb-column',
+            'sClass':'cb-column w36',
             render: function ( value, type, row ) {
                 var str = [
                     '<label class="cb">',
@@ -97,16 +97,16 @@ _oConfig.dataColumns = [
                 return str.join(' ');
             },
         },{
-            'mData': "[{$tplConfig.prefix}]image",'sClass': "gridThumb",'width': "40",
-            "bVisible": _oConfig.showImage,
-            'mRender': function ( value, type, datarow ) {
+            'data': "[{$tplConfig.prefix}]image",'sClass': "gridThumb",'width': "40",
+            "visible": _oConfig.showImage,
+            'render': function ( value, type, datarow ) {
                 if(value)
                     return '<div style="height:32px;width:52px;background-image:url('+value+')" class="bg-cover"/>';
                 else return '';
             }
         },{
-            'mData': "[{$tplConfig.prefix}]title",'width': "120px",'sWidth': "240px",
-            'mRender': function ( value, type, datarow ) {
+            'data': "[{$tplConfig.prefix}]title",'width': "120px",'sWidth': "240px",
+            'render': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
                 //     str+='<span class="code">' + datarow.cat_title + '</span>';
@@ -114,21 +114,29 @@ _oConfig.dataColumns = [
                 return str;
             }
         },{
-            'mData': "cat_title",'width': "120"
+            'data': "cat_title",'width': "120"
         },{
-            'mData': "supplier_title",'width': "120"
+            'data': "supplier_title",'width': "120"
         },{
-            'mData': "[{$tplConfig.prefix}]code",'width': "120"
+            'data': "[{$tplConfig.prefix}]code",'width': "120"
         },{
-            'mData': "[{$tplConfig.prefix}]owner",'width': "120"
+            'data': "[{$tplConfig.prefix}]owner",'width': "120"
         },{
-            'mData': "[{$tplConfig.prefix}]price",'width': "120"
+            'data': "[{$tplConfig.prefix}]price",'width': "120",
+            render:function ( value, type, datarow ) {
+                return value + 'K'
+            }
         },{
-            'mData': "[{$tplConfig.prefix}]discount",'width': "60"
+            'data': "[{$tplConfig.prefix}]discount",'width': "60",
+            render:function ( value, type, datarow ) {
+                return value + '%'
+            }
         },{
-            'mData': "[{$tplConfig.prefix}]created_at",'width': "126",
+            'data': "[{$tplConfig.prefix}]label",'width': "60"
         },{
-            'mData': "[{$tplConfig.prefix}]modified_at",'width': "126",
+            'data': "[{$tplConfig.prefix}]created_at",'width': "126",
+        },{
+            'data': "[{$tplConfig.prefix}]modified_at",'width': "126",
         }
     ];
 var [{$tplConfig.name}] = (function() {
@@ -460,7 +468,7 @@ var [{$tplConfig.name}] = (function() {
                         '<li class="ui-state-default">'+
                             '<img class="thumb" src="'+files[i]+'"/>'+
                             '<div class="action cursor" title="Delete this photo" onclick="album.deletePhoto(this)">'+
-                                '<i class="fa fa-trash-o"></i>'+
+                                '<i class="fa fa-trash-alt"></i>'+
                             '</div>'+
                         '</li>'
                     );

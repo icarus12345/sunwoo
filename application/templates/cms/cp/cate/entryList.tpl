@@ -19,7 +19,7 @@
         {
             'mData': "[{$tplConfig.prefix}]id",
             'width': "60px", 'bSortable': false,
-            'sClass':'action-dropdown',
+            'sClass':'action-dropdown w80',
             'mRender': function ( value, type, datarow ) {
                 var str = '';
                 [{if $unit}]
@@ -71,7 +71,7 @@
         {
             'mData': "[{$tplConfig.prefix}]status",
             'sWidth': "36px",
-            'sClass':'cb-column',
+            'sClass':'cb-column w36',
             render: function ( value, type, row ) {
                 var str = [
                     '<label class="cb">',

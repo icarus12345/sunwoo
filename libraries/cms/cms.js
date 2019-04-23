@@ -1021,6 +1021,27 @@ App.SEO = function(type,head_id){
         }]
     }).open();
 }
+App.PhotoBook = {
+    'add': function(elmid){
+        var prefix = $(elmid).data('prefix');
+        openKCFinderMulti(function(files){
+            for(var i in files){
+                $(elmid).append(
+                    '<li class="ui-state-default">'+
+                        '<img class="thumb" src="'+files[i]+'"/>'+
+                        '<div class="action cursor" title="Delete this photo" onclick="App.PhotoBook.delete(this)">'+
+                            '<i class="fa fa-trash-alt"></i>'+
+                            '<input type="hidden" name="'+prefix+'" value="'+files[i]+'"/>'+
+                        '</div>'+
+                    '</li>'
+                );
+            }
+        })
+    },
+    'delete': function(elm){
+        $(elm).parents('li.ui-state-default').hide(500,function(){$(this).remove()});
+    }
+}
 //////
 //// END
 //

@@ -186,7 +186,7 @@ var product = (function() {
                         '<li class="ui-state-default">'+
                             '<img class="thumb" src="'+files[i]+'"/>'+
                             '<div class="action cursor" onclick="product.deletePhoto(this)">'+
-                                '<i class="fa fa-trash-o"></i>'+
+                                '<i class="fa fa-trash-alt"></i>'+
                             '</div>'+
                         '</li>'
                     );

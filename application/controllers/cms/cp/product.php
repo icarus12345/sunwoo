@@ -133,7 +133,8 @@ class product extends CP_Controller {
                     {$this->table}.{$this->prefix}discount,
                     {$this->table}.{$this->prefix}category_id,
                     {$this->table}.{$this->prefix}token,
-                    {$this->table}.{$this->prefix}price_{$this->lang} as {$this->prefix}price,
+                    {$this->table}.{$this->prefix}label,
+                    {$this->table}.{$this->prefix}price,
                     _cate._title_{$this->lang} as cat_title,
                     _supplier._title_{$this->lang} as supplier_title
                 ",

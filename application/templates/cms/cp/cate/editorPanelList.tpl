@@ -17,7 +17,7 @@
             <input type="hidden" name="ordering" value="[{$item->ordering|default:time()}]">
                 
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="type" id="type" 
+                <input type="hidden" name="_type" id="type" 
                     value="[{$item->type|default:$type|default:''}]"/>
                 <input 
                     type="hidden" 

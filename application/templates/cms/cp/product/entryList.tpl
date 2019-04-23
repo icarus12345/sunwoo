@@ -31,22 +31,23 @@
                 <table id="entryDatatable" class="table table-bordered table-striped message-table -no-table" style="width: 100%">
                     <thead>
                         <tr class="before-filter">
-                            <th style="width: 80px"><span class="fa fa-key"></span></th>
-                            <th></th>
+                            <th class="w80"></th>
+                            <th class="w36"></th>
                             <th>Thumb</th>
                             <th style="min-width: 240px;">Title</th>
                             <th>Category</th>
                             <th>Supplier</th>
                             <th style="min-width: 100px;">Code</th>
                             <th style="min-width: 120px;">Owner</th>
-                            <th style="min-width: 80px;">Price</th>
+                            <th style="min-width: 80px;">Price(K)</th>
                             <th >Discount</th>
+                            <th >Label</th>
                             <th style="min-width: 120px;">Created At</th>
                             <th style="min-width: 120px;">Modified At</th>
                         </tr>
                         <tr class="filter-rows">
-                            <td></td>
-                            <td>
+                            <td ></td>
+                            <td class="w36">
                                 <input type="checkbox" checked data-index="1">
                             </td>
                             <td></td>
@@ -78,6 +79,7 @@
                                     [{/if}]
                                 </select>
                             </td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

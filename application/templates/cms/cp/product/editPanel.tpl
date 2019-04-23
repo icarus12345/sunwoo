@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-mb-2 half"> 
+                    <div class="col-mb-3 half"> 
                         <div class="control-group pull-top">
                             <div>Code :</div>
                             <input type="text" 
@@ -84,40 +84,51 @@
                                 value="[{$item->_code|escape|default:''}]"/>
                         </div>
                     </div>
+                    <div class="col-mb-3 half"> 
+                        <div class="control-group pull-top">
+                            <div>Price (Unit:1000):</div>
+                            <div class="input-append">
+                                <input type="text" 
+                                    class="form-control text-right validate[required,min[0],custom[number]]"
+                                    name="_price" 
+                                    value="[{$item->_price|escape|default:'0'}]"/>
+                                <span class="add-on" title="Unit 1000">
+                                    K
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-mb-2 half"> 
+                        <div class="control-group pull-top">
+                            <div>Discount (%):</div>
+                            <input type="number" 
+                                class="form-control validate[required,min[0],custom[number]]"
+                                name="_discount" 
+                                value="[{$item->_discount|escape|default:'0'}]"/>
+                        </div>
+                    </div>
                     <div class="col-mb-2 half"> 
                             
                         <div class="control-group pull-top">
                             <div>Status :</div>
                             <select name="_status" class="form-control selectpicker">
                                 <option value="1">Enable</option>
-                                <option value="0" [{if $item->_status|default:'1'=='0'}][{/if}]>Disable</option>
+                                <option value="0" [{if $item->_status|default:'1'=='0'}]selected[{/if}]>Disable</option>
                             </select>
                         </div>
                         
                     </div>
                     <div class="col-mb-2 half">   
                         <div class="control-group pull-top">
-                            <div>Is Hot :</div>
-                            <!-- <input type="text" 
-                                rows="1"
-                                class="form-control validate[required,minSize[4],maxSize[20]]"
-                                name="is_hot" 
-                                value="[{$item->is_hot|escape|default:''}]"/> -->
-                            <div class="">
-                                <input type='hidden' value='[{$item->is_hot|default:"0"}]' name='_is_hot'>
-                                <label class="cb"> <input onChange="$(this).parent().prev().val(+(this.checked))" value="1" type="checkbox" [{if $item->_is_hot}]checked=1[{/if}]><span></span></label>
-                            </div>
+                            <div>Label :</div>
+                            <select name="_label" class="form-control selectpicker">
+                                <option value=""></option>
+                                <option value="hot" [{if $item->_label|default:''=='hot'}]selected[{/if}]>Hot</option>
+                                <option value="new" [{if $item->_label|default:''=='new'}]selected[{/if}]>New</option>
+                            </select>
                         </div>
                         
-                    </div>
-                    <div class="col-mb-3 half"> 
-                        <div class="control-group pull-top">
-                            <div>Discount (%):</div>
-                            <input type="number" 
-                                class="form-control validate[required,min[0],custom[number]]"
-                                name="_discount" 
-                                value="[{$item->_discount|escape|default:''}]"/>
-                        </div>
                     </div>
                 </div>
                 <div class="row half pull-bottom">
@@ -196,7 +207,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row half">
+                                    <!-- <div class="row half">
                                         <div class="col-mb-6 half"> 
                                             <div class="control-group pull-top">
                                                 <div>Price :(*)</div>
@@ -212,7 +223,7 @@
                                                     >
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="control-group pull-top">
                                         <div>Desc :(*)</div>
                                         [{$attr= '_desc_'|cat:$la->lang_short}]
@@ -309,7 +320,7 @@
                                 <span class="code cursor" 
                                     title="Delete all" 
                                     onclick="[{$tplConfig.name}].deletePhotos()">
-                                    <i class="fa fa-trash-o"></i>&nbsp;Delete all
+                                    <i class="fa fa-trash-alt"></i>&nbsp;Delete all
                                 </span>
                             </div>
                         </div>
@@ -320,7 +331,7 @@
                                     <li class="ui-state-default">
                                         <img class="thumb" src="[{$img}]"/>
                                         <div class="action cursor" onclick="[{$tplConfig.name}].deletePhoto(this)">
-                                            <i class="fa fa-trash-o"></i>
+                                            <i class="fa fa-trash-alt"></i>
                                         </div>
                                     </li>
                                 [{/foreach}]

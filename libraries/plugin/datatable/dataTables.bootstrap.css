@@ -258,3 +258,14 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
     height: 10px;
     position:absolute;
 }
+.action-dropdown,
+.w80{
+  max-width: 64px !important;
+  min-width: 64px !important;
+  width: 64px !important;
+}
+.w36{
+  max-width: 16px !important;
+  min-width: 16px !important;
+  width: 16px !important;
+}
