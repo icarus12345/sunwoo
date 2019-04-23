@@ -4,7 +4,7 @@ $(document).ready(function(){
     })
     var owl = $('.owl-carousel');
     owl.owlCarousel({
-        loop: true,
+        // loop: true,
         items: 1,
         thumbs: true,
         thumbImage: true,
@@ -21,6 +21,11 @@ $(document).ready(function(){
     $('#colorCbx').change(function(){
         var owlid = $(this).val()
         console.log(owlid,'owlid')
+        if($('#product-thumbs .owl-carousel[data-owlid="'+owlid+'"]').length==0){
+            owlid = 'unknown'
+        }else{
+            
+        }
         $('#product-thumbs .owl-active').removeClass('owl-active')
         $('#product-thumbs .owl-carousel[data-owlid="'+owlid+'"]').addClass('owl-active')
     })

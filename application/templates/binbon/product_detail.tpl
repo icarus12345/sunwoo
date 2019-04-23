@@ -21,6 +21,11 @@
                             [{/foreach}]
                         </div>
                     [{/foreach}]
+                    <div class="owl-carousel [{if !$product_detail->_data.images}]owl-active[{/if}]" data-owlid="unknown">
+                        <div class="item">
+                            <div><img src="[{$product_detail->_image|escape}]" alt="[{$product_detail->_title|escape}]"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6 product-info">
