@@ -263,6 +263,15 @@
                                     </div>
                                     [{/if}]
 
+                                    <div class="control-group pull-top">
+                                        <div>Tag :(*)</div>
+                                        [{$attr= '_tag_'|cat:$la->lang_short}]
+                                        <textarea class="form-control validate[required]" 
+                                            name="[{$attr}]" 
+                                            rows="2" 
+                                            data-lang="[{$la->lang_short}]"
+                                            placeholder="[{$la->lang_name|ucwords}]">[{$item->$attr|quotes_to_entities|default:''}]</textarea>
+                                    </div>
                                 </div>
 
 

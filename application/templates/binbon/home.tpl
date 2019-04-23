@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="price">
                                         [{if $foo->_discount>0}]
-                                        <span class="sale-discount">[{$foo->_price}] K </span>
+                                        <span class="price-no-discount">[{$foo->_price}] K </span>
                                         [{/if}]
                                         [{$foo->_discount}] K
                                     </div>

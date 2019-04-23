@@ -6,19 +6,22 @@
         <ol class="breadcrumb">
           <li><a href="/">Home</a></li>
           <li><a href="/shop/[{$cate_detail->_alias|escape}]">[{$cate_detail->_title|escape}]</a></li>
-          <li class="active">[{$product_detail->_title|escape}]</li>
+          <li class="active">[{$product_detail->_code|escape}]</li>
         </ol>
         <div class="product-detail row">
-            <div class="col-sm-6 product-thumbs" id="product-thumbs">
-                [{foreach from=$product_detail->_data.images item=imgs key=name}]
-                    <div class="owl-carousel [{if $name=='default'}]owl-active[{/if}]" data-owlid="[{$name}]">
-                        [{foreach from=$imgs item=img}]
-                        <div class="item">
-                            <div><img src="[{$img|escape}]" alt="[{$product_detail->_title|escape}]"></div>
+            <div class="col-sm-6">
+                <div class="product-thumbs" id="product-thumbs">
+                    <span class="label [{$product_detail->_label|escape}]">[{$product_detail->_label|escape}]</span>
+                    [{foreach from=$product_detail->_data.images item=imgs key=name}]
+                        <div class="owl-carousel [{if $name=='default'}]owl-active[{/if}]" data-owlid="[{$name}]">
+                            [{foreach from=$imgs item=img}]
+                            <div class="item">
+                                <div><img src="[{$img|escape}]" alt="[{$product_detail->_title|escape}]"></div>
+                            </div>
+                            [{/foreach}]
                         </div>
-                        [{/foreach}]
-                    </div>
-                [{/foreach}]
+                    [{/foreach}]
+                </div>
             </div>
             <div class="col-sm-6 product-info">
                 <h1>[{$product_detail->_title|escape}]</h1>
@@ -31,9 +34,9 @@
                 </div>
                 <div class="price">
                     [{if $product_detail->_discount>0}]
-                    <span class="sale-discount">[{$product_detail->_price}] K </span>
+                    <span class="price-no-discount">[{$product_detail->_price}] K </span>
                     [{/if}]
-                    [{$product_detail->_discount}] K
+                    <span class="price-with-discount">[{$product_detail->_discount}] K </span>
                 </div>
                 <p class="desc word-wrap">[{$product_detail->_desc|escape}]</p>
                 
@@ -102,9 +105,15 @@
                 <div role="tabpanel" class="tab-pane active" id="tab-desc">
                     <div class="ckeditor">[{$product_detail->_content}]</div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="tab-review">...</div>
+                <div role="tabpanel" class="tab-pane" id="tab-review">
+                    Updating...<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        // var price_incurred = [{$product_detail->_data.price_incurred|json_encode}]
+        var product_detail = [{$product_detail|json_encode}]
+    </script>
     [{include file=$smarty.const.APPPATH|cat:"templates/binbon/inc/foot.tpl"}]
 </body>

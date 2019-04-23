@@ -35,6 +35,7 @@ html,body{
     justify-content: center;text-decoration: none;
     opacity: 0;
 }
+.product-thumbs>.label,
 .grid *[class*="cell"]>div>.cover>.label{
     text-transform: capitalize;
     color: #fff;
@@ -43,17 +44,18 @@ html,body{
     padding: 2px 8px;
     position: absolute;
     left: 10px;top:10px;
+    z-index: 11;
 }
-.grid *[class*="cell"]>div>.cover>.label.new{
+.label.new{
     background: #FFC107
 }
-.grid *[class*="cell"]>div>.cover>.label.hot{
+.label.hot{
     background: red
 }
-.grid *[class*="cell"]>div>.cover>.label.sold{
+.label.sold{
     background: #9E9E9E
 }
-.grid *[class*="cell"]>div>.cover>.label.sale{
+.label.sale{
     background: #03A9F4
 }
 .grid *[class*="cell"]:hover>div>.cover>.mask{
@@ -163,7 +165,7 @@ html,body{
 .left-bar ul a:hover{
     color: #00BCD4
 }
-.sale-discount{
+.price-no-discount{
     text-decoration: line-through;
     color: #777;
     margin-right: 10px;
@@ -216,10 +218,15 @@ html,body{
   border-top:0;
   padding: 10px;
 }
+.product-thumbs{
+    position: relative;
+    background-color: #ebebeb;
+    border:1px solid #ddd;
+}
 .product-thumbs,
 .product-info,
 .product-content{
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 .product-info .submit{
     padding-top: 20px;
