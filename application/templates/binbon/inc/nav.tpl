@@ -12,6 +12,7 @@
             <li><a href="/">Shop</a></li>
             <li><a href="#">Blog</a></li>
         </ul>
-        [{include file=$smarty.const.APPPATH|cat:"templates/binbon/widget/cart-info.tpl"}]
-
+        <div id="cart" class="cart">
+            [{include file=$smarty.const.APPPATH|cat:"templates/binbon/widget/cart-info.tpl"}]
+        </div>
     </div>

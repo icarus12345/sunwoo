@@ -165,7 +165,7 @@ html,body{
     float: left;
     width: 240px;
     position: fixed;
-    z-index: 11;
+    z-index: 110;
     left: 0;
     top: 0;
     bottom:0;
@@ -279,3 +279,57 @@ html,body{
     float: left;width: 40px;height: 20px;margin-right: 10px;
     border:1px solid #ccc;
 }
+.snippet input{text-align: center;}
+.snippet{
+    /*width: 140px;*/
+}
+.my-bag .num{
+        position: absolute;
+    right: 10px;
+    top: 10px;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    color: #fff;
+    background: #E91E63;
+    line-height: 16px;
+    font-size: 11px;
+}
+.my-bag .total-cash{
+    color: #E91E63;
+    line-height: 16px;
+    font-size: 11px;
+    text-align: center;
+}
+.my-bag{
+    padding: 10px;border:1px dashed green;
+    padding-top: 50px;
+    display: inline-block;
+    position: relative;
+}
+.cart{
+    padding: 20px;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    z-index: 12
+}
+.my-cart .cart-items.dropdown-menu{
+    position: absolute;
+    width: 320px;
+    top: auto;
+    bottom: 0;
+    left: 100%;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.my-cart .cart-items tr:not(:first-child) td{
+    border-top:2px solid  #ebebeb;
+}
+
+
+
+
+
+
