@@ -13,6 +13,8 @@ html,body{
     max-width: 1366px
 }
 .grid{
+    margin-left: -4px;
+    margin-right: -4px;
 }
 .grid *[class*="cell"]{
     /*padding: 10px;*/
@@ -21,13 +23,13 @@ html,body{
 .grid *[class*="cell"]>div{
     /*border:2px solid #fff;*/
 }
-.grid *[class*="cell"]>div>.cover{
+.grid *[class*="cell"]>div>div{
     position: absolute;
     left: 4px;right: 4px;
     top: 4px;bottom: 4px;
     border:1px solid #ccc;
 }
-.grid *[class*="cell"]>div>.cover>.mask{
+.grid *[class*="cell"]>div>div>.mask{
     position: absolute;
     left: 0;top:0;width: 100%;height: 100%;
     background: rgba(255,255,255,.2); 
@@ -37,7 +39,7 @@ html,body{
     opacity: 0;
 }
 .product-thumbs>.label,
-.grid *[class*="cell"]>div>.cover>.label{
+.grid *[class*="cell"]>div>div>.label{
     text-transform: capitalize;
     color: #fff;
     border-radius: 4px;
@@ -59,10 +61,10 @@ html,body{
 .label.sale{
     background: #03A9F4
 }
-.grid *[class*="cell"]:hover>div>.cover>.mask{
+.grid *[class*="cell"]:hover>div>div>.mask{
     opacity: 1;
 }
-.grid *[class*="cell"]>div>.cover>.mask>div{
+.grid *[class*="cell"]>div>div>.mask>div{
     text-align: center;
     padding: 20px;
     max-width: 340px;
@@ -71,11 +73,11 @@ html,body{
     color: #FFC107;
     text-shadow: 0px 0px 1px #FF5722
 }
-.grid *[class*="cell"]>div>.cover>.mask>div .price{
+.grid *[class*="cell"]>div>div>.mask>div .price{
     font-size: 1.5em;
     color: #03A9F4;
 }
-.grid *[class*="cell"]>div>.cover>.mask>div h4{
+.grid *[class*="cell"]>div>div>.mask>div h4{
     margin: 0;
     color: #3F51B5;
 }
@@ -95,19 +97,19 @@ html,body{
 }
 .cell.cell--width2.cell--height2>div,
 */
-.cell:nth-child(10n - 9),
-.cell:nth-child(10n - 3),
-.cell:nth-child(10n - 2){
+.home-grid .cell:nth-child(10n - 9),
+.home-grid .cell:nth-child(10n - 3),
+.home-grid .cell:nth-child(10n - 2){
     width: 50%;
 }
-.cell:nth-child(10n - 9)>div{
+.home-grid .cell:nth-child(10n - 9)>div{
     padding-bottom: 100%
 }
-.cell:nth-child(10n - 8)>div{
+.home-grid .cell:nth-child(10n - 8)>div{
     padding-bottom: 200%
 }
-.cell:nth-child(10n - 3)>div,
-.cell:nth-child(10n - 2)>div{
+.home-grid .cell:nth-child(10n - 3)>div,
+.home-grid .cell:nth-child(10n - 2)>div{
     padding-bottom: 50%
 }
 .cover{
@@ -117,6 +119,16 @@ html,body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+/*    -ms-behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
+/*    behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
+}
+.contain{
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
 /*    -ms-behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
 /*    behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
 }
@@ -132,6 +144,23 @@ html,body{
 .line-clamp-f-4 {display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;  overflow: hidden;height: 6em;line-height: 1.5em;}
 .line-clamp-f-5 {display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;  overflow: hidden;height: 7.5em;line-height: 1.5em;}
 .line-clamp-f-6 {display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;  overflow: hidden;height: 9em;line-height: 1.5em;}
+.nailthumb{position:relative;display: block;}
+.nailthumb .nailthumb-figure{position:relative;width:100%;padding-bottom:56%;display: block;}
+.nailthumb .nailthumb-figure-comic{position:relative;width:100%;padding-bottom:147.5%;display: block;}
+.nailthumb .nailthumb-figure-comic-2{position:relative;width:100%;padding-bottom:114%;display: block;}
+.nailthumb .nailthumb-figure-comic-3{position:relative;width:100%;padding-bottom:135.5%;display: block;}
+.nailthumb .nailthumb-figure-9-16{position:relative;width:100%;padding-bottom: 42.857142857%;display: block;}
+.nailthumb .nailthumb-figure-75{position:relative;width:100%;padding-bottom:75%;display: block;}
+.nailthumb .nailthumb-figure-72{position:relative;width:100%;padding-bottom:72%;display: block;}
+.nailthumb-figure-square{position:relative;width:100%;padding-bottom:100%}
+.nailthumb-mark{position:absolute;width:100%;height:100%;z-index: 2;display: none;top: 0;left: 0}
+.nailthumb:hover>.nailthumb-mark{display: block;}
+.nailthumb:hover>div>.nailthumb-mark{display: block;}
+.nailthumb-fluid,
+.nailthumb .nailthumb-container{
+    position:absolute;width:100%;height:100%;
+    overflow:hidden;z-index:1;top: 0;left: 0;
+}
 .left-bar{
     float: left;
     width: 240px;

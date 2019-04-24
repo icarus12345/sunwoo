@@ -37,7 +37,7 @@ class seo extends CP_Controller {
                 $this->model = new Core_Model($type, '_', 'id');
                 $item = $this->model->onGet($head_id);
                 if($item){
-                    unset($item->id);
+                    unset($item->_id);
                 }
             }
             $this->assigns->item = $item;

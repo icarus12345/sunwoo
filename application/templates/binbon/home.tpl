@@ -9,11 +9,11 @@
           <li class="active">[{$cate_detail->_title|escape}]</li>
         </ol>
         [{/if}]
-        <div id="" class="grid">
+        <div id="" class="grid home-grid">
             [{foreach from=$product_list item=foo}]
                 <div class="cell">
                     <div>
-                        <div class="cover" style="background-image: url('[{$foo->_image|escape}]')">
+                        <div class="contain" style="background-image: url('[{$foo->_image|escape}]')">
                             <span class="label [{$foo->_label|escape}]">[{$foo->_label|escape}]</span>
                             <a href="/shop/[{$foo->cat_alias|escape}]/[{$foo->_alias|escape}]" class="mask">
                                 <div class="cap">

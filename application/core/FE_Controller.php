@@ -17,6 +17,7 @@ class FE_Controller extends CI_Controller {
         $this->load->model('cms/cp/data_model');
         $this->load->model('cms/cp/site_model');
         $this->load->model('cms/cp/setting_model');
+        $this->load->model('scooter/seo_model');
         $this->load->model('scooter/product_model');
         $this->load->model('scooter/news_model');
         $this->load->model('lawyer/advisory_model');
@@ -87,7 +88,7 @@ class FE_Controller extends CI_Controller {
     }
     function nothing(){}
     function _addView($table='',$prefix='',$id){
-        if($_SESSION["addviews"][date('Y-m-d H')]["$table$id"]) return;
+        // if($_SESSION["addviews"][date('Y-m-d H')]["$table$id"]) return;
         $_SESSION["addviews"][date('Y-m-d H')]["$table$id"] = 1;
         $this->db->set($prefix.'view',$prefix."view +1",false)
             ->where($prefix.'id',$id)

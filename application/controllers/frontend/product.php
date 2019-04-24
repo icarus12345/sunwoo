@@ -41,8 +41,14 @@ class product extends FE_Controller {
             $product_detail->colors = $this->line_model->getInIds($product_detail->_data['custom'][$this->assigns->fecog['color']]);
             $product_detail->sizes = $this->line_model->getInIds($product_detail->_data['custom'][$this->assigns->fecog['size']]);
             $product_detail->materias = $this->line_model->getInIds($product_detail->_data['custom'][$this->assigns->fecog['materia']]);
-        //     // $this->assigns->relateds = $this->product_model->getNearLatLng(null,$p,1,8);
-            
+            $this->assigns->relateds = $this->product_model->getRelated($product_detail,1,8);
+            $this->_addView('product','_',$product_detail->_id);
+
+            $seo = $this->seo_model->onGetByHead('product',$product_detail->_id);
+            if(!$seo){
+                $this->assigns->seo = $product_detail;
+            }
+            $this->assigns->seo = $seo;
         }
 
 		$this->smarty->view( 'binbon/product_detail', $this->assigns );

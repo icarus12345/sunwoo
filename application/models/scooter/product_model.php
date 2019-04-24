@@ -54,6 +54,7 @@ class product_model extends Core_Model {
                 product.`_cover`, 
                 product.`_data`, 
                 product.`_label`, 
+                product.`_supplier_id`,
 
                 _supplier._title_{$this->lang} as supplier_title,
                 _cate._title_{$this->lang} as cat_title,
@@ -98,7 +99,7 @@ class product_model extends Core_Model {
     function getFeature($cat_value, $page = 1, $perpage = 10){
         $this->select();
         $this->db
-            ->order_by('product._ordering','ASC')
+            // ->order_by('product._ordering','ASC')
             ->order_by('product._view','DESC')
             ->order_by('product._created_at','DESC');
         return $this->getInCategories($cat_value, $page, $perpage); 
@@ -110,7 +111,17 @@ class product_model extends Core_Model {
             ->order_by('product._created_at','DESC');
         return $this->getInCategories($cat_value, $page, $perpage);
     }
-    
+    function getRelated($row, $page = 1, $perpage = 10){
+        $this->select();
+        if($row){
+            $cat_value = $row->cat_value;
+            $this->db->where('product._id <>', $row->_id)
+                ->order_by("_cate._value like '$cat_value%'",'DESC',false)
+                ->order_by("product._supplier_id = '$row->_supplier_id'",'DESC',false)
+                ->order_by("product._view",'DESC',false);
+        }
+        return $this->getInCategories(null, $page, $perpage);
+    }
     function getInCategories($cat_value = null, $page = 1, $perpage = 10) {
         // if($this->type)$this->db->where('product_type', $this->type);
         if($cat_value)

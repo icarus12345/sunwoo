@@ -24,7 +24,8 @@ class line_model extends Core_Model {
         $this->sqlLog('getByHeadId');
         return $this->fixData($query->result());
     }
-    function getInIds($ids){
+    function getInIds($ids = []){
+        if(!is_array($ids)) $ids = [0];
         $this->select();
         $query=$this->db
             ->from('_line')
@@ -32,6 +33,15 @@ class line_model extends Core_Model {
             ->get(); 
         $this->sqlLog('getByHeadId');
         return $this->fixData($query->result());
+    }
+    function onGet($id){
+        $this->select();
+        $query=$this->db
+            ->from('_line')
+            ->where('_id', $id)
+            ->get(); 
+        $this->sqlLog('getByHeadId');
+        return $this->fixData($query->row());
     }
 }
 ?>

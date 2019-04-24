@@ -44,58 +44,65 @@
                     <span class="price-with-discount">[{$product_detail->_discount}] K </span>
                 </div>
                 <p class="desc word-wrap">[{$product_detail->_desc|escape}]</p>
-                
-                <div class="row half select-option">
-                    <div class="col-sm-4 half form-group">
-                        <div class="">Color</div>
-                        <div>
-                            <select id="colorCbx" class="selectpicker">
-                                <option value="default"></option>
-                                [{foreach from=$colors item=line}]
-                                [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.color]}]
-                                <option 
-                                    data-content="<span style='background-color:[{$line->_data.color|escape}]' class='sub-icon'></span>[{$line->_title|escape}]"
-                                    value="[{$line->_id}]" 
-                                    >[{$line->_title}]</option>
-                                [{/if}]
-                                [{/foreach}]
-                            </select>
+                <form >
+                    <input type="hidden" name="id" value="[{$product_detail->_id}]">
+                    <div class="row half select-option">
+                        [{if $product_detail->_data.custom[$fecog.color]}]
+                        <div class="col-sm-4 half form-group">
+                            <div class="">Color</div>
+                            <div>
+                                <select id="colorCbx" class="selectpicker" name="color">
+                                    <option value="default"></option>
+                                    [{foreach from=$colors item=line}]
+                                    [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.color]}]
+                                    <option 
+                                        data-content="<span style='background-color:[{$line->_data.color|escape}]' class='sub-icon'></span>[{$line->_title|escape}]"
+                                        value="[{$line->_id}]" 
+                                        >[{$line->_title}]</option>
+                                    [{/if}]
+                                    [{/foreach}]
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4 half form-group">
-                        <div class="">Materia</div>
-                        <div>
-                            <select id="materiaCbx" class="selectpicker">
-                                <option value="default"></option>
-                                [{foreach from=$materias item=line}]
-                                [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.materia]}]
-                                <option value="[{$line->_id}]">[{$line->_title}]</option>
-                                [{/if}]
-                                [{/foreach}]
-                            </select>
+                        [{/if}]
+                        [{if $product_detail->_data.custom[$fecog.materia]}]
+                        <div class="col-sm-4 half form-group">
+                            <div class="">Materia</div>
+                            <div>
+                                <select id="materiaCbx" class="selectpicker" name="materia">
+                                    <option value="default"></option>
+                                    [{foreach from=$materias item=line}]
+                                    [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.materia]}]
+                                    <option value="[{$line->_id}]">[{$line->_title}]</option>
+                                    [{/if}]
+                                    [{/foreach}]
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4 half form-group">
-                        <div class="">Size</div>
-                        <div>
-                            <select id="sizeCbx" class="selectpicker">
-                                <option value="default"></option>
-                                [{foreach from=$sizes item=line}]
-                                [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.size]}]
-                                <option value="[{$line->_id}]">[{$line->_title}]</option>
-                                [{/if}]
-                                [{/foreach}]
-                            </select>
+                        [{/if}]
+                        [{if $product_detail->_data.custom[$fecog.size]}]
+                        <div class="col-sm-4 half form-group">
+                            <div class="">Size</div>
+                            <div>
+                                <select id="sizeCbx" class="selectpicker" name="size">
+                                    <option value="default"></option>
+                                    [{foreach from=$sizes item=line}]
+                                    [{if $line->_id|in_array:$product_detail->_data.custom[$fecog.size]}]
+                                    <option value="[{$line->_id}]">[{$line->_title}]</option>
+                                    [{/if}]
+                                    [{/foreach}]
+                                </select>
+                            </div>
                         </div>
+                        [{/if}]
                     </div>
-                </div>
-                <div class="cate">Category: [{$cate_detail->_title|escape}]</div>
-                <div class="supplier">Supplier: [{$product_detail->supplier_title|escape}]</div>
-                <div class="tags">Tags: [{$product_detail->_tag|escape}]</div>
-                <div class="submit">
-                    <button class="btn btn-primary">Add to cart</button>
-                </div>
-
+                    <div class="cate">Category: [{$cate_detail->_title|escape}]</div>
+                    <div class="supplier">Supplier: [{$product_detail->supplier_title|escape}]</div>
+                    <div class="tags">Tags: [{$product_detail->_tag|escape}]</div>
+                    <div class="submit">
+                        <button class="btn btn-primary" type="submit">Add to cart</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="product-content">
@@ -113,6 +120,39 @@
                 <div role="tabpanel" class="tab-pane" id="tab-review">
                     Updating...<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 </div>
+            </div>
+        </div>
+        <div class="related">
+            <div>Related Product</div>
+            <div id="" class="grid">
+                [{foreach from=$relateds item=foo}]
+                    <div class="cell">
+                        <div>
+                            <div class="contain" style="background-image: url('[{$foo->_image|escape}]')">
+                                <span class="label [{$foo->_label|escape}]">[{$foo->_label|escape}]</span>
+                                <a href="/shop/[{$foo->cat_alias|escape}]/[{$foo->_alias|escape}]" class="mask">
+                                    <div class="cap">
+                                        <h4>[{$foo->_title|escape}]</h4>
+                                        <div class="ratting">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star-half"></span>
+                                        </div>
+                                        <div class="price">
+                                            [{if $foo->_discount>0}]
+                                            <span class="price-no-discount">[{$foo->_price}] K </span>
+                                            [{/if}]
+                                            [{$foo->_discount}] K
+                                        </div>
+                                        <button class="btn btn-info" onclick="return false">Add to card</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                [{/foreach}]
             </div>
         </div>
     </div>

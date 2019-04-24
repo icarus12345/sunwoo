@@ -62,26 +62,45 @@ class cart extends FE_Controller {
     function onAddToCart(){
     	$output["result"] = -1;
         $output["message"] = 'Data invalid !';
+
         $id = $this->input->post('id');
         $color = $this->input->post('color');
-        $quantity = (int)$this->input->post('quantity');
-        $this->db->select('product_id,product_code,product_title,product_price,product_thumb,product_desc');
+        $size = $this->input->post('size');
+        $materia = $this->input->post('materia');
+        $quantity = (int)$this->input->post('quantity') || 1;
+        $key = "{$color}-{$size}-{$materia}";
         $product = $this->product_model->onGet($id);
+        $cartInfo = $_SESSION['cart']['info'];
+        $cartItems = $_SESSION['cart']['items'];
+        if(empty($cartItems)) $cartItems = array();
+        if(empty($cartInfo)) $cartInfo = array(
+            'amount'=>0, 'cash'=>0
+        );
+
         if($product){
+            unset($product->_content);
             $product->quantity = $quantity;
-            $product->cash = $quantity*$product->product_price;
-            $cartInfo = $_SESSION['cart']['info'];
-            $cartItems = $_SESSION['cart']['items'];
-            if(empty($cartItems)) $cartItems = array();
-            if(empty($cartInfo)) $cartInfo = array(
-                'amount'=>0, 'cash'=>0
-            );
-            if(empty($cartItems[$id][$color])){
-                $cartItems[$id][$color] = $product;
+            $sale_price = $product->_discount;
+            if($color){
+                $sale_price+=1 * $product->_data['price_incurred'][$color];
+            }
+            if($materia){
+                $sale_price+=1 * $product->_data['price_incurred'][$materia];
+            }
+            if($size){
+                $sale_price+=1 * $product->_data['price_incurred'][$size];
+            }
+            $product->color = $this->line_model->onGet($color);
+            $product->size = $this->line_model->onGet($size);
+            $product->materia = $this->line_model->onGet($materia);
+            $product->sale_price = $sale_price;
+            $product->cash = $quantity*$product->sale_price;
+            if(empty($cartItems[$id][$key])){
+                $cartItems[$id][$key] = $product;
                 $cartInfo['amount'] += 1;
             }else{
-                $cartItems[$id][$color]->quantity += $quantity;
-                $cartItems[$id][$color]->cash += $product->cash;
+                $cartItems[$id][$key]->quantity += $quantity;
+                $cartItems[$id][$key]->cash += $product->cash;
             }
             $cartInfo['cash'] += $product->cash;
             $_SESSION['cart']['items'] = $cartItems;
@@ -89,7 +108,7 @@ class cart extends FE_Controller {
             
             $output["result"] = 1;
             $output["message"] = 'Add product to your cart !';
-            $output["cartinfo"] = $this->smarty->view('scooter/widget/cartInfo', $this->assigns,true);
+            $output["cartinfo"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
         }else{
             $output["message"] = 'Product doest exists !';
         }

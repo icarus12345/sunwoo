@@ -1,11 +1,11 @@
 [{nocache}]
     <div class="row">
         <div class="col-sm-12">
-            <!-- <input 
+            <input 
                 type="hidden" 
                 value="[{$item->_id|default:''}]" 
                 id="seoEntryId"
-                /> -->
+                />
             <form name="seoform" id="seoform" target="integration_asynchronous">
                 <input type="hidden" name="_type" id="_type" value="[{$type}]"/>
                 <input type="hidden" name="_head_id" id="head_id" value="[{$head_id}]"/>
@@ -15,7 +15,7 @@
                         [{foreach from=$langs item=la key =k}]
                             <li class="[{$f|default:''}]">
                                 <a  title="[{$la->lang_name|ucwords}]"
-                                    href="#tab_[{$la->lang_short}]"  
+                                    href="#tab_seo_[{$la->lang_short}]"  
                                     data-toggle="tab" 
                                     >
                                         [{$la->lang_name|ucwords}]
@@ -31,7 +31,7 @@
                     [{assign var="f" value="active"}]
                     [{foreach from=$langs item=la key =k}]
                         
-                        <div id="tab_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                        <div id="tab_seo_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
                             <div class="control-group pull-top">
                                 <div>Title :(*)</div>
                                 [{$attr= '_title_'|cat:$la->lang_short}]
@@ -79,11 +79,11 @@
                             class="form-control tool-tip validate[required,maxSize[255]]" 
                             value="[{$item->_image|escape|default:''}]" 
                             name="_image" 
-                            id="_image"
+                            id="seo_image"
                             >
                         <span class="add-on" 
                             title="Choose Image"
-                            onclick="BrowseServer('#_image')">
+                            onclick="BrowseServer('#seo_image')">
                             <i class="fa fa-image"></i>
                         </span>
                     </div>
