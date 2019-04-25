@@ -1,5 +1,15 @@
 var App = {
-    addToCart: function(info){
+    addToCart: function(id){
+        var data = {
+            id: id,
+            quantity: 1
+        }
+        App.submitToCart(data)
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    },
+    submitToCart: function(info){
         $.ajax({
             type: 'POST',
             //cache:false,
@@ -8,11 +18,17 @@ var App = {
             dataType: 'json',
             url: '/frontend/cart/onAddToCart',
             success: function(res) {
-                alert(res.message)
+                if(res.code==1){
+                    toastr.success(res.message)
+                    $('#cart').html(res.html)
+                }else{
+                    toastr.warning(res.message)
+                }
+                
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 
-                alert('Sorry. Your request could not be completed. Please check your input data and try again.','danger');
+                toastr.warning('Sorry. Your request could not be completed. Please check your input data and try again.','Error !');
             }
         });
     },
@@ -119,7 +135,7 @@ $(document).ready(function(){
     })
     $('form').submit(function(event){
         var data = $(this).serializeJSON();
-        App.addToCart(data)
+        App.submitToCart(data)
         event.preventDefault();
         event.stopPropagation();
         return false;

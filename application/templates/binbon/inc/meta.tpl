@@ -40,6 +40,7 @@
         <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/assets/binbon/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="/libraries/ckeditor/contents.css"/>
+        <link rel="stylesheet" type="text/css" href="/libraries/plugin/toastr/toastr.min.css"/>
 
         <script type="text/javascript" src="/libraries/bootstrap/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
@@ -51,6 +52,9 @@
         <script type="text/javascript" src="/libraries/plugin/validation-engine/jquery.validationEngine.js"></script>
         <script type="text/javascript" src="/libraries/plugin/validation-engine/jquery.validationEngine-en.js"></script>
         <script type="text/javascript" src="/libraries/plugin/jquery.serializejson.js"></script>
+        <script type="text/javascript" src="/libraries/plugin/toastr/toastr.min.js"></script>
+
+
 
         <script type="text/javascript" src="/assets/binbon/js/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/binbon/js/packery.pkgd.min.js"></script>

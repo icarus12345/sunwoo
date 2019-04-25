@@ -1,7 +1,12 @@
-<div class="dropdown">
+<div class="dropdown my-cart">
     <div style="cursor:pointer" data-toggle="dropdown">
-        $ [{$smarty.session.cart.info.cash|default:'0.00'}] <span class="c-white">([{$smarty.session.cart.info.amount|default:'0'}] items)</span> 
-        <img style="margin-top: -4px" height="12px" src="/assets/binbon/images/cart.png"/>
+        <div class="my-bag">
+            <span>My bag</span>
+            <span class="num">[{$smarty.session.cart.info.amount|default:'0'}]</span>
+            <div class="total-cash">
+                [{$smarty.session.cart.info.cash|default:'0.00'}] K
+            </div>
+        </div>
     </div>
     <div class="cart-items dropdown-menu" >
             <table style="width:100%" border="1">

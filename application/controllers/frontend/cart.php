@@ -60,14 +60,14 @@ class cart extends FE_Controller {
         redirect('/cart');
     }
     function onAddToCart(){
-    	$output["result"] = -1;
+    	$output["code"] = -1;
         $output["message"] = 'Data invalid !';
 
         $id = $this->input->post('id');
         $color = $this->input->post('color');
         $size = $this->input->post('size');
         $materia = $this->input->post('materia');
-        $quantity = (int)$this->input->post('quantity') || 1;
+        $quantity = (int)$this->input->post('quantity');
         $key = "{$color}-{$size}-{$materia}";
         $product = $this->product_model->onGet($id);
         $cartInfo = $_SESSION['cart']['info'];
@@ -106,9 +106,9 @@ class cart extends FE_Controller {
             $_SESSION['cart']['items'] = $cartItems;
             $_SESSION['cart']['info'] = $cartInfo;
             
-            $output["result"] = 1;
+            $output["code"] = 1;
             $output["message"] = 'Add product to your cart !';
-            $output["cartinfo"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
+            $output["html"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
         }else{
             $output["message"] = 'Product doest exists !';
         }
