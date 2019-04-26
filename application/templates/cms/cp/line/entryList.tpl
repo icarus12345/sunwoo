@@ -2,7 +2,7 @@
 [{nocache}]
 [{include file=$smarty.const.APPPATH|cat:"templates/cms/003/rowTmpl.tpl"}]
 [{include file=$smarty.const.APPPATH|cat:"templates/cms/cp/line/actScript.tpl"}]
-<script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.rowGroup.min.js'|base_url}]"></script>
+<script type="text/javascript" src="[{'libraries/plugin/datatable/dataTables.rowGroup.js'|base_url}]"></script>
 
 <script type="text/javascript">
     _oConfig = {

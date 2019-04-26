@@ -56,6 +56,7 @@
                                     data-live-search="true"
                                     data-size="10"
                                     >
+                                    <option value="0"></option>
                                     [{if $cates|default:null}]
                                     [{foreach from=$cates item=c}]
                                         <option 

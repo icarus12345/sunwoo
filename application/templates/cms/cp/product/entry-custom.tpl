@@ -59,10 +59,10 @@
                                         <div class="collapse collapse-photo" id="collapse-[{$line->_id}]">
                                           <div class="well">
                                             <ul id="sortable-[{$line->_id}]" data-role="sortable" class="sortable" style="min-height: 100px" data-prefix="_data[images][[{$line->_id}]][]">
+                                                <li class="ui-state-default ui-state-dashed" onclick="App.PhotoBook.add('#sortable-[{$line->_id}]')">
+                                                        <i class="fa fa-plus"></i>
+                                                </li>
                                                 [{if $item->_data}]
-                                                    <li class="ui-state-default ui-state-dashed" onclick="App.PhotoBook.add('#sortable-[{$line->_id}]')">
-                                                            <i class="fa fa-plus"></i>
-                                                    </li>
                                                     [{foreach from=$item->_data.images[$line->_id] item=img}]
                                                         <li class="ui-state-default">
                                                             <img class="thumb" src="[{$img|escape}]"/>

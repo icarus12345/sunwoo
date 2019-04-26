@@ -354,8 +354,9 @@ var [{$tplConfig.name}] = (function() {
                         $('#entryForm [data-cateid]').change(function(){
                             console.log(this.value,'this.value')
                             $('[data-headid]').hide()
+                            $('[data-headid="0"]').show()
                             $('[data-headid="'+this.value+'"]').show()
-                            $('[data-custombox] [data-headid]:not([data-headid="'+this.value+'"]) input[type="checkbox"]').prop('checked',false)
+                            $('[data-custombox] [data-headid]:not([data-headid="'+this.value+'"],[data-headid="0"]) input[type="checkbox"]').prop('checked',false)
                         }).trigger('change')
                     }
                 }
