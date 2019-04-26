@@ -13,7 +13,7 @@ class account_model extends Core_Model {
             "table" => "`auth_users`",
             "select" => "SELECT SQL_CALC_FOUND_ROWS 
                 `ause_id`,`ause_key`,`ause_name`,`ause_username`,`ause_email`,`ause_authority`,
-                `ause_insert`,`ause_update`,`ause_status`,`ause_picture`,`ause_position`
+                `ause_created_at`,`ause_modified_at`,`ause_status`,`ause_picture`,`ause_position`
             ",
             "from" => "FROM `auth_users`",
             "where" => "$where",

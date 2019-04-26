@@ -104,13 +104,13 @@
                         <div class="col-sm-4">
                             <div class="input-group snippet">
                               <span class="input-group-btn">
-                                  <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                  <button type="button" class="btn btn-default btn-number" data-type="minus" >
                                       <span class="glyphicon glyphicon-minus"></span>
                                   </button>
                               </span>
                               <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="10">
                               <span class="input-group-btn">
-                                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                  <button type="button" class="btn btn-default btn-number" data-type="plus">
                                       <span class="glyphicon glyphicon-plus"></span>
                                   </button>
                               </span>
@@ -164,7 +164,7 @@
                                             [{/if}]
                                             [{$foo->_discount}] K
                                         </div>
-                                        <button class="btn btn-info" onclick="App.addToCard([{$foo->_id}])">Add to card</button>
+                                        <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">Add to card</button>
                                     </div>
                                 </a>
                             </div>

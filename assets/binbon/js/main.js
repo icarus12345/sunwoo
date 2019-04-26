@@ -5,9 +5,7 @@ var App = {
             quantity: 1
         }
         App.submitToCart(data)
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
+        
     },
     submitToCart: function(info){
         $.ajax({
@@ -139,5 +137,25 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
         return false;
+    })
+    $('a').on('click','button',function(){
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    })
+    $('.snippet').each(function(){
+        var minus = $(this).find('[data-type="minus"]');
+        var plus = $(this).find('[data-type="plus"]');
+        var input = $(this).find('input');
+        minus.click(function(){
+            var num = +input.val() || 0;
+            num--;
+            input.val(num)
+        })
+        plus.click(function(){
+            var num = +input.val() || 0
+            num++;
+            input.val(num)
+        })
     })
 })

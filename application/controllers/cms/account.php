@@ -93,7 +93,7 @@ class account extends Core_Controller {
             }else{
                 $params["ause_password"]=md5($params["ause_username"].$params["ause_password"].$user->ause_secretkey);
             }
-            $params["ause_update"] = date('Y-m-d H:i:s');
+            $params["ause_modified_at"] = date('Y-m-d H:i:s');
             $rok = $this->account_model->onUpdate($Id, $params);
         } else {
             $params["ause_key"] = random_string('alnum', 8);

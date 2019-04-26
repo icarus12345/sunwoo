@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="cart-items dropdown-menu" >
-            <table style="width:100%" border="1">
+            <table style="width:100%">
                 [{foreach from=$smarty.session.cart.items item=item}]
                     [{foreach from=$item item=foo key=color}]
                     <tr title="[{$foo->_title}]">
@@ -27,7 +27,7 @@
                             [{if $foo->color}]<div>Color : [{$foo->color->_title}]</div>[{/if}]
                             [{if $foo->size}]<div>Size : [{$foo->size->_title}]</div>[{/if}]
                             [{if $foo->materia}]<div>Materia : [{$foo->materia->_title}]</div>[{/if}]
-                            <div>$ [{$foo->sale_price|string_format:"%.2f"}] x [{$foo->quantity}]</div>
+                            <div>[{$foo->sale_price|string_format:"%.2f"}]K x [{$foo->quantity}]</div>
                         </td>
                     </tr>
                     [{/foreach}]
