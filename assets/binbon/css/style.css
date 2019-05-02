@@ -27,7 +27,8 @@ html,body{
     position: absolute;
     left: 4px;right: 4px;
     top: 4px;bottom: 4px;
-    border:1px solid #ccc;
+    /*border:1px solid #ccc;*/
+    background-color: #74c5f0;
 }
 .grid *[class*="cell"]>div>div>.mask{
     position: absolute;
