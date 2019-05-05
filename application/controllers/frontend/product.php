@@ -9,8 +9,7 @@ class product extends FE_Controller {
 
     }
 	public function index(){
-        $this->assigns->active_tab='project';
-		$this->page(1);
+        $this->category();
 	}
     function page($page = 1){
         $this->cat(416,$page);
@@ -20,9 +19,22 @@ class product extends FE_Controller {
         // $this->assigns->htmlPager = $this->_getPaging($page,$perpage,'/project/');
         // $this->smarty->view( 'realestate/product', $this->assigns );
     }
-	function category($cate_alias='',$page=1){
-        $cate_detail = $this->cate_model->onGetByAlias($cate_alias);
-        if(!$cate_detail) show_404();
+	function category($cate_alias=null,$page=1){
+        if($cate_alias){
+            $cate_detail = $this->cate_model->onGetByAlias($cate_alias);
+            if(!$cate_detail) show_404();
+
+            $seo = $this->seo_model->onGetByHead('category',$cate_detail->_id);
+            if(!$seo){
+                $seo = $cate_detail;
+            }
+            $categories = $this->cate_model->getCategoryByParrent($cate_detail->_id);
+        }else{
+            $categories = $this->cate_model->getCategoryByParrent(0);
+        }
+        $this->assigns->seo = $seo;
+        $this->assigns->categories = $categories;
+
         $this->assigns->cate_detail = $cate_detail;
 
         $product_list = $this->product_model->getFeature($cate_detail->_value,1,100);
@@ -46,7 +58,7 @@ class product extends FE_Controller {
 
             $seo = $this->seo_model->onGetByHead('product',$product_detail->_id);
             if(!$seo){
-                $this->assigns->seo = $product_detail;
+                $seo = $product_detail;
             }
             $this->assigns->seo = $seo;
         }

@@ -4,11 +4,30 @@
     
     <div class="wrap">
         [{if $cate_detail}]
-        <ol class="breadcrumb">
-          <li><a href="/">Home</a></li>
-          <li class="active">[{$cate_detail->_title|escape}]</li>
-        </ol>
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active">[{$cate_detail->_title|escape}]</li>
+            </ol>
         [{/if}]
+        <div class="top-menu">
+            [{if $cate_detail->_cover}]
+            <div class="banner">
+                <img src="[{$cate_detail->_cover|escape}]">
+            </div>
+            [{/if}]
+            <ul>
+                [{foreach from=$categories item=foo}]
+                <li>
+                    <a href="/shop/[{$foo->_alias|escape}]">
+                        <div class="">
+                            <img src="[{$foo->_image|escape}]"/>
+                        </div> 
+                        [{$foo->_title|escape}]
+                    </a>
+                </li>
+                [{/foreach}]
+            </ul>
+        </div>
         <div id="" class="grid home-grid">
             [{foreach from=$product_list item=foo}]
                 <div class="cell">
@@ -34,38 +53,6 @@
                                     <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">Add to card</button>
                                 </div>
                             </a>
-                        </div>
-                    </div>
-                </div>
-            [{/foreach}]
-            [{foreach from=$product_list item=foo}]
-                <div class="cell">
-                    <div>
-                        <div class="cover" style="background-image: url('[{$foo->_image}]')">
-                        </div>
-                    </div>
-                </div>
-            [{/foreach}]
-            [{foreach from=$product_list item=foo}]
-                <div class="cell">
-                    <div>
-                        <div class="cover" style="background-image: url('[{$foo->_image}]')">
-                        </div>
-                    </div>
-                </div>
-            [{/foreach}]
-            [{foreach from=$product_list item=foo}]
-                <div class="cell">
-                    <div>
-                        <div class="cover" style="background-image: url('[{$foo->_image}]')">
-                        </div>
-                    </div>
-                </div>
-            [{/foreach}]
-            [{foreach from=$product_list item=foo}]
-                <div class="cell">
-                    <div>
-                        <div class="cover" style="background-image: url('[{$foo->_image}]')">
                         </div>
                     </div>
                 </div>

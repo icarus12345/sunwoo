@@ -122,6 +122,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-mb-6 half">
+                        <div class="control-group pull-top">
+                            <div>Image :</div>
+                            <div class="input-append">
+                                <input type="text" 
+                                    [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                    class="form-control tool-tip" value="[{$item->_image|default:''}]" 
+                                    name="_image" id="_image"
+                                    >
+                                <span class="add-on " onclick="BrowseServer('#_image')" title="Choose Image">
+                                    <i class="fa fa-image"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-mb-6 half">
+                        <div class="control-group pull-top">
+                            <div>Banner :</div>
+                            <div class="input-append">
+                                <input type="text" 
+                                    [{if $item->_cover}]title="<img src='[{$item->_cover}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                                    class="form-control tool-tip" value="[{$item->_cover|default:''}]" 
+                                    name="_cover" id="_cover"
+                                    >
+                                <span class="add-on " onclick="BrowseServer('#_cover')" title="Choose Image">
+                                    <i class="fa fa-image"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-mb-3 half">
                         <div class="control-group pull-top">
                             <div>Status :</div>

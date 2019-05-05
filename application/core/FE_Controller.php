@@ -38,7 +38,7 @@ class FE_Controller extends CI_Controller {
 
             'price'=> '5',
             'menu'=> 'menu',
-            'cate'=> 'sunwoo',
+            'cate'=> 'default',
             'event_cate'=>'event',
             'news_cate'=>'>406',
             'noti_cate'=>'>407',
@@ -72,7 +72,7 @@ class FE_Controller extends CI_Controller {
     function _loadCategory(){
         $this->db->order_by('_value','ASC');
         $categories = $this->cate_model->getCategoryByType($this->assigns->fecog['cate']);
-        $this->assigns->categories = $categories;
+        $this->assigns->categories = $this->cate_model->buildTree($categories);
 
     }
     function _loadHomeMenu(){
