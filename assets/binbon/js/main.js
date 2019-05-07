@@ -158,4 +158,12 @@ $(document).ready(function(){
             input.val(num)
         })
     })
+    if ($('a.swipebox').length > 0) {
+        $('a.swipebox').swipebox({
+            useCSS: true,
+            callback:function(elm){
+                 console.log(elm)
+            }
+        });
+    }
 })

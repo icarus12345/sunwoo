@@ -41,6 +41,7 @@
         <link rel="stylesheet" type="text/css" href="/assets/binbon/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="/libraries/ckeditor/contents.css"/>
         <link rel="stylesheet" type="text/css" href="/libraries/plugin/toastr/toastr.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/libraries/plugin/swipebox/swipebox-dark-1.3.css" >
 
         <script type="text/javascript" src="/libraries/bootstrap/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
@@ -53,6 +54,7 @@
         <script type="text/javascript" src="/libraries/plugin/validation-engine/jquery.validationEngine-en.js"></script>
         <script type="text/javascript" src="/libraries/plugin/jquery.serializejson.js"></script>
         <script type="text/javascript" src="/libraries/plugin/toastr/toastr.min.js"></script>
+        <script type="text/javascript" src="/libraries/plugin/swipebox/jquery.swipebox-1.3.js"></script>
 
 
 

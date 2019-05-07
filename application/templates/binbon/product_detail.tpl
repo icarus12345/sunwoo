@@ -16,8 +16,19 @@
                         <div class="owl-carousel [{if $name=='default'}]owl-active[{/if}]" data-owlid="[{$name}]">
                             [{foreach from=$imgs item=img}]
                             <div class="item">
-                                <div><img src="[{$img|escape}]" alt="[{$product_detail->_title|escape}]"></div>
+                                <!-- <div>
+                                </div> -->
+                                <a class="swipebox" 
+                                    href="[{$img|escape}]" 
+                                    title="[{$product_detail->_title|escape}]"
+                                    -data-cap='[{$product_detail->_desc|escape}]'
+                                    -rel="gallery-[{$name}]"
+                                    >
+                                    <img src="[{$img|escape}]" alt="[{$product_detail->_title|escape}]"/>
+                                        
+                                    </a>
                             </div>
+
                             [{/foreach}]
                         </div>
                     [{/foreach}]
@@ -136,7 +147,23 @@
                     <div class="ckeditor">[{$product_detail->_content}]</div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tab-review">
-                    Updating...<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/>
+                    <br/>
+                    <div id="wpac-comment"></div>
+                    <script type="text/javascript">
+                    wpac_init = window.wpac_init || [];
+                    wpac_init.push({widget: 'Comment', id: 17753});
+                    (function() {
+                        if ('WIDGETPACK_LOADED' in window) return;
+                        WIDGETPACK_LOADED = true;
+                        var mc = document.createElement('script');
+                        mc.type = 'text/javascript';
+                        mc.async = true;
+                        mc.src = 'https://embed.widgetpack.com/widget.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+                    })();
+                    </script>
+
                 </div>
             </div>
         </div>

@@ -442,4 +442,7 @@ html,body{
 }
 .banner{ padding-bottom: 10px }
 .banner img{width: 100%}
+body .wp-copyright{
+    transform: scale(0) !important;
+}
 
