@@ -118,6 +118,7 @@
 // $route["(news|event)"] = "frontend/$1/cat/all/1";
 
 $route["shop"] = "frontend/product";
+$route["pages/about-us"] = "home/about";
 $route["shop/([a-z0-9-]{4,255})"] = "frontend/product/category/$1";
 $route["shop/([a-z0-9-]{4,255})/([a-z0-9-]{4,255})"] = "frontend/product/detail/$1/$2";
 

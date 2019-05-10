@@ -3,15 +3,15 @@
 class data_model extends Core_Model {
 
     function __construct(){
-        parent::__construct('_data','data_','id');
+        parent::__construct('_data','_','id');
     }
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS
-                `data_id`, 
-                data_title_{$this->lang} as data_title,
-                data_desc_{$this->lang} as data_desc,
-                data_content_{$this->lang} as data_content,
+                `_id`, 
+                _title_{$this->lang} as _title,
+                _desc_{$this->lang} as _desc,
+                _content_{$this->lang} as _content,
                 
                 "
             ,false);

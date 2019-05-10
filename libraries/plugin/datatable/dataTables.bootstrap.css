@@ -23,6 +23,9 @@ table.dataTable.table-bordered>thead>tr>td,
 table.dataTable.table-bordered>thead>tr>th {
     /*border-bottom-width: 1px;*/
 }
+div.dataTables_wrapper div.dataTables_length{
+  margin-bottom: 10px;
+}
 div.dataTables_wrapper div.dataTables_length label {
   font-weight: normal;
   text-align: left;
@@ -34,6 +37,7 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 div.dataTables_wrapper div.dataTables_filter {
   text-align: right;
+  margin-bottom: 10px;
 }
 div.dataTables_wrapper div.dataTables_filter label {
   font-weight: normal;

@@ -18,7 +18,7 @@ _oConfig.dataColumns = [
             'data': "[{$tplConfig.prefix}]id",
             // 'width': "80px", 
             'bSortable': false,
-            'sClass':'action-dropdown',
+            'class':'action-dropdown',
             'render': function ( value, type, datarow ) {
                 var str = '';
                 [{if $unit}]
@@ -30,11 +30,11 @@ _oConfig.dataColumns = [
                 if(datarow.[{$tplConfig.prefix}]readonly!=='true'){
                     menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                     
                 }
                 [{else}]
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
                 if(+datarow.[{$tplConfig.prefix}]readonly){

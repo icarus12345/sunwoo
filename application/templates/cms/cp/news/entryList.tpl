@@ -32,13 +32,13 @@
                 [{/if}]
                 [{if $unit|strpos:".d."!==false}]
                 if(datarow._lock!=='true'){
-                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li ><a href="#" onclick="[{$tplConfig.name}].onDeleteItem(\'' + value + '\')"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 }else{
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                     
                 }
                 [{else}]
-                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>')
+                    menu.push('<li class="disabled"><a href="#"><i class="fa fa-trash-alt"></i> Delete</a></li>')
                 [{/if}]
                 [{if $unit|strpos:".l."!==false}]
                 if(datarow._lock!=='true'){

@@ -30,11 +30,10 @@ class home extends FE_Controller {
 	}
 	function about($news_alias=null){
 		
-		$this->assigns->sliders = $this->setting_model->onGetByType($this->assigns->fecog['homeslider']);
 		$this->news_model->about_cond();
 		$this->assigns->news_list = $this->news_model->getAsc(null,1,40);
 		// print_r($this->db->last_query());die;
-		$this->smarty->view( 'realestate/about', $this->assigns );
+		$this->smarty->view( 'binbon/about-us', $this->assigns );
 	}
 }
 

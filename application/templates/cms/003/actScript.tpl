@@ -133,6 +133,12 @@ var [{$tplConfig.name}] = (function() {
                                 addEditorBasic(id,240);
                             })
                         }
+                        if($('[data-editor="advance"]').length){
+                            $('[data-editor="advance"]').each(function(){
+                                var id = $(this).attr('id');
+                                addEditorFeature(id,240);
+                            })
+                        }
 
                         $('#entryForm .selectpicker').selectpicker();
                         $('#entryForm').validationEngine({
@@ -158,8 +164,8 @@ var [{$tplConfig.name}] = (function() {
             //     $('#[{$tplConfig.prefix}]content').val(CKEDITOR.instances['[{$tplConfig.prefix}]content'].getData());
             // if($('#[{$tplConfig.prefix}]content_en').length==1)
             //     $('#[{$tplConfig.prefix}]content_en').val(CKEDITOR.instances['[{$tplConfig.prefix}]content_en'].getData());
-            if($('[data-editor="basic"]').length){
-                $('[data-editor="basic"]').each(function(){
+            if($('[data-editor]').length){
+                $('[data-editor]').each(function(){
                     var id = $(this).attr('id');
                     $('#' + id).val(CKEDITOR.instances[id].getData());
                 })
