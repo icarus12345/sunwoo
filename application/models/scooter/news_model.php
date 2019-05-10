@@ -10,12 +10,13 @@ class news_model extends Core_Model {
     function select(){
         $this->db->select("
             SQL_CALC_FOUND_ROWS _news.*,
-                _news.news_title_{$this->lang} as news_title,
-                _news.news_desc_{$this->lang} as news_desc,
-                _news.news_content_{$this->lang} as news_content,
-                cat_id,
-                cat_title_{$this->lang} as cat_title,
-                cat_value
+                _news._title_{$this->lang} as _title,
+                _news._desc_{$this->lang} as _desc,
+                _news._content_{$this->lang} as _content,
+                _category_id,
+                _cate._title_{$this->lang} as cat_title,
+                _cate._alias_{$this->lang} as cat_alias,
+                _cate._value
                 "
             ,false);
     }
@@ -30,31 +31,31 @@ class news_model extends Core_Model {
     }
     function news_event_cond(){
         $this->db
-            ->where("( news_type in ('news','event') )",null,false);
+            ->where("( _news._type in ('news','event') )",null,false);
     }
     function partner_cond(){
         $this->db
-            ->where("news_type",'partner');
+            ->where("_news._type",'partner');
     }
     function blog_cond(){
         $this->db
-            ->where("news_type",'blog');
+            ->where("_news._type",'blog');
     }
     function news_cond(){
         $this->db
-            ->where("news_type",'tintuc');
+            ->where("_news._type",'tintuc');
     }
     function event_cond(){
         $this->db
-            ->where("news_type",'event');
+            ->where("_news._type",'event');
     }
     function about_cond(){
         $this->db
-            ->where("news_type",'about');
+            ->where("_news._type",'about');
     }
     function service_cond(){
         $this->db
-            ->where("news_type",'service');
+            ->where("_news._type",'service');
     }
     function onGet($id){
         $this->select();
@@ -120,11 +121,11 @@ class news_model extends Core_Model {
     }
     function getInCategories($cat_value = null, $page = 1, $perpage = 10) {
         if($cat_value)
-            $this->db->like('cat_value', $cat_value,'after');
+            $this->db->like('_cate._value', $cat_value,'after');
         $query = $this->db
             ->from('_news')
-            ->join('cate', 'news_category = cat_id', 'left')
-            ->where('news_status', 'true')
+            ->join('_cate', '_category_id = _cate._id', 'left')
+            ->where('_news._status', '1')
             // ->where('news_type', $this->type)
             // ->where('news_publicday <= ', date('Y-m-d H:i:s'))
             ->limit($perpage, ($page - 1) * $perpage)
@@ -132,7 +133,7 @@ class news_model extends Core_Model {
         return $query->result();
     }
     function addView($id){
-        $this->db->set('news_view', 'news_view+1', FALSE);
+        $this->db->set('_view', '_view+1', FALSE);
         @$this->db->update($this->table);
     }
 }

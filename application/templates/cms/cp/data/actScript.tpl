@@ -17,7 +17,12 @@ var [{$tplConfig.name}] = (function() {
     return {
         'toggleImage': function(){
             _oConfig.showImage = !_oConfig.showImage;
-            // $('tr .gridThumb').toggle();
+            // this.onRefresh();
+            // Get the column API object
+            console.log(oTable)
+            var column = oTable.column( 2 );
+            // Toggle the visibility
+            column.visible( ! column.visible() );
         },
         'oTable': function(){ return oTable;},
         'toggleElm': function(elm){
@@ -46,7 +51,7 @@ var [{$tplConfig.name}] = (function() {
             oTable.fnUpdate( cellValue, rowIndex, columnIndex,false);
         },
         'createtable' :   function(){
-            oTable = $('#entryDatatable').dataTable({
+            oTable = $('#entryDatatable').DataTable({
                 'aaSorting': [],
                 'aoColumns': _oConfig.dataColumns,
                 'sServerMethod': "POST",
@@ -193,6 +198,30 @@ var [{$tplConfig.name}] = (function() {
         'onLockItem':function(Id){
             this.onCommit( _oConfig.entryCommitUri2, {
                 '[{$tplConfig.prefix}]lock':'true'
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putontop':function(Id){
+            this.onCommit( _oConfig.putontopUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putup':function(Id){
+            this.onCommit( _oConfig.putupUri, {
+            }, Id, function(rsdata){
+                if(rsdata.result>=0){
+                    [{$tplConfig.name}].onRefresh();
+                }
+            });
+        },
+        'putdown':function(Id){
+            this.onCommit( _oConfig.putdownUri, {
             }, Id, function(rsdata){
                 if(rsdata.result>=0){
                     [{$tplConfig.name}].onRefresh();

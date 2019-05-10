@@ -2,13 +2,13 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class data extends Core_Controller {
     function __construct() {
-        parent::__construct('_data', 'data_', 'id');
+        parent::__construct('_data', '_', 'id');
         $this->langs = array('en','vi');
         $this->load->model('cms/cp/lang_model');
         $this->assigns->langs = $this->language_model->getLangIn($this->langs);
         $this->assigns->tplConfig = array(
             'controller'   =>'data',
-            'prefix'       =>'data_',
+            'prefix'       =>'_',
             'name'         =>'APP',
             'title'        =>'Event',
             'group'        =>'cp',
@@ -80,15 +80,15 @@ class data extends Core_Controller {
                     {$this->prefix}id,
                     {$this->prefix}title_{$this->lang} as {$this->prefix}title,
                     {$this->prefix}thumb,
-                    {$this->prefix}insert,
-                    {$this->prefix}update,
+                    {$this->prefix}created_at,
+                    {$this->prefix}modified_at,
                     {$this->prefix}status
                 ",
             "from"      =>"
                 FROM `{$this->table}`
                 ",
             "where"     =>"WHERE `{$this->prefix}type` = '$type'",
-            "order_by"  =>"ORDER BY `{$this->prefix}insert` DESC",
+            "order_by"  =>"ORDER BY `{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
                 "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}"
             ),

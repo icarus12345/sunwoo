@@ -96,7 +96,7 @@
                                         [{$attr= '_content_'|cat:$la->lang_short}]
                                         <div class="">
                                             <textarea class="form-control validate[required]" 
-                                                data-editor="basic"
+                                                data-editor="advance"
                                                 id="_content_[{$la->lang_short}]" 
                                                 name="_content_[{$la->lang_short}]" 
                                                 rows="10" 
