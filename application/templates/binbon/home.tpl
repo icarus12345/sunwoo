@@ -4,7 +4,7 @@
 <div class="wrap">
     [{if $cate_detail}]
         <ol class="breadcrumb">
-          <li><a href="/">Home</a></li>
+          <li><a href="/">[{$languages.default.home|escape}]</a></li>
           <li class="active">[{$cate_detail->_title|escape}]</li>
         </ol>
     [{/if}]

@@ -35,48 +35,43 @@
                     value="[{$item.data[$langs[0]->lang_short]->lang_key|quotes_to_entities}]" 
                     id="lang_key" name="lang_key"
                     />
+                    <div>Custom language for "[{$item.data[$langs[0]->lang_short]->lang_key|quotes_to_entities|default:'New value'}]"  :</div>
                 [{/if}]
-                <div class="pull-bottom">
-                    <div>
-                        Custom language for "[{$item.data[$langs[0]->lang_short]->lang_key|quotes_to_entities|default:'New value'}]"  :
-                        <div class="pull-right lang-tabs">
-                            <ul class="nav-tabs">
-                                [{assign var="f" value="active"}]
-                                [{foreach from=$langs item=la key =k}]
-                                    <li class="[{$f|default:''}]">
-                                        <a  title="[{$la->lang_name|ucwords}]"
-                                            href="#tab_de_desc_[{$la->lang_short}]"  
-                                            data-toggle="tab" 
-                                            >
-                                                [{$la->lang_short|ucwords}]
-                                        </a>
-                                    </li>
-                                    [{assign var="f" value=""}]
-                                [{foreachelse}]
-                                    
-                                [{/foreach}]
-                            </ul>
+
+
+
+                <div class="lang-tabs default" style="z-index: 11;position: relative;margin-left: 10px;margin-top: 10px;">
+                    <ul class="nav-tabs">
+                        [{assign var="f" value="active"}]
+                        [{foreach from=$langs item=la key =k}]
+                            <li class="[{$f|default:''}]">
+                                <a  title="[{$la->lang_name|ucwords}]"
+                                    href="#tab_[{$la->lang_short}]"  
+                                    data-toggle="tab" 
+                                    >
+                                        [{$la->lang_name|ucwords}]
+                                </a>
+                            </li>
+                            [{assign var="f" value=""}]
+                        [{foreachelse}]
+                            
+                        [{/foreach}]
+                    </ul>
+                </div>
+                <div class="controls tab-content" style="border-top: 1px solid #ddd;float: left;width: 100%;">
+                    [{assign var="f" value="active"}]
+                    [{foreach from=$langs item=la key =k}]
+                        
+                        <div id="tab_[{$la->lang_short}]" class="tab-pane [{$f|default:''}]">
+                            <textarea class="form-control validate[required]" 
+                              rows="2" name="lang_text" 
+                              data-putto=".error_message" 
+                              data-lang="[{$la->lang_short}]"
+                              placeholder="[{$la->lang_name|ucwords}]">[{$item.data[$la->lang_short]->lang_text|quotes_to_entities|default:''}]</textarea>
+                            
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="controls tab-content">
-                            [{assign var="f" value="active"}]
-                            [{foreach from=$langs item=la key =k}]
-                            <div id="tab_de_desc_[{$la->lang_short}]" 
-                                class="tab-pane [{$f|default:''}]">
-                                <textarea class="form-control validate[required]" 
-                                          rows="10" name="lang_text" 
-                                          data-putto=".error_message" 
-                                          data-lang="[{$la->lang_short}]"
-                                          placeholder="[{$la->lang_name|ucwords}]">[{$item.data[$la->lang_short]->lang_text|quotes_to_entities|default:''}]</textarea>
-                            </div>
-                                [{assign var="f" value=""}]
-                            [{foreachelse}]
-                                    
-                            [{/foreach}]
-                        </div>
-                    </div>
-                    <div class="erb error_message"></div>
+                        [{assign var="f" value=""}]
+                    [{/foreach}]
                 </div>
 <!--                <div class="">
                     <button style="width: 100%" class="btn btn-default" type="button" onclick="sendquestion();">Gửi</button>

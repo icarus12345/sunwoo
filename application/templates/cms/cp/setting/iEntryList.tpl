@@ -48,7 +48,7 @@
     _oConfig.paginate = false;
     _oConfig.dataColumns = [
         {
-            'mData': "Id",
+            'mData': "id",
             'sWidth': "36px", 'bSortable': false,
             'sClass':'gridAction',
             'mRender': function ( value, type, datarow ) {
@@ -76,7 +76,7 @@
             }
         },
         {
-            'mData': "Status",
+            'mData': "_status",
             'sWidth': "36px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
@@ -103,18 +103,7 @@
                 return str.join(' ');
             },
         },
-        {
-
-            'mData': "Image",'sWidth': "56px",'bSortable': false,
-            "bVisible": true,
-            'sClass':'gridThumb',
-            'mRender': function ( value, type, datarow ) {
-                if(value)
-                    return '<div style="height:32px;width:52px;background-image:url('+value+')" class="bg-cover"/>';
-                else return '';
-            }
-        },
-        {'mData': "Name"}
+        {'mData': "name"}
     ];
 
 </script>

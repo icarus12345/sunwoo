@@ -14,7 +14,7 @@ class FE_Controller extends CI_Controller {
         $this->load->library('pagination');
         $this->load->model('cms/cp/menu_model');
         $this->load->model('scooter/cate_model');
-        $this->load->model('cms/cp/data_model');
+        $this->load->model('scooter/data_model');
         $this->load->model('cms/cp/site_model');
         $this->load->model('cms/cp/setting_model');
         $this->load->model('scooter/seo_model');
@@ -26,6 +26,7 @@ class FE_Controller extends CI_Controller {
         $this->load->model('scooter/province_model');
         $this->load->model('scooter/district_model');
         $this->load->model('scooter/ward_model');
+        $this->load->model('scooter/supplier_model');
         $this->news_model->status = '1';
         $this->opt_model->status = '1';
         $this->cate_model->status = '1';
@@ -36,9 +37,12 @@ class FE_Controller extends CI_Controller {
             'size'=> '2',
             'materia'=> '9',
 
+            'our-services'=>'service',
+
             'price'=> '5',
             'menu'=> 'menu',
             'cate'=> 'default',
+            'supplier'=> 'default',
             'event_cate'=>'event',
             'news_cate'=>'>406',
             'noti_cate'=>'>407',
@@ -53,7 +57,7 @@ class FE_Controller extends CI_Controller {
             
         // }
         $this->iLanguage =new CI_Language();
-        $this->assigns->languages = $this->iLanguage->load('all',$this->assigns->lang,true);
+        $this->assigns->languages = $this->iLanguage->load('default',$this->assigns->lang,true);
     }
     function loadWebSetting(){
         $query = $this->db->where('setting_id',1)->get('_setting');
@@ -72,7 +76,7 @@ class FE_Controller extends CI_Controller {
     function _loadCategory(){
         $this->db->order_by('_value','ASC');
         $categories = $this->cate_model->getCategoryByType($this->assigns->fecog['cate']);
-        $this->assigns->categories = $this->cate_model->buildTree($categories);
+        $this->assigns->tree_categories = $this->cate_model->buildTree($categories);
 
     }
     function _loadHomeMenu(){

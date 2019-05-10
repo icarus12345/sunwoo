@@ -106,7 +106,7 @@ class CI_Language{
         $CI->db->select   ('*');
         $CI->db->from     ('language');
         $CI->db->where_in('lang_language', array($this->idiom,'en'));
-        if(!empty($this->set))$CI->db->where    ('lang_set', $this->set);
+        if(!empty($this->set)) $CI->db->where    ('lang_set', $this->set);
 
         $query = $CI->db->get()->result();
         
@@ -115,18 +115,32 @@ class CI_Language{
         foreach ( $query as $row )
         {
             if($row->lang_language==$this->idiom){
-                $return[$row->lang_set.'_'.$row->lang_key] = $row->lang_text;
-                $return[$row->lang_set.'_'.convertName($row->lang_key)] = $row->lang_text;
+                if($row->lang_set){
+                    $return[$row->lang_set][$row->lang_key] = $row->lang_text;
+                    $return[$row->lang_set][convertName($row->lang_key)] = $row->lang_text;
+                }else{
+                    $return[$row->lang_key] = $row->lang_text;
+                    $return[convertName($row->lang_key)] = $row->lang_text;
+                }
             }
         }
         foreach ( $query as $row )
         {
            if($row->lang_language=='en'){
-               if(!isset($return[$row->lang_set.'_'.$row->lang_key])){
-                   $return[$row->lang_set.'_'.$row->lang_key] = $row->lang_text;
-               }
-               if(!isset($return[$row->lang_set.'_'.convertName($row->lang_key)])){
-                   $return[$row->lang_set.'_'.convertName($row->lang_key)] = $row->lang_text;
+                if($row->lang_set){
+                   if(!isset($return[$row->lang_set][$row->lang_key])){
+                       $return[$row->lang_set][$row->lang_key] = $row->lang_text;
+                   }
+                   if(!isset($return[$row->lang_set][convertName($row->lang_key)])){
+                       $return[$row->lang_set][convertName($row->lang_key)] = $row->lang_text;
+                   }
+               }else{
+                   if(!isset($return[$row->lang_key])){
+                       $return[$row->lang_key] = $row->lang_text;
+                   }
+                   if(!isset($return[convertName($row->lang_key)])){
+                       $return[convertName($row->lang_key)] = $row->lang_text;
+                   }
                }
            }
         }

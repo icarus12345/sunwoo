@@ -20,7 +20,7 @@
     };
     _oConfig.dataColumns = [
         {
-            'mData': "_id",
+            'data': "_id",
             'sWidth': "36px", 'bSortable': false,
             'sClass':'action-dropdown',
             'mRender': function ( value, type, datarow ) {
@@ -72,7 +72,7 @@
             }
         },
         {
-            'mData': "_status",
+            'data': "_status",
             'sWidth': "36px",
             'sClass':'cb-column',
             render: function ( value, type, row ) {
@@ -101,7 +101,7 @@
             // 'mRender': function ( value, type, datarow ) {
             // }
         },{
-            'mData': "_thumb",'sClass': "gridThumb",'sWidth': "40px",
+            'data': "_thumb",'sClass': "gridThumb",'sWidth': "40px",
             "bVisible": _oConfig.showImage,
             'mRender': function ( value, type, datarow ) {
                 if(value)
@@ -109,7 +109,7 @@
                 else return '';
             }
         },{
-            'mData': "_title",
+            'data': "_title",
             'mRender': function ( value, type, datarow ) {
                 var str= '';
                 // if(datarow.cat_title && datarow.cat_title !='')
@@ -118,9 +118,9 @@
                 return str;
             }
         },{
-            'mData': "cat_title",'sWidth': "120px"
+            'data': "cat_title",'sWidth': "120px"
         },{
-            'mData': "_created_at",'sWidth': "126px",
+            'data': "_created_at",'sWidth': "126px",
         }
     ];
 </script>

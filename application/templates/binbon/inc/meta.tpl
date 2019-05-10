@@ -55,7 +55,8 @@
         <script type="text/javascript" src="/libraries/plugin/jquery.serializejson.js"></script>
         <script type="text/javascript" src="/libraries/plugin/toastr/toastr.min.js"></script>
         <script type="text/javascript" src="/libraries/plugin/swipebox/jquery.swipebox-1.3.js"></script>
-
+        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB6TJrMx3v003kFpoOUSgugZSk8j1WWK_s"></script>
 
 
         <script type="text/javascript" src="/assets/binbon/js/masonry.pkgd.min.js"></script>

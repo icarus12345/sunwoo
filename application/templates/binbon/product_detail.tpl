@@ -3,7 +3,7 @@
 
 <div class="wrap">
     <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">[{$languages.default.home|escape}]</a></li>
       <li><a href="/shop/[{$cate_detail->_alias|escape}]">[{$cate_detail->_title|escape}]</a></li>
       <li class="active">[{$product_detail->_code|escape}]</li>
     </ol>
@@ -48,7 +48,7 @@
                 <div class="row half select-option">
                     [{if $product_detail->_data.custom[$fecog.color]}]
                     <div class="col-sm-4 half form-group">
-                        <div class="">Color</div>
+                        <div class="">[{$languages.default.color|escape}]</div>
                         <div>
                             <select id="colorCbx" class="selectpicker" name="color">
                                 <option value="default"></option>
@@ -66,7 +66,7 @@
                     [{/if}]
                     [{if $product_detail->_data.custom[$fecog.materia]}]
                     <div class="col-sm-4 half form-group">
-                        <div class="">Materia</div>
+                        <div class="">[{$languages.default.materia|escape}]</div>
                         <div>
                             <select id="materiaCbx" class="selectpicker" name="materia">
                                 <option value="default"></option>
@@ -81,7 +81,7 @@
                     [{/if}]
                     [{if $product_detail->_data.custom[$fecog.size]}]
                     <div class="col-sm-4 half form-group">
-                        <div class="">Size</div>
+                        <div class="">[{$languages.default.size|escape}]</div>
                         <div>
                             <select id="sizeCbx" class="selectpicker" name="size">
                                 <option value="default"></option>
@@ -95,10 +95,10 @@
                     </div>
                     [{/if}]
                 </div>
-                <div class="cate">Category: [{$cate_detail->_title|escape}]</div>
-                <div class="supplier">Supplier: [{$product_detail->supplier_title|escape}]</div>
-                <div class="tags">Tags: [{$product_detail->_tag|escape}]</div>
-
+                <div class="cate">[{$languages.default.category|escape}]: [{$cate_detail->_title|escape}]</div>
+                <div class="supplier">[{$languages.default.supplier|escape}]: [{$product_detail->supplier_title|escape}]</div>
+                <div class="tags">[{$languages.default.tags|escape}]: [{$product_detail->_tag|escape}]</div>
+                <br/>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="input-group snippet">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <button class="btn btn-primary" type="submit">Add to cart</button>
+                        <button class="btn btn-primary" type="submit">[{$languages.default.add_to_cart|escape}]</button>
                     </div>
                 </div>
             </form>
@@ -125,8 +125,8 @@
     <div class="product-content">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">Description</a></li>
-            <li role="presentation"><a href="#tab-review" aria-controls="tab-review" role="tab" data-toggle="tab">Review</a></li>
+            <li role="presentation" class="active"><a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">[{$languages.default.description|escape}]</a></li>
+            <li role="presentation"><a href="#tab-review" aria-controls="tab-review" role="tab" data-toggle="tab">[{$languages.default.review|escape}]</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -135,12 +135,26 @@
                 <div class="ckeditor">[{$product_detail->_content}]</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-review">
-                Updating...<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <div id="wpac-comment"></div>
+                <script type="text/javascript">
+                wpac_init = window.wpac_init || [];
+                wpac_init.push({widget: 'Comment', id: 17753});
+                (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+                })();
+                </script>
+
             </div>
         </div>
     </div>
     <div class="related">
-        <div>Related Product</div>
+        <div>[{$languages.default.related_product|escape}]</div>
         <div id="" class="grid">
             [{foreach from=$relateds item=foo}]
                 <div class="cell">
@@ -163,7 +177,7 @@
                                         [{/if}]
                                         [{$foo->_discount}] K
                                     </div>
-                                    <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">Add to card</button>
+                                    <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">[{$languages.default.add_to_cart|escape}]</button>
                                 </div>
                             </a>
                         </div>

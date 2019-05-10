@@ -19,7 +19,7 @@ class home extends FE_Controller {
 	function contact(){
 		$this->assigns->cate=0;
 		$this->assigns->data = $this->data_model->onGet(41);
-		$this->smarty->view( 'realestate/contact', $this->assigns );
+		$this->smarty->view( 'binbon/contact-us', $this->assigns );
 		
 	}
 	function cataloue(){
@@ -32,7 +32,8 @@ class home extends FE_Controller {
 		
 		$this->news_model->about_cond();
 		$this->assigns->news_list = $this->news_model->getAsc(null,1,40);
-		// print_r($this->db->last_query());die;
+		$this->assigns->our_services = $this->data_model->getByType($this->assigns->fecog['our-services']);
+		$this->assigns->suppliers = $this->supplier_model->getByType($this->assigns->fecog['supplier']);
 		$this->smarty->view( 'binbon/about-us', $this->assigns );
 	}
 }

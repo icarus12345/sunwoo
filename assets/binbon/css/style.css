@@ -147,6 +147,7 @@ html,body{
 /*    -ms-behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
 /*    behavior: url('/libraries/behavior/backgroundsize.min.htc');*/
 }
+.pull-top{padding-top: 10px}
 .line-clamp-1 {display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;  overflow: hidden;max-height: 1.5em;line-height: 1.5em;}
 .line-clamp-2 {display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;  overflow: hidden;max-height: 3em;line-height: 1.5em;}
 .line-clamp-3 {display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;  overflow: hidden;max-height: 4.5em;line-height: 1.5em;}
@@ -445,4 +446,244 @@ html,body{
 body .wp-copyright{
     transform: scale(0) !important;
 }
+.working-hour{
+    background:#d9edf7;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.working-hour>h3{
+    margin: 0;
+    margin: 0;
+}
+.working-hour>p{
+    margin: 0;
+    color: #777;
 
+}
+.working-hour .ckeditor table{
+    width: 100% !important
+}
+.working-hour .ckeditor table th{border-bottom: 1px solid rgba(0,0,0,.5)}
+.working-hour .ckeditor table th,
+.working-hour .ckeditor table td{
+    padding: 4px 10px;
+    color: #777;
+
+}
+.working-hour .ckeditor table tr th:last-child,
+.working-hour .ckeditor table tr td:last-child{text-align: right;}
+.our-services{}
+.our-services .item{}
+.our-services .item>div{position: relative;margin-bottom: 10px;padding-left: 90px;min-height: 80px}
+.our-services .item >div>div{padding-bottom: 10px;color: rgb(60, 6, 156);font-size: 15px}
+.our-services .item >div>p{margin: 0;color: #999}
+.our-services .item >div>span{
+    display: block;float: left;width: 80px; margin-right: 10px;
+    height: 80px;position: absolute;left: 0;top:0;
+    box-shadow: 0 0 1px #ebebeb
+}
+#owl-carousel-partner .owl-dot.active span{
+    background: orange;
+}
+#owl-carousel-partner .owl-dot span{
+    width: 10px;
+    height: 10px;
+    margin: 0px 4px;
+    background: transparent;
+    border:1px solid orange;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity 200ms ease;
+    border-radius: 30px;
+}
+#owl-carousel-partner .owl-dot{
+    float: left;
+}
+#owl-carousel-partner .owl-dots{
+    position: absolute;
+    bottom: -30px;
+    height: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #081956;
+    border-radius: 5px;
+    padding: 10px 40px;
+        display: table;
+}
+#owl-carousel-partner .owl-next,
+#owl-carousel-partner .owl-prev{
+    position: absolute;
+    top:50%;
+    height: 30px;
+    background:#d9edf7;
+    width: 20px;
+    margin-top: -10px;
+        text-align: center;
+    line-height: 30px;
+    font-size: 26px;
+    /*font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif*/
+}
+#owl-carousel-partner .owl-prev{
+    left: -24px;
+}
+#owl-carousel-partner .owl-next{
+    right: -24px;
+}
+#owl-carousel-partner .item .cover{
+    padding-bottom: 75%;
+}
+.owl-border legend{
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    text-transform: uppercase;
+    margin:auto;width: auto;
+    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.owl-border{
+    border:8px solid pink;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+.map{
+    padding-bottom: 56%;
+    position: relative;
+    min-height: 320px;
+}
+#map{
+    position: absolute;
+    left: 0;top: 0;width: 100%;height:100%;
+}
+.contact-popup-bubble{}
+.popup-bubble{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, -100%,1px);
+    /* Style the bubble. */
+    background-color: white;
+    box-shadow: 0 0 1px rgba(0,0,0,.3);
+    display: none;
+    z-index: 111
+
+}
+.popup-bubble-anchor:hover .popup-bubble{display: block;}
+.popup-bubble-anchor {
+    position: absolute;
+    left: -16px;
+    width: 32px;
+    height: 42px;
+    background: url(../images/marker.png) no-repeat bottom center;
+    bottom:0;
+}
+/* This element draws the tip. */
+.popup-bubble::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* Center the tip horizontally. */
+    transform: translate(-50%, 0);
+    /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+    width: 0;
+    height: 0;
+    /* The tip is 8px high, and 12px wide. */
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: /* TIP_HEIGHT= */ 8px solid white;
+}
+@-webkit-keyframes flash2 {
+  to {
+    -webkit-box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+@-moz-keyframes flash2 {
+  to {
+    -moz-box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+@keyframes flash2 {
+  to {
+    box-shadow: 0 0 10px 10px #FFEB3B;
+  }
+}
+/* JavaScript will position this div at the bottom of the popup tip. */
+.popup-container {
+    cursor: auto;
+    height: 0;
+    position: absolute;
+    /* The max width of the info window. */
+    width: 0;height: 0;
+}
+.contact-popup-container{position: absolute;}
+.contact-popup-bubble-anchor{
+    position: absolute;
+    /*height: 104px;*/
+    position: absolute;
+    bottom: 16px;
+    transform: translateX(-50%);
+    width: 340px;
+}
+.contact-popup-bubble-anchor:before{
+    content: '';display: block;
+    -webkit-animation: flash2 1s linear infinite;
+    -moz-animation: flash2 1s linear infinite;
+    animation: flash2 1s linear infinite;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    /* Style the bubble. */
+    background-color: #FFC107;
+    box-shadow: 0 0 0px 0px #FFEB3B;
+    width: 20px;height:20px;
+    border-radius: 50%;
+}
+.contact-popup-bubble-anchor .popheader{
+    height: 60px;
+    background: url(../images/logo.jpg) no-repeat center #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.contact-popup-bubble-anchor .address{
+    line-height: 20px;padding: 5px 10px;border:1px solid #ccc;border-top-color: transparent;background:#03A9F4;
+    font-size: 13px;position: relative;color:#fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.contact-popup-bubble-anchor .address:before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* Center the tip horizontally. */
+    transform: translate(-50%, 0);
+    /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+    width: 0;
+    height: 0;
+    /* The tip is 8px high, and 12px wide. */
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: /* TIP_HEIGHT= */ 15px solid #ccc;
+    z-index: 1
+}
+.contact-popup-bubble-anchor .address:after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* Center the tip horizontally. */
+    transform: translate(-50%, 0);
+    /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+    width: 0;
+    height: 0;
+    /* The tip is 8px high, and 12px wide. */
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 14px solid #03A9F4;
+    z-index: 2
+}

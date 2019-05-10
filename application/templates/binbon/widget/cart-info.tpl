@@ -1,7 +1,7 @@
 <div class="dropdown my-cart">
     <div style="cursor:pointer" data-toggle="dropdown">
         <div class="my-bag">
-            <span>My bag</span>
+            <span>[{$languages.default.my_bag|escape}]</span>
             <span class="num">[{$smarty.session.cart.info.amount|default:'0'}]</span>
             <div class="total-cash">
                 [{$smarty.session.cart.info.cash|default:'0.00'}] K

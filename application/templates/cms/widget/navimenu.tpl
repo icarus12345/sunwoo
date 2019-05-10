@@ -3,6 +3,9 @@
             <li data-id="136">
         <a href="/cms"><i class="fa fa-question"></i>Help</a>
             </li>
+        <li data-id="150">
+        <a href="/cms/cp/data/vp/.a.e./service"><i class="fa fa-folder"></i>Service</a>
+            </li>
         <li data-id="141">
         <a href="/cms/cp/news/vp/.e./about"><i class="fa fa-info-circle"></i>Abouts</a>
             </li>
@@ -23,7 +26,7 @@
                         </ul>
             </li>
         <li data-id="135">
-        <a href="/cms/cp/lang/vp/.a.e./all?#"><i class="fa fa-list"></i>Translate</a>
+        <a href="/cms/cp/lang/vp/.a.e./default?#"><i class="fa fa-list"></i>Translate</a>
             </li>
         <li data-id="3">
         </li>

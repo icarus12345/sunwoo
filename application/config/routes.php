@@ -119,6 +119,7 @@
 
 $route["shop"] = "frontend/product";
 $route["pages/about-us"] = "home/about";
+$route["pages/contact-us"] = "home/contact";
 $route["shop/([a-z0-9-]{4,255})"] = "frontend/product/category/$1";
 $route["shop/([a-z0-9-]{4,255})/([a-z0-9-]{4,255})"] = "frontend/product/detail/$1/$2";
 

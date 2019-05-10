@@ -87,23 +87,23 @@
                         [{assign var="f" value=""}]
                     [{/foreach}]
                 </div>
-
+                <div class="clearfix"></div>
+                <div class="control-group pull-top" style="width: 160px">
+                    <div>Image :</div>
+                    <div class="input-append">
+                        <input type="text" 
+                            [{if $item->_image}]title="<img src='[{$item->_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
+                            class="form-control tool-tip" value="[{$item->_image|default:''}]" 
+                            name="_image" id="_image"
+                            >
+                        <span class="add-on " onclick="BrowseServer('#_image')" title="Choose Image">
+                            <i class="fa fa-image"></i>
+                        </span>
+                    </div>
+                </div>
 
                 <!-- <div class="row half">
                     <div class="col-mb-4 half">
-                        <div class="control-group pull-top">
-                            <div>Image :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                    [{if $item->cat_image}]title="<img src='[{$item->cat_image}]' style='max-height:80px;max-width:120px'/>"[{/if}]
-                                    class="form-control tool-tip" value="[{$item->cat_image|default:''}]" 
-                                    name="cat_image" id="cat_image"
-                                    >
-                                <span class="add-on " onclick="BrowseServer('#cat_image')" title="Choose Image">
-                                    <i class="fa fa-image"></i>
-                                </span>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-mb-4 half">
                         <div class="control-group pull-top">

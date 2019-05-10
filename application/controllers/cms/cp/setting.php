@@ -2,11 +2,11 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class setting extends CP_Controller {
     function __construct() {
-        parent::__construct('setting', '', 'Id');
+        parent::__construct('setting', '_', 'id');
         $this->load->model('cms/cp/setting_model');
         $this->assigns->tplConfig = array(
             'controller'   =>'setting',
-            'prefix'       =>'',
+            'prefix'       =>'_',
             'name'         =>'_oSetting',
             'title'        =>'Setting',
             'group'        =>'cp',
@@ -57,7 +57,7 @@ class setting extends CP_Controller {
         $dataType="";
         if($Id){
             $this->assigns->item = $this->setting_model->onGet($Id);
-            $dataType = $this->assigns->item->DataType;
+            $dataType = $this->assigns->item->_data_type;
         }
         $layout = $this->input->post('layout');
         if(!empty($layout)){
@@ -103,8 +103,8 @@ class setting extends CP_Controller {
             "table"     =>"setting",
             "select"    =>"SELECT SQL_CALC_FOUND_ROWS * ",
             "from"      =>"FROM `setting`",
-            "where"     =>"WHERE `Type` = '$type'",
-            "order_by"  =>"ORDER BY `Insert` ASC",
+            "where"     =>"WHERE `_type` = '$type'",
+            "order_by"  =>"ORDER BY `_created_at` ASC",
             "columnmaps"=>array(
 
             )

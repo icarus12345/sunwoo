@@ -3,27 +3,27 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->Id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="Type" 
-                    value="[{$item->Type|default:$type|default:''}]"/>
-                <input type="hidden" name="DataType" 
-                    value="[{$item->DataType|escape|default:'text'}]"/>
-                <input type="hidden" name="Status" 
-                    value="true"/>
+                <input type="hidden" name="_type" 
+                    value="[{$item->_type|default:$type|default:''}]"/>
+                <input type="hidden" name="_data_type" 
+                    value="[{$item->_data_type|escape|default:'text'}]"/>
+                <input type="hidden" name="_status" 
+                    value="1"/>
                 [{if $item}]
                 <div>
-                    <b>[{$item->Name|escape|default:''}]</b>
+                    <b>[{$item->_name|escape|default:''}]</b>
                 </div>
                 [{else}]
                 <div class="control-group">
                     <div>Name :</div>
                     <input type="text" 
                         class="form-control" 
-                        value="[{$item->Name|escape|default:''}]" 
-                        name="Name"
+                        value="[{$item->_name|escape|default:''}]" 
+                        name="_name"
                         >
                 </div>
                 [{/if}]
@@ -32,20 +32,20 @@
                     <textarea 
                         rows="1"
                         class="form-control"
-                        name="Title">[{$item->Title|escape|default:''}]</textarea>
+                        name="_title">[{$item->_title|escape|default:''}]</textarea>
                 </div>
                 <div class="control-group pull-top">
                     <div>Value :</div>
-                    [{if $item->DataType=="bool"}]
-                    <select name="Value" class="form-control selectpicker" data-size="10" >
+                    [{if $item->_data_type=="bool"}]
+                    <select name="_value" class="form-control selectpicker" data-size="10" >
                         <option value="true">True</option>
-                        <option value="false" [{if $item->Value=='false'}]selected=1[{/if}]>False</option>
+                        <option value="false" [{if $item->_value=='false'}]selected=1[{/if}]>False</option>
                     </select>
                     [{else}]
                     <textarea 
                         rows="1"
                         class="form-control"
-                        name="Value">[{$item->Value|escape|default:''}]</textarea>
+                        name="_value">[{$item->_value|escape|default:''}]</textarea>
                     [{/if}]
                 </div>
             </form>
