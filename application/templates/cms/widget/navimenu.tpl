@@ -12,8 +12,8 @@
         <li data-id="129">
         <a href="#"><i class="fa fa-newspaper-o"></i>Blogs</a>
             <ul class="submenu">
-                            <li><a href="/cms/cp/cate/vp/.a.e./tintuc?navi=129"><i class="fa fa-bars"></i>Categories</a></li>
-                                    <li><a href="/cms/cp/news/vp/.a.d.e./tintuc?navi=129"><i class="fa fa-newspaper-o"></i>All Blogs</a></li>
+                            <li><a href="/cms/cp/cate/vp/.a.e./default?navi=129"><i class="fa fa-bars"></i>Categories</a></li>
+                                    <li><a href="/cms/cp/news/vp/.a.d.e./default?navi=129"><i class="fa fa-newspaper-o"></i>All Blogs</a></li>
                         </ul>
             </li>
         <li data-id="138">
@@ -34,7 +34,8 @@
             <li data-id="5">
         <a href="#"><i class="fa fa-cogs"></i>Settings</a>
             <ul class="submenu">
-                            <li><a href="/cms/fm/file/">KCFinder - Image manage</a></li>
+                            <li><a href="/cms/cp/setting/vpe/.a.d.e./default?navi=5"><i class="fa fa-folder"></i>Other</a></li>
+                                    <li><a href="/cms/fm/file/">KCFinder - Image manage</a></li>
                         </ul>
             </li>
         <li data-id="6">

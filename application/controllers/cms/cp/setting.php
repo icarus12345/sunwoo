@@ -62,15 +62,15 @@ class setting extends CP_Controller {
         $layout = $this->input->post('layout');
         if(!empty($layout)){
             switch ($layout){
-                case 'menu':
-                    $htmlreponse = $this->smarty->view( 'cms/cp/setting2/editPanel', $this->assigns, true );
-                    break;
-                case 'i':
-                    $htmlreponse = $this->smarty->view( 'cms/cp/setting2/editPanelImg', $this->assigns, true );
-                    break;
-                case 'e':
-                    $htmlreponse = $this->smarty->view( 'cms/cp/settingvpe/editPanel', $this->assigns, true );
-                    break;
+                // case 'menu':
+                //     $htmlreponse = $this->smarty->view( 'cms/cp/setting2/editPanel', $this->assigns, true );
+                //     break;
+                // case 'i':
+                //     $htmlreponse = $this->smarty->view( 'cms/cp/setting2/editPanelImg', $this->assigns, true );
+                //     break;
+                // case 'e':
+                //     $htmlreponse = $this->smarty->view( 'cms/cp/settingvpe/editPanel', $this->assigns, true );
+                //     break;
                 default :
                     $htmlreponse = $this->smarty->view( 'cms/cp/setting2/editPanel', $this->assigns, true );
             }

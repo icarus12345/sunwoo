@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2019-05-10 15:39:49
+Date: 2019-05-13 14:13:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -675,19 +675,23 @@ CREATE TABLE `_news` (
   `_type` varchar(20) DEFAULT NULL,
   `_category_id` int(11) DEFAULT NULL,
   `_view` int(11) DEFAULT '0',
-  `_author` int(11) DEFAULT NULL,
+  `_author` varchar(50) DEFAULT NULL,
   `_alias_vi` varchar(255) DEFAULT NULL,
   `_alias_en` varchar(255) DEFAULT NULL,
+  `_publicday` datetime DEFAULT NULL,
   PRIMARY KEY (`_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _news
 -- ----------------------------
-INSERT INTO `_news` VALUES ('1', 'Tạo mới sản phẩm', 'Create new a product', '2019-04-10 17:18:30', '2019-04-10 17:52:54', null, '1', 'Tạo mới sản phẩm', 'Hướng dẫn đang cập nhật', '', '', '', '1554891406', 'Tạo mới sản phẩm', 'Tạo mới sản phẩm', 'helper', '0', '0', null, 'tao-moi-san-pham', 'create-new-a-product');
-INSERT INTO `_news` VALUES ('2', 'Dịch ngôn ngữ', 'Translate', '2019-04-10 17:24:40', '2019-04-10 17:52:47', null, '1', 'Dịch ng&ocirc;n ngữ', 'Hướng dẫn đang cập nhật', null, null, null, '1554891863', 'Dịch ngôn ngữ', 'Dịch ngôn ngữ', 'helper', null, '0', null, 'dich-ngon-ngu', 'translate');
-INSERT INTO `_news` VALUES ('3', 'Về chúng tôi', 'Welcome to binbon store', '2019-05-10 09:57:11', '2019-05-10 11:07:45', null, '1', '<h4>The standard Lorem Ipsum passage, used since the 1500s</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</p>\r\n\r\n<h4>Section 1.10.32 of &quot;de Finibus Bonorum et Malorum&quot;, written by Cicero in 45 BC</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?&quot;</p>\r\n', '<div>\r\n<h4>The standard Lorem Ipsum passage, used since the 1500s</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</p>\r\n\r\n<h4>Section 1.10.32 of &quot;de Finibus Bonorum et Malorum&quot;, written by Cicero in 45 BC</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?&quot;</p>\r\n</div>\r\n', '', '', '', '1557456884', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 'about', '0', '0', null, 've-chung-toi', 'welcome-to-binbon-store');
-INSERT INTO `_news` VALUES ('4', 'Giờ mở cửa', 'Working hour', '2019-05-10 10:15:58', '2019-05-10 10:58:28', null, '1', '<div>&nbsp;</div>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:100%\">\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\"><strong>Day</strong></th>\r\n			<th scope=\"col\"><strong>Time Server</strong></th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Thứ hai</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thứ 3</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Wednesday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thursday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Friday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Saturday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Sunday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n', '<div>&nbsp;</div>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:647px\">\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\"><strong>Day</strong></th>\r\n			<th scope=\"col\"><strong>Time Server</strong></th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Thứ hai</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thứ 3</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Wednesday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thursday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Friday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Saturday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Sunday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n', '', '', '', '1557458062', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'about', '0', '0', null, 'gio-mo-cua', 'working-hour');
+INSERT INTO `_news` VALUES ('1', 'Tạo mới sản phẩm', 'Create new a product', '2019-04-10 17:18:30', '2019-04-10 17:52:54', null, '1', 'Tạo mới sản phẩm', 'Hướng dẫn đang cập nhật', '', '', '', '1554891406', 'Tạo mới sản phẩm', 'Tạo mới sản phẩm', 'helper', '0', '0', null, 'tao-moi-san-pham', 'create-new-a-product', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('2', 'Dịch ngôn ngữ', 'Translate', '2019-04-10 17:24:40', '2019-04-10 17:52:47', null, '1', 'Dịch ng&ocirc;n ngữ', 'Hướng dẫn đang cập nhật', null, null, null, '1554891863', 'Dịch ngôn ngữ', 'Dịch ngôn ngữ', 'helper', null, '0', null, 'dich-ngon-ngu', 'translate', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('3', 'Về chúng tôi', 'Welcome to binbon store', '2019-05-10 09:57:11', '2019-05-10 11:07:45', null, '1', '<h4>The standard Lorem Ipsum passage, used since the 1500s</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</p>\r\n\r\n<h4>Section 1.10.32 of &quot;de Finibus Bonorum et Malorum&quot;, written by Cicero in 45 BC</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?&quot;</p>\r\n', '<div>\r\n<h4>The standard Lorem Ipsum passage, used since the 1500s</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&quot;</p>\r\n\r\n<h4>Section 1.10.32 of &quot;de Finibus Bonorum et Malorum&quot;, written by Cicero in 45 BC</h4>\r\n\r\n<p style=\"text-align:justify\">&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?&quot;</p>\r\n</div>\r\n', '', '', '', '1557456884', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 'about', '0', '0', null, 've-chung-toi', 'welcome-to-binbon-store', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('4', 'Giờ mở cửa', 'Working hour', '2019-05-10 10:15:58', '2019-05-10 10:58:28', null, '1', '<div>&nbsp;</div>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:100%\">\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\"><strong>Day</strong></th>\r\n			<th scope=\"col\"><strong>Time Server</strong></th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Thứ hai</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thứ 3</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Wednesday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thursday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Friday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Saturday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Sunday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n', '<div>&nbsp;</div>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:647px\">\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\"><strong>Day</strong></th>\r\n			<th scope=\"col\"><strong>Time Server</strong></th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Thứ hai</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thứ 3</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Wednesday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Thursday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Friday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Saturday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Sunday</td>\r\n			<td>9h20-20h</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n', '', '', '', '1557458062', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'about', '0', '0', null, 'gio-mo-cua', 'working-hour', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('5', 'Lorem isupum', 'Lorem isupum', '2019-05-13 11:31:09', '2019-05-13 11:31:17', '2019-05-13 13:43:35', '1', 'Lorem isupum', 'Lorem isupum', '', '/libraries/images/image_available.gif', '/libraries/images/image_available.gif', '1557721820', 'Lorem isupum', 'Lorem isupum', 'default', '413', '12', 'Admin BinBon', 'lorem-isupum', 'lorem-isupum', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('6', 'test', 'test', '2019-05-13 11:50:20', null, '2019-05-13 13:43:35', '1', 'test', 'test', '', '/data/image/800x400/CM07045_Panasonic_TB.jpg', '', '1557723004', 'test', 'test', 'default', '430', '1', 'Trường Khương', 'test', 'test', '2019-04-10 17:52:54');
+INSERT INTO `_news` VALUES ('7', '[{$foo->_alias|escape}]', '[{$foo->_alias|escape}]', '2019-05-13 13:36:18', '2019-05-13 13:43:37', '2019-05-13 13:43:35', '1', '[{$foo-&gt;_alias|escape}]', '[{$foo-&gt;_alias|escape}]', '', '/data/image/800x400/CM09001_Dockers_011.jpg', '', '1557729359', '[{$foo->_alias|escape}]', '[{$foo->_alias|escape}]', 'default', '432', '0', 'Trường Khương', 'foo-aliasescape', 'foo-aliasescape', '2019-05-13 13:35:59');
 
 -- ----------------------------
 -- Table structure for `_order`
@@ -1655,7 +1659,7 @@ CREATE TABLE `language` (
   `lang_update` date DEFAULT NULL,
   PRIMARY KEY (`lang_id`),
   UNIQUE KEY `lang_key` (`lang_key`,`lang_language`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of language
@@ -1700,6 +1704,24 @@ INSERT INTO `language` VALUES ('37', 'Review', 'en', 'default', 'Review', '2019-
 INSERT INTO `language` VALUES ('38', 'Review', 'vi', 'default', 'Bình luận', '2019-05-10', '2019-05-10');
 INSERT INTO `language` VALUES ('39', 'Related Product', 'en', 'default', 'Related Product', '2019-05-10', '2019-05-10');
 INSERT INTO `language` VALUES ('40', 'Related Product', 'vi', 'default', 'Sản phẩm liên quan', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('41', 'Address', 'en', 'default', '126 Nguyễn Thị Minh Khai, P.6, Q.3, TP.HCM', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('42', 'Address', 'vi', 'default', '126 Nguyễn Thị Minh Khai, P.6, Q.3, TP.HCM', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('43', 'Email', 'en', 'default', 'binbon@gmail.com', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('44', 'Email', 'vi', 'default', 'binbon@gmail.com', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('45', 'Tel', 'en', 'default', '09xxxxxx', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('46', 'Tel', 'vi', 'default', '09xxxxxx', '2019-05-10', '2019-05-10');
+INSERT INTO `language` VALUES ('47', 'How to find us', 'en', 'default', 'How to find us?', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('48', 'How to find us', 'vi', 'default', 'Vị trí của chúng tôi', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('49', 'Send us a message', 'en', 'default', 'Send us a message', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('50', 'Send us a message', 'vi', 'default', 'Liên hệ với chúng tôi', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('51', 'Send message', 'en', 'default', 'Send message', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('52', 'Send message', 'vi', 'default', 'Gửi', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('53', 'Full name', 'en', 'default', 'Full name', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('54', 'Full name', 'vi', 'default', 'Họ và tên', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('55', 'Phone', 'en', 'default', 'Phone', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('56', 'Phone', 'vi', 'default', 'Điện thoại', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('57', 'Content', 'en', 'default', 'Content', '2019-05-13', '2019-05-13');
+INSERT INTO `language` VALUES ('58', 'Content', 'vi', 'default', 'Nội dung', '2019-05-13', '2019-05-13');
 
 -- ----------------------------
 -- Table structure for `languages`
@@ -1846,7 +1868,7 @@ CREATE TABLE `menu` (
   `menu_lock` varchar(11) DEFAULT NULL,
   `menu_class` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -1869,7 +1891,7 @@ INSERT INTO `menu` VALUES (null, null, '87', 'Event', '', '', '0', 'true', '5', 
 INSERT INTO `menu` VALUES (null, null, '88', 'Stories', '', '', '0', 'true', '6', '/story', 'menu', '2015-03-27 13:49:16', '2015-04-04 08:10:19', 'true', '');
 INSERT INTO `menu` VALUES (null, null, '89', 'People', '', '', '0', 'true', '7', '/people', 'menu', '2015-03-27 13:49:44', '2015-03-27 13:50:18', 'true', '');
 INSERT INTO `menu` VALUES (null, null, '90', 'About', '', '', '0', 'true', '8', '/about', 'menu', '2015-03-27 13:49:54', '2015-03-27 13:50:19', 'true', '');
-INSERT INTO `menu` VALUES (null, null, '142', 'All Blogs', '', '', '129', 'true', '2', '/cms/cp/news/vp/.a.d.e./tintuc?navi=129', 'cms', '2019-02-27 10:12:51', '2019-02-27 10:14:02', null, 'fa fa-newspaper-o');
+INSERT INTO `menu` VALUES (null, null, '142', 'All Blogs', '', '', '129', 'true', '2', '/cms/cp/news/vp/.a.d.e./default?navi=129', 'cms', '2019-02-27 10:12:51', '2019-05-13 11:28:22', null, 'fa fa-newspaper-o');
 INSERT INTO `menu` VALUES (null, null, '149', 'Supplier', '', '', '138', 'true', '0', '/cms/cp/supplier/vp/.a.e.d./default?navi=138', 'cms', '2019-04-25 14:48:19', '2019-04-25 14:48:55', null, 'fa fa-tags');
 INSERT INTO `menu` VALUES (null, null, '129', 'Blogs', '', '', '1', 'true', '2', '', 'cms', '2015-06-09 13:35:00', '2019-02-27 10:14:54', null, 'fa fa-newspaper-o');
 INSERT INTO `menu` VALUES (null, null, '135', 'Translate', '', '', '1', 'true', '8', '/cms/cp/lang/vp/.a.e./default?#', 'cms', '2015-06-11 14:34:57', '2019-05-10 15:20:28', null, 'fa fa-list');
@@ -1878,9 +1900,10 @@ INSERT INTO `menu` VALUES (null, null, '138', 'Shop', '', '', '1', 'true', '2', 
 INSERT INTO `menu` VALUES (null, null, '139', 'Categories', '', '', '138', 'true', '1', '/cms/cp/cate/vp/.a.e.d./default?navi=138', 'cms', '2019-02-27 09:38:12', '2019-04-25 13:29:22', null, 'fa fa-tree');
 INSERT INTO `menu` VALUES (null, null, '140', 'Product', '', '', '138', 'true', '2', '/cms/cp/product/vp/.a.d.e./default?navi=138', 'cms', '2019-02-27 09:42:37', '2019-04-25 13:31:03', null, 'fa fa-newspaper-o');
 INSERT INTO `menu` VALUES (null, null, '141', 'Abouts', '', '', '1', 'true', '1', '/cms/cp/news/vp/.e./about', 'cms', '2019-02-27 10:00:13', '2019-02-27 10:02:27', null, 'fa fa-info-circle');
-INSERT INTO `menu` VALUES (null, null, '143', 'Categories', '', '', '129', 'true', '1', '/cms/cp/cate/vp/.a.e./tintuc?navi=129', 'cms', '2019-02-27 10:13:57', null, null, 'fa fa-bars');
+INSERT INTO `menu` VALUES (null, null, '143', 'Categories', '', '', '129', 'true', '1', '/cms/cp/cate/vp/.a.e./default?navi=129', 'cms', '2019-02-27 10:13:57', '2019-05-13 11:28:29', null, 'fa fa-bars');
 INSERT INTO `menu` VALUES (null, null, '148', 'Setting Color|Size|Materia', '', '', '138', 'true', '1', '/cms/cp/line/vp/.a.d.e./default?navi=138', 'cms', '2019-04-03 11:22:11', '2019-04-25 13:30:11', null, 'fa fa-cogs');
 INSERT INTO `menu` VALUES (null, null, '150', 'Service', '', '', '1', 'true', '0', '/cms/cp/data/vp/.a.e./service', 'cms', '2019-05-10 14:53:14', '2019-05-10 14:53:28', null, 'fa fa-folder');
+INSERT INTO `menu` VALUES (null, null, '151', 'Other', '', '', '5', 'true', '0', '/cms/cp/setting/vpe/.a.d.e./default?navi=5', 'cms', '2019-05-13 14:10:59', '2019-05-13 14:11:41', null, 'fa fa-folder');
 
 -- ----------------------------
 -- Table structure for `opt`
@@ -2071,7 +2094,7 @@ CREATE TABLE `setting` (
   `_status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`_id`),
   UNIQUE KEY `system_fk` (`_name`,`_type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of setting
@@ -2079,7 +2102,7 @@ CREATE TABLE `setting` (
 INSERT INTO `setting` VALUES ('22', 'Description', 'Nhận dậy làm bánh, khóa học làm bánh, trang trí bánh\r\nCung cấp các loại bánh kem, bánh sinh nhật, bánh vẽ, bánh cupkes đẹp mắt và hấp dẫn\r\nCHUYÊN CUNG CẤP NGUYÊN LIỆU, DỤNG CỤ LÀM BÁNH CAO CẤP VÀ NGOẠI NHẬP.', null, 'webinfo', '2014-07-25 06:54:37', '2014-12-03 22:31:08', 'true', null, null, null, null);
 INSERT INTO `setting` VALUES ('24', 'Contact us', '<p><span style=\"background-color:rgb(255, 255, 255); color:rgb(51, 51, 51)\">Open up a .js file and hit ctrl+shift+j to run Closure Linter. An new output panel will appear giving you the Closure Linter results</span></p>\n\n<p>8/18 Đường L&ecirc; Qu&yacute; Đ&ocirc;n Phường 12, Quận Ph&uacute; Nhuận Tp HCM<br />\nPhone:(+84)982 636 618 - Ms Mai<br />\nEmail: dongocmai179@yahoo.com<br />\nvalikie.nhung@gmail.com<br />\nFollow on: Facebook</p>\n', null, 'contactus', '2014-08-01 15:48:40', '2014-09-27 09:16:51', '1', null, null, null, null);
 INSERT INTO `setting` VALUES ('25', 'Contact Information', '<p>8/18 Đường L&ecirc; Qu&yacute; Đ&ocirc;n Phường 12, Quận Ph&uacute; Nhuận Tp HCM.<br />\nPhone:(+84)982 636 618 - Ms Mai.<br />\nEmail: dongocmai179@yahoo.com.<br />\nvalikie.nhung@gmail.com.<br />\nFollow on: Facebook.</p>\n', null, 'contactus', '2014-08-01 15:50:49', '2014-08-03 20:14:16', '1', null, null, null, null);
-INSERT INTO `setting` VALUES ('40', 'Category', '', null, 'cms', '2014-12-10 09:39:04', '2019-03-19 09:48:27', null, null, null, 'text', 'true');
+INSERT INTO `setting` VALUES ('40', 'Category', '', null, 'cms', '2014-12-10 09:39:04', '2019-05-10 16:32:28', null, null, null, 'text', '1');
 INSERT INTO `setting` VALUES ('79', 'SMTPSecure', 'ssl', null, 'mailer', '2015-01-24 15:21:40', '2019-05-10 13:34:15', 'true', 'SMTPSecure', null, 'text', '1');
 INSERT INTO `setting` VALUES ('80', 'Host', 'smtp.gmail.com', null, 'mailer', '2015-01-24 15:22:01', '2019-05-10 13:34:20', 'true', 'Host', null, 'text', '1');
 INSERT INTO `setting` VALUES ('81', 'Port', '465', null, 'mailer', '2015-01-24 15:22:18', '2019-05-10 13:34:24', 'true', 'Port', null, 'text', '1');
@@ -2092,18 +2115,16 @@ INSERT INTO `setting` VALUES ('98', 'We are', 'Lorem ipsum dolor sit amet, conse
 INSERT INTO `setting` VALUES ('100', 'Advertise +', '', null, 'advertise', '2015-03-28 21:49:13', '2015-03-28 22:11:36', null, null, null, 'image', 'true');
 INSERT INTO `setting` VALUES ('101', 'Advertise-', '', null, 'advertise', '2015-03-28 21:51:36', '2015-03-28 22:11:44', null, null, null, 'image', 'true');
 INSERT INTO `setting` VALUES ('102', 'Advertise 2', '', null, 'advertise', '2015-03-28 21:52:18', '2015-03-28 22:11:45', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('103', 'A1', '', null, 'advertise2', '2015-03-28 22:00:20', '2015-03-28 22:12:16', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('104', 'A3', '', null, 'advertise2', '2015-03-28 22:00:30', '2015-03-28 22:12:17', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('105', 'A2', '', null, 'advertise2', '2015-03-28 22:00:36', '2015-03-28 22:12:18', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('106', 'A4', '', null, 'advertise2', '2015-03-28 22:00:47', '2015-03-28 22:12:19', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('107', 'A5', '', null, 'advertise2', '2015-03-28 22:00:54', '2015-03-28 22:12:20', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('108', 'A6', '', null, 'advertise2', '2015-03-28 22:01:00', '2015-03-28 22:12:21', null, null, null, 'image', 'true');
+INSERT INTO `setting` VALUES ('122', 'email', 'hotro.binbonstore@gmail.com', 'binbon@gmail.com', 'default', '2019-05-10 16:41:50', '2019-05-10 17:04:56', null, 'Email', null, 'text', '1');
+INSERT INTO `setting` VALUES ('123', 'tel', '(84) 9xx xxx xxx', '', 'default', '2019-05-10 16:42:18', '2019-05-10 16:42:29', null, 'Tel', null, 'text', '1');
+INSERT INTO `setting` VALUES ('124', 'balloon', '/data/image/800x400/CM09007_Gandali_TB.jpg', '', 'default', '2019-05-10 16:48:22', '2019-05-10 16:56:30', null, 'Balloon', null, 'image', '1');
 INSERT INTO `setting` VALUES ('109', 'AAA', '', null, 'advertise', '2015-03-28 22:11:58', null, null, null, null, 'image', 'true');
 INSERT INTO `setting` VALUES ('116', 'Slider 003', '', null, 'slider', '2015-06-05 15:05:18', '2019-02-27 14:12:03', null, null, null, 'image', 'true');
 INSERT INTO `setting` VALUES ('115', 'Slider 002', '', null, 'slider', '2015-06-05 15:05:08', '2019-02-27 14:12:18', null, null, null, 'image', 'true');
 INSERT INTO `setting` VALUES ('114', 'Slider 001', '', null, 'slider', '2015-06-05 15:02:08', '2019-02-28 14:20:09', null, null, null, 'image', 'true');
-INSERT INTO `setting` VALUES ('119', 'lat', '10.778114', null, 'other', '2019-04-02 13:42:06', '2019-04-02 13:44:02', null, null, null, 'text', 'true');
-INSERT INTO `setting` VALUES ('120', 'lon', '106.692965', null, 'other', '2019-04-02 13:42:25', '2019-04-02 13:44:07', null, null, null, 'text', 'true');
+INSERT INTO `setting` VALUES ('119', 'lat', '10.778114', null, 'default', '2019-04-02 13:42:06', '2019-05-10 16:38:10', null, 'Lat', null, 'text', '1');
+INSERT INTO `setting` VALUES ('120', 'lon', '106.692965', null, 'default', '2019-04-02 13:42:25', '2019-05-10 16:38:15', null, 'Lon', null, 'text', '1');
+INSERT INTO `setting` VALUES ('121', 'address', '126 Nguyễn Thị Minh Khai, P.6, Q.3, TP.HCM', '', 'default', '2019-05-10 16:36:16', '2019-05-13 09:19:14', null, 'Address', null, 'text', '1');
 
 -- ----------------------------
 -- Table structure for `site`

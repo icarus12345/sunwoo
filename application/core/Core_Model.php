@@ -552,8 +552,9 @@ class Core_Model extends CI_Model {
         if(!empty($this->datatables_config["filterfields"])){
             $filterfields = $this->datatables_config["filterfields"];
         }
-        if (!empty($filterfields)) {
-            for ($i = 0; $i < count($filterfields); $i++) {
+        $iColumns = $method['iColumns'];
+        // if (!empty($filterfields)) {
+            for ($i = 0; $i < $iColumns; $i++) {
                 if (
                         isset($method['bSearchable_' . $i]) && $method['bSearchable_' . $i] == "true" &&
                         $method['sSearch_' . $i] != ''
@@ -563,9 +564,10 @@ class Core_Model extends CI_Model {
                     } else {
                         $sWhere .= " AND ";
                     }
-                    if (isset($filterfields[$i])) {
-                        $_colum = $filterfields[$i];
-                    } elseif (isset($method["mDataProp_$i"])) {
+
+
+                    // if (isset($filterfields[$i])) {
+                    if (empty($filterfields) || in_array($method["mDataProp_$i"],$filterfields)) {
                         $_colum = $method["mDataProp_$i"];
                     }
                     if (!empty($_colum)) {
@@ -580,9 +582,9 @@ class Core_Model extends CI_Model {
                     }
                 }
             }
-        } else {
+        // } else {
             
-        }
+        // }
         
         $sGroupby = !empty($this->datatables_config['group_by'])?$this->datatables_config['group_by']:'';
         /*

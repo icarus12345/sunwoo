@@ -55,6 +55,8 @@
                     </div>
                 </div>
             </div>
+        [{foreachelse}]
+        <div class="empty">[{$languages.default.no_data|escape}]</div>
         [{/foreach}]
     </div>
 </div>

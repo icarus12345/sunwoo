@@ -48,6 +48,9 @@ class news extends VD_Controller {
         //     }
         // }
     }
+    function beforeinsert(){
+        $_POST['Params']['_owner'] = $_SESSION["auth"]["user"]->ause_name;
+    }
     function beforedelete(){
         
     }
@@ -145,10 +148,12 @@ class news extends VD_Controller {
             "order_by"  =>"ORDER BY {$this->table}.`{$this->prefix}ordering` DESC,{$this->table}.`{$this->prefix}created_at` DESC",
             "columnmaps"=>array(
                 "cat_title"=>"_cate._value",
-                "{$this->prefix}title"=>"{$this->prefix}title_{$this->lang}",
+                "{$this->prefix}title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
+                "{$this->prefix}id"=>"{$this->table}.{$this->prefix}id",
+                "{$this->prefix}status"=>"{$this->table}.{$this->prefix}status",
             ),
             "filterfields"=>array(
-                
+                '_title','cat_title','_status'
             )
         );
         $output = $this->news_model->datatableBinding();

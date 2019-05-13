@@ -34,7 +34,7 @@
                 [{foreachelse}]
                 <tr>
                     <td colspan="2">
-                        No items.
+                        <div class="text-center" style="padding: 40px 0">No items.</div>
                     </td>
                 </tr>
                 [{/foreach}]

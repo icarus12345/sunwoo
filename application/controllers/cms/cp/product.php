@@ -148,12 +148,14 @@ class product extends CP_Controller {
             "columnmaps"=>array(
                 "cat_title"=>"_cate._value",
                 "supplier_title"=>"_supplier._id",
-                "title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
-                "desc"=>"{$this->table}.{$this->prefix}desc_{$this->lang}",
+                "_title"=>"{$this->table}.{$this->prefix}title_{$this->lang}",
+                "_desc"=>"{$this->table}.{$this->prefix}desc_{$this->lang}",
                 "_status"=>"{$this->table}.{$this->prefix}status",
             ),
             "filterfields"=>array(
-                // 'product_title_vi','cat_title_vi'
+                'cat_title',
+                '_title',
+                '_status'
             )
         );
         $output = $this->product_model->datatableBinding();

@@ -126,10 +126,10 @@
                                             <option value="0" >Nothing Select</option>
                                             [{foreach from=$cates item=c}]
                                                 <option 
-                                                    data-content="<span style='padding-left: [{($c->value|substr_count:'>' -1) *20}]px;'>[{$c->title|escape:'html'}]</span>"
-                                                    [{if $c->id == $item->_category_id}]selected="1"[{/if}]
-                                                    value="[{$c->id|default:''}]">
-                                                        [{$c->title|default:''}]
+                                                    data-content="<span style='padding-left: [{($c->_value|substr_count:'>' -1) *20}]px;'>[{$c->_title|escape:'html'}]</span>"
+                                                    [{if $c->_id == $item->_category_id}]selected="1"[{/if}]
+                                                    value="[{$c->_id|default:''}]">
+                                                        [{$c->_title|default:''}]
                                                 </option>
                                             [{/foreach}]
                                         </select>
@@ -188,13 +188,25 @@
                             <div class="col-sm-12 half"> 
                                 <div class="">
                                     
-                                    <div class="col-mb-4 half">
+                                    <div class="col-mb-3 half">
                                         <div class="control-group pull-top">
                                             <div>Status :</div>
                                             <select name="_status" class="form-control selectpicker">
                                                 <option value="1">Enable</option>
                                                 <option value="0" [{if ($item->_status|default:1)==0}]selected[{/if}]>Disable</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-mb-3">
+                                        <div class="control-group pull-top">
+                                            <div>Public date :</div>
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control date"
+                                                    name="_public_at" 
+                                                    value="[{$item->_public_at|default:('Y-m-d H:i:s'|date)}]"
+                                                    data-date-format="YYYY-MM-DD H:m:s"/>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

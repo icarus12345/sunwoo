@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="our-services">
-        <h3>[{$languages.default.our_service|escape}]</h3>
+        <h3>[{$languages.default.our_services|escape}]</h3>
         <div class="row">
             [{foreach from=$our_services item=foo}]
             <div class="col-sm-4 item">

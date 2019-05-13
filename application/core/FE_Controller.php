@@ -63,7 +63,7 @@ class FE_Controller extends CI_Controller {
         $query = $this->db->where('setting_id',1)->get('_setting');
         $row = $query->row();
         $this->assigns->info = json_decode($row->setting_value,true);
-        $this->assigns->setting = $this->setting_model->getByType('other');
+        $this->assigns->default_setting = $this->setting_model->getByType('default');
 
         $colors  = $this->line_model->getByHeadId($this->assigns->fecog['color']);
         $sizes  = $this->line_model->getByHeadId($this->assigns->fecog['size']);

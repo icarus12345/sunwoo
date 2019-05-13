@@ -8,6 +8,8 @@
       <li class="active">[{$languages.default.contact_us|escape}]</li>
     </ol>
     <div class="contact-us">
+        <h2>[{$languages.default.how_to_find_us|escape}]</h2>
+
         <div class="map"><div id="map"></div></div>
         <style type="text/css">
             #header{
@@ -33,172 +35,45 @@
         </style>
 
         <div class="contact-form">
-            
+            <div>
+                <form id="advisoryForm" name="advisoryForm" >
+                    <h2>[{$languages.default.send_us_a_message|escape}]</h2>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="hidden" name="advisory_type" value="contact">
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">[{$languages.default.full_name|escape}]</label>
+                            <input type="text" class="form-control validate[required]" name="advisory_name" placeholder="">
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">[{$languages.default.phone|escape}]</label>
+                            <input type="text" class="form-control validate[required]" name="advisory_desc" placeholder="">
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="email" class="form-control validate[required,custom[email]]" name="advisory_email" placeholder="">
+                            </div>
+                            <br/>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">[{$languages.default.content|escape}]</label>
+                            <textarea rows="8" class="form-control validate[required]" name="advisory_content" placeholder=""></textarea>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="form-group-">
+                    <button type="button" class="btn btn-default btn-sm btn-block btn-info" onclick="send()">[{$languages.default.send_message|escape}]</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    var map_style = [
-  {
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#242f3e"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#746855"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#242f3e"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.locality",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#d59563"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#d59563"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#263c3f"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#6b9a76"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#38414e"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry.stroke",
-    "stylers": [
-      {
-        "color": "#212a37"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#9ca5b3"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#746855"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry.stroke",
-    "stylers": [
-      {
-        "color": "#1f2835"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#f3d19c"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#2f3948"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.station",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#d59563"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#17263c"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#515c6d"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#17263c"
-      }
-    ]
-  }
-];
+    
 function ContactPopup(position, html) {
     this.position = position;
     var content = document.createElement('div')
@@ -263,8 +138,8 @@ $(document).ready(function(){
         
 
         var mapElement = document.getElementById('map')
-        var lat = 10.778114;
-        var lon = 106.692965;
+        var lat = [{$default_setting.lat->_value|escape}] || 10.778114;
+        var lon = [{$default_setting.lon->_value|escape}] || 106.692965;
         // var latlon = [ 10.771921, 106.678296 ]; // 151.20929550000005&lat=-33.8688197
         // var lat  = latlon[0], lon = latlon[1];
         // Basic options for a simple Google Map
@@ -292,11 +167,11 @@ $(document).ready(function(){
 
            var content_info ='\
                           <div>\
-                              <div class="popheader"></div>\
+                              <div class="popheader cover" style="background-image:url([{$default_setting.balloon->_value|escape}])"></div>\
                               <div class="address">\
-                                [A]:126 Nguyá»…n Thá»‹ Minh Khai, P.6, Q.3, TP.HCM<br/>\
-                                [T]:126 Nguyá»…n Thá»‹ Minh Khai, P.6, Q.3, TP.HCM<br/>\
-                                [E]:126 Nguyá»…n Thá»‹ Minh Khai, P.6, Q.3, TP.HCM\
+                                [A]:[{$default_setting.address->_value|escape}]<br/>\
+                                [T]:[{$default_setting.tel->_value|escape}]<br/>\
+                                [E]:[{$default_setting.email->_value|escape}]\
                               </div>\
                           </div>';
             popup = new ContactPopup(

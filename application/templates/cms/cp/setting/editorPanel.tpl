@@ -11,60 +11,46 @@
         <div class="modal-body">
             <input 
                 type="hidden" 
-                value="[{$item->Id|default:''}]" 
+                value="[{$item->_id|default:''}]" 
                 id="EntryId"
                 />
             <form name="entryForm" id="entryForm" target="integration_asynchronous">
-                <input type="hidden" name="Type" 
-                    value="[{$item->Type|default:$type|default:''}]"/>
-                <input type="hidden" name="Status" 
-                    value="[{$item->Status|default:'true'}]"/>
+                <input type="hidden" name="_type" 
+                    value="[{$item->_type|default:$type|default:''}]"/>
+                <input type="hidden" name="_status" 
+                    value="[{$item->_status|default:'1'}]"/>
                 <div class="row">
                     <div class="col-xs-6 col-mb-6">
                         <div class="control-group pull-top">
                             <div>Name :</div>
                             <input type="text" 
                                 class="form-control" 
-                                value="[{$item->Name|escape|default:''}]" 
-                                name="Name"
+                                value="[{$item->_name|escape|default:''}]" 
+                                name="_name"
                                 >
                         </div>
                     </div>
                     <div class="col-xs-6 col-mb-6">
                         <div class="control-group pull-top">
                             <div>Data type :</div>
-                            <select class="form-control selectpicker" name="DataType">
+                            <select class="form-control selectpicker" name="_data_type">
                                 <option value="">Default</option>
-                                <option [{if $item->DataType=="text"}]selected="1"[{/if}] value="text">Text</option>
-                                <option [{if $item->DataType=="html"}]selected="1"[{/if}] value="html">Html</option>
-                                <option [{if $item->DataType=="image"}]selected="1"[{/if}] value="image">Image</option>
-                                <option [{if $item->DataType=="video"}]selected="1"[{/if}] value="video">Video</option>
+                                <option [{if $item->_data_type=="text"}]selected="1"[{/if}] value="text">Text</option>
+                                <option [{if $item->_data_type=="html"}]selected="1"[{/if}] value="html">Html</option>
+                                <option [{if $item->_data_type=="image"}]selected="1"[{/if}] value="image">Image</option>
+                                <option [{if $item->_data_type=="video"}]selected="1"[{/if}] value="video">Video</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-mb-6">
+                    <div class="col-xs-12 col-mb-12">
                         <div class="control-group pull-top">
                             <div>Title :</div>
                             <input type="text" 
-                                class="form-control" value="[{$item->Title|escape|default:''}]" 
-                                name="Title"
+                                class="form-control" value="[{$item->_title|escape|default:''}]" 
+                                name="_title"
                                 >
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-mb-6">
-                        <div class="control-group pull-top">
-                            <div>Image :</div>
-                            <div class="input-append">
-                                <input type="text" 
-                                        class="form-control" value="[{$item->Image|escape|default:''}]" 
-                                        name="Image" id="Image"
-                                        >
-                                <span class="add-on" onclick="BrowseServer('#Image')">
-                                    <i class="fa fa-image"></i>
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +60,7 @@
                     <textarea 
                         rows="3"
                         class="form-control"
-                        name="Desc">[{$item->Desc|escape|default:''}]</textarea>
+                        name="_desc">[{$item->_desc|escape|default:''}]</textarea>
                               
                 </div>
                 <div class="control-group pull-top">
@@ -82,7 +68,7 @@
                     <textarea 
                         rows="5"
                         class="form-control"
-                        name="Value">[{$item->Value|escape|default:''}]</textarea>
+                        name="_value">[{$item->_value|escape|default:''}]</textarea>
                               
                 </div>
             </form>

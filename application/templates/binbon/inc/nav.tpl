@@ -10,7 +10,7 @@
                 </ul>
             </li>
             <li><a href="/shop">[{$languages.default.shop|escape}]</a></li>
-            <li><a href="/blog">[{$languages.default.blog|escape}]</a></li>
+            <li><a href="/blogs">[{$languages.default.blog|escape}]</a></li>
         </ul>
         <div id="cart" class="cart">
             [{include file=$smarty.const.APPPATH|cat:"templates/binbon/widget/cart-info.tpl"}]

@@ -19,7 +19,7 @@ class setting_model extends Core_Model {
             ->get(); 
         $tmp = $query->result();
         foreach ($tmp as $r){
-            $data[$r->name] = $r;
+            $data[$r->_name] = $r;
         }
         return $data;
     }
