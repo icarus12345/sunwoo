@@ -100,23 +100,25 @@
                 <div class="tags">[{$languages.default.tags|escape}]: [{$product_detail->_tag|escape}]</div>
                 <br/>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" style="max-width: 180px">
                         <div class="input-group snippet">
                           <span class="input-group-btn">
                               <button type="button" class="btn btn-default btn-number" data-type="minus" >
-                                  <span class="glyphicon glyphicon-minus"></span>
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
                               </button>
                           </span>
                           <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="10">
                           <span class="input-group-btn">
                               <button type="button" class="btn btn-default btn-number" data-type="plus">
-                                  <span class="glyphicon glyphicon-plus"></span>
+                                  <span class="glyphicon glyphicon-chevron-right"></span>
                               </button>
                           </span>
                         </div>
+                        <br/>
                     </div>
                     <div class="col-sm-8">
                         <button class="btn btn-primary" type="submit">[{$languages.default.add_to_cart|escape}]</button>
+                        <br/>
                     </div>
                 </div>
             </form>

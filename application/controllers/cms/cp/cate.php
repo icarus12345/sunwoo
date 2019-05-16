@@ -110,7 +110,7 @@ class cate extends CP_Controller {
     function updateBatch($aaData){
         if(!empty($aaData)) foreach ($aaData as $c){
             if($c->_value!=$c->new_value){
-                $this->cate_model->onUpdate($c->id,array('_value'=>$c->new_value));
+                $this->cate_model->onUpdate($c->_id,array('_value'=>$c->new_value));
             }
         }
     }

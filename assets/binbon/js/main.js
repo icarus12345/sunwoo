@@ -179,13 +179,34 @@ $(document).ready(function(){
                 0:{
                     items:1
                 },
-                600:{
+                480:{
+                    items:2
+                },
+                768:{
                     items:3
                 },
-                1000:{
+                960:{
                     items:5
+                },
+                1200:{
+                    items:6
                 }
             }
         })
     }
+    $('#gototop').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    })
+    $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        if(scroll){
+            $('#gototop').stop(true).animate({
+                bottom:10
+            }, 500)
+        }else{
+            $('#gototop').stop(true).animate({
+                bottom: -60
+            },500)
+        }
+    })
 })

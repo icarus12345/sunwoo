@@ -328,10 +328,10 @@
                                 <div>List Images:</div>
                         </div>
                         <ul id="sortable-default"data-role="sortable" class="sortable" style="min-height: 100px" data-prefix="_data[images][default][]">
+                            <li class="ui-state-default ui-state-dashed" onclick="App.PhotoBook.add('#sortable-default')">
+                                    <i class="fa fa-plus"></i>
+                            </li>
                             [{if $item->_data}]
-                                <li class="ui-state-default ui-state-dashed" onclick="App.PhotoBook.add('#sortable-default')">
-                                        <i class="fa fa-plus"></i>
-                                </li>
                                 [{foreach from=$item->_data.images.default item=img}]
                                     <li class="ui-state-default">
                                         <img class="thumb" src="[{$img|escape}]"/>

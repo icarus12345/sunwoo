@@ -49,7 +49,7 @@
                                     [{/if}]
                                     [{$foo->_discount}] K
                                 </div>
-                                <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">Add to card</button>
+                                <button class="btn btn-info" onclick="App.addToCart([{$foo->_id}])">[{$languages.default.add_to_cart|escape}]</button>
                             </div>
                         </a>
                     </div>
