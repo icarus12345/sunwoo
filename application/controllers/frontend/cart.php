@@ -12,10 +12,10 @@ class cart extends FE_Controller {
         $this->load->model('scooter/order_model');
     }
     function index(){
-        $this->smarty->view( 'scooter/cart', $this->assigns );
+        $this->smarty->view( 'binbon/cart', $this->assigns );
     }
     function checkout(){
-        $this->smarty->view( 'scooter/checkout', $this->assigns );
+        $this->smarty->view( 'binbon/checkout', $this->assigns );
     }
     function onckeckout(){
         $output["result"] = -1;
@@ -23,18 +23,18 @@ class cart extends FE_Controller {
         $params = $this->input->post('params');
         $cartInfo = $_SESSION['cart']['info'];
         $cartItems = $_SESSION['cart']['items'];
-        $order_id = strtoupper(random_string('alnum', 12));
         if(empty($cartItems)){
             $output["message"] = 'Your cart is empty.';
         }else{
 
             $orderParams = array(
-                'order_id' => $order_id,
-                'order_status' => 'New',
-                'order_customer_id' => $_SESSION['accountInfo']->Id,
-                'order_total' => $cartInfo['cash'],
-                'order_customer_name' => $params['order_shipping_name'],
-                'order_data'=> json_encode(array(
+                '_status' => 'New',
+                '_name' => $params['name'],
+                '_phone' => $params['phone'],
+                '_email' => $params['email'],
+                '_note' => $params['note'],
+                '_total' => $cartInfo['cash'],
+                '_data'=> json_encode(array(
                     'info' => $params,
                     'items' => $cartItems
                 ),true)
@@ -43,21 +43,53 @@ class cart extends FE_Controller {
             if($rs===true){
                 $output["result"] = 1;
                 $output["message"] = 'Success ! Thank you for this order.';
+                $output["cartinfo"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
+                $this->sendMail();
                 $_SESSION['cart'] = null;
-                $output["cartinfo"] = $this->smarty->view('scooter/widget/cartInfo', $this->assigns,true);
             }
         }
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($output));
     }
-    function removeitem($product_id='',$color=''){
-        $item = $_SESSION['cart']['items'][$product_id][$color];
+    function updateitem(){
+        $id = $this->input->post('id');
+        $color = $this->input->post('color');
+        $size = $this->input->post('size');
+        $materia = $this->input->post('materia');
+        $key = "{$color}-{$size}-{$materia}";
+        $item = $_SESSION['cart']['items'][$id][$key];
+        $quantity = (int)$this->input->post('quantity');
+        if(!empty($item)){
+            $cash = $quantity*$item->sale_price;
+            $item->quantity = $quantity;
+            $_SESSION['cart']['info']['cash'] += ($cash - $item->cash);
+            $item->cash = $cash;
+        }
+        $output["code"] = 1;
+        $output["data"] = $_SESSION['cart'];
+        $output["message"] = 'Update your cart success !';
+        $output["html"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
+    }
+    function removeitem(){
+        $id = $this->input->post('id');
+        $color = $this->input->post('color');
+        $size = $this->input->post('size');
+        $materia = $this->input->post('materia');
+        $key = "{$color}-{$size}-{$materia}";
+        $item = $_SESSION['cart']['items'][$id][$key];
         if(!empty($item)){
             $_SESSION['cart']['info']['cash'] -= $item->cash;
             $_SESSION['cart']['info']['amount'] --;
-            unset($_SESSION['cart']['items'][$product_id][$color]);
+            unset($_SESSION['cart']['items'][$id][$key]);
         }
-        redirect('/cart');
+        $output["code"] = 1;
+        $output["data"] = $_SESSION['cart'];
+        $output["message"] = 'Remove product to your cart !';
+        $output["html"] = $this->smarty->view('binbon/widget/cart-info', $this->assigns,true);
+        $this->output->set_header('Content-type: application/json');
+        $this->output->set_output(json_encode($output));
     }
     function onAddToCart(){
     	$output["code"] = -1;
@@ -115,5 +147,16 @@ class cart extends FE_Controller {
         $this->output->set_header('Content-type: application/json');
         $this->output->set_output(json_encode($output));
     }
-    
+    private function sendMail(){
+        // $this->load->model('front/setting_model');
+        $this->load->library('CI_Phpmailer');
+        $mailer = new CI_Phpmailer();
+        $mailer->prm = $this->setting_model->getByType('mailer');
+        if($mailer->prm['Send Message']->_value=='true'){
+            $this->assigns->params = $this->input->post('params');
+            $subject = "You have new request at ". date('d/m/Y');
+            $body = $this->smarty->view( 'mailbodyorder', $this->assigns, true );
+            $mailer->send_mail($mailer->prm['To']->_value,$subject,$body);
+        }
+    }
 }

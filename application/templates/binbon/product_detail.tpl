@@ -43,7 +43,7 @@
                 <span class="price-with-discount">[{$product_detail->_discount}] K </span>
             </div>
             <p class="desc word-wrap">[{$product_detail->_desc|escape}]</p>
-            <form >
+            <form class="addToCart">
                 <input type="hidden" name="id" value="[{$product_detail->_id}]">
                 <div class="row half select-option">
                     [{if $product_detail->_data.custom[$fecog.color]}]
@@ -104,13 +104,13 @@
                         <div class="input-group snippet">
                           <span class="input-group-btn">
                               <button type="button" class="btn btn-default btn-number" data-type="minus" >
-                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                  <span class="fa fa-angle-left"></span>
                               </button>
                           </span>
                           <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="10">
                           <span class="input-group-btn">
                               <button type="button" class="btn btn-default btn-number" data-type="plus">
-                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                  <span class="fa fa-angle-right"></span>
                               </button>
                           </span>
                         </div>

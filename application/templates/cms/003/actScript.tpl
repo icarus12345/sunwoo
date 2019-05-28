@@ -4,6 +4,7 @@ var _oConfig = {
     'entryType':'[{$type}]',
     'cateType':'',
     'entryId': '',
+    'layout': '[{$layout}]',
     'dataColumns':[],
     'paginate':true,
     'entryBindingUri': base_url+'cms/[{$tplConfig.group}]/[{$tplConfig.controller}]/bindingbytype/',
@@ -114,7 +115,9 @@ var [{$tplConfig.name}] = (function() {
                     _oConfig.entryType+'/'+
                     _oConfig.cateType,
                 'data'        :   {
-                    'Id'  :   Id
+                    'Id'  :   Id,
+                    'layout': '[{$layout}]',
+                    'segments': $.getUrlVars()
                 },
                 'callback'    :   function(rsdata){
                     if(rsdata.result<0){

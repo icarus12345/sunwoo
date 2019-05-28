@@ -38,15 +38,15 @@ class excution extends FE_Controller {
         $this->output->set_output(json_encode($output));
     }
     private function sendMail(){
-        $this->load->model('front/setting_model');
+        // $this->load->model('front/setting_model');
         $this->load->library('CI_Phpmailer');
         $mailer = new CI_Phpmailer();
         $mailer->prm = $this->setting_model->getByType('mailer');
-        if($mailer->prm['Send Message']->Value=='true'){
+        if($mailer->prm['Send Message']->_value=='true'){
             $this->assigns->item = $this->input->post('params');
             $subject = "You have new request at ". date('d/m/Y');
             $body = $this->smarty->view( 'mailbody', $this->assigns, true );
-            $mailer->send_mail($mailer->prm['To']->Value,$subject,$body);
+            $mailer->send_mail($mailer->prm['To']->_value,$subject,$body);
         }
     }
 }

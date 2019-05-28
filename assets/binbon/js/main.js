@@ -1,13 +1,82 @@
+$.fn.serializeObject = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 var App = {
     addToCart: function(id){
         var data = {
             id: id,
-            quantity: 1
+            quantity: 1,
+            color:'',
+            size:'',
+            materia:''
         }
-        App.submitToCart(data)
+        App.onAddToCart(data)
         
     },
-    submitToCart: function(info){
+    removeFromCart: function(info){
+
+    },
+    onUpdateItem:function(info,callback){
+        $.ajax({
+            type: 'POST',
+            //cache:false,
+            //timeout:10000,
+            data: info,
+            dataType: 'json',
+            url: '/frontend/cart/updateitem',
+            success: function(res) {
+                if(res.code==1){
+                    toastr.success(res.message)
+                    $('#cart').html(res.html)
+                    if(callback) callback(res)
+                }else{
+                    toastr.warning(res.message)
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                
+                toastr.warning('Sorry. Your request could not be completed. Please check your input data and try again.','Error !');
+            }
+        });
+    },
+    onRemoveItem: function(info,callback){
+        $.ajax({
+            type: 'POST',
+            //cache:false,
+            //timeout:10000,
+            data: info,
+            dataType: 'json',
+            url: '/frontend/cart/removeitem',
+            success: function(res) {
+                if(res.code==1){
+                    toastr.success(res.message)
+                    if(callback) callback(res)
+                    $('#cart').html(res.html)
+                }else{
+                    toastr.warning(res.message)
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                
+                toastr.warning('Sorry. Your request could not be completed. Please check your input data and try again.','Error !');
+            }
+        });
+    },
+    onAddToCart: function(info){
         $.ajax({
             type: 'POST',
             //cache:false,
@@ -132,9 +201,9 @@ $(document).ready(function(){
         $('.price-no-discount').html(price_no_discount + ' K')
         $('.price-with-discount').html(price_with_discount + ' K')
     })
-    $('form').submit(function(event){
+    $('form.addToCart').submit(function(event){
         var data = $(this).serializeJSON();
-        App.submitToCart(data)
+        App.onAddToCart(data)
         event.preventDefault();
         event.stopPropagation();
         return false;
@@ -201,7 +270,7 @@ $(document).ready(function(){
         var scroll = $(window).scrollTop();
         if(scroll){
             $('#gototop').stop(true).animate({
-                bottom:10
+                bottom:70
             }, 500)
         }else{
             $('#gototop').stop(true).animate({
@@ -209,4 +278,7 @@ $(document).ready(function(){
             },500)
         }
     })
+    setTimeout(function(){
+        $('body').removeClass('processing')
+    },1500)
 })

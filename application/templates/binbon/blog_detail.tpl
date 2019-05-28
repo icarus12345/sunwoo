@@ -22,7 +22,7 @@
                 <p>[{$news_detail->_desc|escape}]</p>
             </a>
             <br/>
-            <div class="ckeditor">[{$news_detail->_content|escape}]</div>
+            <div class="ckeditor">[{$news_detail->_content}]</div>
             <br/>
 
             <div class="comment-box">

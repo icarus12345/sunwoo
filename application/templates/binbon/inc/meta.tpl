@@ -69,6 +69,18 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140419121-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-140419121-1');
+        </script>
+
+        <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
     </head>
-    <body>
+    <body class="processing">
+        <div id="loadding"></div>
+        <div class="zalo-chat-widget" data-oaid="2964490766036180297" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>

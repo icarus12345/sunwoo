@@ -2,6 +2,7 @@
 var _oConfig = {
     'showImage':false,
     'entryType':'[{$type}]',
+    'layout': '[{$layout}]',
     'cateType':'',
     'entryId': '',
     'dataColumns':[],
@@ -96,7 +97,9 @@ var [{$tplConfig.name}] = (function() {
                     _oConfig.entryType+'/'+
                     _oConfig.cateType,
                 'data'        :   {
-                    'Id'  :   Id
+                    'layout': '[{$layout}]',
+                    'segments': $.getUrlVars(),
+                    'Id'  :   Id,
                 },
                 'callback'    :   function(rsdata){
                     if(rsdata.result<0){

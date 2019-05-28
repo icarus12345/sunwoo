@@ -49,7 +49,7 @@ class news extends VD_Controller {
         // }
     }
     function beforeinsert(){
-        $_POST['Params']['_owner'] = $_SESSION["auth"]["user"]->ause_name;
+        $_POST['Params']['_author'] = $_SESSION["auth"]["user"]->ause_name;
     }
     function beforedelete(){
         

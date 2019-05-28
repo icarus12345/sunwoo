@@ -1,5 +1,5 @@
 <div class="dropdown my-cart">
-    <div style="cursor:pointer" data-toggle="dropdown">
+    <a href="/cart" style="cursor:pointer" -data-toggle="dropdown">
         <div class="my-bag">
             <span>[{$languages.default.my_bag|escape}]</span>
             <span class="num">[{$smarty.session.cart.info.amount|default:'0'}]</span>
@@ -7,8 +7,8 @@
                 [{$smarty.session.cart.info.cash|default:'0.00'}] K
             </div>
         </div>
-    </div>
-    <div class="cart-items dropdown-menu" >
+    </a>
+    <div class="cart-items dropdown-menu" style="display: none;">
             <table style="width:100%">
                 [{foreach from=$smarty.session.cart.items item=item}]
                     [{foreach from=$item item=foo key=color}]

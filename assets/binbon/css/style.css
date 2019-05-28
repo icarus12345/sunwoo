@@ -5,6 +5,15 @@ html,body{
     font-family: 'Baloo',cursive;
     color: #1a276f;
 }
+#loadding{
+    position: fixed;
+    top: 0;left: 0;width: 100vw;
+    height: 100vh;
+    background: url(/libraries//plugin/swipebox/img/loading_icon.gif) center no-repeat rgba(255,255,255,.75);
+    z-index: 1111;
+    display: none;
+}
+.processing #loadding{display: block;}
 .transition{
     -webkit-transition: all .5s; /*adjust timing here */
     -moz-transition: all .5s;
@@ -172,7 +181,7 @@ html,body{
     line-height: 80px;
     padding-left: 20px;
     font-size: 32px;
-    background: url(../images/logo.png) no-repeat center;
+    background: url(../images/logo.png) no-repeat 20px  center;
     color: transparent;
 }
 .left-bar ul{
@@ -726,7 +735,8 @@ body .wp-copyright{
     padding: 10px;
     border-radius: 10px;
 }
-.contact-form button.btn{
+.form .btn,
+.contact-form .btn{
     line-height: 40px;font-size: 20px
 }
 .empty{
@@ -760,10 +770,17 @@ body .wp-copyright{
     padding-top: 15px;padding-bottom: 15px;
 }
 .gototop{
-    position: fixed;bottom: -60px;right: 10px;z-index: 1000;
+    position: fixed;bottom: -60px;
+    /*left: 50%;
+    margin-left: -26px;*/
+    right: 10px;
+    z-index: 1000;
     width: 53px;height: 53px;
     background: url(../images/back-top.png) center;
     cursor: pointer;
+}
+.zalo-chat-widget{
+    /*margin-bottom: 60px;*/
 }
 .langs{position: absolute;bottom: 0;left: 0;width: 100%;text-align: center;}
 .left-bar ul .langs>a{display: inline-block;font-size: 12px;padding: 5px 10px}
@@ -832,6 +849,7 @@ body .wp-copyright{
     }
     .left-bar .logo{
         height: 96px;
+        background-position: center;
     }
     .navbar-toggle{
         margin-top: 

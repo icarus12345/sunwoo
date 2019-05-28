@@ -43,11 +43,11 @@ class news_model extends Core_Model {
     }
     function blog_cond(){
         $this->db
-            ->where("_news._type",'default');
+            ->where("_news._type",'blog');
     }
     function news_cond(){
         $this->db
-            ->where("_news._type",'default');
+            ->where("_news._type",'blog');
     }
     function event_cond(){
         $this->db
